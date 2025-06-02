@@ -8,9 +8,10 @@ import { Asset } from '@/types/asset';
 
 interface AssetHeaderProps {
   asset: Asset;
+  onApprove?: () => void;
 }
 
-const AssetHeader = ({ asset }: AssetHeaderProps) => {
+const AssetHeader = ({ asset, onApprove }: AssetHeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -28,7 +29,7 @@ const AssetHeader = ({ asset }: AssetHeaderProps) => {
         </div>
         <p className="text-muted-foreground">SKU: {asset.sku} | Quality Score: {asset.quality}%</p>
       </div>
-      <Button className="relative z-50">
+      <Button className="relative z-50" onClick={onApprove}>
         Approve Content
       </Button>
     </div>

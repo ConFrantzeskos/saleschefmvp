@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 import AssetHeader from '@/components/AssetHeader';
 import FactoryDataSection from '@/components/FactoryDataSection';
 import EnhancedContentSection from '@/components/EnhancedContentSection';
@@ -94,6 +95,13 @@ LEAD_TIME,15-20days
 FOB_PRICE,USD_28.50
 RETAIL_PRICE,USD_79.99`;
 
+  const handleApprove = () => {
+    toast.success("Content approved successfully!");
+    setTimeout(() => {
+      navigate('/review');
+    }, 1000);
+  };
+
   const handleEdit = (sectionIndex: number, itemIndex: number) => {
     const fieldKey = `${sectionIndex}-${itemIndex}`;
     setEditingField(fieldKey);
@@ -125,7 +133,7 @@ RETAIL_PRICE,USD_79.99`;
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <div className="max-w-7xl mx-auto p-6 flex-1 flex flex-col">
-        <AssetHeader asset={asset} />
+        <AssetHeader asset={asset} onApprove={handleApprove} />
 
         {/* Two-column layout with independent scrolling - takes remaining space */}
         <div className="grid grid-cols-2 gap-6 flex-1 min-h-0">
@@ -155,7 +163,7 @@ RETAIL_PRICE,USD_79.99`;
             <Button variant="outline">
               Request Changes
             </Button>
-            <Button>
+            <Button onClick={handleApprove}>
               Approve & Continue
             </Button>
           </div>
