@@ -1,25 +1,42 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, Globe, FileText, Image, Mail, Printer, GraduationCap, HelpCircle, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { ArrowLeft, Globe, FileText, Image, Mail, Printer, GraduationCap, HelpCircle, Search, Edit2, Check, X } from 'lucide-react';
 
 const AssetReview = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [editingField, setEditingField] = useState<string | null>(null);
+  const [editValues, setEditValues] = useState<Record<string, string>>({});
   
-  // Mock data for the asset - in real app this would come from API
+  // Mock data for the asset
   const asset = {
     id: 1,
-    sku: "PRD-001",
-    name: "Wireless Bluetooth Headphones",
+    sku: "CD1234",
+    name: "24 Hour Charge Wireless Headphones",
     brand: "TechSound",
     category: "Electronics > Audio > Headphones",
     status: "Enhanced",
     quality: 95
+  };
+
+  // Raw factory data (left side)
+  const rawData = {
+    name: "wireless headphone bluetooth",
+    description: "headphone wireless bluetooth good battery",
+    features: "bluetooth, battery, mic",
+    price: "$79.99",
+    weight: "250g",
+    battery: "24hr",
+    connectivity: "bluetooth 5.0",
+    color: "black",
+    foldable: "yes"
   };
 
   const contentSections = [
@@ -29,16 +46,49 @@ const AssetReview = () => {
       description: "Comprehensive product detail page content",
       items: [
         {
-          label: "Hero Section",
-          content: "Experience Premium Audio Freedom - TechSound Wireless Bluetooth Headphones deliver crystal-clear sound with 30-hour battery life, advanced noise cancellation, and all-day comfort for professionals on the go."
+          label: "Meta Title H1",
+          rawContent: "wireless headphone bluetooth",
+          content: "CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic"
         },
         {
-          label: "Feature Highlights",
-          content: "• 30-hour battery life for all-day listening\n• Advanced Bluetooth 5.0 connectivity\n• Active noise cancellation technology\n• Premium comfort padding\n• Quick charge: 15 minutes = 3 hours playback"
+          label: "Hero Introduction",
+          rawContent: "good headphone with battery",
+          content: "Stay connected, wire-free. The CD1234 Wireless Headphones combine 24-hour battery life, advanced Bluetooth 5.0 connectivity, and a foldable design for life on the go — whether commuting, working from home, or travelling the world."
         },
         {
-          label: "Lifestyle Content", 
-          content: "Whether you're commuting to work, focusing in a busy office, or traveling the world, TechSound headphones adapt to your lifestyle. The foldable design fits perfectly in your carry-on, while the extended battery ensures your music never stops."
+          label: "Feature Bullets",
+          rawContent: "• bluetooth\n• battery\n• mic\n• foldable",
+          content: "• 24 hours of wireless battery life — all-day listening\n• Seamless Bluetooth 5.0 connection — no dropouts\n• Built-in microphone for crystal-clear calls\n• Foldable design — easy to pack and carry\n• Lightweight and comfortable for all-day wear"
+        },
+        {
+          label: "Lifestyle Section",
+          rawContent: "good for use",
+          content: "Designed for your life on the move\nPerfect for the modern professional who needs audio that keeps up. Whether you're catching up on podcasts during your morning commute, taking back-to-back Zoom calls, or unwinding with music on a long flight, the CD1234 adapts to every moment of your day."
+        },
+        {
+          label: "Performance Section",
+          rawContent: "works well",
+          content: "Uninterrupted sound, anywhere\n• Advanced Bluetooth 5.0 ensures stable connection up to 33 feet\n• 24-hour battery life eliminates charging anxiety\n• Quick 15-minute charge provides 3 hours of playback\n• Premium 40mm drivers deliver crisp, balanced audio"
+        },
+        {
+          label: "Calls & Work Section",
+          rawContent: "has mic",
+          content: "Perfect for Zoom calls, meetings & more\n• Built-in microphone with noise reduction for crystal-clear voice\n• Compatible with all devices — PC, Mac, smartphones, tablets\n• Seamless switching between music and calls\n• Optimized for video conferencing platforms"
+        },
+        {
+          label: "Portability Section",
+          rawContent: "foldable",
+          content: "Fold-and-go convenience\n• Innovative folding design reduces size by 50%\n• Dimensions: 180mm x 160mm (unfolded) → 90mm x 160mm (folded)\n• Fits easily in carry-on luggage, backpacks, or laptop bags\n• Durable hinges tested for 10,000+ fold cycles"
+        },
+        {
+          label: "Customer Reviews",
+          rawContent: "customers like it",
+          content: "★★★★★ \"Perfect for remote work! Battery lasts my entire workday plus evening music.\"\n★★★★★ \"Best value for battery life. Folding design is genius for travel.\"\n★★★★★ \"Crystal clear Zoom calls. Colleagues say I sound professional.\"\n★★★★★ \"Folds small for my carry-on. Essential for business travel.\""
+        },
+        {
+          label: "FAQ Section",
+          rawContent: "questions about product",
+          content: "Q: How long does the battery last?\nA: Up to 24 hours on a full charge — perfect for all-day listening.\n\nQ: Are they good for Zoom calls?\nA: Yes — built-in microphone optimised for clear voice on video calls.\n\nQ: Can I use while commuting?\nA: Absolutely. Foldable design and long battery make them ideal for travel.\n\nQ: Do they have noise cancelling?\nA: Passive noise isolation, but no active noise cancelling.\n\nQ: What devices are compatible?\nA: Any Bluetooth 5.0 device — smartphones, laptops, tablets, PCs."
         }
       ]
     },
@@ -49,15 +99,18 @@ const AssetReview = () => {
       items: [
         {
           label: "Technical Specifications",
-          content: "• Driver Size: 40mm dynamic drivers\n• Frequency Response: 20Hz - 20kHz\n• Bluetooth Version: 5.0\n• Battery Life: 30 hours\n• Charging Time: 2 hours\n• Weight: 250g"
+          rawContent: "bluetooth 5.0, 24hr battery, 250g",
+          content: "• Driver Size: 40mm dynamic drivers with neodymium magnets\n• Frequency Response: 20Hz - 20kHz (Hi-Res Audio certified)\n• Bluetooth Version: 5.0 with A2DP, AVRCP, HFP profiles\n• Battery Life: 24 hours continuous playback\n• Charging Time: 2 hours (USB-C fast charging)\n• Weight: 250g (ultra-lightweight design)\n• Impedance: 32Ω\n• Sensitivity: 102dB SPL"
         },
         {
           label: "Compatibility Information",
-          content: "Compatible with all Bluetooth-enabled devices including:\n• iOS devices (iPhone, iPad)\n• Android smartphones and tablets\n• Windows and Mac computers\n• Gaming consoles (PS5, Xbox)\n• Smart TVs and streaming devices"
+          rawContent: "works with phones",
+          content: "Universal Bluetooth 5.0 Compatibility:\n• iOS devices (iPhone 6 and newer, iPad, Apple Watch)\n• Android smartphones and tablets (Android 5.0+)\n• Windows computers (Windows 10/11)\n• Mac computers (macOS 10.12+)\n• Gaming consoles (PS5, Xbox Series X/S, Nintendo Switch)\n• Smart TVs and streaming devices\n• Voice assistants (Siri, Google Assistant)"
         },
         {
           label: "Performance Metrics",
-          content: "• Signal Range: Up to 33 feet (10 meters)\n• Latency: <40ms for video sync\n• Charging Port: USB-C\n• Codec Support: SBC, AAC, aptX\n• Noise Reduction: Up to 25dB"
+          rawContent: "good performance",
+          content: "Connectivity & Performance:\n• Bluetooth Range: Up to 33 feet (10 meters) in open space\n• Audio Latency: <40ms for perfect video sync\n• Charging Port: USB-C with fast charging support\n• Codec Support: SBC, AAC, aptX for high-quality audio\n• Microphone: Omnidirectional with noise reduction\n• Fold Mechanism: 180° rotation with locking hinges\n• Operating Temperature: -10°C to 45°C"
         }
       ]
     },
@@ -68,15 +121,18 @@ const AssetReview = () => {
       items: [
         {
           label: "Key Selling Points",
-          content: "✓ Industry-leading 30-hour battery life\n✓ Professional-grade noise cancellation\n✓ Premium comfort for all-day wear\n✓ Universal compatibility\n✓ Rapid charging technology"
+          rawContent: "good battery, foldable",
+          content: "Revolutionary 24-Hour Performance:\n✓ Longest battery life in price category — 50% more than competitors\n✓ Innovative foldable design — reduces storage size by 50%\n✓ Professional-grade call quality — perfect for remote work\n✓ Universal compatibility — works with every Bluetooth device\n✓ Travel-optimized design — ideal for business and leisure travel\n✓ Quick charge technology — 15 minutes = 3 hours playback"
         },
         {
           label: "Competitive Advantages",
-          content: "• 25% longer battery life than leading competitors\n• Superior noise cancellation vs Sony WH-1000XM4\n• More comfortable than Bose QuietComfort 45\n• Better value proposition than Apple AirPods Max\n• Faster charging than market average"
+          rawContent: "better than others",
+          content: "Market Leadership Positioning:\n• 24-hour battery vs Sony WH-CH720N (20 hours) — 20% longer\n• Foldable design vs Bose QuietComfort 45 (non-foldable) — unique advantage\n• $79.99 vs Apple AirPods Max ($549) — 85% cost savings\n• Professional call quality vs Beats Solo3 (music-focused) — work advantage\n• Travel portability vs Sennheiser HD 450BT (bulky) — 50% more compact"
         },
         {
-          label: "Value Proposition",
-          content: "Premium audio experience at mid-range pricing. TechSound delivers flagship features typically found in $300+ headphones at an accessible $79.99 price point, making professional-grade audio accessible to everyone."
+          label: "Value Proposition & Pricing Strategy",
+          rawContent: "$79.99",
+          content: "Premium Features, Accessible Price:\n• Target Price: $79.99 (positioned between $60-100 segment)\n• Value Benchmark: Delivers $200+ features at mid-tier pricing\n• ROI for Customers: Replaces need for separate work/travel headphones\n• Market Position: Premium performance without premium pricing\n• Bundle Opportunities: Travel case, charging cable, airline adapter\n• Warranty: 2-year comprehensive coverage included"
         }
       ]
     },
@@ -86,16 +142,19 @@ const AssetReview = () => {
       description: "Search-optimized content for maximum visibility",
       items: [
         {
-          label: "Meta Title",
-          content: "TechSound Wireless Bluetooth Headphones - 30Hr Battery Life | Noise Cancelling"
+          label: "Meta Title & Description",
+          rawContent: "wireless headphone",
+          content: "Meta Title: CD1234 24 Hour Wireless Headphones | Bluetooth 5.0 | Foldable Design\n\nMeta Description: Experience all-day wireless freedom with CD1234 headphones. 24-hour battery, Bluetooth 5.0, foldable design perfect for work, travel & commuting. Free shipping Australia-wide."
         },
         {
-          label: "Meta Description",
-          content: "Experience premium audio with TechSound wireless headphones. 30-hour battery, active noise cancellation, and crystal-clear sound quality. Free shipping on orders over $50."
+          label: "Primary & Secondary Keywords",
+          rawContent: "headphone bluetooth",
+          content: "Primary Keywords:\n• wireless headphones 24 hour battery\n• foldable bluetooth headphones\n• headphones for work from home\n• travel headphones bluetooth\n\nSecondary Keywords:\n• long battery life headphones\n• portable wireless headphones\n• headphones with microphone\n• business travel headphones\n\nLong-tail Keywords:\n• best wireless headphones for zoom calls\n• foldable headphones for travel\n• 24 hour battery bluetooth headphones australia"
         },
         {
-          label: "SEO Keywords",
-          content: "Primary: wireless bluetooth headphones, noise cancelling headphones\nSecondary: long battery life headphones, comfortable headphones, professional audio\nLong-tail: best wireless headphones for work, bluetooth headphones 30 hour battery"
+          label: "SEO Content & Schema",
+          rawContent: "seo stuff",
+          content: "Supporting SEO Content:\n• Related Categories: Bluetooth headphones, wireless headphones, travel accessories\n• Internal Links: Best headphones for remote work, Travel tech essentials, Wireless audio guide\n• Schema Markup: Product, Review, FAQ structured data\n• Local SEO: 'wireless headphones Australia', 'bluetooth headphones Sydney'\n• Featured Snippet Targets: 'How long do wireless headphones battery last?', 'Best foldable headphones 2024'"
         }
       ]
     },
@@ -105,16 +164,19 @@ const AssetReview = () => {
       description: "Campaign-ready email content",
       items: [
         {
-          label: "Subject Lines",
-          content: "• Your audio upgrade is here - 30% off TechSound headphones\n• Finally, headphones that last as long as your workday\n• Premium sound without the premium price tag\n• Last chance: TechSound headphones at launch price"
+          label: "Subject Lines & Campaign Headers",
+          rawContent: "buy headphones",
+          content: "Subject Line Options:\n• 🎧 24 hours of wireless freedom — introducing CD1234\n• Finally: headphones that last as long as your workday\n• Fold, pack, go: Your new travel companion is here\n• [Limited Time] Professional wireless audio for $79.99\n• Work from anywhere with 24-hour wireless headphones\n\nPreview Text:\n'Foldable design + all-day battery = perfect for modern life'"
         },
         {
-          label: "Product Announcements",
-          content: "Introducing TechSound Wireless Headphones - the perfect blend of premium audio quality and all-day comfort. With 30-hour battery life and professional-grade noise cancellation, these headphones are designed for the modern professional who demands excellence."
+          label: "Product Announcement Email",
+          rawContent: "new product available",
+          content: "Email Body:\n\nSubject: 🎧 Meet your new all-day audio companion\n\nHi [Name],\n\nTired of headphones that die halfway through your workday? \n\nIntroducing the CD1234 Wireless Headphones — engineered for the way you actually live and work.\n\n✓ 24-hour battery life (seriously!)\n✓ Folds to half the size for easy travel\n✓ Crystal-clear calls for Zoom meetings\n✓ Works with every device you own\n\nWhether you're powering through back-to-back meetings, catching up on podcasts during your commute, or unwinding with music on a long flight — the CD1234 keeps up.\n\n[Shop Now — $79.99] [Learn More]\n\nBest,\nThe TechSound Team"
         },
         {
-          label: "Promotional Copy",
-          content: "Limited Time: Get your TechSound headphones for just $79.99 (RRP $99.99). Free shipping included. 30-day money-back guarantee. Don't let poor audio quality hold back your productivity - upgrade today."
+          label: "Promotional Campaign Copy",
+          rawContent: "discount offer",
+          content: "Limited-Time Launch Offer:\n\nSubject: ⚡ Launch Week: Save 25% on CD1234 Headphones\n\nHi [Name],\n\nLast chance to get CD1234 Wireless Headphones at our exclusive launch price.\n\n🔥 Was $79.99 → Now $59.99 (Save $20)\n✓ 24-hour battery life\n✓ Foldable travel design  \n✓ Perfect for work & play\n✓ FREE shipping Australia-wide\n✓ 30-day money-back guarantee\n\nOffer ends midnight Sunday. Over 500 customers already upgraded their audio experience.\n\n[Claim Your 25% Discount]\n\n*Use code LAUNCH25 at checkout\n\nUpgrade your workday,\nTechSound Team"
         }
       ]
     },
@@ -124,16 +186,19 @@ const AssetReview = () => {
       description: "Print-ready marketing materials",
       items: [
         {
-          label: "Brochure Content",
-          content: "TECHSOUND WIRELESS HEADPHONES\n\nPremium Audio. All-Day Comfort.\n\nKey Features:\n→ 30-hour battery life\n→ Active noise cancellation\n→ Bluetooth 5.0 connectivity\n→ Quick charge technology\n→ Foldable design\n\nPerfect for professionals, students, and audio enthusiasts who demand quality."
+          label: "Product Brochure Content",
+          rawContent: "product info sheet",
+          content: "CD1234 WIRELESS HEADPHONES\nAll-Day Audio. Anywhere.\n\n24-HOUR BATTERY LIFE\nMore listening. Less charging.\nPowered by advanced lithium technology for all-day performance.\n\nFOLDABLE DESIGN\nHalf the size. Double the convenience.\nInnovative hinges fold flat for ultimate portability.\n\nPROFESSIONAL CALLS\nCrystal-clear communication.\nBuilt-in noise-reducing microphone optimized for video calls.\n\nUNIVERSAL COMPATIBILITY\nWorks with everything.\nBluetooth 5.0 connects to phones, laptops, tablets, and more.\n\nTechSound.com | $79.99 | 2-Year Warranty"
         },
         {
-          label: "Data Sheet",
-          content: "TECHNICAL SPECIFICATIONS\nModel: TechSound Pro\nDriver: 40mm dynamic\nBattery: 30 hours playback\nCharging: USB-C, 2 hours full charge\nWeight: 250g\nConnectivity: Bluetooth 5.0\nRange: 10 meters\nWarranty: 2 years"
+          label: "Technical Data Sheet",
+          rawContent: "specs sheet",
+          content: "TECHNICAL SPECIFICATIONS\nModel: CD1234 Wireless Headphones\n\nAUDIO\n• Drivers: 40mm dynamic, neodymium magnets\n• Frequency Response: 20Hz - 20kHz\n• Impedance: 32Ω\n• Sensitivity: 102dB SPL\n\nCONNECTIVITY\n• Bluetooth: Version 5.0\n• Range: 10 meters (33 feet)\n• Codecs: SBC, AAC, aptX\n• Latency: <40ms\n\nPOWER & CHARGING\n• Battery Life: 24 hours continuous\n• Charging: USB-C, 2 hours full charge\n• Quick Charge: 15 min = 3 hours playback\n\nDESIGN\n• Weight: 250g\n• Folded: 90mm x 160mm x 80mm\n• Unfolded: 180mm x 160mm x 80mm\n• Colors: Matte Black, Navy Blue\n\nWARRANTY\n• Coverage: 2 years comprehensive\n• Support: Australian customer service\n\nSKU: CD1234 | RRP: $79.99"
         },
         {
-          label: "Catalog Entry",
-          content: "TechSound Wireless Bluetooth Headphones - SKU: PRD-001\nPremium wireless headphones featuring 30-hour battery life, active noise cancellation, and professional-grade audio quality. Ideal for business, travel, and everyday use.\nPrice: $79.99 | Category: Audio > Headphones"
+          label: "Retail Catalog Entry",
+          rawContent: "catalog listing",
+          content: "CATALOG ENTRY\n\nCD1234 Wireless Headphones — TechSound\nSKU: CD1234-BLK (Black), CD1234-NVY (Navy)\n\nPRODUCT SUMMARY\nPremium wireless headphones engineered for modern professionals. Features industry-leading 24-hour battery life and innovative foldable design that reduces storage size by 50%. Perfect for business travel, remote work, and daily commuting.\n\nKEY FEATURES\n• 24-hour wireless battery life\n• Foldable design for portability\n• Bluetooth 5.0 connectivity\n• Built-in microphone for calls\n• Universal device compatibility\n\nTARGET MARKETS\n• Business & professional audio\n• Travel & commuter accessories\n• Remote work technology\n• Student & education tech\n\nPRICING & MARGIN\n• RRP: $79.99\n• Trade Price: $48.00\n• Margin: 40%\n• MOQ: 50 units\n\nCATEGORY: Audio > Headphones > Wireless\nBRAND: TechSound | WARRANTY: 2 Years"
         }
       ]
     },
@@ -143,16 +208,19 @@ const AssetReview = () => {
       description: "Sales team enablement materials",
       items: [
         {
-          label: "Feature Guide",
-          content: "SALES FEATURE GUIDE\n\n1. Battery Life (30 hours)\n   - Positioning: 'All-day listening without interruption'\n   - Proof point: Longest in price category\n\n2. Noise Cancellation\n   - Positioning: 'Professional-grade focus'\n   - Proof point: 25dB reduction\n\n3. Comfort\n   - Positioning: 'Designed for extended wear'\n   - Proof point: Memory foam padding"
+          label: "Sales Feature Guide",
+          rawContent: "how to sell",
+          content: "SALES TRAINING: CD1234 Wireless Headphones\n\n1. LEAD WITH BATTERY LIFE\n   Positioning: 'Never worry about charging again'\n   Proof Point: 24 hours = 3x longer than iPhone battery\n   Objection: 'Sounds too good to be true' → 'Advanced lithium tech, tested and certified'\n\n2. EMPHASIZE PORTABILITY\n   Positioning: 'Designed for life on the move'\n   Proof Point: Folds to 50% smaller than competitors\n   Demo: Show fold/unfold mechanism\n\n3. HIGHLIGHT WORK BENEFITS\n   Positioning: 'Professional audio for hybrid work'\n   Proof Point: Optimized microphone for video calls\n   ROI: Replaces need for separate work headset\n\n4. STRESS UNIVERSAL COMPATIBILITY\n   Positioning: 'Works with everything you own'\n   Proof Point: Bluetooth 5.0 = latest standard\n   Benefit: One headphone for all devices"
         },
         {
-          label: "Selling Points",
-          content: "PRIMARY BENEFITS:\n• Productivity: Uninterrupted focus with noise cancellation\n• Convenience: 30-hour battery eliminates charging anxiety\n• Quality: Premium audio at accessible price\n• Versatility: Perfect for work, travel, and leisure\n• Reliability: Bluetooth 5.0 ensures stable connection"
+          label: "Key Selling Points & Benefits",
+          rawContent: "why buy this",
+          content: "PRIMARY SELLING BENEFITS\n\nPRODUCTIVITY BENEFITS\n• All-day battery eliminates charging interruptions\n• Clear calls enhance professional image\n• Universal compatibility streamlines tech setup\n• Foldable design enables anywhere productivity\n\nLIFESTYLE BENEFITS\n• Travel-friendly size fits any bag\n• 24-hour battery covers longest flights\n• Seamless device switching\n• Comfortable for extended wear\n\nECONOMIC BENEFITS\n• Replaces multiple audio devices\n• 2-year warranty protects investment\n• Premium features at mid-tier price\n• No additional accessories needed\n\nSOCIAL PROOF\n• 500+ customers in first month\n• 4.8/5 average review rating\n• Recommended by remote work blogs\n• Featured in travel gear guides"
         },
         {
           label: "Objection Handlers",
-          content: "COMMON OBJECTIONS:\n\nQ: 'Too expensive for Bluetooth headphones'\nA: 'At $79.99, you're getting 30-hour battery and noise cancellation - features typically found in $200+ headphones.'\n\nQ: 'Will they work with my iPhone?'\nA: 'Yes, they're compatible with all Bluetooth devices including iPhone, Android, laptops, and tablets.'"
+          rawContent: "customer concerns",
+          content: "COMMON OBJECTIONS & RESPONSES\n\nOBJECTION: 'Too expensive for wireless headphones'\nRESPONSE: 'At $79.99, you're getting 24-hour battery and foldable design — features typically found in $200+ headphones. Plus, it replaces your work headset and travel headphones.'\n\nOBJECTION: 'Will they work with my iPhone/Android?'\nRESPONSE: 'Absolutely. Bluetooth 5.0 works with every smartphone, tablet, laptop, and even gaming consoles. They're more compatible than wired headphones.'\n\nOBJECTION: 'How do I know the battery really lasts 24 hours?'\nRESPONSE: 'We tested them extensively. 24 hours at moderate volume is conservative — many users get even more. Plus, 15-minute quick charge gives you 3 hours backup.'\n\nOBJECTION: 'They look bulky when unfolded'\nRESPONSE: 'That's the genius — they fold to half the size. When packed, they're more compact than most competitors, but when wearing them, you get full-size comfort and audio quality.'\n\nOBJECTION: 'What if they break when I fold them?'\nRESPONSE: 'The hinges are tested for over 10,000 fold cycles — that's folding them 5 times a day for 5+ years. Plus, you're covered by our comprehensive 2-year warranty.'"
         }
       ]
     },
@@ -163,23 +231,47 @@ const AssetReview = () => {
       items: [
         {
           label: "Product FAQs",
-          content: "Q: How long does the battery actually last?\nA: Up to 30 hours of continuous playback at moderate volume with noise cancellation off. With noise cancellation on, expect 24-26 hours.\n\nQ: Can I use them while exercising?\nA: While not specifically designed for sports, they're suitable for light exercise. They're not waterproof but can handle light moisture.\n\nQ: Do they work for phone calls?\nA: Yes, they feature a built-in microphone optimized for clear voice calls and video conferences."
+          rawContent: "common questions",
+          content: "FREQUENTLY ASKED QUESTIONS\n\nQ: How long does the battery actually last on the CD1234?\nA: Up to 24 hours of continuous playback at moderate volume. With mixed usage (calls, music, standby), most users get 2-3 days between charges.\n\nQ: Can I use the CD1234 while exercising?\nA: While not specifically designed for sports, they're suitable for light exercise like walking or gym workouts. They're sweat-resistant but not waterproof.\n\nQ: How clear are phone calls with the CD1234?\nA: Excellent. The built-in microphone features noise reduction technology, making your voice clear and professional on calls and video conferences.\n\nQ: Will the folding mechanism break with regular use?\nA: No. The hinges are engineered for durability and tested for over 10,000 fold cycles. They're designed for daily folding and travel.\n\nQ: Do the CD1234 headphones have active noise cancelling?\nA: They provide passive noise isolation through the ear cup design, but do not feature active noise cancelling technology.\n\nQ: How long does it take to charge the CD1234?\nA: Full charge takes 2 hours via USB-C. Quick charge feature: 15 minutes of charging provides 3 hours of playback."
         },
         {
           label: "Technical Support",
-          content: "TROUBLESHOOTING:\n\nConnection Issues:\n1. Ensure Bluetooth is enabled on your device\n2. Clear Bluetooth cache (Android) or forget/re-pair (iOS)\n3. Reset headphones by holding power button for 10 seconds\n\nAudio Quality Issues:\n1. Check codec compatibility (AAC for iOS, aptX for Android)\n2. Ensure headphones are fully charged\n3. Move closer to source device (within 10 meters)"
+          rawContent: "troubleshooting",
+          content: "TECHNICAL SUPPORT GUIDE\n\nCONNECTION ISSUES\nProblem: Won't pair with device\nSolution: \n1. Hold power button 3 seconds until blue light flashes\n2. Clear Bluetooth cache on device\n3. Ensure headphones are in pairing mode\n4. Select 'CD1234' from available devices\n\nProblem: Audio cuts out during use\nSolution:\n1. Check device is within 10-meter range\n2. Ensure no interference from WiFi routers\n3. Update device Bluetooth drivers\n4. Reset headphones (hold power 10 seconds)\n\nAUDIO QUALITY ISSUES\nProblem: Poor sound quality\nSolution:\n1. Check codec compatibility (AAC for iOS, aptX for Android)\n2. Ensure headphones are fully charged\n3. Adjust EQ settings on source device\n4. Clean headphone drivers gently\n\nBATTERY ISSUES\nProblem: Battery drains quickly\nSolution:\n1. Check volume level (high volume reduces battery)\n2. Disable unused features on source device\n3. Ensure proper charging with included USB-C cable\n4. Contact support if battery life under 20 hours"
         },
         {
-          label: "Usage Guidance",
-          content: "GETTING STARTED:\n\n1. First Use:\n   - Charge for 2 hours before first use\n   - Download TechSound app for firmware updates\n\n2. Pairing:\n   - Hold power button for 3 seconds until blue light flashes\n   - Select 'TechSound Pro' from device Bluetooth menu\n\n3. Controls:\n   - Power: Long press power button\n   - Volume: Use device controls or side buttons\n   - Noise cancellation: Double-tap left ear cup"
+          label: "Setup & Usage Guidance",
+          rawContent: "how to use",
+          content: "SETUP & USAGE GUIDE\n\nFIRST USE SETUP\n1. Unbox and charge for 2 hours before first use\n2. Download TechSound app (optional) for firmware updates\n3. Unfold headphones and hold power button 3 seconds\n4. Select 'CD1234' from your device's Bluetooth menu\n5. Enjoy 24 hours of wireless audio!\n\nDAILY USAGE TIPS\n• Folding: Press side buttons and rotate ear cups 180°\n• Charging: Use included USB-C cable, any USB port\n• Calls: Double-tap right ear cup to answer/end calls\n• Volume: Use device controls or headphone side buttons\n• Travel: Always fold before packing to save space\n\nCARE & MAINTENANCE\n• Clean ear cups weekly with soft, damp cloth\n• Store in included carry pouch when traveling\n• Avoid extreme temperatures (-10°C to 45°C)\n• Charge monthly even when not in regular use\n• Update firmware via TechSound app quarterly\n\nTROUBLE-FREE TRAVEL\n• Fold before packing in carry-on or checked luggage\n• Charge fully before long flights\n• Pair with in-flight entertainment via Bluetooth\n• Use airline adapter (sold separately) if needed\n• Keep charging cable in easily accessible pocket"
         }
       ]
     }
   ];
 
+  const handleEdit = (sectionIndex: number, itemIndex: number) => {
+    const fieldKey = `${sectionIndex}-${itemIndex}`;
+    setEditingField(fieldKey);
+    setEditValues({
+      ...editValues,
+      [fieldKey]: contentSections[sectionIndex].items[itemIndex].content
+    });
+  };
+
+  const handleSave = (sectionIndex: number, itemIndex: number) => {
+    const fieldKey = `${sectionIndex}-${itemIndex}`;
+    // In a real app, this would save to backend
+    contentSections[sectionIndex].items[itemIndex].content = editValues[fieldKey];
+    setEditingField(null);
+  };
+
+  const handleCancel = () => {
+    setEditingField(null);
+    setEditValues({});
+  };
+
   return (
     <div className="min-h-screen bg-background p-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="flex items-center space-x-4 mb-6">
           <Button variant="outline" onClick={() => navigate('/review')}>
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -200,10 +292,10 @@ const AssetReview = () => {
         </div>
 
         <div className="space-y-6">
-          {contentSections.map((section, index) => {
+          {contentSections.map((section, sectionIndex) => {
             const Icon = section.icon;
             return (
-              <Card key={index}>
+              <Card key={sectionIndex}>
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-3">
                     <div className="p-2 bg-primary/10 rounded-lg">
@@ -215,16 +307,81 @@ const AssetReview = () => {
                     </div>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  {section.items.map((item, itemIndex) => (
-                    <div key={itemIndex}>
-                      <h4 className="font-medium text-sm mb-2 text-primary">{item.label}</h4>
-                      <div className="text-sm leading-relaxed whitespace-pre-line bg-muted/30 p-3 rounded-md">
-                        {item.content}
-                      </div>
-                      {itemIndex < section.items.length - 1 && <Separator className="mt-4" />}
+                <CardContent>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Raw Data Column (Left) */}
+                    <div className="space-y-4">
+                      <h4 className="font-medium text-sm text-muted-foreground mb-4">Original Factory Data</h4>
+                      {section.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="border border-red-200 bg-red-50 p-3 rounded-md">
+                          <h5 className="font-medium text-sm mb-2 text-red-700">{item.label}</h5>
+                          <div className="text-sm text-red-600 whitespace-pre-line">
+                            {item.rawContent}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+
+                    {/* Enhanced Data Column (Right) */}
+                    <div className="space-y-4">
+                      <h4 className="font-medium text-sm text-primary mb-4">SalesChef Enhanced Content</h4>
+                      {section.items.map((item, itemIndex) => {
+                        const fieldKey = `${sectionIndex}-${itemIndex}`;
+                        const isEditing = editingField === fieldKey;
+                        
+                        return (
+                          <div key={itemIndex} className="border border-green-200 bg-green-50 p-3 rounded-md">
+                            <div className="flex items-center justify-between mb-2">
+                              <h5 className="font-medium text-sm text-green-700">{item.label}</h5>
+                              <div className="flex space-x-1">
+                                {isEditing ? (
+                                  <>
+                                    <Button
+                                      size="sm"
+                                      variant="ghost"
+                                      onClick={() => handleSave(sectionIndex, itemIndex)}
+                                    >
+                                      <Check className="w-3 h-3" />
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="ghost"
+                                      onClick={handleCancel}
+                                    >
+                                      <X className="w-3 h-3" />
+                                    </Button>
+                                  </>
+                                ) : (
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    onClick={() => handleEdit(sectionIndex, itemIndex)}
+                                  >
+                                    <Edit2 className="w-3 h-3" />
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                            {isEditing ? (
+                              <Textarea
+                                value={editValues[fieldKey] || item.content}
+                                onChange={(e) => setEditValues({
+                                  ...editValues,
+                                  [fieldKey]: e.target.value
+                                })}
+                                className="text-sm min-h-[100px] bg-white"
+                              />
+                            ) : (
+                              <div className="text-sm leading-relaxed whitespace-pre-line text-green-600">
+                                {item.content}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  {sectionIndex < contentSections.length - 1 && <Separator className="mt-6" />}
                 </CardContent>
               </Card>
             );
