@@ -1,19 +1,34 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
   
   const navItems = [
-    { path: '/', label: 'Home' },
     { path: '/how-it-works', label: 'How It Works' },
-    { path: '/upload', label: 'Upload' }
+    { path: '/pricing', label: 'Pricing' },
+    { path: '/industries', label: 'Industries' }
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 100;
+      setIsVisible(scrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isVisible 
+        ? 'bg-background/95 backdrop-blur-sm border-b border-border translate-y-0' 
+        : '-translate-y-full'
+    }`}>
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
