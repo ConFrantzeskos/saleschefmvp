@@ -217,7 +217,7 @@ const HowItWorks = () => {
 
         {/* Content Transformation Agents */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-center">🎨 Content Transformation Agents (TAVISH-based)</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center">🎨 Content Transformation Agents</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {contentAgents.map((agent, index) => (
               <AgentCard key={index} agent={agent} index={index} />
