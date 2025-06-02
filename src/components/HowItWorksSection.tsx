@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -143,7 +142,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
             How One SKU Becomes a Sales Machine
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            AI agents instantly transform messy product specs into persuasive, multi-channel content that converts
+            SalesChef's AI agents instantly transform messy product specs into persuasive, multi-channel content that converts
           </p>
         </div>
         
