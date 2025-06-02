@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Upload, Search, Edit, Palette, Rocket, BarChart3, ArrowRight } from 'lucide-react';
+import { Mail, Upload, Search, Edit, Palette, Rocket, BarChart3, ArrowRight } from 'lucide-react';
 
 interface HowItWorksSectionProps {
   tryItEmail: string;
@@ -12,12 +12,13 @@ interface HowItWorksSectionProps {
 
 const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: HowItWorksSectionProps) => {
   const steps = [
-    { step: '1', title: 'Upload', desc: 'CSV', icon: Upload, color: 'bg-blue-500' },
-    { step: '2', title: 'Clean', desc: 'fix, format, fill', icon: Search, color: 'bg-green-500' },
-    { step: '3', title: 'Enrich', desc: 'reviews, reasons to buy, consumer benefits, SEO, tags, images', icon: Edit, color: 'bg-purple-500' },
-    { step: '4', title: 'Create', desc: 'PDPs, emails, FAQs, training, social tiles', icon: Palette, color: 'bg-orange-500' },
-    { step: '5', title: 'Publish', desc: 'into CSV files, Shopify, CMS, DAM, PIM, marketplace', icon: Rocket, color: 'bg-red-500' },
-    { step: '6', title: 'Optimise', desc: 'analyse, test, iterate', icon: BarChart3, color: 'bg-indigo-500' }
+    { step: '1', title: 'Share', desc: 'your work email so we can understand your tech stack', icon: Mail, color: 'bg-blue-500', hasEmailInput: true },
+    { step: '2', title: 'Upload', desc: 'CSV', icon: Upload, color: 'bg-green-500' },
+    { step: '3', title: 'Clean', desc: 'fix, format, fill', icon: Search, color: 'bg-purple-500' },
+    { step: '4', title: 'Enrich', desc: 'reviews, reasons to buy, consumer benefits, SEO, tags, images', icon: Edit, color: 'bg-orange-500' },
+    { step: '5', title: 'Create', desc: 'PDPs, emails, FAQs, training, social tiles', icon: Palette, color: 'bg-red-500' },
+    { step: '6', title: 'Publish', desc: 'into CSV files, Shopify, CMS, DAM, PIM, marketplace', icon: Rocket, color: 'bg-indigo-500' },
+    { step: '7', title: 'Optimise', desc: 'analyse, test, iterate', icon: BarChart3, color: 'bg-pink-500' }
   ];
 
   return (
@@ -47,7 +48,23 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
                       <step.icon className="w-5 h-5 text-muted-foreground" />
                     </div>
                     <h3 className="font-semibold text-xl mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.desc}</p>
+                    <p className="text-muted-foreground mb-4">{step.desc}</p>
+                    
+                    {step.hasEmailInput && (
+                      <form onSubmit={handleTryItSubmit} className="flex gap-2">
+                        <Input
+                          type="email"
+                          placeholder="Enter your work email"
+                          value={tryItEmail}
+                          onChange={(e) => setTryItEmail(e.target.value)}
+                          className="flex-1"
+                          required
+                        />
+                        <Button type="submit" size="sm" disabled={!tryItEmail}>
+                          Start
+                        </Button>
+                      </form>
+                    )}
                   </div>
                 </div>
                 
