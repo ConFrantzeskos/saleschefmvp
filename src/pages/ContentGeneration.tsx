@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
-import { Sparkles, FileText, Image, Video, Globe } from 'lucide-react';
+import { Sparkles, FileText, Image, Video, Globe, Mail, Printer, GraduationCap, HelpCircle } from 'lucide-react';
 
 const ContentGeneration = () => {
   const navigate = useNavigate();
@@ -22,38 +22,62 @@ const ContentGeneration = () => {
 
   const generationTasks = [
     {
+      icon: Globe,
+      title: "PDP",
+      description: "Creating comprehensive product detail pages",
+      items: ["Hero sections", "Feature highlights", "Lifestyle content"]
+    },
+    {
       icon: FileText,
-      title: "Product Descriptions",
-      description: "Crafting compelling, SEO-optimized descriptions",
-      items: ["Converting specs to benefits", "Adding emotional hooks", "Optimizing for search"]
+      title: "Spec Sheet",
+      description: "Technical specifications and details",
+      items: ["Technical specs", "Compatibility info", "Performance metrics"]
+    },
+    {
+      icon: Image,
+      title: "Sales Sheet",
+      description: "Sales-focused one-pagers",
+      items: ["Key selling points", "Competitive advantages", "Pricing strategy"]
     },
     {
       icon: Globe,
       title: "SEO Content",
-      description: "Creating search-friendly content",
+      description: "Search-optimized content",
       items: ["Meta descriptions", "Title tags", "Schema markup"]
     },
     {
-      icon: Image,
-      title: "Social Media",
-      description: "Generating platform-specific content",
-      items: ["Instagram captions", "Facebook posts", "Twitter snippets"]
+      icon: Mail,
+      title: "Email Marketing",
+      description: "Campaign-ready email content",
+      items: ["Subject lines", "Product announcements", "Promotional copy"]
     },
     {
-      icon: Video,
-      title: "Training Materials",
-      description: "Creating sales team resources",
-      items: ["Feature highlights", "Selling points", "Objection handlers"]
+      icon: Printer,
+      title: "Print Collateral",
+      description: "Print-ready marketing materials",
+      items: ["Brochures", "Data sheets", "Catalog entries"]
+    },
+    {
+      icon: GraduationCap,
+      title: "Internal Training",
+      description: "Sales team enablement materials",
+      items: ["Feature guides", "Selling points", "Objection handlers"]
+    },
+    {
+      icon: HelpCircle,
+      title: "FAQ",
+      description: "Customer support content",
+      items: ["Common questions", "Technical support", "Usage guidance"]
     }
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + 2;
+        const newProgress = prev + 1.5;
         
         // Update current task based on progress
-        const taskProgress = Math.floor(newProgress / 25);
+        const taskProgress = Math.floor(newProgress / 12.5);
         if (taskProgress !== currentTask && taskProgress < generationTasks.length) {
           setCurrentTask(taskProgress);
         }
@@ -73,7 +97,7 @@ const ContentGeneration = () => {
     <div className="min-h-screen bg-background p-6">
       <ProgressIndicator steps={steps} />
       
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <div className="inline-flex items-center space-x-2 mb-4">
             <Sparkles className="w-8 h-8 text-primary animate-pulse" />
@@ -92,7 +116,7 @@ const ContentGeneration = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {generationTasks.map((task, index) => {
             const isActive = index === currentTask;
             const isCompleted = index < currentTask;
