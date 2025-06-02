@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 import HeroSection from '@/components/HeroSection';
 import ProblemSection from '@/components/ProblemSection';
-import AgentsSection from '@/components/AgentsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import ResultsSection from '@/components/ResultsSection';
 import TrustSection from '@/components/TrustSection';
@@ -61,7 +61,23 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <HeroSection email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
       <ProblemSection />
-      <AgentsSection />
+      
+      {/* How SalesChef Works CTA */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Meet the AI Agents Behind the Magic</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            SalesChef is powered by a team of specialized AI agents, each trained to transform 
+            raw product specs into full-funnel, high-performance content.
+          </p>
+          <Link to="/how-it-works">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              See How SalesChef Works
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       <HowItWorksSection 
         tryItEmail={tryItEmail} 
         setTryItEmail={setTryItEmail} 
