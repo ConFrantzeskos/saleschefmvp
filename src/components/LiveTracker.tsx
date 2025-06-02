@@ -63,7 +63,7 @@ const LiveTracker = () => {
               {formatNumber(count)}
             </div>
             <div className="text-xs opacity-90 leading-tight mt-1">
-              elements
+              specs transformed
             </div>
           </div>
           
