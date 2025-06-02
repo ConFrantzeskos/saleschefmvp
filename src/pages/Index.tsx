@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 import HeroSection from '@/components/HeroSection';
 import ProblemSection from '@/components/ProblemSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
@@ -47,14 +48,14 @@ const Index = () => {
       {/* How SalesChef Works CTA */}
       <section className="section-spacing bg-gradient-subtle">
         <div className="content-width text-center animate-fade-in">
-          <h2 className="text-section-title mb-8">Meet the SalesChef AI Agents Behind the Magic</h2>
+          <h2 className="text-section-title mb-8">Meet SalesChef: AI Agents That Transform Content at Scale</h2>
           <p className="text-body-large text-muted-foreground mb-10 max-w-2xl mx-auto">
             SalesChef is powered by a team of specialised AI agents - like chefs - each trained to transform 
             raw product specs into a feast of sales-ready content.
           </p>
           <Link to="/how-it-works">
             <Button size="lg" className="btn-primary h-14 px-10 text-base font-semibold">
-              See How SalesChef Works
+              See How SalesChef Works <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
         </div>
