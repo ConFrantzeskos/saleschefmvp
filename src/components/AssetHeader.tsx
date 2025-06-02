@@ -30,7 +30,7 @@ const AssetHeader = ({ asset }: AssetHeaderProps) => {
       </Button>
       <div className="flex-1">
         <div className="flex items-center space-x-3">
-          <h1 className="text-2xl font-semibold">{asset.name}</h1>
+          <h1 className="text-2xl font-semibold">CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic</h1>
           <Badge variant={asset.status === 'Enhanced' ? 'default' : 'secondary'}>
             {asset.status}
           </Badge>
