@@ -33,7 +33,7 @@ const LiveTracker = () => {
   };
 
   return (
-    <div className="fixed top-6 right-6 z-50 animate-pulse-slow">
+    <div className="fixed top-24 right-6 z-40 animate-pulse-slow">
       {/* Starburst background */}
       <div className="relative">
         {/* Starburst rays */}
