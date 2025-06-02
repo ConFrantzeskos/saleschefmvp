@@ -67,7 +67,11 @@ const Index = () => {
       />
       <ResultsSection />
       <TrustSection />
-      <CTASection email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
+      <CTASection 
+        tryItEmail={tryItEmail} 
+        setTryItEmail={setTryItEmail} 
+        handleSubmitWithRedirect={handleTryItSubmit} 
+      />
     </div>
   );
 };
