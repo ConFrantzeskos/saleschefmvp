@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Zap } from 'lucide-react';
 
 const LiveTracker = () => {
@@ -9,32 +9,44 @@ const LiveTracker = () => {
     return stored ? parseInt(stored) : 2847392;
   });
   
-  useEffect(() => {
-    // Save to localStorage whenever count changes
+  // Debounced localStorage save
+  const saveToStorage = useCallback(() => {
     localStorage.setItem('salesChefCounter', count.toString());
   }, [count]);
+
+  useEffect(() => {
+    // Debounce localStorage writes - only save every 5 seconds
+    const saveTimer = setTimeout(saveToStorage, 5000);
+    return () => clearTimeout(saveTimer);
+  }, [count, saveToStorage]);
   
   useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+    
     const createBurstPattern = () => {
-      // Random burst size (1-8 increments)
-      const burstSize = Math.floor(Math.random() * 8) + 1;
+      // Reduced burst size (1-4 increments instead of 1-8)
+      const burstSize = Math.floor(Math.random() * 4) + 1;
       let burstCount = 0;
       
-      const burstInterval = setInterval(() => {
-        setCount(prev => prev + Math.floor(Math.random() * 5) + 1);
+      intervalId = setInterval(() => {
+        setCount(prev => prev + Math.floor(Math.random() * 3) + 1);
         burstCount++;
         
         if (burstCount >= burstSize) {
-          clearInterval(burstInterval);
-          // Random pause between bursts (200ms to 1.5s)
-          setTimeout(createBurstPattern, 200 + Math.random() * 1300);
+          clearInterval(intervalId);
+          // Longer pause between bursts (1-3 seconds instead of 0.2-1.5s)
+          setTimeout(createBurstPattern, 1000 + Math.random() * 2000);
         }
-      }, 100 + Math.random() * 200); // Very fast increments during burst
+      }, 500 + Math.random() * 1000); // Slower increments (500ms-1.5s instead of 100-300ms)
     };
     
     createBurstPattern();
     
-    return () => {}; // Cleanup handled by individual intervals
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
   }, []);
 
   const formatNumber = (num: number) => {
@@ -42,20 +54,20 @@ const LiveTracker = () => {
   };
 
   return (
-    <div className="absolute top-6 right-6 z-40 animate-pulse-slow">
-      {/* Starburst background */}
+    <div className="absolute top-6 right-6 z-30 animate-pulse-slow">
+      {/* Simplified starburst background */}
       <div className="relative">
-        {/* Starburst rays */}
-        <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-          {[...Array(8)].map((_, i) => (
+        {/* Reduced starburst rays and slower animation */}
+        <div className="absolute inset-0 animate-spin" style={{ animationDuration: '30s' }}>
+          {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-8 bg-gradient-to-t from-primary/30 to-transparent"
+              className="absolute w-0.5 h-6 bg-gradient-to-t from-primary/20 to-transparent"
               style={{
                 left: '50%',
                 top: '50%',
                 transformOrigin: '0 0',
-                transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-24px)`,
+                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateY(-20px)`,
               }}
             />
           ))}
@@ -65,7 +77,7 @@ const LiveTracker = () => {
         <div className="relative bg-gradient-to-br from-primary to-secondary p-4 rounded-full shadow-brand hover:shadow-large transition-all duration-300 min-w-[120px]">
           <div className="text-center text-white">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <Zap className="w-4 h-4 animate-pulse" />
+              <Zap className="w-4 h-4" />
               <span className="text-xs font-bold tracking-wider">LIVE</span>
             </div>
             <div className="text-lg font-mono font-bold leading-none">
@@ -76,8 +88,8 @@ const LiveTracker = () => {
             </div>
           </div>
           
-          {/* Pulsing indicator */}
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse border-2 border-white"></div>
+          {/* Simplified pulsing indicator */}
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
         </div>
       </div>
     </div>
