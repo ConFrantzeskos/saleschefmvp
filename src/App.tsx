@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
 import Index from "./pages/Index";
 import HowItWorks from "./pages/HowItWorks";
 import FileUpload from "./pages/FileUpload";
@@ -26,21 +27,24 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/upload" element={<FileUpload />} />
-          <Route path="/mapping" element={<SchemaMapping />} />
-          <Route path="/cleaning" element={<CleaningValidation />} />
-          <Route path="/enrichment" element={<Enrichment />} />
-          <Route path="/generation" element={<ContentGeneration />} />
-          <Route path="/review" element={<ReviewContent />} />
-          <Route path="/review/:id" element={<AssetReview />} />
-          <Route path="/enhance" element={<EnhanceAssets />} />
-          <Route path="/deploy" element={<Deploy />} />
-          <Route path="/optimization" element={<Optimization />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Header />
+        <div className="pt-20"> {/* Add top padding to account for fixed header */}
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/upload" element={<FileUpload />} />
+            <Route path="/mapping" element={<SchemaMapping />} />
+            <Route path="/cleaning" element={<CleaningValidation />} />
+            <Route path="/enrichment" element={<Enrichment />} />
+            <Route path="/generation" element={<ContentGeneration />} />
+            <Route path="/review" element={<ReviewContent />} />
+            <Route path="/review/:id" element={<AssetReview />} />
+            <Route path="/enhance" element={<EnhanceAssets />} />
+            <Route path="/deploy" element={<Deploy />} />
+            <Route path="/optimization" element={<Optimization />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
