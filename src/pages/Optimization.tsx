@@ -1,11 +1,13 @@
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, TrendingUp, Store, BarChart3, Globe, Smartphone } from 'lucide-react';
 
 const Optimization = () => {
+  const navigate = useNavigate();
+
   const deploymentSummary = {
     totalProducts: 847,
     channelsUpdated: 3,
@@ -199,7 +201,7 @@ const Optimization = () => {
             </div>
             
             <div className="flex space-x-4 mt-6">
-              <Button onClick={() => window.location.href = '/'}>
+              <Button onClick={() => navigate('/enhance')}>
                 Upload More Products
               </Button>
               <Button variant="outline">
