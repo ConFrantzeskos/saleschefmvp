@@ -13,8 +13,24 @@ interface HowItWorksSectionProps {
 const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: HowItWorksSectionProps) => {
   const steps = [
     { step: '1', title: 'Share', desc: 'your work email so we can understand your tech stack', icon: Mail, color: 'bg-primary', hasEmailInput: true },
-    { step: '2', title: 'Upload', desc: 'CSV', icon: Upload, color: 'bg-accent' },
-    { step: '3', title: 'Clean', desc: 'fix, format, fill', icon: Search, color: 'bg-secondary' },
+    { 
+      step: '2', 
+      title: 'Upload', 
+      desc: 'CSV', 
+      icon: Upload, 
+      color: 'bg-accent',
+      hasLogos: true,
+      logoType: 'fileTypes'
+    },
+    { 
+      step: '3', 
+      title: 'Clean', 
+      desc: 'fix, format, fill', 
+      icon: Search, 
+      color: 'bg-secondary',
+      hasLogos: true,
+      logoType: 'cleaningActions'
+    },
     { 
       step: '4', 
       title: 'Enrich', 
@@ -24,7 +40,15 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
       hasLogos: true,
       logoType: 'sources'
     },
-    { step: '5', title: 'Create', desc: 'PDPs, emails, FAQs, training, social tiles', icon: Palette, color: 'bg-accent' },
+    { 
+      step: '5', 
+      title: 'Create', 
+      desc: 'PDPs, emails, FAQs, training, social tiles', 
+      icon: Palette, 
+      color: 'bg-accent',
+      hasLogos: true,
+      logoType: 'contentTypes'
+    },
     { 
       step: '6', 
       title: 'Publish', 
@@ -34,7 +58,15 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
       hasLogos: true,
       logoType: 'integrations'
     },
-    { step: '7', title: 'Optimise', desc: 'analyse, test, iterate', icon: BarChart3, color: 'bg-primary' }
+    { 
+      step: '7', 
+      title: 'Optimise', 
+      desc: 'analyse, test, iterate', 
+      icon: BarChart3, 
+      color: 'bg-primary',
+      hasLogos: true,
+      logoType: 'analytics'
+    }
   ];
 
   const integrationLogos = [
@@ -54,6 +86,54 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     { name: 'Images', logo: '🖼️' },
     { name: 'SEO Data', logo: '📈' }
   ];
+
+  const fileTypeLogos = [
+    { name: 'CSV', logo: '📊' },
+    { name: 'Excel', logo: '📗' },
+    { name: 'PDF', logo: '📄' },
+    { name: 'Images', logo: '🖼️' },
+    { name: 'XML', logo: '📋' },
+    { name: 'JSON', logo: '📄' }
+  ];
+
+  const cleaningActionLogos = [
+    { name: 'Dedupe', logo: '🔄' },
+    { name: 'Format', logo: '✨' },
+    { name: 'Validate', logo: '✅' },
+    { name: 'Fill Gaps', logo: '🔧' },
+    { name: 'Standardize', logo: '📏' },
+    { name: 'Categorize', logo: '🏷️' }
+  ];
+
+  const contentTypeLogos = [
+    { name: 'PDPs', logo: '🛒' },
+    { name: 'Emails', logo: '📧' },
+    { name: 'FAQs', logo: '❓' },
+    { name: 'Social', logo: '📱' },
+    { name: 'Training', logo: '🎓' },
+    { name: 'Banners', logo: '🖼️' }
+  ];
+
+  const analyticsLogos = [
+    { name: 'A/B Test', logo: '🧪' },
+    { name: 'Analytics', logo: '📊' },
+    { name: 'Insights', logo: '💡' },
+    { name: 'Reports', logo: '📈' },
+    { name: 'Monitor', logo: '👁️' },
+    { name: 'Optimize', logo: '🎯' }
+  ];
+
+  const getLogosForType = (logoType: string) => {
+    switch (logoType) {
+      case 'integrations': return integrationLogos;
+      case 'sources': return sourceLogos;
+      case 'fileTypes': return fileTypeLogos;
+      case 'cleaningActions': return cleaningActionLogos;
+      case 'contentTypes': return contentTypeLogos;
+      case 'analytics': return analyticsLogos;
+      default: return [];
+    }
+  };
 
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
@@ -91,7 +171,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
                     {step.hasLogos && (
                       <div className="mb-6">
                         <div className="grid grid-cols-3 gap-3">
-                          {(step.logoType === 'integrations' ? integrationLogos : sourceLogos).map((item, logoIndex) => (
+                          {getLogosForType(step.logoType!).map((item, logoIndex) => (
                             <div key={logoIndex} className="flex flex-col items-center p-3 bg-background rounded-lg border border-border/50 hover:border-primary/30 transition-colors">
                               <span className="text-2xl mb-1">{item.logo}</span>
                               <span className="text-xs text-muted-foreground text-center">{item.name}</span>
