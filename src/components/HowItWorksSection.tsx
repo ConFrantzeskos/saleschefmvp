@@ -26,11 +26,11 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
   };
 
   const steps = [
-    { step: '1', title: 'Share', desc: 'your work email and we\'ll auto-detect your tech stack', icon: Mail, color: 'bg-gradient-brand', hasEmailInput: true },
+    { step: '1', title: 'Share', desc: '', icon: Mail, color: 'bg-gradient-brand', hasEmailInput: true },
     { 
       step: '2', 
       title: 'Upload', 
-      desc: 'CSV with your product data', 
+      desc: '', 
       icon: Upload, 
       color: 'bg-gradient-accent',
       hasLogos: true,
@@ -39,7 +39,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     { 
       step: '3', 
       title: 'Clean', 
-      desc: 'fix, format, and fill missing data', 
+      desc: '', 
       icon: Search, 
       color: 'bg-secondary',
       hasLogos: true,
@@ -48,7 +48,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     { 
       step: '4', 
       title: 'Enrich', 
-      desc: 'reviews, reasons to buy, consumer benefits, SEO, tags, images', 
+      desc: '', 
       icon: Edit, 
       color: 'bg-gradient-brand',
       hasLogos: true,
@@ -57,7 +57,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     { 
       step: '5', 
       title: 'Create', 
-      desc: 'PDPs, emails, FAQs, training materials, social tiles', 
+      desc: '', 
       icon: Palette, 
       color: 'bg-gradient-accent',
       hasLogos: true,
@@ -66,7 +66,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     { 
       step: '6', 
       title: 'Publish', 
-      desc: 'into CSV files, Shopify, CMS, DAM, PIM, marketplace', 
+      desc: '', 
       icon: Rocket, 
       color: 'bg-secondary',
       hasLogos: true,
@@ -75,7 +75,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     { 
       step: '7', 
       title: 'Optimise', 
-      desc: 'analyse performance, test variants, iterate', 
+      desc: '', 
       icon: BarChart3, 
       color: 'bg-gradient-brand',
       hasLogos: true,
@@ -99,7 +99,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
           {/* Enhanced progress line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-border via-primary/20 to-border hidden lg:block opacity-30" />
           
-          <div className="space-y-8">
+          <div className="space-y-6">
             {steps.map((step, index) => (
               <StepCard 
                 key={index}
