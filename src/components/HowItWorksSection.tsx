@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +11,7 @@ interface HowItWorksSectionProps {
 
 const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: HowItWorksSectionProps) => {
   const steps = [
-    { step: '1', title: 'Share', desc: 'your work email so we can understand your tech stack', icon: Mail, color: 'bg-primary', hasEmailInput: true },
+    { step: '1', title: 'Share', desc: 'your work email and we\'ll auto-detect your tech stack', icon: Mail, color: 'bg-primary', hasEmailInput: true },
     { 
       step: '2', 
       title: 'Upload', 
