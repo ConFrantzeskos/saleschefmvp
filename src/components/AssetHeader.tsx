@@ -4,16 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft } from 'lucide-react';
-
-interface Asset {
-  id: number;
-  sku: string;
-  name: string;
-  brand: string;
-  category: string;
-  status: string;
-  quality: number;
-}
+import { Asset } from '@/types/asset';
 
 interface AssetHeaderProps {
   asset: Asset;
@@ -30,7 +21,7 @@ const AssetHeader = ({ asset }: AssetHeaderProps) => {
       </Button>
       <div className="flex-1">
         <div className="flex items-center space-x-3">
-          <h1 className="text-2xl font-semibold">CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic</h1>
+          <h1 className="text-2xl font-semibold">{asset.name}</h1>
           <Badge variant={asset.status === 'Enhanced' ? 'default' : 'secondary'}>
             {asset.status}
           </Badge>

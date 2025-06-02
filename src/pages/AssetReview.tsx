@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -6,6 +5,7 @@ import AssetHeader from '@/components/AssetHeader';
 import FactoryDataSection from '@/components/FactoryDataSection';
 import EnhancedContentSection from '@/components/EnhancedContentSection';
 import { contentSections } from '@/data/contentSections';
+import { Asset } from '@/types/asset';
 
 const AssetReview = () => {
   const navigate = useNavigate();
@@ -13,15 +13,29 @@ const AssetReview = () => {
   const [editingField, setEditingField] = useState<string | null>(null);
   const [editValues, setEditValues] = useState<Record<string, string>>({});
   
-  // Mock data for the asset
-  const asset = {
+  // Mock data for the asset with proper typing
+  const asset: Asset = {
     id: 1,
     sku: "CD1234",
-    name: "24 Hour Charge Wireless Headphones",
+    name: "CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic",
     brand: "TechSound",
     category: "Electronics > Audio > Headphones",
     status: "Enhanced",
-    quality: 95
+    quality: 95,
+    price: "$149.99",
+    description: "Premium wireless headphones with 24-hour battery life",
+    features: "Bluetooth 5.0, 24-hour battery, Foldable design",
+    targetAudience: "Audio enthusiasts, professionals",
+    keyBenefits: "Extended battery life, superior sound quality",
+    competitiveAdvantage: "Industry-leading 24-hour battery life",
+    seoKeywords: "wireless headphones, bluetooth 5.0",
+    metaTitle: "CD1234 Wireless Headphones",
+    metaDescription: "Experience premium audio with CD1234 wireless headphones",
+    productBullets: "• 24-hour battery\n• Bluetooth 5.0\n• Foldable design",
+    technicalSpecs: "Bluetooth: 5.0\nBattery: 24 hours\nWeight: 280g",
+    useCases: "Music listening, Video calls, Gaming",
+    warranty: "2 year warranty",
+    certifications: "CE, FCC, RoHS, Bluetooth SIG"
   };
 
   // Consolidated raw factory data with realistic CSV-style specs and some Chinglish
