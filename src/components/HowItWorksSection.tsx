@@ -85,9 +85,9 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
   ];
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
+    <section className="py-16 px-6 bg-gradient-to-b from-background to-muted/30">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-balance">
             How One SKU Becomes a Sales Machine
           </h2>
@@ -100,7 +100,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
           {/* Progress line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-border via-primary/30 to-border hidden lg:block" />
           
-          <div className="space-y-16">
+          <div className="space-y-8">
             {steps.map((step, index) => (
               <StepCard 
                 key={index}
