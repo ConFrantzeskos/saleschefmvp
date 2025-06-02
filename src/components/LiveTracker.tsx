@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { Zap } from 'lucide-react';
 
@@ -54,7 +53,7 @@ const LiveTracker = () => {
   };
 
   return (
-    <div className="absolute top-6 right-6 z-30 animate-pulse-slow">
+    <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 animate-pulse-slow">
       {/* Simplified starburst background */}
       <div className="relative">
         {/* Reduced starburst rays and slower animation */}
@@ -62,25 +61,25 @@ const LiveTracker = () => {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-0.5 h-6 bg-gradient-to-t from-primary/20 to-transparent"
+              className="absolute w-0.5 h-4 sm:h-6 bg-gradient-to-t from-primary/20 to-transparent"
               style={{
                 left: '50%',
                 top: '50%',
                 transformOrigin: '0 0',
-                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateY(-20px)`,
+                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateY(-16px) sm:translateY(-20px)`,
               }}
             />
           ))}
         </div>
         
         {/* Main content */}
-        <div className="relative bg-gradient-to-br from-primary to-secondary p-4 rounded-full shadow-brand hover:shadow-large transition-all duration-300 min-w-[120px]">
+        <div className="relative bg-gradient-to-br from-primary to-secondary p-3 sm:p-4 rounded-full shadow-brand hover:shadow-large transition-all duration-300 min-w-[100px] sm:min-w-[120px]">
           <div className="text-center text-white">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <Zap className="w-4 h-4" />
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="text-xs font-bold tracking-wider">LIVE</span>
             </div>
-            <div className="text-lg font-mono font-bold leading-none">
+            <div className="text-sm sm:text-lg font-mono font-bold leading-none">
               {formatNumber(count)}
             </div>
             <div className="text-xs opacity-90 leading-tight mt-1">
@@ -89,7 +88,7 @@ const LiveTracker = () => {
           </div>
           
           {/* Simplified pulsing indicator */}
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+          <div className="absolute -top-1 -right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-400 rounded-full border-2 border-white"></div>
         </div>
       </div>
     </div>
