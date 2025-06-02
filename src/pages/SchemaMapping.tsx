@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -142,7 +141,7 @@ const SchemaMapping = () => {
                         <SelectValue placeholder="Select source field" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">-- Not mapped --</SelectItem>
+                        <SelectItem value="not-mapped">-- Not mapped --</SelectItem>
                         {detectedFields.map((detectedField) => (
                           <SelectItem key={detectedField} value={detectedField}>
                             {detectedField}
