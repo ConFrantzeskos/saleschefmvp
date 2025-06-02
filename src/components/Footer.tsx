@@ -40,18 +40,13 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  How It Works
+                  How SalesChef Works
                 </Link>
               </li>
               <li>
                 <Link to="/upload" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Get Started
                 </Link>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Features
-                </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -67,22 +62,17 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  E-commerce
+                  Retail / eCommerce
                 </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Retail Brands
+                  Travel and Leisure
                 </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Content Teams
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Marketing Agencies
+                  Media
                 </a>
               </li>
             </ul>
@@ -94,12 +84,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Blog
+                  About SalesChef
                 </a>
               </li>
               <li>
@@ -119,7 +104,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-muted-foreground">
-            © 2024 SalesChef. All rights reserved.
+            © 2025 SalesChef. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
