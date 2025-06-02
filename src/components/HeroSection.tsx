@@ -26,7 +26,7 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
           <span className="text-gradient-brand">Sales-Ready Content</span>
         </h1>
         <p className="text-body-large text-muted-foreground mb-10 max-w-3xl mx-auto animate-slide-up">
-          SalesChef transforms messy product data - no matter where it lives - into persuasive, 
+          SalesChef transforms messy product specs - no matter where they live - into persuasive, 
           high-converting content for every channel.
         </p>
         
