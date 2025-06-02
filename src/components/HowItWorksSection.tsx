@@ -15,10 +15,44 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     { step: '1', title: 'Share', desc: 'your work email so we can understand your tech stack', icon: Mail, color: 'bg-primary', hasEmailInput: true },
     { step: '2', title: 'Upload', desc: 'CSV', icon: Upload, color: 'bg-accent' },
     { step: '3', title: 'Clean', desc: 'fix, format, fill', icon: Search, color: 'bg-secondary' },
-    { step: '4', title: 'Enrich', desc: 'reviews, reasons to buy, consumer benefits, SEO, tags, images', icon: Edit, color: 'bg-primary' },
+    { 
+      step: '4', 
+      title: 'Enrich', 
+      desc: 'reviews, reasons to buy, consumer benefits, SEO, tags, images', 
+      icon: Edit, 
+      color: 'bg-primary',
+      hasLogos: true,
+      logoType: 'sources'
+    },
     { step: '5', title: 'Create', desc: 'PDPs, emails, FAQs, training, social tiles', icon: Palette, color: 'bg-accent' },
-    { step: '6', title: 'Publish', desc: 'into CSV files, Shopify, CMS, DAM, PIM, marketplace', icon: Rocket, color: 'bg-secondary' },
+    { 
+      step: '6', 
+      title: 'Publish', 
+      desc: 'into CSV files, Shopify, CMS, DAM, PIM, marketplace', 
+      icon: Rocket, 
+      color: 'bg-secondary',
+      hasLogos: true,
+      logoType: 'integrations'
+    },
     { step: '7', title: 'Optimise', desc: 'analyse, test, iterate', icon: BarChart3, color: 'bg-primary' }
+  ];
+
+  const integrationLogos = [
+    { name: 'Shopify', logo: '🛍️' },
+    { name: 'Amazon', logo: '📦' },
+    { name: 'CSV', logo: '📊' },
+    { name: 'WordPress', logo: '📝' },
+    { name: 'Magento', logo: '🏪' },
+    { name: 'BigCommerce', logo: '🛒' }
+  ];
+
+  const sourceLogos = [
+    { name: 'Google', logo: '🔍' },
+    { name: 'Reviews', logo: '⭐' },
+    { name: 'Social', logo: '📱' },
+    { name: 'Amazon', logo: '📦' },
+    { name: 'Images', logo: '🖼️' },
+    { name: 'SEO Data', logo: '📈' }
   ];
 
   return (
@@ -53,6 +87,19 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
                     </div>
                     <h3 className="font-display font-bold text-xl mb-3 text-foreground">{step.title}</h3>
                     <p className="text-muted-foreground mb-6 leading-relaxed">{step.desc}</p>
+                    
+                    {step.hasLogos && (
+                      <div className="mb-6">
+                        <div className="grid grid-cols-3 gap-3">
+                          {(step.logoType === 'integrations' ? integrationLogos : sourceLogos).map((item, logoIndex) => (
+                            <div key={logoIndex} className="flex flex-col items-center p-3 bg-background rounded-lg border border-border/50 hover:border-primary/30 transition-colors">
+                              <span className="text-2xl mb-1">{item.logo}</span>
+                              <span className="text-xs text-muted-foreground text-center">{item.name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     
                     {step.hasEmailInput && (
                       <form onSubmit={handleTryItSubmit} className="flex gap-3 p-2 bg-background rounded-2xl border border-border">
