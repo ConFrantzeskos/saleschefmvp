@@ -12,7 +12,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
   return (
-    <section className="py-20 px-4 text-center bg-gradient-to-b from-primary/5 to-background">
+    <section className="py-20 px-4 text-center bg-gradient-to-br from-muted/30 via-background to-muted/20">
       <div className="max-w-4xl mx-auto">
         <div className="w-16 h-16 mx-auto mb-8">
           <img 
@@ -21,26 +21,30 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
             className="w-full h-full object-contain"
           />
         </div>
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+        <h1 className="text-5xl md:text-6xl font-display font-bold tracking-tight mb-6">
           From Raw Specs to a Feast of <br />
-          <span className="text-primary">Sales-Ready Content</span>
+          <span className="text-gradient-brand">Sales-Ready Content</span>
         </h1>
-        <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+        <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
           SalesChef transforms messy product data - no matter where it lives - into persuasive, 
           high-converting content for every channel.
         </p>
         
         <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-6">
-          <div className="flex gap-2">
+          <div className="flex gap-3 p-2 bg-card rounded-2xl shadow-soft border border-border">
             <Input
               type="email"
               placeholder="Enter your work email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-12 text-lg"
+              className="h-12 text-base border-0 bg-transparent focus-visible:ring-0 flex-1"
               required
             />
-            <Button type="submit" className="h-12 px-6 bg-primary hover:bg-primary/90" disabled={!email}>
+            <Button 
+              type="submit" 
+              className="h-12 px-6 bg-gradient-brand hover:opacity-90 transition-opacity shadow-brand" 
+              disabled={!email}
+            >
               Watch it Cook <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>

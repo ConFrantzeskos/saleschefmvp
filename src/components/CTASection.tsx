@@ -11,24 +11,28 @@ interface CTASectionProps {
 
 const CTASection = ({ email, setEmail, handleSubmit }: CTASectionProps) => {
   return (
-    <section className="py-20 px-4 bg-primary/5">
+    <section className="py-20 px-4 bg-gradient-to-br from-muted/30 to-muted/10">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">You already have the specs. Let's make them sell.</h2>
-        <p className="text-xl text-muted-foreground mb-8">
+        <h2 className="text-4xl font-display font-bold mb-4">You already have the specs. Let's make them sell.</h2>
+        <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
           Upload your product CSV. See what SalesChef can do with your real products.
         </p>
         
         <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-          <div className="flex gap-2">
+          <div className="flex gap-3 p-2 bg-card rounded-2xl shadow-soft border border-border">
             <Input
               type="email"
               placeholder="Enter your work email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-12 text-lg"
+              className="h-12 text-lg border-0 bg-transparent focus-visible:ring-0 flex-1"
               required
             />
-            <Button type="submit" className="h-12 px-6 bg-primary hover:bg-primary/90" disabled={!email}>
+            <Button 
+              type="submit" 
+              className="h-12 px-6 bg-gradient-brand hover:opacity-90 transition-opacity shadow-brand" 
+              disabled={!email}
+            >
               Get Started
             </Button>
           </div>
