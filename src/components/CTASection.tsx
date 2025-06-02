@@ -12,7 +12,7 @@ interface CTASectionProps {
 
 const CTASection = ({ tryItEmail, setTryItEmail, handleSubmitWithRedirect }: CTASectionProps) => {
   return (
-    <section className="px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
+    <section className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
       <div className="content-width">
         <div className="text-center animate-fade-in">
           <div className="bg-gradient-to-br from-muted to-muted/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 max-w-xl sm:max-w-2xl mx-auto border border-border shadow-medium">

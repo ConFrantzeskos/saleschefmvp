@@ -18,18 +18,18 @@ const ResultsSection = () => {
   ];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-background via-muted/20 to-background">
+    <section className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-background via-muted/20 to-background">
       <div className="container-width">
-        <div className="text-center mb-20 animate-fade-in">
-          <h2 className="text-section-title mb-6 text-balance">
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
             The Results Speak for Themselves
           </h2>
-          <p className="text-body-large text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Real impact across your entire content pipeline
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center mb-12 sm:mb-16">
           {/* Benefits List */}
           <div className="space-y-6 animate-slide-up">
             {results.map((result, index) => (
@@ -47,7 +47,7 @@ const ResultsSection = () => {
           {/* Before/After Comparison */}
           <div className="space-y-8 animate-slide-up" style={{ animationDelay: '0.3s' }}>
             <div className="bg-card rounded-3xl p-8 shadow-soft border border-border hover:shadow-medium transition-shadow">
-              <h3 className="text-subsection-title mb-8 text-center">Before vs After</h3>
+              <h3 className="text-xl sm:text-2xl font-display font-bold tracking-tight mb-6 sm:mb-8 text-center">Before vs After</h3>
               <div className="grid grid-cols-1 gap-8">
                 <div className="flex items-center gap-4 p-6 rounded-2xl bg-destructive/5 border border-destructive/20 hover:bg-destructive/10 transition-colors">
                   <div className="w-4 h-4 rounded-full bg-destructive animate-pulse"></div>
@@ -74,7 +74,7 @@ const ResultsSection = () => {
         </div>
         
         {/* Metrics Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16 animate-fade-in">
+        <div className="grid md:grid-cols-3 gap-8 mb-12 animate-fade-in">
           {metrics.map((metric, index) => (
             <div key={index} className="text-center p-8 bg-card rounded-3xl shadow-soft border border-border hover:shadow-medium transition-all duration-300 group hover:border-primary/20" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className={`w-16 h-16 ${metric.color} text-white rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform shadow-soft`}>
