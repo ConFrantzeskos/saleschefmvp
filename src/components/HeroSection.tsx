@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,7 +13,7 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
   return (
     <section className="section-spacing text-center bg-gradient-to-br from-muted/30 via-background to-muted/20 animate-fade-in">
       <div className="content-width">
-        <div className="w-20 h-20 mx-auto mb-10 animate-scale-in">
+        <div className="w-40 h-40 mx-auto mb-10 animate-scale-in">
           <img 
             src="/lovable-uploads/0b8c5ffe-edc7-4ea5-af28-bc947207ee19.png" 
             alt="SalesChef Logo" 
