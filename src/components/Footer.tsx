@@ -10,13 +10,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center">
               <img 
-                src="/lovable-uploads/0b8c5ffe-edc7-4ea5-af28-bc947207ee19.png" 
+                src="/lovable-uploads/cbb0b231-93e4-4484-aebc-1a0fb69348c6.png" 
                 alt="SalesChef Logo" 
-                className="w-8 h-8 object-contain"
+                className="h-8 w-auto object-contain"
               />
-              <span className="text-xl font-display font-bold text-primary">SalesChef</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Transform messy product specs into persuasive, high-converting content for every channel with AI-powered automation.
