@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Brain, Database, RefreshCw, Activity, Trash2, Eye, Satellite, Target, Lightbulb, User, FileText, Building, Pen, Image, Headphones, Video, Code, Wrench, CheckCircle, Truck, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,26 +9,33 @@ const HowItWorks = () => {
   const [retailEmail, setRetailEmail] = useState('');
   const [tourismEmail, setTourismEmail] = useState('');
   const [mediaEmail, setMediaEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleRetailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!retailEmail) return;
-    toast.success(`Thanks! We'll send retail-specific demo access to ${retailEmail}`);
-    setRetailEmail('');
+    toast.success("Welcome to SalesChef! Let's get started with your upload.");
+    setTimeout(() => {
+      navigate('/upload');
+    }, 1000);
   };
 
   const handleTourismSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!tourismEmail) return;
-    toast.success(`Thanks! We'll send tourism industry demo access to ${tourismEmail}`);
-    setTourismEmail('');
+    toast.success("Welcome to SalesChef! Let's get started with your upload.");
+    setTimeout(() => {
+      navigate('/upload');
+    }, 1000);
   };
 
   const handleMediaSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!mediaEmail) return;
-    toast.success(`Thanks! We'll send media industry demo access to ${mediaEmail}`);
-    setMediaEmail('');
+    toast.success("Welcome to SalesChef! Let's get started with your upload.");
+    setTimeout(() => {
+      navigate('/upload');
+    }, 1000);
   };
 
   const coreAgents = [
