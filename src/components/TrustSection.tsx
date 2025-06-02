@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Check, Shield, Clock, Users, Zap, Star } from 'lucide-react';
+import LiveTracker from './LiveTracker';
 
 const TrustSection = () => {
   const features = [
@@ -66,19 +67,7 @@ const TrustSection = () => {
         </div>
         
         <div className="mt-16 text-center animate-fade-in">
-          <div className="inline-flex items-center gap-4 px-8 py-6 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm rounded-3xl border border-border/50 shadow-medium hover:shadow-large transition-all duration-500">
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-10 h-10 rounded-full bg-gradient-brand flex items-center justify-center text-white font-semibold text-sm border-2 border-background">
-                  {i}
-                </div>
-              ))}
-            </div>
-            <div className="text-left">
-              <p className="font-semibold text-foreground">Join 100+ teams already transforming their content</p>
-              <p className="text-sm text-muted-foreground">From startups to Fortune 500 companies</p>
-            </div>
-          </div>
+          <LiveTracker />
         </div>
       </div>
     </section>
