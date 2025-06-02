@@ -47,7 +47,7 @@ const Index = () => {
       {/* How SalesChef Works CTA */}
       <section className="section-spacing bg-gradient-subtle">
         <div className="content-width text-center animate-fade-in">
-          <h2 className="text-section-title mb-8">Meet the AI Agents Behind the Magic</h2>
+          <h2 className="text-section-title mb-8">Meet the SalesChef AI Agents Behind the Magic</h2>
           <p className="text-body-large text-muted-foreground mb-10 max-w-2xl mx-auto">
             SalesChef is powered by a team of specialised AI agents - like chefs - each trained to transform 
             raw product specs into a feast of sales-ready content.
