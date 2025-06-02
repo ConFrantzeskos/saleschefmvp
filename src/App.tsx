@@ -11,6 +11,7 @@ import CleaningValidation from "./pages/CleaningValidation";
 import Enrichment from "./pages/Enrichment";
 import ContentGeneration from "./pages/ContentGeneration";
 import ReviewContent from "./pages/ReviewContent";
+import AssetReview from "./pages/AssetReview";
 import EnhanceAssets from "./pages/EnhanceAssets";
 import Deploy from "./pages/Deploy";
 import Optimization from "./pages/Optimization";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/enrichment" element={<Enrichment />} />
           <Route path="/generation" element={<ContentGeneration />} />
           <Route path="/review" element={<ReviewContent />} />
+          <Route path="/review/:id" element={<AssetReview />} />
           <Route path="/enhance" element={<EnhanceAssets />} />
           <Route path="/deploy" element={<Deploy />} />
           <Route path="/optimization" element={<Optimization />} />
