@@ -8,6 +8,7 @@ import { ArrowRight, Upload, Search, Edit, Palette, Rocket, BarChart3, Check, Tr
 
 const Index = () => {
   const [email, setEmail] = useState('');
+  const [tryItEmail, setTryItEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
 
@@ -21,6 +22,21 @@ const Index = () => {
     setTimeout(() => {
       navigate('/upload');
     }, 1500);
+  };
+
+  const handleTryItSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!tryItEmail) return;
+    
+    // Extract domain from email to determine CMS
+    const domain = tryItEmail.split('@')[1];
+    
+    toast.success(`Magic link sent to ${tryItEmail}! We're analyzing ${domain} to understand your CMS setup.`);
+    
+    // Simulate magic link process and CMS detection
+    setTimeout(() => {
+      toast.info(`Detected your setup! Check your email for the magic link to access your personalized upload portal.`);
+    }, 2000);
   };
 
   if (isSubmitted) {
@@ -186,9 +202,24 @@ const Index = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Button size="lg" onClick={() => navigate('/upload')}>
-              Try It Yourself → Upload your product CSV
-            </Button>
+            <form onSubmit={handleTryItSubmit} className="max-w-md mx-auto">
+              <div className="flex gap-2 mb-4">
+                <Input
+                  type="email"
+                  placeholder="Enter your work email"
+                  value={tryItEmail}
+                  onChange={(e) => setTryItEmail(e.target.value)}
+                  className="h-12 text-lg"
+                  required
+                />
+                <Button type="submit" size="lg" disabled={!tryItEmail}>
+                  Try It Yourself <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Upload your product CSV via magic link
+              </p>
+            </form>
           </div>
         </div>
       </section>
