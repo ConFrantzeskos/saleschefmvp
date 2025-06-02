@@ -10,6 +10,7 @@ import HowItWorksSection from '@/components/HowItWorksSection';
 import ResultsSection from '@/components/ResultsSection';
 import TrustSection from '@/components/TrustSection';
 import CTASection from '@/components/CTASection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -73,6 +74,7 @@ const Index = () => {
         setTryItEmail={setTryItEmail} 
         handleSubmitWithRedirect={handleTryItSubmit} 
       />
+      <Footer />
     </div>
   );
 };
