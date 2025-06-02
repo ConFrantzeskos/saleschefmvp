@@ -1,17 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, Globe, FileText, Image, Mail, Printer, GraduationCap, HelpCircle, Search } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
+import { ArrowLeft, Globe, FileText, Image, Mail, Printer, GraduationCap, HelpCircle, Search, Edit, Save, X } from 'lucide-react';
 
 const AssetReview = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   
-  // Mock data for the asset - in real app this would come from API
+  // Mock data for the asset
   const asset = {
     id: 1,
     sku: "PRD-001",
@@ -22,24 +23,110 @@ const AssetReview = () => {
     quality: 95
   };
 
+  // Raw factory data (poor quality)
+  const rawData = {
+    name: "bluetooth headphone",
+    description: "headphone with bluetooth",
+    features: "bluetooth, wireless, headphone",
+    specs: "bluetooth headphone 40mm driver",
+    price: "$79.99",
+    category: "electronics",
+    compatibility: "phone",
+    battery: "long battery"
+  };
+
+  // Enhanced data sections
+  const [editingField, setEditingField] = useState<string | null>(null);
+  const [enhancedContent, setEnhancedContent] = useState({
+    // PDP Content
+    heroSection: "Experience Premium Audio Freedom - TechSound Wireless Bluetooth Headphones deliver crystal-clear sound with 30-hour battery life, advanced noise cancellation, and all-day comfort for professionals on the go.",
+    featureHighlights: "• 30-hour battery life for all-day listening\n• Advanced Bluetooth 5.0 connectivity\n• Active noise cancellation technology\n• Premium comfort padding\n• Quick charge: 15 minutes = 3 hours playback",
+    lifestyleContent: "Whether you're commuting to work, focusing in a busy office, or traveling the world, TechSound headphones adapt to your lifestyle. The foldable design fits perfectly in your carry-on, while the extended battery ensures your music never stops.",
+    
+    // Spec Sheet
+    technicalSpecs: "• Driver Size: 40mm dynamic drivers\n• Frequency Response: 20Hz - 20kHz\n• Bluetooth Version: 5.0\n• Battery Life: 30 hours\n• Charging Time: 2 hours\n• Weight: 250g",
+    compatibilityInfo: "Compatible with all Bluetooth-enabled devices including:\n• iOS devices (iPhone, iPad)\n• Android smartphones and tablets\n• Windows and Mac computers\n• Gaming consoles (PS5, Xbox)\n• Smart TVs and streaming devices",
+    performanceMetrics: "• Signal Range: Up to 33 feet (10 meters)\n• Latency: <40ms for video sync\n• Charging Port: USB-C\n• Codec Support: SBC, AAC, aptX\n• Noise Reduction: Up to 25dB",
+    
+    // Sales Sheet
+    keySellingPoints: "✓ Industry-leading 30-hour battery life\n✓ Professional-grade noise cancellation\n✓ Premium comfort for all-day wear\n✓ Universal compatibility\n✓ Rapid charging technology",
+    competitiveAdvantages: "• 25% longer battery life than leading competitors\n• Superior noise cancellation vs Sony WH-1000XM4\n• More comfortable than Bose QuietComfort 45\n• Better value proposition than Apple AirPods Max\n• Faster charging than market average",
+    valueProposition: "Premium audio experience at mid-range pricing. TechSound delivers flagship features typically found in $300+ headphones at an accessible $79.99 price point, making professional-grade audio accessible to everyone.",
+    
+    // SEO Content
+    metaTitle: "TechSound Wireless Bluetooth Headphones - 30Hr Battery Life | Noise Cancelling",
+    metaDescription: "Experience premium audio with TechSound wireless headphones. 30-hour battery, active noise cancellation, and crystal-clear sound quality. Free shipping on orders over $50.",
+    seoKeywords: "Primary: wireless bluetooth headphones, noise cancelling headphones\nSecondary: long battery life headphones, comfortable headphones, professional audio\nLong-tail: best wireless headphones for work, bluetooth headphones 30 hour battery",
+    
+    // Email Marketing
+    subjectLines: "• Your audio upgrade is here - 30% off TechSound headphones\n• Finally, headphones that last as long as your workday\n• Premium sound without the premium price tag\n• Last chance: TechSound headphones at launch price",
+    productAnnouncements: "Introducing TechSound Wireless Headphones - the perfect blend of premium audio quality and all-day comfort. With 30-hour battery life and professional-grade noise cancellation, these headphones are designed for the modern professional who demands excellence.",
+    promotionalCopy: "Limited Time: Get your TechSound headphones for just $79.99 (RRP $99.99). Free shipping included. 30-day money-back guarantee. Don't let poor audio quality hold back your productivity - upgrade today."
+  });
+
+  const handleEdit = (field: string) => {
+    setEditingField(field);
+  };
+
+  const handleSave = (field: string) => {
+    setEditingField(null);
+    // In real app, would save to backend
+  };
+
+  const handleCancel = () => {
+    setEditingField(null);
+    // In real app, would revert changes
+  };
+
+  const handleContentChange = (field: string, value: string) => {
+    setEnhancedContent(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const EditableField = ({ field, label, content }: { field: string; label: string; content: string }) => (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <h4 className="font-medium text-sm text-primary">{label}</h4>
+        {editingField === field ? (
+          <div className="flex space-x-1">
+            <Button size="sm" variant="outline" onClick={() => handleSave(field)}>
+              <Save className="w-3 h-3" />
+            </Button>
+            <Button size="sm" variant="outline" onClick={handleCancel}>
+              <X className="w-3 h-3" />
+            </Button>
+          </div>
+        ) : (
+          <Button size="sm" variant="outline" onClick={() => handleEdit(field)}>
+            <Edit className="w-3 h-3" />
+          </Button>
+        )}
+      </div>
+      {editingField === field ? (
+        <Textarea
+          value={content}
+          onChange={(e) => handleContentChange(field, e.target.value)}
+          className="min-h-[100px] text-sm"
+        />
+      ) : (
+        <div className="text-sm leading-relaxed whitespace-pre-line bg-muted/30 p-3 rounded-md">
+          {content}
+        </div>
+      )}
+    </div>
+  );
+
   const contentSections = [
     {
       icon: Globe,
       title: "PDP Content",
       description: "Comprehensive product detail page content",
       items: [
-        {
-          label: "Hero Section",
-          content: "Experience Premium Audio Freedom - TechSound Wireless Bluetooth Headphones deliver crystal-clear sound with 30-hour battery life, advanced noise cancellation, and all-day comfort for professionals on the go."
-        },
-        {
-          label: "Feature Highlights",
-          content: "• 30-hour battery life for all-day listening\n• Advanced Bluetooth 5.0 connectivity\n• Active noise cancellation technology\n• Premium comfort padding\n• Quick charge: 15 minutes = 3 hours playback"
-        },
-        {
-          label: "Lifestyle Content", 
-          content: "Whether you're commuting to work, focusing in a busy office, or traveling the world, TechSound headphones adapt to your lifestyle. The foldable design fits perfectly in your carry-on, while the extended battery ensures your music never stops."
-        }
+        { field: "heroSection", label: "Hero Section", enhanced: enhancedContent.heroSection, raw: rawData.description },
+        { field: "featureHighlights", label: "Feature Highlights", enhanced: enhancedContent.featureHighlights, raw: rawData.features },
+        { field: "lifestyleContent", label: "Lifestyle Content", enhanced: enhancedContent.lifestyleContent, raw: "good headphone for use" }
       ]
     },
     {
@@ -47,18 +134,9 @@ const AssetReview = () => {
       title: "Spec Sheet",
       description: "Technical specifications and compatibility details",
       items: [
-        {
-          label: "Technical Specifications",
-          content: "• Driver Size: 40mm dynamic drivers\n• Frequency Response: 20Hz - 20kHz\n• Bluetooth Version: 5.0\n• Battery Life: 30 hours\n• Charging Time: 2 hours\n• Weight: 250g"
-        },
-        {
-          label: "Compatibility Information",
-          content: "Compatible with all Bluetooth-enabled devices including:\n• iOS devices (iPhone, iPad)\n• Android smartphones and tablets\n• Windows and Mac computers\n• Gaming consoles (PS5, Xbox)\n• Smart TVs and streaming devices"
-        },
-        {
-          label: "Performance Metrics",
-          content: "• Signal Range: Up to 33 feet (10 meters)\n• Latency: <40ms for video sync\n• Charging Port: USB-C\n• Codec Support: SBC, AAC, aptX\n• Noise Reduction: Up to 25dB"
-        }
+        { field: "technicalSpecs", label: "Technical Specifications", enhanced: enhancedContent.technicalSpecs, raw: rawData.specs },
+        { field: "compatibilityInfo", label: "Compatibility Information", enhanced: enhancedContent.compatibilityInfo, raw: rawData.compatibility },
+        { field: "performanceMetrics", label: "Performance Metrics", enhanced: enhancedContent.performanceMetrics, raw: "good performance" }
       ]
     },
     {
@@ -66,18 +144,9 @@ const AssetReview = () => {
       title: "Sales Sheet",
       description: "Sales-focused content and competitive positioning",
       items: [
-        {
-          label: "Key Selling Points",
-          content: "✓ Industry-leading 30-hour battery life\n✓ Professional-grade noise cancellation\n✓ Premium comfort for all-day wear\n✓ Universal compatibility\n✓ Rapid charging technology"
-        },
-        {
-          label: "Competitive Advantages",
-          content: "• 25% longer battery life than leading competitors\n• Superior noise cancellation vs Sony WH-1000XM4\n• More comfortable than Bose QuietComfort 45\n• Better value proposition than Apple AirPods Max\n• Faster charging than market average"
-        },
-        {
-          label: "Value Proposition",
-          content: "Premium audio experience at mid-range pricing. TechSound delivers flagship features typically found in $300+ headphones at an accessible $79.99 price point, making professional-grade audio accessible to everyone."
-        }
+        { field: "keySellingPoints", label: "Key Selling Points", enhanced: enhancedContent.keySellingPoints, raw: "good headphone with bluetooth" },
+        { field: "competitiveAdvantages", label: "Competitive Advantages", enhanced: enhancedContent.competitiveAdvantages, raw: "better than other headphone" },
+        { field: "valueProposition", label: "Value Proposition", enhanced: enhancedContent.valueProposition, raw: "good value headphone $79.99" }
       ]
     },
     {
@@ -85,18 +154,9 @@ const AssetReview = () => {
       title: "SEO Content",
       description: "Search-optimized content for maximum visibility",
       items: [
-        {
-          label: "Meta Title",
-          content: "TechSound Wireless Bluetooth Headphones - 30Hr Battery Life | Noise Cancelling"
-        },
-        {
-          label: "Meta Description",
-          content: "Experience premium audio with TechSound wireless headphones. 30-hour battery, active noise cancellation, and crystal-clear sound quality. Free shipping on orders over $50."
-        },
-        {
-          label: "SEO Keywords",
-          content: "Primary: wireless bluetooth headphones, noise cancelling headphones\nSecondary: long battery life headphones, comfortable headphones, professional audio\nLong-tail: best wireless headphones for work, bluetooth headphones 30 hour battery"
-        }
+        { field: "metaTitle", label: "Meta Title", enhanced: enhancedContent.metaTitle, raw: "bluetooth headphone" },
+        { field: "metaDescription", label: "Meta Description", enhanced: enhancedContent.metaDescription, raw: "headphone with bluetooth for phone" },
+        { field: "seoKeywords", label: "SEO Keywords", enhanced: enhancedContent.seoKeywords, raw: "headphone, bluetooth" }
       ]
     },
     {
@@ -104,82 +164,16 @@ const AssetReview = () => {
       title: "Email Marketing",
       description: "Campaign-ready email content",
       items: [
-        {
-          label: "Subject Lines",
-          content: "• Your audio upgrade is here - 30% off TechSound headphones\n• Finally, headphones that last as long as your workday\n• Premium sound without the premium price tag\n• Last chance: TechSound headphones at launch price"
-        },
-        {
-          label: "Product Announcements",
-          content: "Introducing TechSound Wireless Headphones - the perfect blend of premium audio quality and all-day comfort. With 30-hour battery life and professional-grade noise cancellation, these headphones are designed for the modern professional who demands excellence."
-        },
-        {
-          label: "Promotional Copy",
-          content: "Limited Time: Get your TechSound headphones for just $79.99 (RRP $99.99). Free shipping included. 30-day money-back guarantee. Don't let poor audio quality hold back your productivity - upgrade today."
-        }
-      ]
-    },
-    {
-      icon: Printer,
-      title: "Print Collateral",
-      description: "Print-ready marketing materials",
-      items: [
-        {
-          label: "Brochure Content",
-          content: "TECHSOUND WIRELESS HEADPHONES\n\nPremium Audio. All-Day Comfort.\n\nKey Features:\n→ 30-hour battery life\n→ Active noise cancellation\n→ Bluetooth 5.0 connectivity\n→ Quick charge technology\n→ Foldable design\n\nPerfect for professionals, students, and audio enthusiasts who demand quality."
-        },
-        {
-          label: "Data Sheet",
-          content: "TECHNICAL SPECIFICATIONS\nModel: TechSound Pro\nDriver: 40mm dynamic\nBattery: 30 hours playback\nCharging: USB-C, 2 hours full charge\nWeight: 250g\nConnectivity: Bluetooth 5.0\nRange: 10 meters\nWarranty: 2 years"
-        },
-        {
-          label: "Catalog Entry",
-          content: "TechSound Wireless Bluetooth Headphones - SKU: PRD-001\nPremium wireless headphones featuring 30-hour battery life, active noise cancellation, and professional-grade audio quality. Ideal for business, travel, and everyday use.\nPrice: $79.99 | Category: Audio > Headphones"
-        }
-      ]
-    },
-    {
-      icon: GraduationCap,
-      title: "Internal Training",
-      description: "Sales team enablement materials",
-      items: [
-        {
-          label: "Feature Guide",
-          content: "SALES FEATURE GUIDE\n\n1. Battery Life (30 hours)\n   - Positioning: 'All-day listening without interruption'\n   - Proof point: Longest in price category\n\n2. Noise Cancellation\n   - Positioning: 'Professional-grade focus'\n   - Proof point: 25dB reduction\n\n3. Comfort\n   - Positioning: 'Designed for extended wear'\n   - Proof point: Memory foam padding"
-        },
-        {
-          label: "Selling Points",
-          content: "PRIMARY BENEFITS:\n• Productivity: Uninterrupted focus with noise cancellation\n• Convenience: 30-hour battery eliminates charging anxiety\n• Quality: Premium audio at accessible price\n• Versatility: Perfect for work, travel, and leisure\n• Reliability: Bluetooth 5.0 ensures stable connection"
-        },
-        {
-          label: "Objection Handlers",
-          content: "COMMON OBJECTIONS:\n\nQ: 'Too expensive for Bluetooth headphones'\nA: 'At $79.99, you're getting 30-hour battery and noise cancellation - features typically found in $200+ headphones.'\n\nQ: 'Will they work with my iPhone?'\nA: 'Yes, they're compatible with all Bluetooth devices including iPhone, Android, laptops, and tablets.'"
-        }
-      ]
-    },
-    {
-      icon: HelpCircle,
-      title: "FAQ Content",
-      description: "Customer support and frequently asked questions",
-      items: [
-        {
-          label: "Product FAQs",
-          content: "Q: How long does the battery actually last?\nA: Up to 30 hours of continuous playback at moderate volume with noise cancellation off. With noise cancellation on, expect 24-26 hours.\n\nQ: Can I use them while exercising?\nA: While not specifically designed for sports, they're suitable for light exercise. They're not waterproof but can handle light moisture.\n\nQ: Do they work for phone calls?\nA: Yes, they feature a built-in microphone optimized for clear voice calls and video conferences."
-        },
-        {
-          label: "Technical Support",
-          content: "TROUBLESHOOTING:\n\nConnection Issues:\n1. Ensure Bluetooth is enabled on your device\n2. Clear Bluetooth cache (Android) or forget/re-pair (iOS)\n3. Reset headphones by holding power button for 10 seconds\n\nAudio Quality Issues:\n1. Check codec compatibility (AAC for iOS, aptX for Android)\n2. Ensure headphones are fully charged\n3. Move closer to source device (within 10 meters)"
-        },
-        {
-          label: "Usage Guidance",
-          content: "GETTING STARTED:\n\n1. First Use:\n   - Charge for 2 hours before first use\n   - Download TechSound app for firmware updates\n\n2. Pairing:\n   - Hold power button for 3 seconds until blue light flashes\n   - Select 'TechSound Pro' from device Bluetooth menu\n\n3. Controls:\n   - Power: Long press power button\n   - Volume: Use device controls or side buttons\n   - Noise cancellation: Double-tap left ear cup"
-        }
+        { field: "subjectLines", label: "Subject Lines", enhanced: enhancedContent.subjectLines, raw: "new headphone available" },
+        { field: "productAnnouncements", label: "Product Announcements", enhanced: enhancedContent.productAnnouncements, raw: "we have new bluetooth headphone" },
+        { field: "promotionalCopy", label: "Promotional Copy", enhanced: enhancedContent.promotionalCopy, raw: "buy headphone now $79.99" }
       ]
     }
   ];
 
   return (
     <div className="min-h-screen bg-background p-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="flex items-center space-x-4 mb-6">
           <Button variant="outline" onClick={() => navigate('/review')}>
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -215,14 +209,36 @@ const AssetReview = () => {
                     </div>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-6">
                   {section.items.map((item, itemIndex) => (
                     <div key={itemIndex}>
-                      <h4 className="font-medium text-sm mb-2 text-primary">{item.label}</h4>
-                      <div className="text-sm leading-relaxed whitespace-pre-line bg-muted/30 p-3 rounded-md">
-                        {item.content}
+                      <h4 className="font-medium text-sm mb-3 text-foreground">{item.label}</h4>
+                      <div className="grid grid-cols-2 gap-6">
+                        {/* Raw Data Column */}
+                        <div>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Raw Factory Data</span>
+                          </div>
+                          <div className="text-sm leading-relaxed bg-red-50 border border-red-200 p-3 rounded-md text-red-800">
+                            {item.raw}
+                          </div>
+                        </div>
+                        
+                        {/* Enhanced Data Column */}
+                        <div>
+                          <div className="flex items-center space-x-2 mb-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">SalesChef Enhanced</span>
+                          </div>
+                          <EditableField 
+                            field={item.field} 
+                            label="" 
+                            content={item.enhanced}
+                          />
+                        </div>
                       </div>
-                      {itemIndex < section.items.length - 1 && <Separator className="mt-4" />}
+                      {itemIndex < section.items.length - 1 && <Separator className="mt-6" />}
                     </div>
                   ))}
                 </CardContent>
