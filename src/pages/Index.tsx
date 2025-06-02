@@ -49,8 +49,8 @@ const Index = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-display font-bold mb-6">Meet the AI Agents Behind the Magic</h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            SalesChef is powered by a team of specialized AI agents, each trained to transform 
-            raw product specs into full-funnel, high-performance content.
+            SalesChef is powered by a team of specialised AI agents—like chefs—each trained to transform 
+            raw product specs into a feast of sales-ready content.
           </p>
           <Link to="/how-it-works">
             <Button size="lg" className="bg-gradient-brand hover:opacity-90 transition-opacity shadow-brand">
