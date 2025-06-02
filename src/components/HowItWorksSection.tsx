@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
 import { Mail, Upload, Search, Edit, Palette, Rocket, BarChart3, ArrowRight } from 'lucide-react';
 
 interface HowItWorksSectionProps {
@@ -10,6 +12,19 @@ interface HowItWorksSectionProps {
 }
 
 const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: HowItWorksSectionProps) => {
+  const navigate = useNavigate();
+
+  // Override the handleTryItSubmit to ensure redirect happens
+  const handleSubmitWithRedirect = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!tryItEmail) return;
+    
+    toast.success("Welcome to SalesChef! Let's get started with your upload.");
+    setTimeout(() => {
+      navigate('/upload');
+    }, 1000);
+  };
+
   const steps = [
     { step: '1', title: 'Share', desc: 'your work email and we\'ll auto-detect your tech stack', icon: Mail, color: 'bg-primary', hasEmailInput: true },
     { 
@@ -181,7 +196,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
                     )}
                     
                     {step.hasEmailInput && (
-                      <form onSubmit={handleTryItSubmit} className="flex gap-3 p-2 bg-background rounded-2xl border border-border">
+                      <form onSubmit={handleSubmitWithRedirect} className="flex gap-3 p-2 bg-background rounded-2xl border border-border">
                         <Input
                           type="email"
                           placeholder="Enter your work email"
@@ -217,7 +232,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
             <p className="text-muted-foreground mb-8 leading-relaxed">
               Upload your product CSV and see the magic happen in real-time
             </p>
-            <form onSubmit={handleTryItSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <form onSubmit={handleSubmitWithRedirect} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <div className="flex gap-3 p-2 bg-card rounded-2xl border border-border flex-1">
                 <Input
                   type="email"
