@@ -25,10 +25,10 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
   };
 
   const steps = [
-    { step: '1', title: 'SalesChef Shares', desc: '', icon: Mail, color: 'bg-gradient-brand', hasEmailInput: true },
+    { step: '1', title: 'Register', desc: '', icon: Mail, color: 'bg-gradient-brand', hasEmailInput: true },
     { 
       step: '2', 
-      title: 'SalesChef Uploads', 
+      title: 'Upload', 
       desc: '', 
       icon: Upload, 
       color: 'bg-gradient-accent',
