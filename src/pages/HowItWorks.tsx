@@ -1,10 +1,36 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Brain, Database, RefreshCw, Activity, Trash2, Eye, Satellite, Target, Lightbulb, User, FileText, Building, Pen, Image, Headphones, Video, Code, Wrench, CheckCircle, Truck, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
 
 const HowItWorks = () => {
+  const [retailEmail, setRetailEmail] = useState('');
+  const [tourismEmail, setTourismEmail] = useState('');
+  const [mediaEmail, setMediaEmail] = useState('');
+
+  const handleRetailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!retailEmail) return;
+    toast.success(`Thanks! We'll send retail-specific demo access to ${retailEmail}`);
+    setRetailEmail('');
+  };
+
+  const handleTourismSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!tourismEmail) return;
+    toast.success(`Thanks! We'll send tourism industry demo access to ${tourismEmail}`);
+    setTourismEmail('');
+  };
+
+  const handleMediaSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!mediaEmail) return;
+    toast.success(`Thanks! We'll send media industry demo access to ${mediaEmail}`);
+    setMediaEmail('');
+  };
+
   const coreAgents = [
     { icon: Brain, name: 'Designator', emoji: '🧠', role: 'Executive Chef / Orchestrator', desc: 'Oversees the full lifecycle. Dynamically routes tasks to agents. Adapts pipelines. Handles prioritisation, exceptions, fallbacks.' },
     { icon: Database, name: 'Depth', emoji: '🧬', role: 'Knowledge Graph Keeper', desc: 'Stores persistent memory. Tracks historical performance, past decisions, best practices, brand rules, blueprint versions.' },
@@ -141,7 +167,15 @@ const HowItWorks = () => {
     </div>
   );
 
-  const FAQSection = ({ title, faqs, emoji }: { title: string, faqs: any[], emoji: string }) => (
+  const FAQSection = ({ title, faqs, emoji, email, setEmail, handleSubmit, ctaText }: { 
+    title: string, 
+    faqs: any[], 
+    emoji: string,
+    email: string,
+    setEmail: (email: string) => void,
+    handleSubmit: (e: React.FormEvent) => void,
+    ctaText: string
+  }) => (
     <div className="mb-12">
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <span className="text-3xl">{emoji}</span>
@@ -159,6 +193,27 @@ const HowItWorks = () => {
             <p className="text-muted-foreground">{faq.answer}</p>
           </div>
         ))}
+      </div>
+      
+      {/* Email Capture CTA */}
+      <div className="mt-8 p-6 bg-primary/5 rounded-lg">
+        <h3 className="text-lg font-semibold mb-2">{ctaText}</h3>
+        <p className="text-muted-foreground mb-4">
+          Get early access to SalesChef with industry-specific examples
+        </p>
+        <form onSubmit={handleSubmit} className="flex gap-2 max-w-md">
+          <Input
+            type="email"
+            placeholder="Enter your work email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="flex-1"
+            required
+          />
+          <Button type="submit" disabled={!email}>
+            Get Demo Access
+          </Button>
+        </form>
       </div>
     </div>
   );
@@ -241,18 +296,30 @@ const HowItWorks = () => {
             title="FAQs — For Retailers" 
             faqs={retailerFAQs} 
             emoji="🛍️" 
+            email={retailEmail}
+            setEmail={setRetailEmail}
+            handleSubmit={handleRetailSubmit}
+            ctaText="Ready to transform your product content?"
           />
           
           <FAQSection 
             title="FAQs — For Tourism Clients" 
             faqs={tourismFAQs} 
             emoji="🌍" 
+            email={tourismEmail}
+            setEmail={setTourismEmail}
+            handleSubmit={handleTourismSubmit}
+            ctaText="Transform your tourism content at scale?"
           />
           
           <FAQSection 
             title="FAQs — For Media Clients" 
             faqs={mediaFAQs} 
             emoji="🎥" 
+            email={mediaEmail}
+            setEmail={setMediaEmail}
+            handleSubmit={handleMediaSubmit}
+            ctaText="Unlock your content's revenue potential?"
           />
         </div>
       </div>
