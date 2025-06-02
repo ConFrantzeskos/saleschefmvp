@@ -286,7 +286,7 @@ RETAIL_PRICE,USD_79.99`;
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex items-center space-x-4 mb-6">
-          <Button variant="outline" onClick={() => navigate('/review')}>
+          <Button variant="outline" onClick={() => navigate('/review')} className="relative z-50">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Assets
           </Button>
@@ -299,7 +299,7 @@ RETAIL_PRICE,USD_79.99`;
             </div>
             <p className="text-muted-foreground">SKU: {asset.sku} | Quality Score: {asset.quality}%</p>
           </div>
-          <Button>
+          <Button className="relative z-50">
             Approve Content
           </Button>
         </div>
@@ -322,7 +322,7 @@ RETAIL_PRICE,USD_79.99`;
               </CardHeader>
               <CardContent className="flex-1 overflow-hidden">
                 <ScrollArea className="h-full">
-                  <div className="border border-red-200 bg-red-50 p-4 rounded-md">
+                  <div className="border border-red-200 bg-red-50 p-4 rounded-md relative z-10">
                     <pre className="text-sm text-red-600 font-mono whitespace-pre-wrap">
                       {consolidatedRawData}
                     </pre>
@@ -339,7 +339,7 @@ RETAIL_PRICE,USD_79.99`;
                 {contentSections.map((section, sectionIndex) => {
                   const Icon = section.icon;
                   return (
-                    <Card key={sectionIndex}>
+                    <Card key={sectionIndex} className="relative z-20">
                       <CardHeader>
                         <CardTitle className="flex items-center space-x-3">
                           <div className="p-2 bg-primary/10 rounded-lg">
@@ -359,16 +359,17 @@ RETAIL_PRICE,USD_79.99`;
                             const isEditing = editingField === fieldKey;
                             
                             return (
-                              <div key={itemIndex} className="border border-green-200 bg-green-50 p-3 rounded-md">
+                              <div key={itemIndex} className="border border-green-200 bg-green-50 p-3 rounded-md relative z-30">
                                 <div className="flex items-center justify-between mb-2">
                                   <h5 className="font-medium text-sm text-green-700">{item.label}</h5>
-                                  <div className="flex space-x-1">
+                                  <div className="flex space-x-1 relative z-40">
                                     {isEditing ? (
                                       <>
                                         <Button
                                           size="sm"
                                           variant="ghost"
                                           onClick={() => handleSave(sectionIndex, itemIndex)}
+                                          className="relative z-50 bg-white hover:bg-gray-100"
                                         >
                                           <Check className="w-3 h-3" />
                                         </Button>
@@ -376,6 +377,7 @@ RETAIL_PRICE,USD_79.99`;
                                           size="sm"
                                           variant="ghost"
                                           onClick={handleCancel}
+                                          className="relative z-50 bg-white hover:bg-gray-100"
                                         >
                                           <X className="w-3 h-3" />
                                         </Button>
@@ -385,6 +387,7 @@ RETAIL_PRICE,USD_79.99`;
                                         size="sm"
                                         variant="ghost"
                                         onClick={() => handleEdit(sectionIndex, itemIndex)}
+                                        className="relative z-50 bg-white hover:bg-gray-100"
                                       >
                                         <Edit2 className="w-3 h-3" />
                                       </Button>
@@ -398,7 +401,7 @@ RETAIL_PRICE,USD_79.99`;
                                       ...editValues,
                                       [fieldKey]: e.target.value
                                     })}
-                                    className="text-sm min-h-[100px] bg-white"
+                                    className="text-sm min-h-[100px] bg-white relative z-30"
                                   />
                                 ) : (
                                   <div className="text-sm leading-relaxed whitespace-pre-line text-green-600">
@@ -419,7 +422,7 @@ RETAIL_PRICE,USD_79.99`;
           </div>
         </div>
 
-        <div className="mt-8 flex justify-between">
+        <div className="mt-8 flex justify-between relative z-50">
           <Button variant="outline" onClick={() => navigate('/review')}>
             Back to Assets
           </Button>
