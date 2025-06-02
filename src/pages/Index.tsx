@@ -45,15 +45,15 @@ const Index = () => {
       <ProblemSection />
       
       {/* How SalesChef Works CTA */}
-      <section className="py-16 px-4 bg-gradient-to-br from-muted/30 to-muted/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-display font-bold mb-6">Meet the AI Agents Behind the Magic</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+      <section className="section-spacing bg-gradient-subtle">
+        <div className="content-width text-center animate-fade-in">
+          <h2 className="text-section-title mb-8">Meet the AI Agents Behind the Magic</h2>
+          <p className="text-body-large text-muted-foreground mb-10 max-w-2xl mx-auto">
             SalesChef is powered by a team of specialised AI agents - like chefs - each trained to transform 
             raw product specs into a feast of sales-ready content.
           </p>
           <Link to="/how-it-works">
-            <Button size="lg" className="bg-gradient-brand hover:opacity-90 transition-opacity shadow-brand">
+            <Button size="lg" className="btn-primary h-14 px-10 text-base font-semibold">
               See How SalesChef Works
             </Button>
           </Link>
