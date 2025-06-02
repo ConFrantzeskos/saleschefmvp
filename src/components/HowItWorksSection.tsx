@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail, Search, Edit, Palette, Rocket, BarChart3, ArrowRight } from 'lucide-react';
+import { Upload, Search, Edit, Palette, Rocket, BarChart3, ArrowRight } from 'lucide-react';
 
 interface HowItWorksSectionProps {
   tryItEmail: string;
@@ -11,7 +12,7 @@ interface HowItWorksSectionProps {
 
 const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: HowItWorksSectionProps) => {
   const steps = [
-    { step: '1', title: 'Share', desc: 'your work email so we can understand your tech stack', icon: Mail, color: 'bg-blue-500' },
+    { step: '1', title: 'Upload', desc: 'CSV', icon: Upload, color: 'bg-blue-500' },
     { step: '2', title: 'Clean', desc: 'fix, format, fill', icon: Search, color: 'bg-green-500' },
     { step: '3', title: 'Enrich', desc: 'reviews, reasons to buy, consumer benefits, SEO, tags, images', icon: Edit, color: 'bg-purple-500' },
     { step: '4', title: 'Create', desc: 'PDPs, emails, FAQs, training, social tiles', icon: Palette, color: 'bg-orange-500' },
