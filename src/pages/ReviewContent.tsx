@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
@@ -38,7 +37,7 @@ const ReviewContent = () => {
     const brands = ["TechSound", "FitLife", "PowerMax", "UltraGear", "HomeEssentials", "StyleCore", "FitnessPro", "BeautyLux", "BookWorld", "InnovateTech"];
     const statuses = ["Enhanced", "Needs Review", "Enhanced", "Enhanced", "Needs Review"];
     
-    return Array.from({ length: 52 }, (_, i) => ({
+    const assets = Array.from({ length: 52 }, (_, i) => ({
       id: i + 1,
       sku: `CD${String(i + 1000).padStart(4, '0')}`,
       name: `Product ${i + 1} - ${brands[i % brands.length]} Item`,
@@ -61,6 +60,33 @@ const ReviewContent = () => {
       warranty: `${Math.floor(Math.random() * 3) + 1} year warranty`,
       certifications: "CE, FCC, RoHS"
     }));
+
+    // Override the first product with the specific headphones details
+    assets[0] = {
+      id: 1,
+      sku: 'CD1234',
+      name: 'CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic',
+      category: 'Electronics > Audio > Headphones',
+      brand: 'TechSound',
+      status: 'Enhanced',
+      quality: 95,
+      price: '$149.99',
+      description: 'Premium wireless headphones with 24-hour battery life, Bluetooth 5.0 connectivity, foldable design and built-in microphone for calls',
+      features: 'Bluetooth 5.0, 24-hour battery, Foldable design, Built-in microphone, Active noise cancellation',
+      targetAudience: 'Audio enthusiasts, professionals, commuters, gamers',
+      keyBenefits: 'Extended battery life, superior sound quality, comfortable fit for long sessions',
+      competitiveAdvantage: 'Industry-leading 24-hour battery life with premium audio quality',
+      seoKeywords: 'wireless headphones, bluetooth 5.0, 24 hour battery, foldable headphones, microphone',
+      metaTitle: 'CD1234 Wireless Headphones - 24Hr Battery | Bluetooth 5.0 | Foldable',
+      metaDescription: 'Experience premium audio with CD1234 wireless headphones featuring 24-hour battery, Bluetooth 5.0, and foldable design. Perfect for work and play.',
+      productBullets: '• 24-hour extended battery life\n• Bluetooth 5.0 for stable connection\n• Foldable design for portability\n• Built-in microphone for hands-free calls\n• Active noise cancellation technology',
+      technicalSpecs: 'Bluetooth Version: 5.0\nBattery Life: 24 hours\nCharging Time: 2 hours\nFrequency Response: 20Hz-20kHz\nWeight: 280g\nFoldable: Yes',
+      useCases: 'Music listening, Video calls, Gaming, Commuting, Office work',
+      warranty: '2 year warranty',
+      certifications: 'CE, FCC, RoHS, Bluetooth SIG'
+    };
+
+    return assets;
   };
 
   const sampleAssets = generateSampleAssets();
