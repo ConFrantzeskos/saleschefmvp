@@ -22,10 +22,6 @@ const TrustSection = () => {
             </div>
           ))}
         </div>
-        
-        <p className="text-muted-foreground italic">
-          (Future placeholder for client logos, case study links, testimonials)
-        </p>
       </div>
     </section>
   );
