@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -59,7 +60,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto">
           <div className="w-16 h-16 mx-auto mb-8">
             <img 
-              src="/lovable-uploads/dd8adff2-b007-4c1b-b750-d8b7322cf6de.png" 
+              src="/lovable-uploads/0b8c5ffe-edc7-4ea5-af28-bc947207ee19.png" 
               alt="SalesChef Logo" 
               className="w-full h-full object-contain"
             />
@@ -83,7 +84,7 @@ const Index = () => {
                 className="h-12 text-lg"
                 required
               />
-              <Button type="submit" className="h-12 px-6" disabled={!email}>
+              <Button type="submit" className="h-12 px-6 bg-primary hover:bg-primary/90" disabled={!email}>
                 Watch it Cook <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
@@ -211,7 +212,7 @@ const Index = () => {
                   className="h-12 text-lg"
                   required
                 />
-                <Button type="submit" size="lg" disabled={!tryItEmail}>
+                <Button type="submit" size="lg" className="bg-primary hover:bg-primary/90" disabled={!tryItEmail}>
                   Try It Yourself <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
@@ -323,7 +324,7 @@ const Index = () => {
                 className="h-12 text-lg"
                 required
               />
-              <Button type="submit" className="h-12 px-6" disabled={!email}>
+              <Button type="submit" className="h-12 px-6 bg-primary hover:bg-primary/90" disabled={!email}>
                 Get Started
               </Button>
             </div>
