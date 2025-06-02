@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -91,7 +90,7 @@ const Index = () => {
           </form>
           
           <p className="text-sm text-muted-foreground">
-            Drop a CSV. See what your content could become.
+            Upload a CSV. Watch your data transform into content magic.
           </p>
         </div>
       </section>
