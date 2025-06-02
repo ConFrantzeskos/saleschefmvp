@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
@@ -62,11 +61,11 @@ const CleaningValidation = () => {
   ];
 
   const correctedItems = [
-    { id: 1, type: 'Price Correction', item: 'Wireless Headphones WH-1000XM4', change: '$349.99 → $299.99', status: 'corrected' },
+    { id: 1, type: 'Add New Category', item: 'Professional Blender BL-3000', change: 'Kitchen Appliances → Small Appliances', status: 'corrected' },
     { id: 2, type: 'Category Fix', item: 'Smart Watch Series 8', change: 'Electronics → Wearables', status: 'corrected' },
     { id: 3, type: 'Duplicate Merge', item: 'iPhone 15 Pro (Duplicate SKUs)', change: 'SKU-001 + SKU-001A → SKU-001', status: 'merged' },
     { id: 4, type: 'Format Fix', item: 'Gaming Laptop RTX4080', change: 'Description formatting corrected', status: 'corrected' },
-    { id: 5, type: 'Missing Data', item: 'Bluetooth Speaker', change: 'Added weight: 2.1 lbs', status: 'completed' }
+    { id: 5, type: 'Smart Categorization', item: 'Wireless Coffee Maker Pro', change: 'Auto-categorized: Kitchen → Coffee & Espresso', status: 'completed' }
   ];
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
