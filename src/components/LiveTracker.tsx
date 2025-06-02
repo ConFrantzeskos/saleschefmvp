@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Zap } from 'lucide-react';
 
@@ -8,7 +7,7 @@ const LiveTracker = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCount(prev => prev + Math.floor(Math.random() * 3) + 1);
-    }, 2000 + Math.random() * 3000); // Random interval between 2-5 seconds
+    }, 800 + Math.random() * 1200); // Random interval between 0.8-2 seconds (faster)
     
     return () => clearInterval(interval);
   }, []);
