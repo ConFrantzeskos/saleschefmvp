@@ -57,8 +57,8 @@ const SchemaMapping = () => {
       
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-semibold mb-4">Map Your Data Fields</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="text-3xl font-display font-semibold mb-4 text-foreground">Map Your Data Fields</h1>
+          <p className="text-lg text-muted-foreground font-sans">
             We've auto-detected your data structure. Review and adjust if needed.
           </p>
         </div>
@@ -78,7 +78,7 @@ const SchemaMapping = () => {
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground font-sans">
             This mapping will be saved for future uploads of similar data.
           </p>
         </div>

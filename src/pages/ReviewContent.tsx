@@ -35,9 +35,9 @@ const ReviewContent = () => {
           onApproveAll={handleApproveAll}
         />
 
-        <div className="bg-white rounded-lg border">
+        <div className="bg-white rounded-xl border shadow-soft">
           <div className="p-6 border-b">
-            <h2 className="text-xl font-semibold">All Assets ({sampleAssets.length})</h2>
+            <h2 className="text-xl font-display font-semibold text-foreground">All Assets ({sampleAssets.length})</h2>
           </div>
           
           <AssetsTable assets={sampleAssets} />
