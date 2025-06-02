@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Check, Shield, Clock, Users, Zap, Star } from 'lucide-react';
-import LiveTracker from './LiveTracker';
 
 const TrustSection = () => {
   const features = [
@@ -64,10 +63,6 @@ const TrustSection = () => {
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-16 text-center animate-fade-in">
-          <LiveTracker />
         </div>
       </div>
     </section>

@@ -11,6 +11,7 @@ import ResultsSection from '@/components/ResultsSection';
 import TrustSection from '@/components/TrustSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import LiveTracker from '@/components/LiveTracker';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -43,6 +44,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <LiveTracker />
       <HeroSection email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
       <ProblemSection />
       

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Zap } from 'lucide-react';
 
@@ -5,11 +6,26 @@ const LiveTracker = () => {
   const [count, setCount] = useState(2847392);
   
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCount(prev => prev + Math.floor(Math.random() * 3) + 1);
-    }, 800 + Math.random() * 1200); // Random interval between 0.8-2 seconds (faster)
+    const createBurstPattern = () => {
+      // Random burst size (1-8 increments)
+      const burstSize = Math.floor(Math.random() * 8) + 1;
+      let burstCount = 0;
+      
+      const burstInterval = setInterval(() => {
+        setCount(prev => prev + Math.floor(Math.random() * 5) + 1);
+        burstCount++;
+        
+        if (burstCount >= burstSize) {
+          clearInterval(burstInterval);
+          // Random pause between bursts (200ms to 1.5s)
+          setTimeout(createBurstPattern, 200 + Math.random() * 1300);
+        }
+      }, 100 + Math.random() * 200); // Very fast increments during burst
+    };
     
-    return () => clearInterval(interval);
+    createBurstPattern();
+    
+    return () => {}; // Cleanup handled by individual intervals
   }, []);
 
   const formatNumber = (num: number) => {
@@ -17,27 +33,43 @@ const LiveTracker = () => {
   };
 
   return (
-    <div className="inline-flex items-center gap-4 px-8 py-6 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm rounded-3xl border border-border/50 shadow-medium hover:shadow-large transition-all duration-500">
-      <div className="flex items-center gap-3">
-        <div className="relative">
-          <div className="w-12 h-12 rounded-full bg-gradient-brand flex items-center justify-center text-white">
-            <Zap className="w-6 h-6" />
-          </div>
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background animate-pulse"></div>
+    <div className="fixed top-6 right-6 z-50 animate-pulse-slow">
+      {/* Starburst background */}
+      <div className="relative">
+        {/* Starburst rays */}
+        <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-8 bg-gradient-to-t from-primary/30 to-transparent"
+              style={{
+                left: '50%',
+                top: '50%',
+                transformOrigin: '0 0',
+                transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-24px)`,
+              }}
+            />
+          ))}
         </div>
-        <div className="text-left">
-          <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-foreground font-mono">
+        
+        {/* Main content */}
+        <div className="relative bg-gradient-to-br from-primary to-secondary p-4 rounded-full shadow-brand hover:shadow-large transition-all duration-300 min-w-[120px]">
+          <div className="text-center text-white">
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <Zap className="w-4 h-4 animate-pulse" />
+              <span className="text-xs font-bold tracking-wider">LIVE</span>
+            </div>
+            <div className="text-lg font-mono font-bold leading-none">
               {formatNumber(count)}
-            </span>
-            <span className="text-sm text-green-600 font-semibold">LIVE</span>
+            </div>
+            <div className="text-xs opacity-90 leading-tight mt-1">
+              elements
+            </div>
           </div>
-          <p className="text-sm text-muted-foreground">content elements transformed</p>
+          
+          {/* Pulsing indicator */}
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse border-2 border-white"></div>
         </div>
-      </div>
-      <div className="text-left border-l border-border/50 pl-4">
-        <p className="font-semibold text-foreground">Join 100+ teams already transforming their content</p>
-        <p className="text-sm text-muted-foreground">From startups to Fortune 500 companies</p>
       </div>
     </div>
   );
