@@ -3,12 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Check, AlertCircle, Info } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Check, AlertCircle, Info, Eye, ArrowRight } from 'lucide-react';
 
 const CleaningValidation = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const [processingComplete, setProcessingComplete] = useState(false);
+  const [allItemsChecked, setAllItemsChecked] = useState(false);
 
   const steps = [
     { id: 'upload', label: 'Upload', completed: true, current: false },
@@ -57,6 +61,16 @@ const CleaningValidation = () => {
     }
   ];
 
+  const correctedItems = [
+    { id: 1, type: 'Price Correction', item: 'Wireless Headphones WH-1000XM4', change: '$349.99 → $299.99', status: 'corrected' },
+    { id: 2, type: 'Category Fix', item: 'Smart Watch Series 8', change: 'Electronics → Wearables', status: 'corrected' },
+    { id: 3, type: 'Duplicate Merge', item: 'iPhone 15 Pro (Duplicate SKUs)', change: 'SKU-001 + SKU-001A → SKU-001', status: 'merged' },
+    { id: 4, type: 'Format Fix', item: 'Gaming Laptop RTX4080', change: 'Description formatting corrected', status: 'corrected' },
+    { id: 5, type: 'Missing Data', item: 'Bluetooth Speaker', change: 'Added weight: 2.1 lbs', status: 'completed' }
+  ];
+
+  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentStep(prev => {
@@ -65,20 +79,43 @@ const CleaningValidation = () => {
           return prev + 1;
         } else {
           setCompletedSteps(prevCompleted => [...prevCompleted, prev]);
-          setTimeout(() => navigate('/generation'), 1500);
+          setProcessingComplete(true);
           return prev;
         }
       });
     }, 1200);
 
     return () => clearInterval(timer);
-  }, [navigate]);
+  }, []);
+
+  const handleItemCheck = (itemId: number, checked: boolean) => {
+    if (checked) {
+      setCheckedItems(prev => [...prev, itemId]);
+    } else {
+      setCheckedItems(prev => prev.filter(id => id !== itemId));
+      setAllItemsChecked(false);
+    }
+  };
+
+  const handleBulkCheck = () => {
+    if (allItemsChecked) {
+      setCheckedItems([]);
+      setAllItemsChecked(false);
+    } else {
+      setCheckedItems(correctedItems.map(item => item.id));
+      setAllItemsChecked(true);
+    }
+  };
+
+  const handleProceedToGeneration = () => {
+    navigate('/generation');
+  };
 
   return (
     <div className="min-h-screen bg-background p-6">
       <ProgressIndicator steps={steps} />
       
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-semibold mb-4">Data Processing & Validation</h1>
           <p className="text-lg text-muted-foreground">
@@ -86,7 +123,7 @@ const CleaningValidation = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 mb-8">
           {cleaningSteps.map((step, index) => (
             <Card 
               key={index}
@@ -140,11 +177,70 @@ const CleaningValidation = () => {
           ))}
         </div>
 
-        {completedSteps.length === cleaningSteps.length && (
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center space-x-2 text-green-600 font-medium">
-              <Check className="w-5 h-5" />
-              <span>Data processing complete! Proceeding to content generation...</span>
+        {processingComplete && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center space-x-2">
+                    <AlertCircle className="w-5 h-5 text-orange-500" />
+                    <span>Review Corrected Content</span>
+                  </CardTitle>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={handleBulkCheck}
+                    className="flex items-center space-x-2"
+                  >
+                    <Checkbox 
+                      checked={allItemsChecked}
+                      className="pointer-events-none"
+                    />
+                    <span>{allItemsChecked ? 'Uncheck All' : 'Check All'}</span>
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {correctedItems.map((item) => (
+                    <div key={item.id} className="flex items-center space-x-3 p-3 border rounded-lg">
+                      <Checkbox 
+                        checked={checkedItems.includes(item.id)}
+                        onCheckedChange={(checked) => handleItemCheck(item.id, checked as boolean)}
+                      />
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm font-medium text-primary">{item.type}</span>
+                          <span className="text-sm text-muted-foreground">•</span>
+                          <span className="text-sm">{item.item}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-1">{item.change}</p>
+                      </div>
+                      <Button variant="ghost" size="sm">
+                        <Eye className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="flex items-center justify-between p-6 bg-muted/50 rounded-lg">
+              <div className="flex items-center space-x-2">
+                <Check className="w-5 h-5 text-green-600" />
+                <span className="font-medium text-green-600">
+                  Data processing complete! 
+                  {checkedItems.length > 0 && ` (${checkedItems.length}/${correctedItems.length} items reviewed)`}
+                </span>
+              </div>
+              <Button 
+                onClick={handleProceedToGeneration}
+                className="flex items-center space-x-2"
+                disabled={checkedItems.length === 0}
+              >
+                <span>Proceed to Generation</span>
+                <ArrowRight className="w-4 h-4" />
+              </Button>
             </div>
           </div>
         )}
