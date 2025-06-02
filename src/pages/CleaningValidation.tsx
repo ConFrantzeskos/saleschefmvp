@@ -17,6 +17,7 @@ const CleaningValidation = () => {
     { id: 'upload', label: 'Upload', completed: true, current: false },
     { id: 'mapping', label: 'Map Fields', completed: true, current: false },
     { id: 'clean', label: 'Clean Data', completed: false, current: true },
+    { id: 'enrich', label: 'Enrich', completed: false, current: false },
     { id: 'generate', label: 'Generate', completed: false, current: false },
     { id: 'review', label: 'Review', completed: false, current: false },
     { id: 'deploy', label: 'Deploy', completed: false, current: false },
@@ -106,8 +107,8 @@ const CleaningValidation = () => {
     }
   };
 
-  const handleProceedToGeneration = () => {
-    navigate('/generation');
+  const handleProceedToEnrichment = () => {
+    navigate('/enrichment');
   };
 
   return (
@@ -233,11 +234,11 @@ const CleaningValidation = () => {
                 </span>
               </div>
               <Button 
-                onClick={handleProceedToGeneration}
+                onClick={handleProceedToEnrichment}
                 className="flex items-center space-x-2"
                 disabled={checkedItems.length === 0}
               >
-                <span>Proceed to Generation</span>
+                <span>Proceed to Enrichment</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>

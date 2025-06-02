@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import FileUpload from "./pages/FileUpload";
 import SchemaMapping from "./pages/SchemaMapping";
 import CleaningValidation from "./pages/CleaningValidation";
+import Enrichment from "./pages/Enrichment";
 import ContentGeneration from "./pages/ContentGeneration";
 import ReviewContent from "./pages/ReviewContent";
 import EnhanceAssets from "./pages/EnhanceAssets";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/upload" element={<FileUpload />} />
           <Route path="/mapping" element={<SchemaMapping />} />
           <Route path="/cleaning" element={<CleaningValidation />} />
+          <Route path="/enrichment" element={<Enrichment />} />
           <Route path="/generation" element={<ContentGeneration />} />
           <Route path="/review" element={<ReviewContent />} />
           <Route path="/enhance" element={<EnhanceAssets />} />

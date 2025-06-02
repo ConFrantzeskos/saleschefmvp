@@ -15,6 +15,7 @@ const ContentGeneration = () => {
     { id: 'upload', label: 'Upload', completed: true, current: false },
     { id: 'mapping', label: 'Map Fields', completed: true, current: false },
     { id: 'clean', label: 'Clean Data', completed: true, current: false },
+    { id: 'enrich', label: 'Enrich', completed: true, current: false },
     { id: 'generate', label: 'Generate', completed: false, current: true },
     { id: 'review', label: 'Review', completed: false, current: false },
     { id: 'deploy', label: 'Deploy', completed: false, current: false },
@@ -104,7 +105,7 @@ const ContentGeneration = () => {
             <h1 className="text-3xl font-semibold">Cooking up your content</h1>
           </div>
           <p className="text-lg text-muted-foreground">
-            Our AI agents are transforming your raw data into sales-ready content
+            Using enriched product intelligence to create sales-ready content
           </p>
         </div>
 
