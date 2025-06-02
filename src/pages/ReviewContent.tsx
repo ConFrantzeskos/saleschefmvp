@@ -40,7 +40,7 @@ const ReviewContent = () => {
     
     return Array.from({ length: 52 }, (_, i) => ({
       id: i + 1,
-      sku: `PRD-${String(i + 1).padStart(3, '0')}`,
+      sku: `CD${String(i + 1000).padStart(4, '0')}`,
       name: `Product ${i + 1} - ${brands[i % brands.length]} Item`,
       category: categories[i % categories.length],
       brand: brands[i % brands.length],
@@ -100,7 +100,7 @@ const ReviewContent = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-[100px]">SKU</TableHead>
+                  <TableHead className="min-w-[100px]">Asset</TableHead>
                   <TableHead className="min-w-[200px]">Product Name</TableHead>
                   <TableHead className="min-w-[150px]">Category</TableHead>
                   <TableHead className="min-w-[100px]">Brand</TableHead>
