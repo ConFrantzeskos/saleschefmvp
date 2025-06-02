@@ -3,7 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { Zap } from 'lucide-react';
 
 const LiveTracker = () => {
-  const [count, setCount] = useState(2847392);
+  const [count, setCount] = useState(() => {
+    // Initialize from localStorage or default value
+    const stored = localStorage.getItem('salesChefCounter');
+    return stored ? parseInt(stored) : 2847392;
+  });
+  
+  useEffect(() => {
+    // Save to localStorage whenever count changes
+    localStorage.setItem('salesChefCounter', count.toString());
+  }, [count]);
   
   useEffect(() => {
     const createBurstPattern = () => {
