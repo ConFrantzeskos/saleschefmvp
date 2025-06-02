@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Eye, Edit } from 'lucide-react';
+import { Edit } from 'lucide-react';
 import { Asset } from '@/types/asset';
 
 interface AssetsTableProps {
@@ -43,12 +43,16 @@ const AssetsTable = ({ assets }: AssetsTableProps) => {
             <TableHead className="min-w-[100px]">Certifications</TableHead>
             <TableHead className="min-w-[100px]">Status</TableHead>
             <TableHead className="min-w-[100px]">Quality</TableHead>
-            <TableHead className="min-w-[100px]">Actions</TableHead>
+            <TableHead className="min-w-[100px]">Edit</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {assets.map((asset) => (
-            <TableRow key={asset.id} className="cursor-pointer hover:bg-muted/50">
+            <TableRow 
+              key={asset.id} 
+              className="cursor-pointer hover:bg-muted/50"
+              onClick={() => handleViewAsset(asset.id)}
+            >
               <TableCell className="font-mono">{asset.sku}</TableCell>
               <TableCell className="font-medium max-w-[200px] truncate">{asset.name}</TableCell>
               <TableCell className="max-w-[150px] truncate">{asset.category}</TableCell>
@@ -84,18 +88,16 @@ const AssetsTable = ({ assets }: AssetsTableProps) => {
                 </div>
               </TableCell>
               <TableCell>
-                <div className="flex space-x-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => handleViewAsset(asset.id)}
-                  >
-                    <Eye className="w-4 h-4" />
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Add edit functionality here
+                  }}
+                >
+                  <Edit className="w-4 h-4" />
+                </Button>
               </TableCell>
             </TableRow>
           ))}
