@@ -21,29 +21,39 @@ const CleaningValidation = () => {
 
   const cleaningSteps = [
     {
+      title: "Data Ingestion",
+      description: "Processing multiple file formats (CSV, PDF, URLs, ERP, CMS)",
+      issues: "3 different formats detected and ingested"
+    },
+    {
+      title: "Data Parsing", 
+      description: "Extracting structured data from various sources",
+      issues: "847 product records parsed successfully"
+    },
+    {
+      title: "Deduplication",
+      description: "Identifying and merging duplicate entries",
+      issues: "12 duplicate SKUs merged, 3 near-duplicates flagged"
+    },
+    {
+      title: "Data Correction",
+      description: "Fixing formatting issues and data inconsistencies",
+      issues: "15 formatting errors corrected, 8 price inconsistencies fixed"
+    },
+    {
+      title: "Categorization",
+      description: "Auto-categorizing products based on attributes",
+      issues: "847 products categorized across 24 categories"
+    },
+    {
       title: "Data Validation",
-      description: "Checking data types and formats",
-      issues: "3 formatting issues corrected"
+      description: "Checking data completeness and quality standards",
+      issues: "Quality score: 92/100 - 5 incomplete entries flagged"
     },
     {
-      title: "Duplicate Detection", 
-      description: "Identifying duplicate entries",
-      issues: "2 duplicate SKUs merged"
-    },
-    {
-      title: "Missing Data Analysis",
-      description: "Finding incomplete records",
-      issues: "5 incomplete entries flagged"
-    },
-    {
-      title: "Quality Scoring",
-      description: "Assessing overall data quality", 
-      issues: "Quality score: 87/100"
-    },
-    {
-      title: "Final Validation",
-      description: "Preparing data for enrichment",
-      issues: "847 products ready for processing"
+      title: "Final Processing",
+      description: "Preparing clean, validated data for content generation",
+      issues: "847 products ready for enhancement"
     }
   ];
 
@@ -70,9 +80,9 @@ const CleaningValidation = () => {
       
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-semibold mb-4">Cleaning & Validation</h1>
+          <h1 className="text-3xl font-semibold mb-4">Data Processing & Validation</h1>
           <p className="text-lg text-muted-foreground">
-            Ensuring your data is clean and ready for content generation
+            Ingesting, parsing, deduplicating, correcting, categorizing and validating your product data
           </p>
         </div>
 
@@ -134,7 +144,7 @@ const CleaningValidation = () => {
           <div className="mt-8 text-center">
             <div className="inline-flex items-center space-x-2 text-green-600 font-medium">
               <Check className="w-5 h-5" />
-              <span>Data cleaning complete! Proceeding to content generation...</span>
+              <span>Data processing complete! Proceeding to content generation...</span>
             </div>
           </div>
         )}
