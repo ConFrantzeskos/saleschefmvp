@@ -2,43 +2,47 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { ArrowRight } from 'lucide-react';
 
 interface CTASectionProps {
-  email: string;
-  setEmail: (email: string) => void;
-  handleSubmit: (e: React.FormEvent) => void;
+  tryItEmail: string;
+  setTryItEmail: (email: string) => void;
+  handleSubmitWithRedirect: (e: React.FormEvent) => void;
 }
 
-const CTASection = ({ email, setEmail, handleSubmit }: CTASectionProps) => {
+const CTASection = ({ tryItEmail, setTryItEmail, handleSubmitWithRedirect }: CTASectionProps) => {
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-muted/30 to-muted/10">
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl font-display font-bold mb-4">You already have the specs. Let's make them sell.</h2>
-        <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-          Upload your product CSV. See what SalesChef can do with your real products.
+    <div className="mt-24 text-center">
+      <div className="bg-gradient-to-br from-muted to-muted/50 rounded-3xl p-10 max-w-2xl mx-auto border border-border">
+        <h3 className="text-2xl font-display font-bold mb-4 text-balance">Ready to Transform Your Product Data?</h3>
+        <p className="text-muted-foreground mb-8 leading-relaxed">
+          Upload your product CSV and see the magic happen in real-time
         </p>
-        
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-          <div className="flex gap-3 p-2 bg-card rounded-2xl shadow-soft border border-border">
+        <form onSubmit={handleSubmitWithRedirect} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <div className="flex gap-3 p-2 bg-card rounded-2xl border border-border flex-1">
             <Input
               type="email"
               placeholder="Enter your work email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="h-12 text-lg border-0 bg-transparent focus-visible:ring-0 flex-1"
+              value={tryItEmail}
+              onChange={(e) => setTryItEmail(e.target.value)}
+              className="h-12 text-base border-0 bg-transparent focus-visible:ring-0 flex-1"
               required
             />
             <Button 
               type="submit" 
-              className="h-12 px-6 bg-gradient-brand hover:opacity-90 transition-opacity shadow-brand" 
-              disabled={!email}
+              size="lg" 
+              className="h-12 px-8 font-semibold bg-gradient-accent hover:opacity-90 transition-opacity shadow-brand" 
+              disabled={!tryItEmail}
             >
-              Get Started
+              Try It Free <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
         </form>
+        <p className="text-sm text-muted-foreground mt-4">
+          Get instant access via magic link • No setup required
+        </p>
       </div>
-    </section>
+    </div>
   );
 };
 
