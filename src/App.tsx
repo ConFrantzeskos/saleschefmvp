@@ -28,6 +28,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/upload" element={<FileUpload />} />
           <Route path="/mapping" element={<SchemaMapping />} />
           <Route path="/cleaning" element={<CleaningValidation />} />
