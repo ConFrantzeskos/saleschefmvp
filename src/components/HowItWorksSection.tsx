@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -26,10 +25,10 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
   };
 
   const steps = [
-    { step: '1', title: 'Share', desc: '', icon: Mail, color: 'bg-gradient-brand', hasEmailInput: true },
+    { step: '1', title: 'SalesChef Shares', desc: '', icon: Mail, color: 'bg-gradient-brand', hasEmailInput: true },
     { 
       step: '2', 
-      title: 'Upload', 
+      title: 'SalesChef Uploads', 
       desc: '', 
       icon: Upload, 
       color: 'bg-gradient-accent',
@@ -38,7 +37,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     },
     { 
       step: '3', 
-      title: 'Clean', 
+      title: 'SalesChef Cleans', 
       desc: '', 
       icon: Search, 
       color: 'bg-secondary',
@@ -47,7 +46,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     },
     { 
       step: '4', 
-      title: 'Enrich', 
+      title: 'SalesChef Enriches', 
       desc: '', 
       icon: Edit, 
       color: 'bg-gradient-brand',
@@ -56,7 +55,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     },
     { 
       step: '5', 
-      title: 'Create', 
+      title: 'SalesChef Creates', 
       desc: '', 
       icon: Palette, 
       color: 'bg-gradient-accent',
@@ -65,7 +64,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     },
     { 
       step: '6', 
-      title: 'Publish', 
+      title: 'SalesChef Publishes', 
       desc: '', 
       icon: Rocket, 
       color: 'bg-secondary',
@@ -74,7 +73,7 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
     },
     { 
       step: '7', 
-      title: 'Optimise', 
+      title: 'SalesChef Optimises', 
       desc: '', 
       icon: BarChart3, 
       color: 'bg-gradient-brand',
