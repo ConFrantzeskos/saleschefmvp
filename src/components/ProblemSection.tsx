@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AlertTriangle, TrendingDown, Users, Database, RefreshCw, FileX, Clock } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Users, Database, RefreshCw, FileX, Clock, ArrowDown } from 'lucide-react';
 
 const ProblemSection = () => {
   const challenges = [
@@ -23,53 +23,64 @@ const ProblemSection = () => {
         <h2 className="text-section-title text-center mb-16 text-balance animate-fade-in">
           Why Retail Content Struggles to Scale
         </h2>
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <div className="space-y-8 animate-slide-up">
-            <p className="text-body-large text-muted-foreground leading-relaxed">
+        
+        <div className="max-w-4xl mx-auto space-y-16">
+          {/* Challenges Section */}
+          <div className="text-center animate-slide-up">
+            <h3 className="text-2xl font-display font-semibold mb-8 text-foreground">
               Retailers face constant content pressure:
-            </p>
-            <div className="space-y-4">
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
               {challenges.map((challenge, index) => (
-                <div key={index} className="flex items-start gap-4 p-4 rounded-2xl bg-card/50 border border-border/50 hover:bg-card hover:border-border transition-all duration-300 group">
-                  <div className="w-10 h-10 bg-muted rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform mt-0.5 flex-shrink-0">
-                    <challenge.icon className={`w-5 h-5 ${challenge.color}`} />
+                <div key={index} className="flex items-start gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:border-border hover:shadow-medium transition-all duration-300 group text-left">
+                  <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform flex-shrink-0">
+                    <challenge.icon className={`w-6 h-6 ${challenge.color}`} />
                   </div>
                   <span className="text-foreground font-medium leading-relaxed">{challenge.text}</span>
                 </div>
               ))}
             </div>
-            
-            <div className="pt-6">
-              <p className="text-body-large text-muted-foreground leading-relaxed mb-6">
-                The result:
-              </p>
-              <div className="space-y-4">
-                {results.map((result, index) => (
-                  <div key={index} className="flex items-start gap-4 p-4 rounded-2xl bg-card/50 border border-border/50 hover:bg-card hover:border-border transition-all duration-300 group">
-                    <div className="w-10 h-10 bg-muted rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform mt-0.5 flex-shrink-0">
-                      <result.icon className={`w-5 h-5 ${result.color}`} />
-                    </div>
-                    <span className="text-foreground font-medium leading-relaxed">{result.text}</span>
-                  </div>
-                ))}
-              </div>
+          </div>
+
+          {/* Arrow connector */}
+          <div className="flex justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="bg-destructive/10 rounded-full p-4">
+              <ArrowDown className="w-8 h-8 text-destructive" />
             </div>
           </div>
-          
-          <div className="bg-gradient-to-br from-muted/40 to-muted/20 rounded-3xl p-8 border border-border/50 shadow-soft animate-slide-up" style={{ animationDelay: '0.2s' }}>
+
+          {/* Results Section */}
+          <div className="text-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
+            <h3 className="text-2xl font-display font-semibold mb-8 text-destructive">
+              The result:
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {results.map((result, index) => (
+                <div key={index} className="flex items-start gap-4 p-6 rounded-2xl bg-destructive/5 border border-destructive/20 hover:border-destructive/40 hover:bg-destructive/10 transition-all duration-300 group text-left">
+                  <div className="w-12 h-12 bg-destructive/10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform flex-shrink-0">
+                    <result.icon className={`w-6 h-6 ${result.color}`} />
+                  </div>
+                  <span className="text-foreground font-medium leading-relaxed">{result.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Equation Visual */}
+          <div className="bg-gradient-to-br from-muted/40 to-muted/20 rounded-3xl p-8 border border-border/50 shadow-soft animate-slide-up max-w-2xl mx-auto" style={{ animationDelay: '0.6s' }}>
             <div className="space-y-6">
-              <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-6 shadow-soft hover:shadow-medium transition-shadow">
-                <h3 className="font-display font-semibold text-destructive mb-2">Inconsistent Content</h3>
+              <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-6 text-center">
+                <h4 className="font-display font-semibold text-destructive mb-2">Inconsistent Content</h4>
                 <p className="text-sm text-destructive/80">Variable quality, hard to differentiate</p>
               </div>
               <div className="text-3xl font-bold text-accent font-display text-center">+</div>
-              <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 shadow-soft hover:shadow-medium transition-shadow">
-                <h3 className="font-display font-semibold text-orange-600 mb-2">Marketing Spend</h3>
+              <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 text-center">
+                <h4 className="font-display font-semibold text-orange-600 mb-2">Marketing Spend</h4>
                 <p className="text-sm text-orange-500">Costly to lift performance</p>
               </div>
               <div className="text-3xl font-bold text-accent font-display text-center">=</div>
-              <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-6 shadow-soft hover:shadow-medium transition-shadow">
-                <h3 className="font-display font-semibold text-destructive">Poor ROI</h3>
+              <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-6 text-center">
+                <h4 className="font-display font-semibold text-destructive text-xl">Poor ROI</h4>
               </div>
             </div>
           </div>
