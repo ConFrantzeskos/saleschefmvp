@@ -1,44 +1,44 @@
 
 import React from 'react';
-import { Check, TrendingUp, TrendingDown, Clock, ArrowRight, Zap, Target, Users, Rocket as RocketIcon } from 'lucide-react';
+import { TrendingUp, TrendingDown, Clock, ArrowRight, Zap, Target, Users, Rocket as RocketIcon } from 'lucide-react';
 
 const ResultsSection = () => {
   const results = [
-    { text: 'Slash SEM and SEO costs', icon: TrendingDown, color: 'text-green-600' },
+    { text: 'Slash SEM and SEO costs', icon: TrendingDown, color: 'text-emerald-600' },
     { text: 'Scale content without scaling headcount', icon: Users, color: 'text-blue-600' },
     { text: 'Lift PDP conversion and search rankings', icon: TrendingUp, color: 'text-purple-600' },
-    { text: 'Accelerate time-to-shelf', icon: Zap, color: 'text-orange-600' },
-    { text: 'Empower your whole retail chain—from supplier to shop floor', icon: RocketIcon, color: 'text-red-600' }
+    { text: 'Accelerate time-to-shelf', icon: Zap, color: 'text-primary' },
+    { text: 'Empower your whole retail chain—from supplier to shop floor', icon: RocketIcon, color: 'text-indigo-600' }
   ];
 
   const metrics = [
-    { label: 'PDP Conversion', value: '+127%', icon: TrendingUp, color: 'bg-green-500' },
+    { label: 'PDP Conversion', value: '+127%', icon: TrendingUp, color: 'bg-emerald-500' },
     { label: 'SEM Cost Reduction', value: '-65%', icon: TrendingDown, color: 'bg-blue-500' },
-    { label: 'Time to Publish', value: '-80%', icon: Clock, color: 'bg-purple-500' }
+    { label: 'Time to Publish', value: '-80%', icon: Clock, color: 'bg-primary' }
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-background via-muted/20 to-primary/5">
+    <section className="py-24 px-6 bg-gradient-to-b from-background via-muted/20 to-background">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 text-balance">
             The Results Speak for Themselves
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real impact across your entire content pipeline
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           {/* Benefits List */}
           <div className="space-y-6">
             {results.map((result, index) => (
-              <div key={index} className="flex items-start gap-4 p-4 rounded-xl bg-background/50 backdrop-blur-sm border hover:shadow-md transition-all duration-300 hover:scale-[1.02]">
-                <div className={`w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 ${result.color}`}>
+              <div key={index} className="flex items-start gap-4 p-5 rounded-xl bg-card border border-border hover:shadow-soft transition-all duration-300 group">
+                <div className={`w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform ${result.color}`}>
                   <result.icon className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-lg font-medium leading-relaxed">{result.text}</p>
+                  <p className="text-base font-medium leading-relaxed text-foreground">{result.text}</p>
                 </div>
               </div>
             ))}
@@ -46,24 +46,26 @@ const ResultsSection = () => {
           
           {/* Before/After Comparison */}
           <div className="space-y-8">
-            <div className="bg-background rounded-2xl p-8 shadow-lg border">
-              <h3 className="text-2xl font-bold mb-6 text-center">Before vs After</h3>
-              <div className="grid grid-cols-1 gap-6">
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-red-50 border border-red-200">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            <div className="bg-card rounded-2xl p-8 shadow-soft border border-border">
+              <h3 className="text-2xl font-display font-semibold mb-8 text-center">Before vs After</h3>
+              <div className="grid grid-cols-1 gap-8">
+                <div className="flex items-center gap-4 p-5 rounded-xl bg-red-50 border border-red-100">
+                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
                   <div>
-                    <p className="font-semibold text-red-800">Before</p>
-                    <p className="text-red-600">Generic copy, poor SEO, manual processes</p>
+                    <p className="font-semibold text-red-800 mb-1">Before</p>
+                    <p className="text-sm text-red-600">Generic copy, poor SEO, manual processes</p>
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  <ArrowRight className="w-6 h-6 text-primary" />
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <ArrowRight className="w-4 h-4 text-primary" />
+                  </div>
                 </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-green-50 border border-green-200">
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <div className="flex items-center gap-4 p-5 rounded-xl bg-emerald-50 border border-emerald-100">
+                  <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
                   <div>
-                    <p className="font-semibold text-green-800">After</p>
-                    <p className="text-green-600">Optimized, compelling, automated content</p>
+                    <p className="font-semibold text-emerald-800 mb-1">After</p>
+                    <p className="text-sm text-emerald-600">Optimized, compelling, automated content</p>
                   </div>
                 </div>
               </div>
@@ -72,22 +74,24 @@ const ResultsSection = () => {
         </div>
         
         {/* Metrics Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {metrics.map((metric, index) => (
-            <div key={index} className="text-center p-8 bg-background rounded-2xl shadow-lg border hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <div className={`w-16 h-16 ${metric.color} text-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-                <metric.icon className="w-8 h-8" />
+            <div key={index} className="text-center p-8 bg-card rounded-2xl shadow-soft border border-border hover:shadow-medium transition-all duration-300 group">
+              <div className={`w-16 h-16 ${metric.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform`}>
+                <metric.icon className="w-7 h-7" />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">{metric.value}</div>
-              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">{metric.label}</p>
+              <div className="text-3xl font-display font-bold text-foreground mb-2">{metric.value}</div>
+              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{metric.label}</p>
             </div>
           ))}
         </div>
         
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 rounded-full border border-primary/20">
-            <Target className="w-5 h-5 text-primary" />
+        <div className="text-center">
+          <div className="inline-flex items-center gap-3 px-6 py-4 bg-primary/5 rounded-2xl border border-primary/10">
+            <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+              <Target className="w-4 h-4 text-primary" />
+            </div>
             <span className="text-primary font-semibold">Ready to see these results for your business?</span>
           </div>
         </div>

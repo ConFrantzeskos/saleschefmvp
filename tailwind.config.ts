@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,21 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				display: ['Open Sans', 'system-ui', 'sans-serif'],
+			},
+			fontSize: {
+				'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],
+				'sm': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0.015em' }],
+				'base': ['1rem', { lineHeight: '1.6', letterSpacing: '0.01em' }],
+				'lg': ['1.125rem', { lineHeight: '1.6', letterSpacing: '0.005em' }],
+				'xl': ['1.25rem', { lineHeight: '1.5', letterSpacing: '0' }],
+				'2xl': ['1.5rem', { lineHeight: '1.4', letterSpacing: '-0.005em' }],
+				'3xl': ['1.875rem', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
+				'4xl': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.015em' }],
+				'5xl': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -63,10 +79,18 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			spacing: {
+				'18': '4.5rem',
+				'88': '22rem',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'soft': '0 2px 8px -2px rgba(0, 0, 0, 0.08), 0 4px 16px -4px rgba(0, 0, 0, 0.04)',
+				'medium': '0 4px 16px -4px rgba(0, 0, 0, 0.12), 0 8px 32px -8px rgba(0, 0, 0, 0.08)',
 			},
 			keyframes: {
 				'accordion-down': {
