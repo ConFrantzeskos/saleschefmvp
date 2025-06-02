@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { ArrowLeft, Globe, FileText, Image, Mail, Printer, GraduationCap, HelpCircle, Search, Edit2, Check, X } from 'lucide-react';
 
 const AssetReview = () => {
@@ -26,29 +26,61 @@ const AssetReview = () => {
     quality: 95
   };
 
-  // Consolidated raw factory data
-  const consolidatedRawData = `model=CD1234
-driver_size=40mm
-freq_response=20-20000
-impedance=32ohm
-bluetooth_ver=5.0
-battery_life=24hr
-charge_time=120min
-weight=250g
-color=black
-mic=yes
-foldable=yes
-wireless=bluetooth
-connector=usb-c
-range=10m
-sensitivity=102db
-codecs=sbc,aac
-profiles=a2dp,hfp
-operating_temp=-10_45c
-dimensions_folded=90x160x80mm
-dimensions_unfolded=180x160x80mm
-fold_cycles=10000+
-warranty=24months`;
+  // Consolidated raw factory data with realistic CSV-style specs and some Chinglish
+  const consolidatedRawData = `SKU,CD1234
+PRODUCT_NAME,24HR Wireless Headphone
+BRAND,TechSound
+MODEL_NO,TS-WH-24H-001
+UPC,123456789012
+ASIN,B08XXXXX12
+CATEGORY,Consumer Electronics/Audio/Headphones/Wireless
+DRIVER_SIZE,40mm
+DRIVER_TYPE,Dynamic Neodymium
+FREQ_RESPONSE,20Hz-20000Hz
+IMPEDANCE,32Ω
+SENSITIVITY,102dB±3dB
+THD,<0.1%
+BLUETOOTH_VERSION,5.0
+BLUETOOTH_RANGE,10m
+BLUETOOTH_CODECS,SBC,AAC,aptX
+BLUETOOTH_PROFILES,A2DP,AVRCP,HFP,HSP
+BATTERY_CAPACITY,600mAh
+BATTERY_LIFE,24hr
+STANDBY_TIME,200hr
+CHARGE_TIME,2hr
+CHARGE_PORT,USB-C
+QUICK_CHARGE,15min=3hr
+WEIGHT,250g
+DIMENSIONS_UNFOLDED,180x160x80mm
+DIMENSIONS_FOLDED,90x160x80mm
+FOLDABLE,YES
+MIC_TYPE,Omnidirectional
+MIC_SENSITIVITY,-42dB±3dB
+NOISE_CANCELLING,Passive
+OPERATING_TEMP,-10°C to 45°C
+HUMIDITY,10%-90%
+COLOR_OPTIONS,Black,Navy Blue
+MATERIALS,ABS Plastic,Metal,Protein Leather
+CABLE_LENGTH,1.2m
+ACCESSORIES,USB-C Cable,3.5mm Cable,Carry Pouch,Manual
+WARRANTY,24 months
+CERTIFICATIONS,CE,FCC,RoHS,WEEE
+COUNTRY_ORIGIN,China
+FACTORY_CODE,SZ-2024-001
+SELL_POINT_1,Super long battery make your music never stop!
+SELL_POINT_2,Fold design very convenient for travel carry
+SELL_POINT_3,Professional sound quality with deep bass experience
+SELL_POINT_4,Comfortable wear all day no pressure feeling
+PACKAGING_TYPE,Color Box
+PACKAGE_DIMS,200x180x100mm
+PACKAGE_WEIGHT,450g
+MASTER_CARTON,20pcs
+CARTON_DIMS,420x380x520mm
+CARTON_WEIGHT,10.5kg
+MOQ,500pcs
+LEAD_TIME,15-20days
+FOB_PRICE,USD_28.50
+RETAIL_PRICE,USD_79.99`;
 
   const contentSections = [
     {
@@ -162,7 +194,7 @@ warranty=24months`;
         },
         {
           label: "Product Announcement Email",
-          content: "Email Body:\n\nSubject: 🎧 Meet your new all-day audio companion\n\nHi [Name],\n\nTired of headphones that die halfway through your workday? \n\nIntroducing the CD1234 Wireless Headphones — engineered for the way you actually live and work.\n\n✓ 24-hour battery life (seriously!)\n✓ Folds to half the size for easy travel\n✓ Crystal-clear calls for Zoom meetings\n✓ Works with every device you own\n\nWhether you're powering through back-to-back meetings, catching up on podcasts during your commute, or unwinding with music on a long flight — the CD1234 keeps up.\n\n[Shop Now — $79.99] [Learn More]\n\nBest,\nThe TechSound Team"
+          content: "Email Body:\n\nSubject: 🎧 Meet your new all-day audio companion\n\nHi [Name],\n\nTired of headphones that die halfway through your workday? \n\nIntroducing the CD1234 Wireless Headphones — engineered for the way you actually live and work.\n\n✓ 24-hour battery life (seriously!)\n✓ Folds to half the size for easy travel\n✓ Crystal-clear calls for Zoom meetings\n✓ Works with every device you own\n\nWhether you're powering through back-to-back meetings, catching up on podcasts during your morning commute, or unwinding with music on a long flight — the CD1234 keeps up.\n\n[Shop Now — $79.99] [Learn More]\n\nBest,\nThe TechSound Team"
         },
         {
           label: "Promotional Campaign Copy",
@@ -251,8 +283,8 @@ warranty=24months`;
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-7xl mx-auto p-6">
         <div className="flex items-center space-x-4 mb-6">
           <Button variant="outline" onClick={() => navigate('/review')}>
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -272,107 +304,119 @@ warranty=24months`;
           </Button>
         </div>
 
-        {/* Consolidated Raw Data Section */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-3">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <FileText className="w-5 h-5 text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-lg">Original Factory Data</h3>
-                <p className="text-sm text-muted-foreground font-normal">Raw technical specifications from manufacturer</p>
-              </div>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="border border-red-200 bg-red-50 p-4 rounded-md">
-              <pre className="text-sm text-red-600 font-mono whitespace-pre-wrap">
-                {consolidatedRawData}
-              </pre>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className="space-y-6">
-          {contentSections.map((section, sectionIndex) => {
-            const Icon = section.icon;
-            return (
-              <Card key={sectionIndex}>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg">{section.title}</h3>
-                      <p className="text-sm text-muted-foreground font-normal">{section.description}</p>
-                    </div>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-sm text-primary mb-4">SalesChef Enhanced Content</h4>
-                    {section.items.map((item, itemIndex) => {
-                      const fieldKey = `${sectionIndex}-${itemIndex}`;
-                      const isEditing = editingField === fieldKey;
-                      
-                      return (
-                        <div key={itemIndex} className="border border-green-200 bg-green-50 p-3 rounded-md">
-                          <div className="flex items-center justify-between mb-2">
-                            <h5 className="font-medium text-sm text-green-700">{item.label}</h5>
-                            <div className="flex space-x-1">
-                              {isEditing ? (
-                                <>
-                                  <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    onClick={() => handleSave(sectionIndex, itemIndex)}
-                                  >
-                                    <Check className="w-3 h-3" />
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    onClick={handleCancel}
-                                  >
-                                    <X className="w-3 h-3" />
-                                  </Button>
-                                </>
-                              ) : (
-                                <Button
-                                  size="sm"
-                                  variant="ghost"
-                                  onClick={() => handleEdit(sectionIndex, itemIndex)}
-                                >
-                                  <Edit2 className="w-3 h-3" />
-                                </Button>
-                              )}
-                            </div>
-                          </div>
-                          {isEditing ? (
-                            <Textarea
-                              value={editValues[fieldKey] || item.content}
-                              onChange={(e) => setEditValues({
-                                ...editValues,
-                                [fieldKey]: e.target.value
-                              })}
-                              className="text-sm min-h-[100px] bg-white"
-                            />
-                          ) : (
-                            <div className="text-sm leading-relaxed whitespace-pre-line text-green-600">
-                              {item.content}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
+        {/* Two-column layout with independent scrolling */}
+        <div className="grid grid-cols-2 gap-6 h-[calc(100vh-200px)]">
+          {/* Left Column - Original Factory Data */}
+          <div className="flex flex-col">
+            <Card className="flex-1 flex flex-col">
+              <CardHeader className="flex-shrink-0">
+                <CardTitle className="flex items-center space-x-3">
+                  <div className="p-2 bg-red-100 rounded-lg">
+                    <FileText className="w-5 h-5 text-red-600" />
                   </div>
-                  {sectionIndex < contentSections.length - 1 && <Separator className="mt-6" />}
-                </CardContent>
-              </Card>
-            );
-          })}
+                  <div>
+                    <h3 className="text-lg">Original Factory Data</h3>
+                    <p className="text-sm text-muted-foreground font-normal">Raw CSV specifications from manufacturer</p>
+                  </div>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex-1 overflow-hidden">
+                <ScrollArea className="h-full">
+                  <div className="border border-red-200 bg-red-50 p-4 rounded-md">
+                    <pre className="text-sm text-red-600 font-mono whitespace-pre-wrap">
+                      {consolidatedRawData}
+                    </pre>
+                  </div>
+                </ScrollArea>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Right Column - Enhanced Content */}
+          <div className="flex flex-col">
+            <ScrollArea className="h-full">
+              <div className="space-y-6 pr-4">
+                {contentSections.map((section, sectionIndex) => {
+                  const Icon = section.icon;
+                  return (
+                    <Card key={sectionIndex}>
+                      <CardHeader>
+                        <CardTitle className="flex items-center space-x-3">
+                          <div className="p-2 bg-primary/10 rounded-lg">
+                            <Icon className="w-5 h-5 text-primary" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg">{section.title}</h3>
+                            <p className="text-sm text-muted-foreground font-normal">{section.description}</p>
+                          </div>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <h4 className="font-medium text-sm text-primary mb-4">SalesChef Enhanced Content</h4>
+                          {section.items.map((item, itemIndex) => {
+                            const fieldKey = `${sectionIndex}-${itemIndex}`;
+                            const isEditing = editingField === fieldKey;
+                            
+                            return (
+                              <div key={itemIndex} className="border border-green-200 bg-green-50 p-3 rounded-md">
+                                <div className="flex items-center justify-between mb-2">
+                                  <h5 className="font-medium text-sm text-green-700">{item.label}</h5>
+                                  <div className="flex space-x-1">
+                                    {isEditing ? (
+                                      <>
+                                        <Button
+                                          size="sm"
+                                          variant="ghost"
+                                          onClick={() => handleSave(sectionIndex, itemIndex)}
+                                        >
+                                          <Check className="w-3 h-3" />
+                                        </Button>
+                                        <Button
+                                          size="sm"
+                                          variant="ghost"
+                                          onClick={handleCancel}
+                                        >
+                                          <X className="w-3 h-3" />
+                                        </Button>
+                                      </>
+                                    ) : (
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => handleEdit(sectionIndex, itemIndex)}
+                                      >
+                                        <Edit2 className="w-3 h-3" />
+                                      </Button>
+                                    )}
+                                  </div>
+                                </div>
+                                {isEditing ? (
+                                  <Textarea
+                                    value={editValues[fieldKey] || item.content}
+                                    onChange={(e) => setEditValues({
+                                      ...editValues,
+                                      [fieldKey]: e.target.value
+                                    })}
+                                    className="text-sm min-h-[100px] bg-white"
+                                  />
+                                ) : (
+                                  <div className="text-sm leading-relaxed whitespace-pre-line text-green-600">
+                                    {item.content}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                        {sectionIndex < contentSections.length - 1 && <Separator className="mt-6" />}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </ScrollArea>
+          </div>
         </div>
 
         <div className="mt-8 flex justify-between">
