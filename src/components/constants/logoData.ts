@@ -3,7 +3,7 @@ export const integrationLogos = [
   { name: 'Shopify', logo: '🛍️' },
   { name: 'Amazon', logo: '📦' },
   { name: 'CSV', logo: '📊' },
-  { name: 'WordPress', logo: '📝' },
+  { name: 'Retail Media', logo: '📺' },
   { name: 'Magento', logo: '🏪' },
   { name: 'BigCommerce', logo: '🛒' }
 ];
