@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
@@ -18,6 +17,7 @@ const Enrichment = () => {
     { id: 'mapping', label: 'Map Fields', completed: true, current: false },
     { id: 'clean', label: 'Clean Data', completed: true, current: false },
     { id: 'enrich', label: 'Enrich', completed: false, current: true },
+    { id: 'enrichment-review', label: 'Review Enrichment', completed: false, current: false },
     { id: 'generate', label: 'Generate', completed: false, current: false },
     { id: 'review', label: 'Review', completed: false, current: false },
     { id: 'deploy', label: 'Deploy', completed: false, current: false },
@@ -97,8 +97,8 @@ const Enrichment = () => {
     return () => clearInterval(timer);
   }, [currentTask]);
 
-  const handleProceedToGeneration = () => {
-    navigate('/generation');
+  const handleProceedToEnrichmentReview = () => {
+    navigate('/enrichment-review');
   };
 
   return (
@@ -210,10 +210,10 @@ const Enrichment = () => {
                   </div>
                 </div>
                 <Button 
-                  onClick={handleProceedToGeneration}
+                  onClick={handleProceedToEnrichmentReview}
                   className="flex items-center space-x-2"
                 >
-                  <span>Generate Content</span>
+                  <span>Review Enrichment</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>

@@ -11,6 +11,8 @@ import FileUpload from "./pages/FileUpload";
 import SchemaMapping from "./pages/SchemaMapping";
 import CleaningValidation from "./pages/CleaningValidation";
 import Enrichment from "./pages/Enrichment";
+import EnrichmentReview from "./pages/EnrichmentReview";
+import EnrichmentAssetReview from "./pages/EnrichmentAssetReview";
 import ContentGeneration from "./pages/ContentGeneration";
 import ReviewContent from "./pages/ReviewContent";
 import AssetReview from "./pages/AssetReview";
@@ -36,6 +38,8 @@ const App = () => (
             <Route path="/mapping" element={<SchemaMapping />} />
             <Route path="/cleaning" element={<CleaningValidation />} />
             <Route path="/enrichment" element={<Enrichment />} />
+            <Route path="/enrichment-review" element={<EnrichmentReview />} />
+            <Route path="/enrichment-review/:id" element={<EnrichmentAssetReview />} />
             <Route path="/generation" element={<ContentGeneration />} />
             <Route path="/review" element={<ReviewContent />} />
             <Route path="/review/:id" element={<AssetReview />} />
