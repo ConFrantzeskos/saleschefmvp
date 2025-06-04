@@ -1,4 +1,3 @@
-
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
 
 export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
@@ -24,7 +23,8 @@ export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
       favouriteFeatures: "24-hour battery life (89% confidence)\nQuick charge capability (76% confidence)\nFoldable design (67% confidence)\nBluetooth 5.0 connectivity (82% confidence)\nComfortable ear cushions (71% confidence)",
       missingFeatures: "Active noise cancellation (73% confidence)\nWireless charging case (68% confidence)\nMultipoint Bluetooth connection (54% confidence)\nCustomizable EQ settings (49% confidence)\nTouch controls (62% confidence)",
       keyCompetitors: "Sony WH-1000XM4 ($349) - Premium ANC leader\nBeats Studio3 ($329) - Brand recognition\nBose QC45 ($329) - Comfort champion\nJBL Live 650BTNC ($199) - Budget alternative\nSennheiser HD 450BT ($199) - Audiophile choice",
-      relativeStrengths: "vs Sony WH-1000XM4: Better battery life, more affordable\nvs Beats Studio3: Superior battery, better value\nvs Bose QC45: Comparable battery, lower price\nvs JBL Live 650BTNC: Premium build quality, brand trust\nvs Sennheiser HD 450BT: Better connectivity, longer battery"
+      relativeStrengths: "vs Sony WH-1000XM4: Better battery life, more affordable\nvs Beats Studio3: Superior battery, better value\nvs Bose QC45: Comparable battery, lower price\nvs JBL Live 650BTNC: Premium build quality, brand trust\nvs Sennheiser HD 450BT: Better connectivity, longer battery",
+      verbatimQuotes: '"The battery life on these is absolutely insane - I used them for an entire cross-country flight and still had juice left!" - @TechReviewer23 (Twitter, Dec 2024)\n\n"Finally found headphones that last through my 12-hour workdays. Game changer for remote work." - Sarah M. (Amazon Review, 5★)\n\n"Sound quality is surprisingly good for the price point. Bass is punchy without being overwhelming." - AudioPhile_Dan (Reddit r/headphones)\n\n"Comfort is decent but the headband gets tight after 4+ hours of gaming" - GamerGirl_2024 (Best Buy Review, 4★)\n\n"Quick charge feature saved me so many times when I forgot to charge overnight. 15 mins gives you hours!" - Mike_Travels (YouTube comment on TechDaily review)\n\n"Foldable design is perfect for my carry-on. Much more compact than my old Beats." - @FrequentFlyer (Instagram story)\n\n"No noise cancellation is a dealbreaker for me. Great otherwise but need ANC for my commute." - CommuteCritic (Amazon Review, 3★)'
     },
     {
       id: 2,
@@ -47,7 +47,8 @@ export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
       favouriteFeatures: "Heart rate accuracy (91% confidence)\n7-day battery life (88% confidence)\nSleep tracking detail (82% confidence)\nWater resistance (79% confidence)\nEasy app connectivity (74% confidence)",
       missingFeatures: "GPS tracking (81% confidence)\nMusic storage (65% confidence)\nContactless payments (58% confidence)\nAlways-on display (71% confidence)\nThird-party app support (52% confidence)",
       keyCompetitors: "Apple Watch SE ($249) - Ecosystem integration\nFitbit Versa 3 ($199) - Health focus leader\nGarmin Venu Sq ($199) - GPS specialist\nAmazfit GTS 2 ($179) - Design alternative\nSamsung Galaxy Watch Active2 ($229) - Android integration",
-      relativeStrengths: "vs Apple Watch SE: Better battery life, more affordable\nvs Fitbit Versa 3: Comparable features, competitive price\nvs Garmin Venu Sq: Better sleep tracking, easier interface\nvs Amazfit GTS 2: Superior accuracy, brand reliability\nvs Samsung Galaxy Watch: Universal compatibility, longer battery"
+      relativeStrengths: "vs Apple Watch SE: Better battery life, more affordable\nvs Fitbit Versa 3: Comparable features, competitive price\nvs Garmin Venu Sq: Better sleep tracking, easier interface\nvs Amazfit GTS 2: Superior accuracy, brand reliability\nvs Samsung Galaxy Watch: Universal compatibility, longer battery",
+      verbatimQuotes: '"Heart rate readings are spot-on compared to my chest strap. Finally a budget tracker that gets it right!" - FitnessJunkie47 (Reddit r/fitness)\n\n"Battery really does last a full week with moderate use. Impressed!" - Lisa K. (Amazon Review, 5★)\n\n"Sleep tracking is incredibly detailed. Shows REM, deep sleep phases clearly." - @WellnessCoach_Amy (Instagram post)\n\n"Wish it had GPS built-in. Have to carry my phone for runs which defeats the purpose." - RunnerMike (Garmin Connect forum)\n\n"Water resistance is legit - wore it swimming and no issues after 6 months." - AquaFit_Sarah (YouTube comment on review)'
     },
     {
       id: 3,
@@ -70,7 +71,8 @@ export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
       favouriteFeatures: "Mechanical switch feel (94% confidence)\nRGB customization (87% confidence)\nWireless connectivity (83% confidence)\nMacro programming (79% confidence)\nBuild quality (91% confidence)",
       missingFeatures: "Hot-swappable switches (69% confidence)\nDedicated media controls (64% confidence)\nUSB passthrough (58% confidence)\nWrist rest included (72% confidence)\nSoftware profiles sync (55% confidence)",
       keyCompetitors: "Razer BlackWidow V3 ($139) - Brand recognition\nCorsair K95 RGB ($199) - Premium features\nLogitech G915 ($249) - Low profile leader\nSteelSeries Apex Pro ($199) - Adjustable switches\nHyperX Alloy FPS Pro ($89) - Budget option",
-      relativeStrengths: "vs Razer BlackWidow: Better value, dual connectivity\nvs Corsair K95: More affordable, comparable features\nvs Logitech G915: Traditional feel, better price\nvs SteelSeries Apex Pro: Wireless option, lower cost\nvs HyperX Alloy FPS Pro: RGB lighting, wireless capability"
+      relativeStrengths: "vs Razer BlackWidow: Better value, dual connectivity\nvs Corsair K95: More affordable, comparable features\nvs Logitech G915: Traditional feel, better price\nvs SteelSeries Apex Pro: Wireless option, lower cost\nvs HyperX Alloy FPS Pro: RGB lighting, wireless capability",
+      verbatimQuotes: '"The tactile feedback is perfect for both gaming and coding. Switches feel premium." - CodeWarrior_Dev (Stack Overflow comment)\n\n"RGB customization is insane! So many options and effects to choose from." - @RGBAddict (TikTok review)\n\n"Wireless mode works flawlessly with zero lag. Perfect for competitive gaming." - ProGamer_Jake (Twitch stream comment)\n\n"Build quality feels solid. No flex or creaking after 8 months of heavy use." - MechanicalMaster (Reddit r/MechanicalKeyboards)\n\n"Wish it came with a wrist rest. Long coding sessions get uncomfortable." - DevLife_Sarah (GitHub discussion)\n\n"For the price, this destroys more expensive keyboards. Best bang for buck!" - BudgetTechReviews (YouTube comment)'
     }
   ];
 };

@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Edit2, Save, X, Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, BarChart3, ShoppingCart, MapPin, Heart, AlertTriangle, Zap, Target } from 'lucide-react';
+import { Edit2, Save, X, Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, BarChart3, ShoppingCart, MapPin, Heart, AlertTriangle, Zap, Target, Quote } from 'lucide-react';
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
 
 interface EnrichmentDataSectionProps {
@@ -60,6 +59,13 @@ const EnrichmentDataSection = ({
       icon: Users,
       description: 'Social platform mentions and sentiment',
       value: asset.socialMentions
+    },
+    {
+      key: 'verbatimQuotes',
+      title: 'Verbatim Quotes & Reviews',
+      icon: Quote,
+      description: 'Direct quotes from social media and review sites with sources',
+      value: asset.verbatimQuotes
     },
     {
       key: 'categoryEntryPoints',

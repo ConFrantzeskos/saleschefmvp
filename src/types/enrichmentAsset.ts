@@ -21,4 +21,5 @@ export interface EnrichmentAsset {
   missingFeatures: string;
   keyCompetitors: string;
   relativeStrengths: string;
+  verbatimQuotes: string;
 }
