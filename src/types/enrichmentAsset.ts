@@ -17,7 +17,6 @@ export interface EnrichmentAsset {
   seoKeywordVolume: string;
   reasonsToBuy: string;
   categoryEntryPoints: string;
-  salesChannels: string;
   favouriteFeatures: string;
   missingFeatures: string;
   keyCompetitors: string;
