@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import EnrichmentAssetHeader from '@/components/EnrichmentAssetHeader';
-import EnrichmentDataSection from '@/components/EnrichmentDataSection';
+import { ArrowLeft, RefreshCw, Send, Download, Search, MessageSquare, Users, TrendingUp, Hash, Brain, Target, BarChart3 } from 'lucide-react';
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
+import ExecutiveBriefing from '@/components/ExecutiveBriefing';
+import CollapsibleIntelligenceSection from '@/components/CollapsibleIntelligenceSection';
 
 const EnrichmentAssetReview = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [editingField, setEditingField] = useState<string | null>(null);
-  const [editValues, setEditValues] = useState<Record<string, string>>({});
   
+  // State for collapsible sections
+  const [openSections, setOpenSections] = useState({
+    market: true,
+    customerVoice: false,
+    reasonsToBuy: false,
+    competitive: false,
+    targetAudience: false,
+    performance: false
+  });
+
   // Mock data for the enrichment asset
   const asset: EnrichmentAsset = {
     id: 1,
@@ -38,6 +48,13 @@ const EnrichmentAssetReview = () => {
     verbatimQuotes: '"The battery life on these is absolutely insane - I used them for an entire cross-country flight and still had juice left!" - @TechReviewer23 (Twitter, Dec 2024)\n\n"Finally found headphones that last through my 12-hour workdays. Game changer for remote work." - Sarah M. (Amazon Review, 5★)\n\n"Sound quality is surprisingly good for the price point. Bass is punchy without being overwhelming." - AudioPhile_Dan (Reddit r/headphones)\n\n"Comfort is decent but the headband gets tight after 4+ hours of gaming" - GamerGirl_2024 (Best Buy Review, 4★)\n\n"Quick charge feature saved me so many times when I forgot to charge overnight. 15 mins gives you hours!" - Mike_Travels (YouTube comment on TechDaily review)\n\n"Foldable design is perfect for my carry-on. Much more compact than my old Beats." - @FrequentFlyer (Instagram story)\n\n"No noise cancellation is a dealbreaker for me. Great otherwise but need ANC for my commute." - CommuteCritic (Amazon Review, 3★)'
   };
 
+  const toggleSection = (section: keyof typeof openSections) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
   const handleApprove = () => {
     toast.success("Enrichment data approved successfully!");
     setTimeout(() => {
@@ -45,86 +62,210 @@ const EnrichmentAssetReview = () => {
     }, 1000);
   };
 
-  const handleEdit = (fieldKey: string) => {
-    setEditingField(fieldKey);
-    const fieldValue = getFieldValue(fieldKey);
-    setEditValues({
-      ...editValues,
-      [fieldKey]: fieldValue
-    });
+  const handleReRunEnrichment = () => {
+    toast.info("Re-running intelligence gathering...");
   };
 
-  const getFieldValue = (fieldKey: string): string => {
-    switch (fieldKey) {
-      case 'searchTrends': return asset.searchTrends;
-      case 'customerSentiment': return asset.customerSentiment;
-      case 'socialMentions': return asset.socialMentions;
-      case 'competitorAnalysis': return asset.competitorAnalysis;
-      case 'seoOpportunities': return asset.seoOpportunities;
-      case 'targetAudience': return asset.targetAudience;
-      case 'keyFeatures': return asset.keyFeatures;
-      case 'seoKeywordVolume': return asset.seoKeywordVolume;
-      case 'reasonsToBuy': return asset.reasonsToBuy;
-      case 'categoryEntryPoints': return asset.categoryEntryPoints;
-      case 'favouriteFeatures': return asset.favouriteFeatures;
-      case 'missingFeatures': return asset.missingFeatures;
-      case 'keyCompetitors': return asset.keyCompetitors;
-      case 'relativeStrengths': return asset.relativeStrengths;
-      case 'verbatimQuotes': return asset.verbatimQuotes;
-      default: return '';
-    }
+  const handleSendToContentAgents = () => {
+    toast.success("Sending to content agents...");
+    navigate('/generation');
   };
 
-  const handleSave = (fieldKey: string) => {
-    // In a real app, this would save to backend
-    setEditingField(null);
-    toast.success("Field updated successfully!");
-  };
-
-  const handleCancel = () => {
-    setEditingField(null);
-    setEditValues({});
-  };
-
-  const handleEditValueChange = (fieldKey: string, value: string) => {
-    setEditValues({
-      ...editValues,
-      [fieldKey]: value
-    });
+  const handleExportBrief = () => {
+    toast.success("Exporting intelligence brief...");
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <div className="max-w-7xl mx-auto p-6 flex-1 flex flex-col">
-        <EnrichmentAssetHeader asset={asset} onApprove={handleApprove} />
-
-        {/* Single column layout for enrichment data */}
-        <div className="flex-1 min-h-0">
-          <EnrichmentDataSection
-            asset={asset}
-            editingField={editingField}
-            editValues={editValues}
-            onEdit={handleEdit}
-            onSave={handleSave}
-            onCancel={handleCancel}
-            onEditValueChange={handleEditValueChange}
-          />
-        </div>
-      </div>
-
-      {/* Fixed bottom navigation bar */}
-      <div className="border-t bg-background px-6 py-4 mt-auto">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Button variant="outline" onClick={() => navigate('/enrichment-review')}>
-            Back to Enrichment Review
+    <div className="min-h-screen bg-background">
+      <div className="max-w-7xl mx-auto p-6">
+        {/* Page Header */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center space-x-4">
+            <Button variant="outline" onClick={() => navigate('/enrichment-review')}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Review
+            </Button>
+            <div>
+              <div className="flex items-center space-x-3">
+                <h1 className="text-2xl font-semibold">{asset.name}</h1>
+                <Badge variant={asset.status === 'Enriched' ? 'default' : 'secondary'}>
+                  {asset.status}
+                </Badge>
+              </div>
+              <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-1">
+                <span>SKU: {asset.sku}</span>
+                <span>•</span>
+                <span>Enrichment Quality: {asset.quality}%</span>
+                <span>•</span>
+                <span>Last updated: 2 hours ago</span>
+                <span>•</span>
+                <span>Sources: ERP + Reviews + Search + Social</span>
+              </div>
+            </div>
+          </div>
+          <Button onClick={handleReRunEnrichment} variant="outline">
+            <RefreshCw className="w-4 h-4 mr-2" />
+            Re-run Intelligence
           </Button>
-          <div className="space-x-3">
-            <Button variant="outline">
-              Request Re-enrichment
+        </div>
+
+        <div className="space-y-6">
+          {/* Executive Briefing - Always visible */}
+          <ExecutiveBriefing productName={asset.name} />
+
+          {/* Market & Search Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Market & Search Intelligence"
+            icon={<Search className="w-5 h-5 text-primary" />}
+            agents={['Discover.Search', 'Distil']}
+            isOpen={openSections.market}
+            onToggle={() => toggleSection('market')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Popular Search Terms & Volume</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.searchTrends}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">SEO Keyword Opportunities</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.seoOpportunities}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Category Entry Points</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.categoryEntryPoints}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Customer Voice */}
+          <CollapsibleIntelligenceSection
+            title="Customer Voice"
+            icon={<MessageSquare className="w-5 h-5 text-primary" />}
+            agents={['Discover.Reviews', 'Discover.Social', 'Distil']}
+            isOpen={openSections.customerVoice}
+            onToggle={() => toggleSection('customerVoice')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Customer Sentiment Analysis</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.customerSentiment}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Verbatim Quotes & Reviews</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.verbatimQuotes}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Missing Features</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.missingFeatures}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Reasons to Buy & Feature Prioritisation */}
+          <CollapsibleIntelligenceSection
+            title="Reasons to Buy & Feature Prioritisation"
+            icon={<Brain className="w-5 h-5 text-primary" />}
+            agents={['Distil']}
+            isOpen={openSections.reasonsToBuy}
+            onToggle={() => toggleSection('reasonsToBuy')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Top Reasons to Buy</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.reasonsToBuy}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Feature Priority Intelligence</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.keyFeatures}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Favourite Features</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.favouriteFeatures}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Competitive Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Competitive Intelligence"
+            icon={<TrendingUp className="w-5 h-5 text-primary" />}
+            agents={['Discover', 'Detect', 'Distil']}
+            isOpen={openSections.competitive}
+            onToggle={() => toggleSection('competitive')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Competitive Landscape</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.competitorAnalysis}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Key Competitors</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.keyCompetitors}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Relative Strengths & Weaknesses</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.relativeStrengths}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Target Audience Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Target Audience Intelligence"
+            icon={<Target className="w-5 h-5 text-primary" />}
+            agents={['Define', 'Detect']}
+            isOpen={openSections.targetAudience}
+            onToggle={() => toggleSection('targetAudience')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Primary & Secondary Segments</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.targetAudience}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Social Media Intelligence</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.socialMentions}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Performance Signals */}
+          <CollapsibleIntelligenceSection
+            title="Performance Signals"
+            icon={<BarChart3 className="w-5 h-5 text-primary" />}
+            agents={['Diagnose', 'Detect']}
+            isOpen={openSections.performance}
+            onToggle={() => toggleSection('performance')}
+          >
+            <div className="bg-muted/30 p-4 rounded-lg">
+              <p className="text-sm text-muted-foreground italic">
+                Performance signals will be available once the product is live and collecting engagement data.
+                This section will show clickthrough trends, conversion rates, top-performing competitor PDPs, and emerging search shifts.
+              </p>
+            </div>
+          </CollapsibleIntelligenceSection>
+        </div>
+
+        {/* Footer Actions */}
+        <div className="border-t bg-background px-0 py-6 mt-8">
+          <div className="flex justify-between items-center">
+            <Button variant="outline" onClick={handleReRunEnrichment}>
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Re-run Enrichment
             </Button>
-            <Button onClick={handleApprove}>
-              Approve & Continue
-            </Button>
+            <div className="space-x-3">
+              <Button variant="outline" onClick={handleExportBrief}>
+                <Download className="w-4 h-4 mr-2" />
+                Export Brief
+              </Button>
+              <Button onClick={handleSendToContentAgents}>
+                <Send className="w-4 h-4 mr-2" />
+                Send to Content Agents
+              </Button>
+              <Button onClick={handleApprove}>
+                Approve & Continue
+              </Button>
+            </div>
           </div>
         </div>
       </div>
