@@ -9,7 +9,7 @@ interface ExecutiveBriefingProps {
   productName: string;
 }
 
-const ExecutiveBriefing = ({ productName }: ExecutiveBriefingProps) => {
+const ExecutiveBriefing = React.memo(({ productName }: ExecutiveBriefingProps) => {
   return (
     <Card className="border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent">
       <CardHeader>
@@ -122,6 +122,8 @@ const ExecutiveBriefing = ({ productName }: ExecutiveBriefingProps) => {
       </CardContent>
     </Card>
   );
-};
+});
+
+ExecutiveBriefing.displayName = 'ExecutiveBriefing';
 
 export default ExecutiveBriefing;

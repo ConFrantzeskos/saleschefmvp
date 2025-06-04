@@ -14,7 +14,7 @@ interface CollapsibleIntelligenceSectionProps {
   onToggle: () => void;
 }
 
-const CollapsibleIntelligenceSection = ({
+const CollapsibleIntelligenceSection = React.memo(({
   title,
   icon,
   agents,
@@ -50,6 +50,8 @@ const CollapsibleIntelligenceSection = ({
       </Card>
     </Collapsible>
   );
-};
+});
+
+CollapsibleIntelligenceSection.displayName = 'CollapsibleIntelligenceSection';
 
 export default CollapsibleIntelligenceSection;

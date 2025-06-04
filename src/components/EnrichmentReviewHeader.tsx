@@ -8,7 +8,7 @@ interface EnrichmentReviewHeaderProps {
   onApproveAll: () => void;
 }
 
-const EnrichmentReviewHeader = ({ assetCount, onApproveAll }: EnrichmentReviewHeaderProps) => {
+const EnrichmentReviewHeader = React.memo(({ assetCount, onApproveAll }: EnrichmentReviewHeaderProps) => {
   return (
     <div className="flex justify-between items-center mb-8">
       <div>
@@ -23,6 +23,8 @@ const EnrichmentReviewHeader = ({ assetCount, onApproveAll }: EnrichmentReviewHe
       </Button>
     </div>
   );
-};
+});
+
+EnrichmentReviewHeader.displayName = 'EnrichmentReviewHeader';
 
 export default EnrichmentReviewHeader;

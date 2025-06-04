@@ -11,12 +11,16 @@ interface EnrichmentAssetHeaderProps {
   onApprove?: () => void;
 }
 
-const EnrichmentAssetHeader = ({ asset, onApprove }: EnrichmentAssetHeaderProps) => {
+const EnrichmentAssetHeader = React.memo(({ asset, onApprove }: EnrichmentAssetHeaderProps) => {
   const navigate = useNavigate();
+
+  const handleBackClick = React.useCallback(() => {
+    navigate('/enrichment-review');
+  }, [navigate]);
 
   return (
     <div className="flex items-center space-x-4 mb-6">
-      <Button variant="outline" onClick={() => navigate('/enrichment-review')} className="relative z-50">
+      <Button variant="outline" onClick={handleBackClick} className="relative z-50">
         <ArrowLeft className="w-4 h-4 mr-2" />
         Back to Enrichment Review
       </Button>
@@ -34,6 +38,8 @@ const EnrichmentAssetHeader = ({ asset, onApprove }: EnrichmentAssetHeaderProps)
       </Button>
     </div>
   );
-};
+});
+
+EnrichmentAssetHeader.displayName = 'EnrichmentAssetHeader';
 
 export default EnrichmentAssetHeader;

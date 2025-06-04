@@ -1,9 +1,8 @@
+
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Edit2, Save, X, Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, BarChart3, ShoppingCart, MapPin, Heart, AlertTriangle, Zap, Target, Quote } from 'lucide-react';
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
+import { enrichmentFields } from '@/constants/enrichmentFields';
+import EnrichmentField from './EnrichmentField';
 
 interface EnrichmentDataSectionProps {
   asset: EnrichmentAsset;
@@ -15,7 +14,7 @@ interface EnrichmentDataSectionProps {
   onEditValueChange: (fieldKey: string, value: string) => void;
 }
 
-const EnrichmentDataSection = ({
+const EnrichmentDataSection = React.memo(({
   asset,
   editingField,
   editValues,
@@ -24,114 +23,6 @@ const EnrichmentDataSection = ({
   onCancel,
   onEditValueChange
 }: EnrichmentDataSectionProps) => {
-  const enrichmentFields = [
-    {
-      key: 'searchTrends',
-      title: 'Search Intelligence',
-      icon: Search,
-      description: 'Popular search terms and volume data',
-      value: asset.searchTrends
-    },
-    {
-      key: 'seoKeywordVolume',
-      title: 'SEO Keyword Volume',
-      icon: BarChart3,
-      description: 'Search volume data for targeted keywords',
-      value: asset.seoKeywordVolume
-    },
-    {
-      key: 'customerSentiment',
-      title: 'Customer Sentiment Analysis',
-      icon: MessageSquare,
-      description: 'Insights from customer reviews and feedback',
-      value: asset.customerSentiment
-    },
-    {
-      key: 'reasonsToBuy',
-      title: 'Reasons to Buy',
-      icon: ShoppingCart,
-      description: 'Aggregated purchase motivators ranked by confidence',
-      value: asset.reasonsToBuy
-    },
-    {
-      key: 'socialMentions',
-      title: 'Social Media Intelligence',
-      icon: Users,
-      description: 'Social platform mentions and sentiment',
-      value: asset.socialMentions
-    },
-    {
-      key: 'verbatimQuotes',
-      title: 'Verbatim Quotes & Reviews',
-      icon: Quote,
-      description: 'Direct quotes from social media and review sites with sources',
-      value: asset.verbatimQuotes
-    },
-    {
-      key: 'categoryEntryPoints',
-      title: 'Category Entry Points',
-      icon: MapPin,
-      description: 'Identified channels and touchpoints for market entry',
-      value: asset.categoryEntryPoints
-    },
-    {
-      key: 'favouriteFeatures',
-      title: 'Favourite Features',
-      icon: Heart,
-      description: 'Most valued features ranked by confidence percentage',
-      value: asset.favouriteFeatures
-    },
-    {
-      key: 'missingFeatures',
-      title: 'Missing Features',
-      icon: AlertTriangle,
-      description: 'Identified feature gaps ranked by confidence percentage',
-      value: asset.missingFeatures
-    },
-    {
-      key: 'competitorAnalysis',
-      title: 'Competitive Landscape',
-      icon: TrendingUp,
-      description: 'Direct competitor analysis and positioning',
-      value: asset.competitorAnalysis
-    },
-    {
-      key: 'keyCompetitors',
-      title: 'Key Competitors',
-      icon: Target,
-      description: 'Primary competing products and their positioning',
-      value: asset.keyCompetitors
-    },
-    {
-      key: 'relativeStrengths',
-      title: 'Relative Strengths',
-      icon: Zap,
-      description: 'Competitive advantages vs key competitors',
-      value: asset.relativeStrengths
-    },
-    {
-      key: 'seoOpportunities',
-      title: 'SEO Opportunities',
-      icon: Globe,
-      description: 'High-value keyword opportunities',
-      value: asset.seoOpportunities
-    },
-    {
-      key: 'targetAudience',
-      title: 'Target Audience Intelligence',
-      icon: Hash,
-      description: 'Data-driven audience segmentation',
-      value: asset.targetAudience
-    },
-    {
-      key: 'keyFeatures',
-      title: 'Feature Priority Intelligence',
-      icon: Brain,
-      description: 'Intelligence-driven feature importance ranking',
-      value: asset.keyFeatures
-    }
-  ];
-
   return (
     <div className="bg-white rounded-xl border shadow-soft">
       <div className="p-6 border-b">
@@ -140,76 +31,27 @@ const EnrichmentDataSection = ({
       </div>
       
       <div className="p-6 space-y-6 max-h-[calc(100vh-300px)] overflow-y-auto">
-        {enrichmentFields.map((field) => {
-          const Icon = field.icon;
-          const isEditing = editingField === field.key;
-          
-          return (
-            <Card key={field.key} className="border-l-4 border-l-primary/20">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">{field.title}</CardTitle>
-                      <p className="text-sm text-muted-foreground">{field.description}</p>
-                    </div>
-                  </div>
-                  {!isEditing && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => onEdit(field.key)}
-                    >
-                      <Edit2 className="w-4 h-4" />
-                    </Button>
-                  )}
-                </div>
-              </CardHeader>
-              
-              <CardContent>
-                {isEditing ? (
-                  <div className="space-y-3">
-                    <Textarea
-                      value={editValues[field.key] || ''}
-                      onChange={(e) => onEditValueChange(field.key, e.target.value)}
-                      className="min-h-[120px] resize-none"
-                      placeholder={`Edit ${field.title.toLowerCase()}...`}
-                    />
-                    <div className="flex space-x-2">
-                      <Button
-                        size="sm"
-                        onClick={() => onSave(field.key)}
-                      >
-                        <Save className="w-4 h-4 mr-2" />
-                        Save
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={onCancel}
-                      >
-                        <X className="w-4 h-4 mr-2" />
-                        Cancel
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="prose prose-sm max-w-none">
-                    <pre className="whitespace-pre-wrap text-sm text-foreground bg-muted/30 p-4 rounded-lg border">
-                      {field.value}
-                    </pre>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          );
-        })}
+        {enrichmentFields.map((field) => (
+          <EnrichmentField
+            key={field.key}
+            fieldKey={field.key}
+            title={field.title}
+            description={field.description}
+            value={asset[field.key as keyof EnrichmentAsset] as string}
+            icon={field.icon}
+            isEditing={editingField === field.key}
+            editValue={editValues[field.key] || ''}
+            onEdit={() => onEdit(field.key)}
+            onSave={() => onSave(field.key)}
+            onCancel={onCancel}
+            onEditValueChange={(value) => onEditValueChange(field.key, value)}
+          />
+        ))}
       </div>
     </div>
   );
-};
+});
+
+EnrichmentDataSection.displayName = 'EnrichmentDataSection';
 
 export default EnrichmentDataSection;

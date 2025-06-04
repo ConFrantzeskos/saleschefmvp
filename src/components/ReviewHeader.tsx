@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
@@ -9,7 +8,7 @@ interface ReviewHeaderProps {
   onApproveAll: () => void;
 }
 
-const ReviewHeader = ({ assetCount, onApproveAll }: ReviewHeaderProps) => {
+const ReviewHeader = React.memo(({ assetCount, onApproveAll }: ReviewHeaderProps) => {
   return (
     <div className="flex justify-between items-center mb-8">
       <div>
@@ -24,6 +23,8 @@ const ReviewHeader = ({ assetCount, onApproveAll }: ReviewHeaderProps) => {
       </Button>
     </div>
   );
-};
+});
+
+ReviewHeader.displayName = 'ReviewHeader';
 
 export default ReviewHeader;
