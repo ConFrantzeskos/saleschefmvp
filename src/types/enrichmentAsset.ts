@@ -14,4 +14,11 @@ export interface EnrichmentAsset {
   seoOpportunities: string;
   targetAudience: string;
   keyFeatures: string;
+  seoKeywordVolume: string;
+  reasonsToBuy: string;
+  categoryEntryPoints: string;
+  favouriteFeatures: string;
+  missingFeatures: string;
+  keyCompetitors: string;
+  relativeStrengths: string;
 }

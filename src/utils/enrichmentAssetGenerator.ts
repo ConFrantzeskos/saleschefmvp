@@ -17,7 +17,14 @@ export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
       competitorAnalysis: "Beats Studio3 (20hrs), Sony WH-1000XM4 (30hrs) - our 24hr is competitive",
       seoOpportunities: "Target 'best long battery headphones', 'wireless headphones for travel'",
       targetAudience: "Business travelers, remote workers, gamers aged 25-45",
-      keyFeatures: "24-hour battery, Bluetooth 5.0, foldable design, quick charge"
+      keyFeatures: "24-hour battery, Bluetooth 5.0, foldable design, quick charge",
+      seoKeywordVolume: "'wireless headphones long battery' (8,200 searches/month), 'bluetooth headphones 24 hour' (3,100 searches/month), 'foldable headphones travel' (1,800 searches/month), 'noise cancelling headphones' (12,000 searches/month)",
+      reasonsToBuy: "1. Exceptional 24-hour battery life (95% confidence)\n2. Superior sound quality for price point (87% confidence)\n3. Comfortable for extended wear (78% confidence)\n4. Quick charge feature (92% confidence)\n5. Portable foldable design (85% confidence)",
+      categoryEntryPoints: "Travel accessories stores, Electronics retailers, Gaming accessory sections, Office supply stores, Airport electronics kiosks, Online audio equipment marketplaces",
+      favouriteFeatures: "24-hour battery life (89% confidence)\nQuick charge capability (76% confidence)\nFoldable design (67% confidence)\nBluetooth 5.0 connectivity (82% confidence)\nComfortable ear cushions (71% confidence)",
+      missingFeatures: "Active noise cancellation (73% confidence)\nWireless charging case (68% confidence)\nMultipoint Bluetooth connection (54% confidence)\nCustomizable EQ settings (49% confidence)\nTouch controls (62% confidence)",
+      keyCompetitors: "Sony WH-1000XM4 ($349) - Premium ANC leader\nBeats Studio3 ($329) - Brand recognition\nBose QC45 ($329) - Comfort champion\nJBL Live 650BTNC ($199) - Budget alternative\nSennheiser HD 450BT ($199) - Audiophile choice",
+      relativeStrengths: "vs Sony WH-1000XM4: Better battery life, more affordable\nvs Beats Studio3: Superior battery, better value\nvs Bose QC45: Comparable battery, lower price\nvs JBL Live 650BTNC: Premium build quality, brand trust\nvs Sennheiser HD 450BT: Better connectivity, longer battery"
     },
     {
       id: 2,
@@ -33,7 +40,14 @@ export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
       competitorAnalysis: "Apple Watch SE ($249), Fitbit Versa 3 ($199) - positioned well at mid-range",
       seoOpportunities: "Rank for 'best budget fitness watch', 'accurate heart rate monitor'",
       targetAudience: "Health-conscious individuals, fitness enthusiasts, age 20-50",
-      keyFeatures: "Heart rate monitoring, sleep tracking, 7-day battery, water resistant"
+      keyFeatures: "Heart rate monitoring, sleep tracking, 7-day battery, water resistant",
+      seoKeywordVolume: "'fitness tracker heart rate' (6,500 searches/month), 'smartwatch sleep tracking' (4,200 searches/month), 'best budget fitness watch' (2,800 searches/month), 'waterproof fitness tracker' (3,400 searches/month)",
+      reasonsToBuy: "1. Accurate heart rate monitoring (91% confidence)\n2. Comprehensive sleep tracking (88% confidence)\n3. 7-day battery life (93% confidence)\n4. Water resistant design (86% confidence)\n5. Affordable pricing (89% confidence)",
+      categoryEntryPoints: "Sporting goods stores, Electronics retailers, Fitness centers, Health & wellness shops, Online fitness marketplaces, Pharmacy chains",
+      favouriteFeatures: "Heart rate accuracy (91% confidence)\n7-day battery life (88% confidence)\nSleep tracking detail (82% confidence)\nWater resistance (79% confidence)\nEasy app connectivity (74% confidence)",
+      missingFeatures: "GPS tracking (81% confidence)\nMusic storage (65% confidence)\nContactless payments (58% confidence)\nAlways-on display (71% confidence)\nThird-party app support (52% confidence)",
+      keyCompetitors: "Apple Watch SE ($249) - Ecosystem integration\nFitbit Versa 3 ($199) - Health focus leader\nGarmin Venu Sq ($199) - GPS specialist\nAmazfit GTS 2 ($179) - Design alternative\nSamsung Galaxy Watch Active2 ($229) - Android integration",
+      relativeStrengths: "vs Apple Watch SE: Better battery life, more affordable\nvs Fitbit Versa 3: Comparable features, competitive price\nvs Garmin Venu Sq: Better sleep tracking, easier interface\nvs Amazfit GTS 2: Superior accuracy, brand reliability\nvs Samsung Galaxy Watch: Universal compatibility, longer battery"
     },
     {
       id: 3,
@@ -49,7 +63,14 @@ export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
       competitorAnalysis: "Razer BlackWidow ($139), Corsair K95 ($199) - competitive features",
       seoOpportunities: "Target 'best mechanical keyboard under $100', 'RGB gaming keyboard'",
       targetAudience: "Gamers, programmers, content creators aged 16-35",
-      keyFeatures: "Mechanical switches, RGB backlighting, wireless/wired modes, macro keys"
+      keyFeatures: "Mechanical switches, RGB backlighting, wireless/wired modes, macro keys",
+      seoKeywordVolume: "'mechanical keyboard RGB' (9,800 searches/month), 'gaming keyboard wireless' (5,600 searches/month), 'best mechanical keyboard under $100' (3,200 searches/month), 'tactile gaming keyboard' (2,100 searches/month)",
+      reasonsToBuy: "1. Satisfying mechanical key feel (94% confidence)\n2. Customizable RGB lighting (89% confidence)\n3. Dual connectivity options (92% confidence)\n4. Programmable macro keys (86% confidence)\n5. Durable build quality (91% confidence)",
+      categoryEntryPoints: "Gaming stores, Electronics retailers, Computer hardware shops, Online gaming marketplaces, Esports venues, Tech specialty stores",
+      favouriteFeatures: "Mechanical switch feel (94% confidence)\nRGB customization (87% confidence)\nWireless connectivity (83% confidence)\nMacro programming (79% confidence)\nBuild quality (91% confidence)",
+      missingFeatures: "Hot-swappable switches (69% confidence)\nDedicated media controls (64% confidence)\nUSB passthrough (58% confidence)\nWrist rest included (72% confidence)\nSoftware profiles sync (55% confidence)",
+      keyCompetitors: "Razer BlackWidow V3 ($139) - Brand recognition\nCorsair K95 RGB ($199) - Premium features\nLogitech G915 ($249) - Low profile leader\nSteelSeries Apex Pro ($199) - Adjustable switches\nHyperX Alloy FPS Pro ($89) - Budget option",
+      relativeStrengths: "vs Razer BlackWidow: Better value, dual connectivity\nvs Corsair K95: More affordable, comparable features\nvs Logitech G915: Traditional feel, better price\nvs SteelSeries Apex Pro: Wireless option, lower cost\nvs HyperX Alloy FPS Pro: RGB lighting, wireless capability"
     }
   ];
 };

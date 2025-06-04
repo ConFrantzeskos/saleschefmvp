@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Edit2, Save, X, Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain } from 'lucide-react';
+import { Edit2, Save, X, Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, BarChart3, ShoppingCart, MapPin, Heart, AlertTriangle, Zap, Target } from 'lucide-react';
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
 
 interface EnrichmentDataSectionProps {
@@ -34,11 +34,25 @@ const EnrichmentDataSection = ({
       value: asset.searchTrends
     },
     {
+      key: 'seoKeywordVolume',
+      title: 'SEO Keyword Volume',
+      icon: BarChart3,
+      description: 'Search volume data for targeted keywords',
+      value: asset.seoKeywordVolume
+    },
+    {
       key: 'customerSentiment',
       title: 'Customer Sentiment Analysis',
       icon: MessageSquare,
       description: 'Insights from customer reviews and feedback',
       value: asset.customerSentiment
+    },
+    {
+      key: 'reasonsToBuy',
+      title: 'Reasons to Buy',
+      icon: ShoppingCart,
+      description: 'Aggregated purchase motivators ranked by confidence',
+      value: asset.reasonsToBuy
     },
     {
       key: 'socialMentions',
@@ -48,11 +62,46 @@ const EnrichmentDataSection = ({
       value: asset.socialMentions
     },
     {
+      key: 'categoryEntryPoints',
+      title: 'Category Entry Points',
+      icon: MapPin,
+      description: 'Identified channels and touchpoints for market entry',
+      value: asset.categoryEntryPoints
+    },
+    {
+      key: 'favouriteFeatures',
+      title: 'Favourite Features',
+      icon: Heart,
+      description: 'Most valued features ranked by confidence percentage',
+      value: asset.favouriteFeatures
+    },
+    {
+      key: 'missingFeatures',
+      title: 'Missing Features',
+      icon: AlertTriangle,
+      description: 'Identified feature gaps ranked by confidence percentage',
+      value: asset.missingFeatures
+    },
+    {
       key: 'competitorAnalysis',
       title: 'Competitive Landscape',
       icon: TrendingUp,
       description: 'Direct competitor analysis and positioning',
       value: asset.competitorAnalysis
+    },
+    {
+      key: 'keyCompetitors',
+      title: 'Key Competitors',
+      icon: Target,
+      description: 'Primary competing products and their positioning',
+      value: asset.keyCompetitors
+    },
+    {
+      key: 'relativeStrengths',
+      title: 'Relative Strengths',
+      icon: Zap,
+      description: 'Competitive advantages vs key competitors',
+      value: asset.relativeStrengths
     },
     {
       key: 'seoOpportunities',
