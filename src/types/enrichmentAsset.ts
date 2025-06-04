@@ -22,4 +22,6 @@ export interface EnrichmentAsset {
   keyCompetitors: string;
   relativeStrengths: string;
   verbatimQuotes: string;
+  relatedSearchTerms: string;
+  searchOpportunities: string;
 }
