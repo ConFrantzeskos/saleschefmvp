@@ -6,8 +6,8 @@ import { CheckCircle, TrendingUp, TrendingDown, Zap, Target, DollarSign } from '
 
 const PricingContent = () => {
   const pricingFactors = [
-    'SKU / item volume',
-    'Content types and channels — PDPs, marketplaces, video, print, training, social media, AR/VR, and more',
+    'Asset / product volume',
+    'Content types and channels — product pages, marketplaces, video, print, training, social media, AR/VR, and more',
     'Markets, languages, and localisations',
     'Level of automation and agent depth',
     'Existing data maturity — structured vs unstructured',
@@ -68,10 +68,10 @@ const PricingContent = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
               {[
-                'Some ingest 10,000 SKUs a month; others, 250,000+.',
-                'Some focus on PDPs; others need SEO, training, social, marketplaces, print, video, even voice.',
+                'Some ingest 10,000 assets a month; others, 250,000+.',
+                'Some focus on product pages; others need SEO, training, social, marketplaces, print, video, even voice.',
                 'Some require real-time market enrichment; others focus on compliance-ready outputs.',
-                'Some migrate from legacy PIMs; others start from raw, unstructured data.'
+                'Some migrate from legacy systems; others start from raw, unstructured data.'
               ].map((item, index) => (
                 <div key={index} className="flex items-start gap-4 p-4 bg-gradient-to-r from-muted/30 to-transparent rounded-xl border border-border/30 hover:border-primary/20 transition-all duration-300 group">
                   <div className="w-6 h-6 bg-gradient-brand rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">
