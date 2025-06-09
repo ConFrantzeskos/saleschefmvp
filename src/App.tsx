@@ -1,16 +1,17 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import { TooltipProvider } from "@/components/ui/tooltip"
 
-import HomePage from '@/pages/HomePage';
+import Index from '@/pages/Index';
 import FileUpload from '@/pages/FileUpload';
-import MappingPage from '@/pages/MappingPage';
-import CleaningPage from '@/pages/CleaningPage';
-import GenerationPage from '@/pages/GenerationPage';
-import ReviewPage from '@/pages/ReviewPage';
-import DeployPage from '@/pages/DeployPage';
+import SchemaMapping from '@/pages/SchemaMapping';
+import CleaningValidation from '@/pages/CleaningValidation';
+import ContentGeneration from '@/pages/ContentGeneration';
+import ReviewContent from '@/pages/ReviewContent';
+import Deploy from '@/pages/Deploy';
 import ZapierConfig from '@/components/ZapierConfig';
 
 import SecurityMonitor from '@/components/SecurityMonitor';
@@ -27,13 +28,13 @@ function App() {
           <SecurityMonitor />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<Index />} />
               <Route path="/upload" element={<FileUpload />} />
-              <Route path="/mapping" element={<MappingPage />} />
-              <Route path="/cleaning" element={<CleaningPage />} />
-              <Route path="/generation" element={<GenerationPage />} />
-              <Route path="/review" element={<ReviewPage />} />
-              <Route path="/deploy" element={<DeployPage />} />
+              <Route path="/mapping" element={<SchemaMapping />} />
+              <Route path="/cleaning" element={<CleaningValidation />} />
+              <Route path="/generation" element={<ContentGeneration />} />
+              <Route path="/review" element={<ReviewContent />} />
+              <Route path="/deploy" element={<Deploy />} />
               <Route path="/zapier" element={<ZapierConfig />} />
             </Routes>
           </BrowserRouter>
