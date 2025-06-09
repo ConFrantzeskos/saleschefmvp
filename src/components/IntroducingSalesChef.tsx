@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, Upload, Search, Brain, Zap, Globe, BarChart3 } from 'lucide-react';
 
@@ -486,7 +487,7 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={Upload}
-              title="1. INPUTS + INTELLIGENT PROCESSING"
+              title="1. SUPPLIER CHAOS → STANDARDISED FOUNDATION"
               items={inputTypes}
               visualExample={<InputVisual />}
             />
@@ -501,7 +502,7 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={Search}
-              title="2. DISCOVERY MAGIC"
+              title="2. STRUCTURED DATA → DEEP MARKET DISCOVERY"
               items={discoveryFeatures}
               highlight={true}
               visualExample={<DiscoveryVisual />}
@@ -517,7 +518,7 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={Brain}
-              title="3. STRATEGIC MAGIC"
+              title="3. MARKET INSIGHTS → PERSUASION STRATEGY"
               subtitle="agency planner agent — Distil + Define"
               items={strategicFeatures}
               visualExample={<StrategyVisual />}
@@ -533,7 +534,7 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={Zap}
-              title="4. CREATIVE + CONTENT FEAST"
+              title="4. STRATEGY MAPPED → SALES CONTENT COOKED"
               items={contentOutputs}
               visualExample={<ContentVisual />}
             />
@@ -548,7 +549,7 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={Globe}
-              title="5. OMNICHANNEL DEPLOYMENT AT SCALE"
+              title="5. CONTENT FEAST → LIVE IN MARKET"
               subtitle="Auto-deploys optimized content across every platform"
               items={channels}
               visualExample={<DistributionVisual />}
@@ -564,7 +565,7 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={BarChart3}
-              title="6. DETECT, OPTIMISE, LEARN, IMPROVE"
+              title="6. LIVE DATA → CONTENT ADAPTED"
               subtitle="Your content gets smarter. Automatically."
               items={optimizationFeatures}
               highlight={true}
