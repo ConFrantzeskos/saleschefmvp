@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -9,26 +8,26 @@ import { CheckCircle, X, TrendingUp } from 'lucide-react';
 
 const IndustrialManufacturing = () => {
   const industrialProblems = [
-    'Huge, technically complex product catalogs — often 100,000+ SKUs',
-    'Source data fragmented across ERP, PIM (if present), Excel, legacy systems',
-    'Critical technical data buried in PDFs and datasheets',
-    'Inconsistent units of measure, naming conventions, language',
-    'Non-standardised attribute sets — can\'t power faceted search or guided selling',
-    'No structured content for marketplaces (Amazon Business, Zoro, MSC Direct, Fastenal, Thomasnet, Grainger)',
-    'Manual effort required to publish across multiple B2B sales channels',
-    'No SEO optimisation — low discoverability in key buying journeys',
-    'No readiness for AI agents, voice interfaces, next-gen search surfaces',
-    'High cost and lag time for updating product content (eg. spec changes, compliance updates)'
+    '📊 Huge, technically complex product catalogs — often 100,000+ SKUs',
+    '🗂️ Source data fragmented across ERP, PIM (if present), Excel, legacy systems',
+    '📄 Critical technical data buried in PDFs and datasheets',
+    '📏 Inconsistent units of measure, naming conventions, language',
+    '🏷️ Non-standardised attribute sets — can\'t power faceted search or guided selling',
+    '🛒 No structured content for marketplaces (Amazon Business, Zoro, MSC Direct, Fastenal, Thomasnet, Grainger)',
+    '✋ Manual effort required to publish across multiple B2B sales channels',
+    '🔍 No SEO optimisation — low discoverability in key buying journeys',
+    '🤖 No readiness for AI agents, voice interfaces, next-gen search surfaces',
+    '💰 High cost and lag time for updating product content (eg. spec changes, compliance updates)'
   ];
 
   const chaosConsequences = [
-    'Lost sales due to poor search & discoverability',
-    'High buyer abandonment on ecommerce platforms (can\'t find right product)',
-    'Manual syndication to marketplaces → slow, error-prone',
-    'Compliance & legal risk (wrong specs published, outdated regulatory info)',
-    'Costly, unscalable content ops → constant human rework',
-    'Delayed market entry for new SKUs and product variants',
-    'Inability to support modern B2B buying journeys: AI assistants, configurators, CPQ, self-serve ecommerce'
+    '💸 Lost sales due to poor search & discoverability',
+    '🚪 High buyer abandonment on ecommerce platforms (can\'t find right product)',
+    '✋ Manual syndication to marketplaces → slow, error-prone',
+    '⚖️ Compliance & legal risk (wrong specs published, outdated regulatory info)',
+    '💰 Costly, unscalable content ops → constant human rework',
+    '⏱️ Delayed market entry for new SKUs and product variants',
+    '🤖 Inability to support modern B2B buying journeys: AI assistants, configurators, CPQ, self-serve ecommerce'
   ];
 
   const ingestSources = [
@@ -77,14 +76,14 @@ const IndustrialManufacturing = () => {
   ];
 
   const businessOutcomes = [
-    { icon: TrendingUp, metric: 'Higher', description: 'online revenue — better discoverability, higher conversion' },
-    { icon: TrendingUp, metric: 'Faster', description: 'new product introduction — weeks to days' },
-    { icon: TrendingUp, metric: 'Lower', description: 'manual content ops costs — scale content without scaling headcount' },
-    { icon: TrendingUp, metric: 'Better', description: 'compliance & risk posture — audit-ready content processes' },
-    { icon: TrendingUp, metric: 'Full', description: 'omnichannel readiness — marketplaces, partner portals, direct ecommerce' },
-    { icon: TrendingUp, metric: 'Stronger', description: 'SEO performance → long-tail industrial buying journeys' },
-    { icon: TrendingUp, metric: 'Improved', description: 'customer experience → consistent specs across channels' },
-    { icon: TrendingUp, metric: 'AI-ready', description: 'for AI-powered B2B buying — future-proof your product data' }
+    { icon: TrendingUp, metric: '📈 Higher', description: 'online revenue — better discoverability, higher conversion' },
+    { icon: TrendingUp, metric: '⚡ Faster', description: 'new product introduction — weeks to days' },
+    { icon: TrendingUp, metric: '💰 Lower', description: 'manual content ops costs — scale content without scaling headcount' },
+    { icon: TrendingUp, metric: '✅ Better', description: 'compliance & risk posture — audit-ready content processes' },
+    { icon: TrendingUp, metric: '🌐 Full', description: 'omnichannel readiness — marketplaces, partner portals, direct ecommerce' },
+    { icon: TrendingUp, metric: '🔍 Stronger', description: 'SEO performance → long-tail industrial buying journeys' },
+    { icon: TrendingUp, metric: '😊 Improved', description: 'customer experience → consistent specs across channels' },
+    { icon: TrendingUp, metric: '🤖 AI-ready', description: 'for AI-powered B2B buying — future-proof your product data' }
   ];
 
   const useCases = [

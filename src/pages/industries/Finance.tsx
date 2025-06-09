@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -9,25 +8,25 @@ import { CheckCircle, X, TrendingUp } from 'lucide-react';
 
 const Finance = () => {
   const financeProblems = [
-    'Product data scattered across spreadsheets, SharePoint, CMS, PDS templates, legal docs',
-    '5+ versions of the "official" product description in circulation',
-    'Rate or fee change → takes weeks to flow through all content surfaces',
-    'Regulatory updates triggering massive manual effort',
-    'Complex product variants poorly handled in current CMS or CRM',
-    'No structured metadata → no ability to personalise, segment, or feed AI surfaces',
-    'High compliance overhead → legal & compliance teams bottlenecked',
-    'No SEO-optimised, discoverable product content',
-    'Zero readiness for modern content channels (AI agents, LLM surfacing, voice, smart search)'
+    '🏦 Complex product sets — across banking, credit, insurance, wealth, superannuation, investment',
+    '📋 Constantly evolving regulatory and legal requirements',
+    '🗂️ Fragmented source systems — product managers, compliance teams, marketing, legal all maintaining disconnected documents',
+    '❌ No true "single source of truth" for product content',
+    '✋ Manual rekeying of core product data into websites, disclosure documents, CRM, emails, apps',
+    '⏱️ Long lag time for product updates to reach market',
+    '📝 No consistent tone or structure across channels',
+    '🔍 No SEO-optimised, discoverable product content',
+    '🤖 Zero readiness for modern content channels (AI agents, LLM surfacing, voice, smart search)'
   ];
 
   const chaosConsequences = [
-    'Regulatory risk → non-compliant or out-of-date product disclosures',
-    'Missed revenue → product updates and pricing changes delayed to market',
-    'SEO gaps → poor organic discovery of core products',
-    'Expensive manual content ops → large legal, compliance, and marketing teams tied up in low-value rework',
-    'Inconsistent CX → product details vary across website, app, call centre, PDS/FSG, CRM',
-    'Missed LLM/AI surface opportunities → poor readiness for new consumer discovery paths',
-    'Inability to scale personalisation → static content too brittle to adapt to audiences'
+    '⚖️ Regulatory risk → non-compliant or out-of-date product disclosures',
+    '💰 Missed revenue → product updates and pricing changes delayed to market',
+    '🔍 SEO gaps → poor organic discovery of core products',
+    '💸 Expensive manual content ops → large legal, compliance, and marketing teams tied up in low-value rework',
+    '🔄 Inconsistent CX → product details vary across website, app, call centre, PDS/FSG, CRM',
+    '🤖 Missed LLM/AI surface opportunities → poor readiness for new consumer discovery paths',
+    '🎯 Inability to scale personalisation → static content too brittle to adapt to audiences'
   ];
 
   const ingestSources = [
@@ -78,14 +77,14 @@ const Finance = () => {
   ];
 
   const businessOutcomes = [
-    { icon: TrendingUp, metric: 'Faster', description: 'time-to-market for product changes → weeks to hours' },
-    { icon: TrendingUp, metric: 'Improved', description: 'compliance posture → audit-ready, version-controlled, consistent' },
-    { icon: TrendingUp, metric: '50–80%', description: 'reduction in legal & compliance workload' },
-    { icon: TrendingUp, metric: 'Higher', description: 'SEO visibility → more organic customer acquisition' },
-    { icon: TrendingUp, metric: 'Consistent', description: 'CX across channels → builds trust and reduces complaints' },
-    { icon: TrendingUp, metric: 'Better', description: 'segment personalisation → higher product engagement' },
-    { icon: TrendingUp, metric: 'AI-ready', description: 'product content discoverable by new consumer agents' },
-    { icon: TrendingUp, metric: 'Cost reduction', description: 'in content ops → fewer manual processes, scalable content governance' }
+    { icon: TrendingUp, metric: '⚡ Faster', description: 'time-to-market for product changes → weeks to hours' },
+    { icon: TrendingUp, metric: '✅ Improved', description: 'compliance posture → audit-ready, version-controlled, consistent' },
+    { icon: TrendingUp, metric: '📉 Reduced', description: 'legal & compliance workload → 50–80% less manual review' },
+    { icon: TrendingUp, metric: '🔍 Higher', description: 'SEO visibility → more organic customer acquisition' },
+    { icon: TrendingUp, metric: '🔄 Consistent', description: 'CX across channels → builds trust and reduces complaints' },
+    { icon: TrendingUp, metric: '🎯 Better', description: 'segment personalisation → higher product engagement' },
+    { icon: TrendingUp, metric: '🤖 AI-ready', description: 'for AI-driven search → product content discoverable by new consumer agents' },
+    { icon: TrendingUp, metric: '💰 Cost', description: 'reduction in content ops → fewer manual processes, scalable content governance' }
   ];
 
   const useCases = [

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -9,25 +8,25 @@ import { CheckCircle, X, TrendingUp } from 'lucide-react';
 
 const MediaEntertainment = () => {
   const mediaProblems = [
-    'Archives scattered across DAMs, NAS drives, legacy MAMs',
-    'Poorly tagged video & image content',
-    'Inconsistent rights & clearance records',
-    'Disconnected text, image, audio and video assets',
-    'No unified taxonomy — every department tags differently',
-    'No ready-to-syndicate FAST/CTV/OTT feeds',
-    'Manual enrichment for new platforms → slow, costly, error-prone',
-    'Inability to scale content packaging for AI agents & smart surfaces'
+    '🗄️ Archives scattered across DAMs, NAS drives, legacy MAMs',
+    '🏷️ Poorly tagged video & image content',
+    '📋 Inconsistent rights & clearance records',
+    '🔗 Disconnected text, image, audio and video assets',
+    '📂 No unified taxonomy — every department tags differently',
+    '📺 No ready-to-syndicate FAST/CTV/OTT feeds',
+    '✋ Manual enrichment for new platforms → slow, costly, error-prone',
+    '🤖 Inability to scale content packaging for AI agents & smart surfaces'
   ];
 
   const chaosConsequences = [
-    'Lost syndication and licensing revenue (archive not fully monetised)',
-    'Manual, expensive packaging for advertisers & sponsors',
-    'Delayed content onboarding → lost market opportunities',
-    'Inconsistent audience targeting → lower CPMs',
-    'Missed FAST/CTV monetisation windows',
-    'Poor SEO → under-leveraged owned channels',
-    'Legal & rights risk → incorrect or missing usage metadata',
-    'Inability to feed AI agents / LLM search experiences'
+    '💰 Lost syndication and licensing revenue (archive not fully monetised)',
+    '✋ Manual, expensive packaging for advertisers & sponsors',
+    '⏱️ Delayed content onboarding → lost market opportunities',
+    '🎯 Inconsistent audience targeting → lower CPMs',
+    '📺 Missed FAST/CTV monetisation windows',
+    '🔍 Poor SEO → under-leveraged owned channels',
+    '⚖️ Legal & rights risk → incorrect or missing usage metadata',
+    '🤖 Inability to feed AI agents / LLM search experiences'
   ];
 
   const ingestSources = [
@@ -80,12 +79,14 @@ const MediaEntertainment = () => {
   ];
 
   const businessOutcomes = [
-    { icon: TrendingUp, metric: 'New Revenue', description: 'from archives → faster packaging & syndication' },
-    { icon: TrendingUp, metric: 'Higher CPMs', description: 'better contextual & audience signals' },
-    { icon: TrendingUp, metric: 'Faster', description: 'advertiser onboarding → automated brand-suitable packaging' },
-    { icon: TrendingUp, metric: 'Faster', description: 'time-to-market for new channels' },
-    { icon: TrendingUp, metric: '90%', description: 'reduction in manual metadata ops cost' },
-    { icon: TrendingUp, metric: 'Better', description: 'SEO → higher organic audience reach' }
+    { icon: TrendingUp, metric: '🔓 Unlock', description: 'new revenue from archives → faster packaging & syndication' },
+    { icon: TrendingUp, metric: '💰 Higher', description: 'CPMs → better contextual & audience signals' },
+    { icon: TrendingUp, metric: '🚀 Faster', description: 'advertiser onboarding → automated brand-suitable packaging' },
+    { icon: TrendingUp, metric: '⚡ Faster', description: 'time-to-market for new channels' },
+    { icon: TrendingUp, metric: '📉 Reduced', description: 'manual metadata ops cost' },
+    { icon: TrendingUp, metric: '⚖️ Improved', description: 'legal & rights governance' },
+    { icon: TrendingUp, metric: '🤖 More', description: 'content surfaced in AI & smart search' },
+    { icon: TrendingUp, metric: '🔍 Better', description: 'SEO → higher organic audience reach' }
   ];
 
   const useCases = [

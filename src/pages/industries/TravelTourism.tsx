@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -9,28 +8,28 @@ import { CheckCircle, X, TrendingUp } from 'lucide-react';
 
 const TravelTourism = () => {
   const supplierProblems = [
-    'PDFs and spreadsheets with errors',
-    'No consistent categories or product structure',
-    'Missing or low-quality imagery',
-    'No version control — dates, times, prices constantly out of sync',
-    'Zero structured data for modern channels',
-    'Legal disclaimers and T&Cs missing or inconsistent',
-    'Seasonality and availability a moving target',
-    'Translation and localisation painfully manual',
-    'No scalable SEO — too slow, too inconsistent',
-    'Human-driven onboarding takes 6–12 weeks per product',
-    'Most marketplaces and OTAs leave massive revenue on the table because of this mess'
+    '📄 PDFs and spreadsheets with errors',
+    '🏷️ No consistent categories or product structure',
+    '📸 Missing or low-quality imagery',
+    '🔄 No version control — dates, times, prices constantly out of sync',
+    '📊 Zero structured data for modern channels',
+    '⚖️ Legal disclaimers and T&Cs missing or inconsistent',
+    '📅 Seasonality and availability a moving target',
+    '🌍 Translation and localisation painfully manual',
+    '🔍 No scalable SEO — too slow, too inconsistent',
+    '👥 Human-driven onboarding takes 6–12 weeks per product',
+    '💰 Most marketplaces and OTAs leave massive revenue on the table because of this mess'
   ];
 
   const chaosConsequences = [
-    'Low conversion rates on marketplaces',
-    'Expensive and slow operator onboarding',
-    'Poor quality listings → SEM waste → declining ROI',
-    'Manual maintenance overhead',
-    'Stalled marketplace growth',
-    'Legal risk (compliance gaps)',
-    'Limited ability to scale globally (multi-language, multi-market)',
-    'Rising customer service costs due to inaccurate or inconsistent listings'
+    '📉 Low conversion rates on marketplaces',
+    '⏱️ Expensive and slow operator onboarding',
+    '💸 Poor quality listings → SEM waste → declining ROI',
+    '🔧 Manual maintenance overhead',
+    '📈 Stalled marketplace growth',
+    '⚖️ Legal risk (compliance gaps)',
+    '🌍 Limited ability to scale globally (multi-language, multi-market)',
+    '📞 Rising customer service costs due to inaccurate or inconsistent listings'
   ];
 
   const ingestSources = [
@@ -82,12 +81,12 @@ const TravelTourism = () => {
   ];
 
   const businessOutcomes = [
-    { icon: TrendingUp, metric: '5–10x', description: 'more products onboarded per month' },
-    { icon: TrendingUp, metric: '+20–50%', description: 'higher PDP conversion rates vs baseline' },
-    { icon: TrendingUp, metric: '90%', description: 'reduction in SEM waste' },
-    { icon: TrendingUp, metric: '90%', description: 'reduction in manual content ops headcount' },
-    { icon: TrendingUp, metric: 'Faster', description: 'multi-market & multi-language scaling' },
-    { icon: TrendingUp, metric: 'Higher', description: 'net revenue per product listed' }
+    { icon: TrendingUp, metric: '🚀 5–10x', description: 'more products onboarded per month' },
+    { icon: TrendingUp, metric: '📈 +20–50%', description: 'higher PDP conversion rates vs baseline' },
+    { icon: TrendingUp, metric: '💰 90%', description: 'reduction in SEM waste' },
+    { icon: TrendingUp, metric: '👥 90%', description: 'reduction in manual content ops headcount' },
+    { icon: TrendingUp, metric: '🌍 Faster', description: 'multi-market & multi-language scaling' },
+    { icon: TrendingUp, metric: '💵 Higher', description: 'net revenue per product listed' }
   ];
 
   const useCases = [
