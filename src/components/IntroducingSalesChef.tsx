@@ -475,7 +475,7 @@ const IntroducingSalesChef = () => {
             Introducing SalesChef
           </h2>
           <p className="text-body-large text-muted-foreground max-w-3xl mx-auto animate-slide-up">
-            How SalesChef turns your raw product specs into a feast of cognition and content
+            How SalesChef instantly turns your raw product specs into a feast of marketing and sales content
           </p>
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-border to-transparent mx-auto mt-8" />
         </div>
