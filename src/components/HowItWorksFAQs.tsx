@@ -39,43 +39,45 @@ const HowItWorksFAQs = () => {
   };
 
   return (
-    <div className="border-t pt-16">
-      <div className="text-center mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
-          Frequently Asked Questions
-        </h2>
+    <section className="py-8 sm:py-12 border-t">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight mb-3">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        
+        <FAQSection 
+          title="FAQs — For Retailers" 
+          faqs={retailerFAQs} 
+          emoji="🛍️" 
+          email={retailEmail}
+          setEmail={setRetailEmail}
+          handleSubmit={handleRetailSubmit}
+          ctaText="Ready to transform your product content?"
+        />
+        
+        <FAQSection 
+          title="FAQs — For Tourism Clients" 
+          faqs={tourismFAQs} 
+          emoji="🌍" 
+          email={tourismEmail}
+          setEmail={setTourismEmail}
+          handleSubmit={handleTourismSubmit}
+          ctaText="Transform your tourism content at scale?"
+        />
+        
+        <FAQSection 
+          title="FAQs — For Media Clients" 
+          faqs={mediaFAQs} 
+          emoji="🎥" 
+          email={mediaEmail}
+          setEmail={setMediaEmail}
+          handleSubmit={handleMediaSubmit}
+          ctaText="Unlock your content's revenue potential?"
+        />
       </div>
-      
-      <FAQSection 
-        title="FAQs — For Retailers" 
-        faqs={retailerFAQs} 
-        emoji="🛍️" 
-        email={retailEmail}
-        setEmail={setRetailEmail}
-        handleSubmit={handleRetailSubmit}
-        ctaText="Ready to transform your product content?"
-      />
-      
-      <FAQSection 
-        title="FAQs — For Tourism Clients" 
-        faqs={tourismFAQs} 
-        emoji="🌍" 
-        email={tourismEmail}
-        setEmail={setTourismEmail}
-        handleSubmit={handleTourismSubmit}
-        ctaText="Transform your tourism content at scale?"
-      />
-      
-      <FAQSection 
-        title="FAQs — For Media Clients" 
-        faqs={mediaFAQs} 
-        emoji="🎥" 
-        email={mediaEmail}
-        setEmail={setMediaEmail}
-        handleSubmit={handleMediaSubmit}
-        ctaText="Unlock your content's revenue potential?"
-      />
-    </div>
+    </section>
   );
 };
 

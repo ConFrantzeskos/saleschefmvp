@@ -9,17 +9,9 @@ const HowItWorks = () => {
   return (
     <div className="min-h-screen bg-background">
       <HowItWorksHeader />
-
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Section 1: How to turn a SKU into a sales machine */}
-        <HowItWorksSteps />
-
-        {/* Section 2: Meet the Chefs behind the Scenes */}
-        <HowItWorksAgents />
-
-        {/* Section 3: Frequently Asked Questions */}
-        <HowItWorksFAQs />
-      </div>
+      <HowItWorksSteps />
+      <HowItWorksAgents />
+      <HowItWorksFAQs />
     </div>
   );
 };

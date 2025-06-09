@@ -78,10 +78,10 @@ const HowItWorksSteps = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30 mb-16">
-      <div className="container-width">
-        <div className="text-center mb-8 sm:mb-12 animate-fade-in">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
+    <section className="py-8 sm:py-12">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight mb-3">
             How to turn a SKU into a sales machine
           </h2>
         </div>
@@ -90,7 +90,7 @@ const HowItWorksSteps = () => {
           {/* Enhanced progress line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-border via-primary/20 to-border hidden lg:block opacity-30" />
           
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-3 sm:space-y-4">
             {steps.map((step, index) => (
               <StepCard 
                 key={index}
