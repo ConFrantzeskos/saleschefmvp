@@ -22,12 +22,11 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
           />
         </div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance animate-slide-up leading-tight">
-          From Raw Specs to a Feast of <br className="hidden sm:block" />
-          <span className="text-gradient-brand">Sales-Ready Content</span>
+          Turn Product Specs Into <span className="text-gradient-brand">Revenue</span>
         </h1>
         <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-2xl lg:max-w-3xl mx-auto animate-slide-up leading-relaxed">
-          SalesChef transforms messy product specs - no matter where they live - into persuasive, 
-          high-converting content for every channel.
+          Lift conversion. Cut SEM waste. Accelerate SKU launches. At scale.<br className="hidden sm:block" />
+          SalesChef transforms raw, messy product data into a feast of sales-ready content — for every channel, in minutes, not months.
         </p>
         
         <div className="animate-slide-up">
@@ -46,7 +45,7 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
                 className="h-10 sm:h-12 lg:h-14 px-4 sm:px-6 lg:px-8 btn-primary font-semibold mt-3 w-full text-sm sm:text-base" 
                 disabled={!email}
               >
-                Watch it Cook <ArrowRight className="ml-2 w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
+                Try it free — Book a Demo <ArrowRight className="ml-2 w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
               </Button>
             </div>
           </form>
