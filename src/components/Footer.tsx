@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Linkedin, Twitter } from 'lucide-react';
@@ -40,11 +39,6 @@ const Footer = () => {
               <li>
                 <Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   How SalesChef Works
-                </Link>
-              </li>
-              <li>
-                <Link to="/upload" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Get Started
                 </Link>
               </li>
               <li>
