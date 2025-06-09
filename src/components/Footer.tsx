@@ -48,9 +48,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Pricing
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -82,9 +82,9 @@ const Footer = () => {
             <h3 className="text-sm font-display font-semibold text-foreground">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  About SalesChef
-                </a>
+                <Link to="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  FAQ
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">

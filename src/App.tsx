@@ -14,6 +14,7 @@ const Index = lazy(() => import("./pages/Index"));
 const HowItWorks = lazy(() => import("./pages/HowItWorks"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const Industries = lazy(() => import("./pages/Industries"));
 const FileUpload = lazy(() => import("./pages/FileUpload"));
 const SchemaMapping = lazy(() => import("./pages/SchemaMapping"));
 const CleaningValidation = lazy(() => import("./pages/CleaningValidation"));
@@ -54,6 +55,7 @@ const App = () => (
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/industries" element={<Industries />} />
                 <Route path="/upload" element={<FileUpload />} />
                 <Route path="/mapping" element={<SchemaMapping />} />
                 <Route path="/cleaning" element={<CleaningValidation />} />
