@@ -49,10 +49,6 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
               </Button>
             </div>
           </form>
-          
-          <p className="text-xs sm:text-sm text-muted-foreground px-4">
-            Upload a CSV. Watch your data transform into content magic.
-          </p>
         </div>
       </div>
     </section>
