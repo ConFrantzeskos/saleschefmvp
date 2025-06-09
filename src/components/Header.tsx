@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -24,7 +23,8 @@ const industries = [
   { path: '/industrial-manufacturing', label: '🏭 Industrial & Manufacturing', name: 'Industrial & Manufacturing' },
   { path: '/healthcare-medical', label: '🏥 Healthcare & Medical', name: 'Healthcare & Medical' },
   { path: '/real-estate', label: '🏠 Real Estate', name: 'Real Estate' },
-  { path: '/automotive', label: '🚗 Automotive', name: 'Automotive' }
+  { path: '/automotive', label: '🚗 Automotive', name: 'Automotive' },
+  { path: '/investor-communications', label: '📊 Investor Communications', name: 'Investor Communications' }
 ];
 
 const Header = memo(() => {

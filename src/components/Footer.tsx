@@ -99,6 +99,11 @@ const Footer = () => {
                   🚗 Automotive
                 </Link>
               </li>
+              <li>
+                <Link to="/investor-communications" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  📊 Investor Communications
+                </Link>
+              </li>
             </ul>
           </div>
 
