@@ -37,7 +37,7 @@ export const usePerformanceMonitor = (componentName: string) => {
   }, [logMetrics]);
 
   // Performance optimization utility
-  const measureAsync = useCallback(async <T>(
+  const measureAsync = useCallback(async <T,>(
     operation: () => Promise<T>,
     operationName: string
   ): Promise<T> => {
