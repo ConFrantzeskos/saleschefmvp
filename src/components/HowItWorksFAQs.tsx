@@ -2,7 +2,11 @@
 import React from 'react';
 import FAQSection from './FAQSection';
 import { useEmailSubmission } from '@/hooks/useEmailSubmission';
-import { retailerFAQs, tourismFAQs, mediaFAQs } from './constants/faqData';
+import { 
+  retailerFAQs, 
+  travelTourismFAQs, 
+  mediaEntertainmentFAQs 
+} from './constants/faqData';
 
 const HowItWorksFAQs = () => {
   const retailSubmission = useEmailSubmission();
@@ -29,9 +33,9 @@ const HowItWorksFAQs = () => {
         />
         
         <FAQSection 
-          title="FAQs — For Tourism Clients" 
-          faqs={tourismFAQs} 
-          emoji="🌍" 
+          title="FAQs — For Travel & Tourism" 
+          faqs={travelTourismFAQs} 
+          emoji="✈️" 
           email={tourismSubmission.email}
           setEmail={tourismSubmission.setEmail}
           handleSubmit={tourismSubmission.handleSubmit}
@@ -39,9 +43,9 @@ const HowItWorksFAQs = () => {
         />
         
         <FAQSection 
-          title="FAQs — For Media Clients" 
-          faqs={mediaFAQs} 
-          emoji="🎥" 
+          title="FAQs — For Media & Entertainment" 
+          faqs={mediaEntertainmentFAQs} 
+          emoji="🎬" 
           email={mediaSubmission.email}
           setEmail={mediaSubmission.setEmail}
           handleSubmit={mediaSubmission.handleSubmit}
