@@ -110,18 +110,22 @@ const IntroducingSalesChef = () => {
     </div>
   );
 
-  // Visual examples for each stage
+  // Visual examples using CD1234 headphone content
   const InputVisual = () => (
     <div className="w-full max-w-sm space-y-4">
-      <div className="grid grid-cols-3 gap-3">
-        {['CSV', 'PDF', 'IMG'].map((type, i) => (
-          <div key={i} className="h-20 bg-muted rounded-xl flex items-center justify-center">
-            <span className="text-sm font-medium text-muted-foreground">{type}</span>
-          </div>
-        ))}
+      <div className="bg-muted rounded-xl p-4 border">
+        <div className="text-xs font-mono text-muted-foreground mb-2">Raw CSV Input:</div>
+        <div className="space-y-1 text-xs font-mono">
+          <div>SKU,CD1234</div>
+          <div>PRODUCT_NAME,24HR Wireless...</div>
+          <div>BATTERY_LIFE,24hr</div>
+          <div>BLUETOOTH_VERSION,5.0</div>
+          <div>FOLDABLE,YES</div>
+          <div className="text-muted-foreground">...</div>
+        </div>
       </div>
-      <div className="h-16 bg-gradient-to-r from-muted to-muted/50 rounded-xl flex items-center justify-center">
-        <span className="text-sm text-muted-foreground">Raw Product Data</span>
+      <div className="flex items-center justify-center text-muted-foreground text-sm">
+        Raw specs from suppliers
       </div>
     </div>
   );
@@ -129,15 +133,19 @@ const IntroducingSalesChef = () => {
   const DiscoveryVisual = () => (
     <div className="w-full max-w-sm space-y-4">
       <div className="relative">
-        <div className="h-24 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-4 border border-primary/20">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-4 border border-primary/20">
+          <div className="flex items-center gap-2 mb-3">
             <Search className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">AI Discovery</span>
+            <span className="text-sm font-medium">Customer Insights</span>
           </div>
-          <div className="space-y-1">
-            <div className="h-2 bg-primary/30 rounded w-3/4"></div>
-            <div className="h-2 bg-accent/30 rounded w-1/2"></div>
-            <div className="h-2 bg-primary/20 rounded w-5/6"></div>
+          <div className="space-y-2 text-xs">
+            <div className="bg-white/60 rounded p-2">
+              ⭐⭐⭐⭐⭐ "Perfect for remote work! Battery lasts my entire workday..."
+            </div>
+            <div className="bg-white/60 rounded p-2">
+              🏆 "Best value for battery life. Folding design is genius..."
+            </div>
+            <div className="text-primary font-medium">+2,847 reviews analyzed</div>
           </div>
         </div>
         <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
@@ -149,20 +157,23 @@ const IntroducingSalesChef = () => {
 
   const StrategyVisual = () => (
     <div className="w-full max-w-sm">
-      <div className="relative h-32 bg-gradient-to-br from-secondary/10 to-primary/10 rounded-xl p-4 border border-secondary/20">
+      <div className="bg-gradient-to-br from-secondary/10 to-primary/10 rounded-xl p-4 border border-secondary/20">
         <div className="flex items-center gap-2 mb-3">
           <Brain className="w-4 h-4 text-secondary" />
-          <span className="text-sm font-medium">Strategy Engine</span>
+          <span className="text-sm font-medium">Strategy Output</span>
         </div>
-        <div className="space-y-2">
-          <div className="flex gap-2">
-            <div className="h-3 bg-secondary/40 rounded flex-1"></div>
-            <div className="h-3 bg-primary/40 rounded flex-1"></div>
+        <div className="space-y-3 text-xs">
+          <div className="space-y-1">
+            <div className="font-medium text-secondary">Target: Remote Workers</div>
+            <div className="text-muted-foreground">Pain: Battery anxiety during long calls</div>
           </div>
-          <div className="h-3 bg-accent/30 rounded w-4/5"></div>
-          <div className="flex gap-2">
-            <div className="h-3 bg-secondary/30 rounded flex-1"></div>
-            <div className="h-3 bg-primary/30 rounded w-1/3"></div>
+          <div className="space-y-1">
+            <div className="font-medium text-primary">Key Message:</div>
+            <div className="italic">"All-day wireless freedom"</div>
+          </div>
+          <div className="bg-accent/20 rounded p-2">
+            <div className="font-medium">Positioning vs Sony WH-720N:</div>
+            <div>20% longer battery + travel-friendly</div>
           </div>
         </div>
       </div>
@@ -170,16 +181,23 @@ const IntroducingSalesChef = () => {
   );
 
   const ContentVisual = () => (
-    <div className="w-full max-w-sm">
-      <div className="grid grid-cols-2 gap-3">
-        {['PDP', 'Email', 'Social', 'Video'].map((type, i) => (
-          <div key={i} className="h-16 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg flex items-center justify-center border border-accent/20">
-            <span className="text-xs font-medium text-foreground">{type}</span>
+    <div className="w-full max-w-sm space-y-3">
+      <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-xl p-4 border border-accent/20">
+        <div className="flex items-center gap-2 mb-3">
+          <Zap className="w-4 h-4 text-accent" />
+          <span className="text-sm font-medium">Generated Content</span>
+        </div>
+        <div className="space-y-2 text-xs">
+          <div className="bg-white/60 rounded p-2">
+            <div className="font-medium">Meta Title:</div>
+            <div>"CD1234 24 Hour Wireless Headphones | Bluetooth 5.0..."</div>
           </div>
-        ))}
-      </div>
-      <div className="mt-3 h-8 bg-gradient-to-r from-accent/20 to-primary/20 rounded-lg flex items-center justify-center">
-        <span className="text-xs text-muted-foreground">+8 more formats</span>
+          <div className="bg-white/60 rounded p-2">
+            <div className="font-medium">Hero Copy:</div>
+            <div>"Stay connected, wire-free. The CD1234 combines 24-hour battery life..."</div>
+          </div>
+          <div className="text-accent font-medium">+12 content formats ready</div>
+        </div>
       </div>
     </div>
   );
@@ -187,14 +205,33 @@ const IntroducingSalesChef = () => {
   const DistributionVisual = () => (
     <div className="w-full max-w-sm space-y-3">
       <div className="grid grid-cols-2 gap-2">
-        {['Shopify', 'Amazon', 'BigCommerce', 'Magento'].map((platform, i) => (
-          <div key={i} className="h-12 bg-muted rounded-lg flex items-center justify-center">
-            <span className="text-xs font-medium text-muted-foreground">{platform}</span>
+        <div className="bg-muted rounded-lg p-3 text-center">
+          <div className="text-xs font-medium mb-1">Shopify</div>
+          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
+            ✓ Deployed
           </div>
-        ))}
+        </div>
+        <div className="bg-muted rounded-lg p-3 text-center">
+          <div className="text-xs font-medium mb-1">Amazon</div>
+          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
+            ✓ Live
+          </div>
+        </div>
+        <div className="bg-muted rounded-lg p-3 text-center">
+          <div className="text-xs font-medium mb-1">BigCommerce</div>
+          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
+            ✓ Published
+          </div>
+        </div>
+        <div className="bg-muted rounded-lg p-3 text-center">
+          <div className="text-xs font-medium mb-1">Retail Media</div>
+          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
+            ✓ Active
+          </div>
+        </div>
       </div>
-      <div className="h-10 bg-gradient-to-r from-muted/50 to-muted rounded-lg flex items-center justify-center">
-        <span className="text-xs text-muted-foreground">+4 more channels</span>
+      <div className="text-center text-xs text-muted-foreground">
+        CD1234 live across all channels
       </div>
     </div>
   );
