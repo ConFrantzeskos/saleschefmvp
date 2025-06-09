@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -178,12 +179,11 @@ const TravelTourism = () => {
       {/* The cost of the chaos */}
       <PageSection background="muted">
         <SectionHeader
-          title="The cost of the chaos"
+          title="💸 The cost of the chaos"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chaosConsequences.map((consequence, index) => (
             <div key={index} className="bg-background rounded-xl p-6 border border-border/50 shadow-soft">
-              <div className="text-destructive text-2xl mb-3">💸</div>
               <p className="text-foreground font-medium">{consequence}</p>
             </div>
           ))}
