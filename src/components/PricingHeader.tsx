@@ -33,14 +33,14 @@ const PricingHeader = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {[
-            { text: 'Retail SKUs', gradient: 'from-primary/20 to-primary/5' },
-            { text: 'Travel & tourism experiences', gradient: 'from-accent/20 to-accent/5' },
-            { text: 'Media & entertainment assets', gradient: 'from-secondary/20 to-secondary/5' },
-            { text: 'Financial product disclosures', gradient: 'from-primary/20 to-primary/5' },
-            { text: 'Industrial & manufacturing catalogues', gradient: 'from-accent/20 to-accent/5' },
-            { text: 'Healthcare & medical device content', gradient: 'from-secondary/20 to-secondary/5' },
-            { text: 'Real estate listings', gradient: 'from-primary/20 to-primary/5' },
-            { text: 'Automotive inventories', gradient: 'from-accent/20 to-accent/5' }
+            { text: '🛍️ Retail SKUs', gradient: 'from-primary/20 to-primary/5' },
+            { text: '✈️ Travel & tourism experiences', gradient: 'from-accent/20 to-accent/5' },
+            { text: '🎬 Media & entertainment assets', gradient: 'from-secondary/20 to-secondary/5' },
+            { text: '💰 Financial product disclosures', gradient: 'from-primary/20 to-primary/5' },
+            { text: '🏭 Industrial & manufacturing catalogues', gradient: 'from-accent/20 to-accent/5' },
+            { text: '🏥 Healthcare & medical device content', gradient: 'from-secondary/20 to-secondary/5' },
+            { text: '🏠 Real estate listings', gradient: 'from-primary/20 to-primary/5' },
+            { text: '🚗 Automotive inventories', gradient: 'from-accent/20 to-accent/5' }
           ].map((item, index) => (
             <div 
               key={index} 
