@@ -5,7 +5,7 @@ import { ArrowRight, Upload, Search, Brain, Zap, Globe, BarChart3 } from 'lucide
 const IntroducingSalesChef = () => {
   const inputTypes = [
     'Bulk upload 100s, 1,000s, or 100,000s of SKUs',
-    'CSV, ERP dumps, PDFs, PIM exports, raw PDPs, supplier spreadsheets — any format, any volume.',
+    'CSV, ERP dumps, PDFs, PIM exports, raw PDPs, supplier spreadsheets — any supplier, and format, any volume.',
     'SalesChef corrects missing data, categorises products intelligently',
     'Standardises formats across all channels and systems',
     'Validates and enriches incomplete specifications',
@@ -35,11 +35,11 @@ const IntroducingSalesChef = () => {
     'Image prompts + lifestyle imagery',
     'Video scripts + short-form video',
     'Voice/audio',
-    'POS',
-    'Widgets',
+    'POS and Tickets',
+    'Digital Display',
     'Training content',
     'Localised variants',
-    'Retail Media creatives',
+    'Retail Media content',
     'Social content',
     'Sales enablement'
   ];
