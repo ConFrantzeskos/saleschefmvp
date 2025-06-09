@@ -246,14 +246,48 @@ const IntroducingSalesChef = () => {
         </div>
         <div className="space-y-2 text-xs">
           <div className="bg-white/60 rounded p-2">
-            <div className="font-medium">Meta Title:</div>
-            <div>"CD1234 24 Hour Wireless Headphones | Bluetooth 5.0..."</div>
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">📝</span>
+              <span className="font-medium">Text Content</span>
+            </div>
+            <div>PDP copy, SEO meta tags, feature bullets</div>
           </div>
           <div className="bg-white/60 rounded p-2">
-            <div className="font-medium">Hero Copy:</div>
-            <div>"Stay connected, wire-free. The CD1234 combines 24-hour battery life..."</div>
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">🎵</span>
+              <span className="font-medium">Audio Content</span>
+            </div>
+            <div>Voice ads, product demos, audio descriptions</div>
           </div>
-          <div className="text-accent font-medium">+12 content formats ready</div>
+          <div className="bg-white/60 rounded p-2">
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">🎬</span>
+              <span className="font-medium">Video Content</span>
+            </div>
+            <div>Product videos, social clips, tutorials</div>
+          </div>
+          <div className="bg-white/60 rounded p-2">
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">🖼️</span>
+              <span className="font-medium">Visual Content</span>
+            </div>
+            <div>Lifestyle imagery, infographics, banners</div>
+          </div>
+          <div className="bg-white/60 rounded p-2">
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">💻</span>
+              <span className="font-medium">Software Assets</span>
+            </div>
+            <div>AR try-ons, product configurators, widgets</div>
+          </div>
+          <div className="bg-white/60 rounded p-2">
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">🏪</span>
+              <span className="font-medium">Physical Assets</span>
+            </div>
+            <div>POS displays, packaging copy, shelf talkers</div>
+          </div>
+          <div className="text-accent font-medium">+20 formats ready for deployment</div>
         </div>
       </div>
     </div>
@@ -355,11 +389,11 @@ const IntroducingSalesChef = () => {
             <ArrowRight className="w-8 h-8 text-muted-foreground" />
           </div>
 
-          {/* Panel 4: Creative + Content Explosion */}
+          {/* Panel 4: Creative + Content Feast */}
           <div className="animate-slide-up">
             <FlowPanel
               icon={Zap}
-              title="4. CREATIVE + CONTENT EXPLOSION"
+              title="4. CREATIVE + CONTENT FEAST"
               items={contentOutputs}
               visualExample={<ContentVisual />}
             />
