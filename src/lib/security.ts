@@ -100,15 +100,13 @@ export const initializeSecurity = (): void => {
   // Additional runtime security checks
   if (import.meta.env.PROD) {
     // Hide sensitive information in production
-    const originalLog = console.log;
-    const originalWarn = console.warn;
     const originalError = console.error;
     
     console.log = () => {};
     console.warn = () => {};
     console.error = () => {};
     
-    // Keep a reference for critical errors
-    window.__criticalError = originalError;
+    // Keep a reference for critical errors with proper typing
+    (window as any).__criticalError = originalError;
   }
 };
