@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { Mail, Upload, Search, Edit, Palette, Rocket, BarChart3 } from 'lucide-react';
 import AgentSection from '@/components/AgentSection';
 import FAQSection from '@/components/FAQSection';
+import StepCard from '@/components/StepCard';
 import { coreAgents, inputAgents, strategyAgents, contentAgents, qualityAgents } from '@/components/constants/agentData';
 import { retailerFAQs, tourismFAQs, mediaFAQs } from '@/components/constants/faqData';
 
@@ -11,6 +13,7 @@ const HowItWorks = () => {
   const [retailEmail, setRetailEmail] = useState('');
   const [tourismEmail, setTourismEmail] = useState('');
   const [mediaEmail, setMediaEmail] = useState('');
+  const [tryItEmail, setTryItEmail] = useState('');
   const navigate = useNavigate();
 
   const handleRetailSubmit = (e: React.FormEvent) => {
@@ -40,6 +43,74 @@ const HowItWorks = () => {
     }, 1000);
   };
 
+  const handleSubmitWithRedirect = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!tryItEmail) return;
+    
+    toast.success("Welcome to SalesChef! Let's get started with your upload.");
+    setTimeout(() => {
+      navigate('/upload');
+    }, 1000);
+  };
+
+  const steps = [
+    { step: '1', title: 'Register', desc: '', icon: Mail, color: 'bg-gradient-brand', hasEmailInput: true },
+    { 
+      step: '2', 
+      title: 'Upload', 
+      desc: '', 
+      icon: Upload, 
+      color: 'bg-gradient-accent',
+      hasLogos: true,
+      logoType: 'fileTypes'
+    },
+    { 
+      step: '3', 
+      title: 'SalesChef Cleans', 
+      desc: '', 
+      icon: Search, 
+      color: 'bg-secondary',
+      hasLogos: true,
+      logoType: 'cleaningActions'
+    },
+    { 
+      step: '4', 
+      title: 'SalesChef Enriches', 
+      desc: '', 
+      icon: Edit, 
+      color: 'bg-gradient-brand',
+      hasLogos: true,
+      logoType: 'sources'
+    },
+    { 
+      step: '5', 
+      title: 'SalesChef Creates', 
+      desc: '', 
+      icon: Palette, 
+      color: 'bg-gradient-accent',
+      hasLogos: true,
+      logoType: 'contentTypes'
+    },
+    { 
+      step: '6', 
+      title: 'SalesChef Publishes', 
+      desc: '', 
+      icon: Rocket, 
+      color: 'bg-secondary',
+      hasLogos: true,
+      logoType: 'integrations'
+    },
+    { 
+      step: '7', 
+      title: 'SalesChef Optimises', 
+      desc: '', 
+      icon: BarChart3, 
+      color: 'bg-gradient-brand',
+      hasLogos: true,
+      logoType: 'analytics'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Page header with title */}
@@ -53,6 +124,38 @@ const HowItWorks = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* How One SKU Becomes a Sales Machine Section */}
+        <section className="px-4 sm:px-6 py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30 mb-16">
+          <div className="container-width">
+            <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
+                How One SKU Becomes a Sales Machine
+              </h2>
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                SalesChef's AI agents instantly transform messy product specs into persuasive, multi-channel content that converts
+              </p>
+            </div>
+            
+            <div className="relative">
+              {/* Enhanced progress line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-border via-primary/20 to-border hidden lg:block opacity-30" />
+              
+              <div className="space-y-4 sm:space-y-6">
+                {steps.map((step, index) => (
+                  <StepCard 
+                    key={index}
+                    step={step}
+                    index={index}
+                    tryItEmail={tryItEmail}
+                    setTryItEmail={setTryItEmail}
+                    handleSubmitWithRedirect={handleSubmitWithRedirect}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Core Always-On Agents */}
         <AgentSection 
           title="Core Always-On Agents"
