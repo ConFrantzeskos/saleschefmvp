@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -167,7 +166,7 @@ const AppContent = () => {
             console.log('[Performance] Page Load:', {
               domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
               loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
-              totalTime: navigation.loadEventEnd - navigation.navigationStart,
+              totalTime: navigation.loadEventEnd - navigation.fetchStart,
             });
           }
         }
