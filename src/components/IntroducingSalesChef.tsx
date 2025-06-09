@@ -154,33 +154,40 @@ const IntroducingSalesChef = () => {
           <div className="space-y-2 text-xs">
             <div className="bg-white/60 rounded p-2">
               <div className="flex items-center gap-1 mb-1">
-                <span className="text-xs">📝</span>
-                <span className="font-medium">Amazon Reviews</span>
+                <span className="text-xs">🔍</span>
+                <span className="font-medium">Google Keywords</span>
               </div>
-              ⭐⭐⭐⭐⭐ "Perfect for remote work! Battery lasts..."
+              "wireless headphones 24hr battery" - 12K searches/mo
             </div>
             <div className="bg-white/60 rounded p-2">
               <div className="flex items-center gap-1 mb-1">
-                <span className="text-xs">🐦</span>
-                <span className="font-medium">Social Media</span>
+                <span className="text-xs">⭐</span>
+                <span className="font-medium">Review Analysis</span>
               </div>
-              "Just got these headphones - folding design is genius!"
+              4.7/5 stars • Top feature: "amazing battery life" (89%)
             </div>
             <div className="bg-white/60 rounded p-2">
               <div className="flex items-center gap-1 mb-1">
-                <span className="text-xs">🎥</span>
-                <span className="font-medium">YouTube Reviews</span>
+                <span className="text-xs">💬</span>
+                <span className="font-medium">Customer Verbatims</span>
               </div>
-              "Best value for battery life in this price range"
+              "Perfect for my 12-hour flights" "Folds so compact!"
             </div>
             <div className="bg-white/60 rounded p-2">
               <div className="flex items-center gap-1 mb-1">
-                <span className="text-xs">🛒</span>
-                <span className="font-medium">Retail Forums</span>
+                <span className="text-xs">🎯</span>
+                <span className="font-medium">Feature Rankings</span>
               </div>
-              "Compared to Sony WH-720N, these last 20% longer"
+              #1 Battery life #2 Portability #3 Sound quality
             </div>
-            <div className="text-primary font-medium">+15 sources analyzed</div>
+            <div className="bg-white/60 rounded p-2">
+              <div className="flex items-center gap-1 mb-1">
+                <span className="text-xs">📊</span>
+                <span className="font-medium">Competitor Intel</span>
+              </div>
+              Sony WH-720N: 20hrs vs our 24hrs
+            </div>
+            <div className="text-primary font-medium">+23 sources analyzed</div>
           </div>
         </div>
         <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
