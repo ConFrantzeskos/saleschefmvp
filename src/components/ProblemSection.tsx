@@ -43,15 +43,12 @@ const ProblemSection = () => {
                 </div>
               ))}
             </div>
-            <p className="text-center text-sm font-medium text-muted-foreground">
-              Scaling quality content shouldn't be this hard.
-            </p>
           </div>
 
           {/* The Compounding Cost */}
           <div className="animate-slide-up">
             <h3 className="text-lg sm:text-xl font-display font-semibold mb-4 sm:mb-6 text-center text-foreground">
-              The Compounding Cost:
+              Scaling quality content shouldn't be this hard.
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {costs.map((cost, index) => (
