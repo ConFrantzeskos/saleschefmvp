@@ -25,9 +25,15 @@ const OutputsSection = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
           {outputs.map((output, index) => (
-            <div key={index} className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:shadow-soft transition-all duration-300 group hover:border-primary/20 animate-slide-up" style={{ animationDelay: `${index * 0.05}s` }}>
+            <div 
+              key={index} 
+              className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:shadow-soft transition-all duration-300 group hover:border-primary/20 animate-slide-up" 
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
               <div className="text-2xl flex-shrink-0">{output.icon}</div>
-              <span className="text-sm sm:text-base text-foreground font-medium group-hover:text-primary transition-colors">{output.text}</span>
+              <span className="text-sm sm:text-base text-foreground font-medium group-hover:text-primary transition-colors">
+                {output.text}
+              </span>
             </div>
           ))}
         </div>

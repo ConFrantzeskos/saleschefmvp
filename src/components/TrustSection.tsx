@@ -1,39 +1,15 @@
 
 import React from 'react';
-import { Check, Shield, Clock, Users, Zap, Star } from 'lucide-react';
+import { Check, Star } from 'lucide-react';
 
 const TrustSection = () => {
   const features = [
-    { 
-      text: 'Not another system — no rip & replace',
-      icon: Shield,
-      color: 'text-primary'
-    },
-    { 
-      text: 'Zero-storage, orchestration-led, agentic architecture',
-      icon: Zap,
-      color: 'text-accent'
-    },
-    { 
-      text: 'Works with your existing stack',
-      icon: Shield,
-      color: 'text-secondary'
-    },
-    { 
-      text: 'Enterprise scale, loved by lean teams',
-      icon: Users,
-      color: 'text-primary'
-    },
-    { 
-      text: 'High-integrity outputs — brand-safe, compliant, on-tone',
-      icon: Check,
-      color: 'text-accent'
-    },
-    { 
-      text: 'Real-time results — minutes, not months',
-      icon: Clock,
-      color: 'text-secondary'
-    }
+    { text: 'Not another system — no rip & replace' },
+    { text: 'Zero-storage, orchestration-led, agentic architecture' },
+    { text: 'Works with your existing stack' },
+    { text: 'Enterprise scale, loved by lean teams' },
+    { text: 'High-integrity outputs — brand-safe, compliant, on-tone' },
+    { text: 'Real-time results — minutes, not months' }
   ];
 
   return (
@@ -51,13 +27,19 @@ const TrustSection = () => {
         
         <div className="grid gap-6 max-w-4xl mx-auto animate-fade-in">
           {features.map((feature, index) => (
-            <div key={index} className="group animate-slide-up hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div 
+              key={index} 
+              className="group animate-slide-up hover-lift" 
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="flex items-center gap-6 p-8 rounded-3xl bg-card/80 backdrop-blur-sm border border-border/50 hover:bg-card hover:border-primary/20 transition-all duration-500 hover:shadow-brand">
                 <div className="w-6 h-6 text-accent flex-shrink-0">
                   <Check className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <span className="text-body text-foreground group-hover:text-primary transition-colors duration-300 font-medium leading-relaxed">{feature.text}</span>
+                  <span className="text-body text-foreground group-hover:text-primary transition-colors duration-300 font-medium leading-relaxed">
+                    {feature.text}
+                  </span>
                 </div>
               </div>
             </div>

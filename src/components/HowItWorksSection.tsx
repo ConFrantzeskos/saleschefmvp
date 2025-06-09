@@ -1,7 +1,5 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
 import { Upload, Settings, Rocket } from 'lucide-react';
 
 interface HowItWorksSectionProps {
@@ -49,13 +47,19 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
         
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {steps.map((step, index) => (
-            <div key={index} className="text-center animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div 
+              key={index} 
+              className="text-center animate-slide-up" 
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="bg-card rounded-2xl p-6 shadow-soft border border-border hover:shadow-medium transition-all duration-300 group hover:border-primary/20">
                 <div className={`w-16 h-16 ${step.color} text-white rounded-3xl flex items-center justify-center mx-auto mb-4 font-display font-bold text-xl shadow-soft group-hover:scale-105 transition-transform`}>
                   {step.step}
                 </div>
                 <step.icon className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-display font-bold text-lg text-foreground mb-3 group-hover:text-primary transition-colors">{step.title}</h3>
+                <h3 className="font-display font-bold text-lg text-foreground mb-3 group-hover:text-primary transition-colors">
+                  {step.title}
+                </h3>
                 <p className="text-sm text-muted-foreground">{step.desc}</p>
               </div>
             </div>
