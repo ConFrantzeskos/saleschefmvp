@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import Header from "./components/Header";
 import LoadingSpinner from "./components/LoadingSpinner";
+import SecurityBoundary from "./components/SecurityBoundary";
 
 // Lazy load all pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -35,36 +35,38 @@ const queryClient = new QueryClient({
 });
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Header />
-        <div className="pt-20">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/how-it-works" element={<HowItWorks />} />
-              <Route path="/upload" element={<FileUpload />} />
-              <Route path="/mapping" element={<SchemaMapping />} />
-              <Route path="/cleaning" element={<CleaningValidation />} />
-              <Route path="/enrichment" element={<Enrichment />} />
-              <Route path="/enrichment-review" element={<EnrichmentReview />} />
-              <Route path="/enrichment-review/:id" element={<EnrichmentAssetReview />} />
-              <Route path="/generation" element={<ContentGeneration />} />
-              <Route path="/review" element={<ReviewContent />} />
-              <Route path="/review/:id" element={<AssetReview />} />
-              <Route path="/enhance" element={<EnhanceAssets />} />
-              <Route path="/deploy" element={<Deploy />} />
-              <Route path="/optimization" element={<Optimization />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <SecurityBoundary>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Header />
+          <div className="pt-20">
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/upload" element={<FileUpload />} />
+                <Route path="/mapping" element={<SchemaMapping />} />
+                <Route path="/cleaning" element={<CleaningValidation />} />
+                <Route path="/enrichment" element={<Enrichment />} />
+                <Route path="/enrichment-review" element={<EnrichmentReview />} />
+                <Route path="/enrichment-review/:id" element={<EnrichmentAssetReview />} />
+                <Route path="/generation" element={<ContentGeneration />} />
+                <Route path="/review" element={<ReviewContent />} />
+                <Route path="/review/:id" element={<AssetReview />} />
+                <Route path="/enhance" element={<EnhanceAssets />} />
+                <Route path="/deploy" element={<Deploy />} />
+                <Route path="/optimization" element={<Optimization />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </SecurityBoundary>
 );
 
 export default App;
