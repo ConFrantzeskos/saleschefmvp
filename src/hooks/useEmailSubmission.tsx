@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
-// Default Zapier webhook URL - you can replace this with your actual webhook URL
-const ZAPIER_WEBHOOK_URL = process.env.REACT_APP_ZAPIER_WEBHOOK_URL || '';
+// Your Zapier webhook URL
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/';
 
 export const useEmailSubmission = () => {
   const [email, setEmail] = useState('');
@@ -19,23 +19,21 @@ export const useEmailSubmission = () => {
     console.log("Submitting email:", email);
 
     try {
-      // Send to Zapier if webhook URL is configured
-      if (ZAPIER_WEBHOOK_URL) {
-        await fetch(ZAPIER_WEBHOOK_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "no-cors",
-          body: JSON.stringify({
-            email: email,
-            timestamp: new Date().toISOString(),
-            source: window.location.pathname,
-            user_agent: navigator.userAgent,
-          }),
-        });
-        console.log("Email sent to Zapier webhook");
-      }
+      // Send to Zapier webhook
+      await fetch(ZAPIER_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({
+          email: email,
+          timestamp: new Date().toISOString(),
+          source: window.location.pathname,
+          user_agent: navigator.userAgent,
+        }),
+      });
+      console.log("Email sent to Zapier webhook");
 
       toast.success("Welcome to SalesChef! Let's get started with your upload.");
       setTimeout(() => {

@@ -9,7 +9,7 @@ import { Copy, ExternalLink } from 'lucide-react';
 
 const ZapierConfig = () => {
   const [webhookUrl, setWebhookUrl] = useState(
-    localStorage.getItem('zapier_webhook_url') || ''
+    localStorage.getItem('zapier_webhook_url') || 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/'
   );
 
   const handleSave = () => {
