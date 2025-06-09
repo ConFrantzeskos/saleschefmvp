@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowRight, Upload, Search, Brain, Zap, Globe } from 'lucide-react';
+import { ArrowRight, Upload, Search, Brain, Zap, Globe, BarChart3 } from 'lucide-react';
 
 const IntroducingSalesChef = () => {
   const inputTypes = [
@@ -45,6 +45,18 @@ const IntroducingSalesChef = () => {
   const channels = [
     'Shopify', 'Amazon', 'BigCommerce', 'Magento', 'Retail Media Network',
     'Print / POS', 'Global marketplaces (Zalando, Mirakl, Meta, etc)', 'Regional variants'
+  ];
+
+  const optimizationFeatures = [
+    'Tracks conversion performance by SKU, category, channel',
+    'Monitors SEO ranking shifts + keyword performance',
+    'Detects emerging trends, seasonality, competitor changes',
+    'Surfaces which benefits/features drive sales',
+    'A/B tests copy variants, imagery, structure',
+    'Continuously refines content briefs and generation logic',
+    'Feeds insights back into the system — content keeps getting better',
+    'Aligns outputs to top-performing content patterns',
+    'Human feedback loop: easily approve/tune direction'
   ];
 
   const FlowPanel = ({ 
@@ -367,6 +379,93 @@ const IntroducingSalesChef = () => {
     </div>
   );
 
+  const OptimizationVisual = () => (
+    <div className="w-full max-w-sm space-y-4">
+      <div className="bg-gradient-to-br from-secondary/10 to-primary/10 rounded-xl p-4 border border-secondary/20">
+        <div className="flex items-center gap-2 mb-3">
+          <BarChart3 className="w-4 h-4 text-secondary" />
+          <span className="text-sm font-medium">Continuous Learning Loop</span>
+        </div>
+        
+        {/* Feedback Loop Visual */}
+        <div className="relative mb-4">
+          <div className="flex justify-center items-center">
+            <div className="grid grid-cols-3 gap-2 text-center">
+              {/* Step 1: Publish */}
+              <div className="bg-white/80 rounded-lg p-2 border">
+                <div className="text-lg mb-1">🚀</div>
+                <div className="text-xs font-medium">1. Publish</div>
+              </div>
+              
+              {/* Step 2: Detect */}
+              <div className="bg-white/80 rounded-lg p-2 border">
+                <div className="text-lg mb-1">👁️</div>
+                <div className="text-xs font-medium">2. Detect</div>
+              </div>
+              
+              {/* Step 3: Analyse */}
+              <div className="bg-white/80 rounded-lg p-2 border">
+                <div className="text-lg mb-1">🧠</div>
+                <div className="text-xs font-medium">3. Analyse</div>
+              </div>
+              
+              {/* Step 4: Optimise */}
+              <div className="bg-white/80 rounded-lg p-2 border">
+                <div className="text-lg mb-1">⚡</div>
+                <div className="text-xs font-medium">4. Optimise</div>
+              </div>
+              
+              {/* Step 5: Re-publish */}
+              <div className="bg-white/80 rounded-lg p-2 border">
+                <div className="text-lg mb-1">🔄</div>
+                <div className="text-xs font-medium">5. Re-publish</div>
+              </div>
+              
+              {/* Feedback indicator */}
+              <div className="bg-accent/20 rounded-lg p-2 border border-accent/30">
+                <div className="text-lg mb-1">📈</div>
+                <div className="text-xs font-medium text-accent">Improve</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Performance Metrics */}
+        <div className="space-y-2 text-xs">
+          <div className="bg-white/60 rounded p-2">
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">📊</span>
+              <span className="font-medium">Performance Tracking</span>
+            </div>
+            <div>CVR: +15% • SEO rank: #3→#1 • CTR: +22%</div>
+          </div>
+          
+          <div className="bg-white/60 rounded p-2">
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">🔍</span>
+              <span className="font-medium">A/B Test Results</span>
+            </div>
+            <div>Variant B: "24-hour battery freedom" wins by 18%</div>
+          </div>
+          
+          <div className="bg-white/60 rounded p-2">
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-xs">🎯</span>
+              <span className="font-medium">Trend Detection</span>
+            </div>
+            <div>"Noise cancelling" searches +45% this quarter</div>
+          </div>
+          
+          <div className="bg-accent/20 rounded p-2 border border-accent/20">
+            <div className="text-xs font-medium text-accent text-center">
+              Content performance improves 12% each cycle
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section className="section-spacing bg-gradient-subtle">
       <div className="content-width">
@@ -452,6 +551,23 @@ const IntroducingSalesChef = () => {
               subtitle="Auto-deploys optimized content across every platform"
               items={channels}
               visualExample={<DistributionVisual />}
+            />
+          </div>
+
+          {/* Arrow */}
+          <div className="flex justify-center animate-fade-in">
+            <ArrowRight className="w-8 h-8 text-muted-foreground" />
+          </div>
+
+          {/* Panel 6: Optimization */}
+          <div className="animate-slide-up">
+            <FlowPanel
+              icon={BarChart3}
+              title="6. DETECT, OPTIMISE, LEARN, IMPROVE"
+              subtitle="Your content gets smarter. Automatically."
+              items={optimizationFeatures}
+              highlight={true}
+              visualExample={<OptimizationVisual />}
             />
           </div>
         </div>
