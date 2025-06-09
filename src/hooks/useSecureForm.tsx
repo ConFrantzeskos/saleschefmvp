@@ -10,11 +10,12 @@ interface UseSecureFormProps {
   redirectPath?: string;
 }
 
-export const useSecureForm = ({ onSubmit, rateLimitMs = 2000, redirectPath = '/upload' }: UseSecureFormProps) => {
+export const useSecureForm = ({ onSubmit, rateLimitMs = 3000, redirectPath = '/upload' }: UseSecureFormProps) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastSubmit, setLastSubmit] = useState<number>(0);
+  const [submitCount, setSubmitCount] = useState<number>(0);
 
   const handleEmailChange = useCallback((value: string) => {
     const sanitized = sanitizeInput(value);
@@ -25,49 +26,79 @@ export const useSecureForm = ({ onSubmit, rateLimitMs = 2000, redirectPath = '/u
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Rate limiting
+    // Enhanced progressive rate limiting
     const now = Date.now();
-    if (now - lastSubmit < rateLimitMs) {
-      setError('Please wait before submitting again');
-      logSecurityEvent('Rate limit exceeded', { timestamp: now });
+    const timeSinceLastSubmit = now - lastSubmit;
+    const dynamicRateLimit = Math.min(rateLimitMs * Math.pow(1.5, submitCount), 30000); // Max 30s
+    
+    if (timeSinceLastSubmit < dynamicRateLimit) {
+      const waitTime = Math.ceil((dynamicRateLimit - timeSinceLastSubmit) / 1000);
+      setError(`Please wait ${waitTime} seconds before submitting again`);
+      logSecurityEvent('Progressive rate limit exceeded', { 
+        submitCount,
+        timeSinceLastSubmit,
+        dynamicRateLimit 
+      });
       return;
     }
     
     setIsSubmitting(true);
     setError(null);
+    setSubmitCount(prev => prev + 1);
 
     try {
       const validation = validateEmail(email);
       if (!validation.isValid) {
         setError(validation.error || 'Invalid email');
-        logSecurityEvent('Email validation failed', { email: email.substring(0, 3) + '***' });
+        logSecurityEvent('Email validation failed', { 
+          emailLength: email.length,
+          hasDomain: email.includes('@') 
+        });
         return;
       }
 
-      // Get webhook URL from secure storage
-      const webhookUrl = secureStorage.getItem('zapier_webhook_url') || 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/';
+      // Get webhook URL from secure storage - NO DEFAULT FALLBACK
+      const webhookUrl = secureStorage.getItem('zapier_webhook_url');
+      
+      if (!webhookUrl) {
+        setError('Zapier webhook not configured. Please visit /zapier to set it up.');
+        return;
+      }
       
       // Validate webhook URL
       const urlValidation = validateWebhookUrl(webhookUrl);
       if (!urlValidation.isValid) {
-        setError('Zapier webhook not configured properly');
+        setError('Zapier webhook configuration is invalid');
+        logSecurityEvent('Invalid webhook URL in secure form');
         return;
       }
+
+      // Generate enhanced payload with security tokens
+      const payload = {
+        email: email,
+        timestamp: new Date().toISOString(),
+        source: window.location.pathname,
+        user_agent: navigator.userAgent,
+        csrf_token: crypto.randomUUID(),
+        session_id: sessionStorage.getItem('session_id') || crypto.randomUUID(),
+        form_type: 'secure_form',
+      };
 
       // Send to Zapier webhook
       await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
         },
         mode: "no-cors",
-        body: JSON.stringify({
-          email: email,
-          timestamp: new Date().toISOString(),
-          source: window.location.pathname,
-          user_agent: navigator.userAgent,
-        }),
+        body: JSON.stringify(payload),
       });
+
+      // Store session ID for tracking
+      if (!sessionStorage.getItem('session_id')) {
+        sessionStorage.setItem('session_id', crypto.randomUUID());
+      }
 
       setLastSubmit(now);
       
@@ -82,18 +113,22 @@ export const useSecureForm = ({ onSubmit, rateLimitMs = 2000, redirectPath = '/u
       }
       
       setEmail(''); // Clear form on success
+      setSubmitCount(0); // Reset submit count on success
     } catch (err) {
       setError('Submission failed. Please try again.');
       // Only log errors in development mode
       if (import.meta.env.DEV) {
         console.error('Form submission error:', err);
       } else {
-        logSecurityEvent('Form submission failed');
+        logSecurityEvent('Form submission failed', { 
+          source: 'secure_form',
+          errorType: err instanceof Error ? err.name : 'unknown' 
+        });
       }
     } finally {
       setIsSubmitting(false);
     }
-  }, [email, onSubmit, lastSubmit, rateLimitMs, redirectPath]);
+  }, [email, onSubmit, lastSubmit, rateLimitMs, redirectPath, submitCount]);
 
   return {
     email,

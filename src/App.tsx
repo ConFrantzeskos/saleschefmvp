@@ -13,6 +13,7 @@ import ContentGeneration from '@/pages/ContentGeneration';
 import ReviewContent from '@/pages/ReviewContent';
 import Deploy from '@/pages/Deploy';
 import ZapierConfig from '@/components/ZapierConfig';
+import FAQ from '@/pages/FAQ';
 
 import SecurityMonitor from '@/components/SecurityMonitor';
 import SecurityBoundary from '@/components/SecurityBoundary';
@@ -36,6 +37,7 @@ function App() {
               <Route path="/review" element={<ReviewContent />} />
               <Route path="/deploy" element={<Deploy />} />
               <Route path="/zapier" element={<ZapierConfig />} />
+              <Route path="/faq" element={<FAQ />} />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
