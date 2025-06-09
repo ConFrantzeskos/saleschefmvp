@@ -1,21 +1,12 @@
 
 import React from 'react';
-import { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { getLogosForType } from './constants/logoData';
+import { StepData } from '@/constants/stepsData';
 
 interface StepCardProps {
-  step: {
-    step: string;
-    title: string;
-    desc: string;
-    icon: LucideIcon;
-    color: string;
-    hasEmailInput?: boolean;
-    hasLogos?: boolean;
-    logoType?: string;
-  };
+  step: StepData;
   index: number;
   tryItEmail?: string;
   setTryItEmail?: (email: string) => void;

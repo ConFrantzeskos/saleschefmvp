@@ -1,42 +1,13 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import React from 'react';
 import FAQSection from './FAQSection';
+import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 import { retailerFAQs, tourismFAQs, mediaFAQs } from './constants/faqData';
 
 const HowItWorksFAQs = () => {
-  const [retailEmail, setRetailEmail] = useState('');
-  const [tourismEmail, setTourismEmail] = useState('');
-  const [mediaEmail, setMediaEmail] = useState('');
-  const navigate = useNavigate();
-
-  const handleRetailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!retailEmail) return;
-    toast.success("Welcome to SalesChef! Let's get started with your upload.");
-    setTimeout(() => {
-      navigate('/upload');
-    }, 1000);
-  };
-
-  const handleTourismSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!tourismEmail) return;
-    toast.success("Welcome to SalesChef! Let's get started with your upload.");
-    setTimeout(() => {
-      navigate('/upload');
-    }, 1000);
-  };
-
-  const handleMediaSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!mediaEmail) return;
-    toast.success("Welcome to SalesChef! Let's get started with your upload.");
-    setTimeout(() => {
-      navigate('/upload');
-    }, 1000);
-  };
+  const retailSubmission = useEmailSubmission();
+  const tourismSubmission = useEmailSubmission();
+  const mediaSubmission = useEmailSubmission();
 
   return (
     <section className="py-8 sm:py-12 border-t">
@@ -51,9 +22,9 @@ const HowItWorksFAQs = () => {
           title="FAQs — For Retailers" 
           faqs={retailerFAQs} 
           emoji="🛍️" 
-          email={retailEmail}
-          setEmail={setRetailEmail}
-          handleSubmit={handleRetailSubmit}
+          email={retailSubmission.email}
+          setEmail={retailSubmission.setEmail}
+          handleSubmit={retailSubmission.handleSubmit}
           ctaText="Ready to transform your product content?"
         />
         
@@ -61,9 +32,9 @@ const HowItWorksFAQs = () => {
           title="FAQs — For Tourism Clients" 
           faqs={tourismFAQs} 
           emoji="🌍" 
-          email={tourismEmail}
-          setEmail={setTourismEmail}
-          handleSubmit={handleTourismSubmit}
+          email={tourismSubmission.email}
+          setEmail={tourismSubmission.setEmail}
+          handleSubmit={tourismSubmission.handleSubmit}
           ctaText="Transform your tourism content at scale?"
         />
         
@@ -71,9 +42,9 @@ const HowItWorksFAQs = () => {
           title="FAQs — For Media Clients" 
           faqs={mediaFAQs} 
           emoji="🎥" 
-          email={mediaEmail}
-          setEmail={setMediaEmail}
-          handleSubmit={handleMediaSubmit}
+          email={mediaSubmission.email}
+          setEmail={mediaSubmission.setEmail}
+          handleSubmit={mediaSubmission.handleSubmit}
           ctaText="Unlock your content's revenue potential?"
         />
       </div>
