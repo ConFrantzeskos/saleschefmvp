@@ -4,15 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowRight } from 'lucide-react';
 import PageSection from '@/components/layout/PageSection';
-import { useSecureForm } from '@/hooks/useSecureForm';
-import { toast } from 'sonner';
+import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 
 const PricingCTA = () => {
-  const { email, handleEmailChange, handleSubmit, isSubmitting, isValid } = useSecureForm({
-    onSubmit: async (email) => {
-      toast.success("Welcome to SalesChef! Let's get started with your upload.");
-    }
-  });
+  const { email, setEmail, handleSubmit } = useEmailSubmission();
 
   return (
     <PageSection background="gradient" padding="lg">
@@ -36,7 +31,7 @@ const PricingCTA = () => {
               type="email"
               placeholder="Your Business Email"
               value={email}
-              onChange={(e) => handleEmailChange(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               className="h-12 text-base"
               required
             />
@@ -55,7 +50,7 @@ const PricingCTA = () => {
             <Button 
               type="submit" 
               className="w-full h-12 text-base font-semibold"
-              disabled={!isValid || isSubmitting}
+              disabled={!email}
             >
               Get Pricing & Demo <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
@@ -72,7 +67,7 @@ const PricingCTA = () => {
           <Button 
             onClick={handleSubmit}
             className="font-semibold"
-            disabled={!isValid || isSubmitting}
+            disabled={!email}
           >
             Get Pricing & Demo <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
