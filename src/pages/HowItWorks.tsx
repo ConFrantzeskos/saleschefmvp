@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -113,9 +114,9 @@ const HowItWorks = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">How SalesChef Works</h1>
+        <h1 className="text-4xl font-bold mb-4">How One SKU Becomes a Sales Machine</h1>
         <p className="text-xl text-muted-foreground">
-          Meet the AI agents that transform your raw product data into sales-ready content
+          SalesChef's AI agents instantly transform messy product specs into persuasive, multi-channel content that converts
         </p>
       </div>
 
@@ -125,10 +126,10 @@ const HowItWorks = () => {
           <div className="container-width">
             <div className="text-center mb-8 sm:mb-12 animate-fade-in">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
-                How One SKU Becomes a Sales Machine
+                How SalesChef Works
               </h2>
               <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                SalesChef's AI agents instantly transform messy product specs into persuasive, multi-channel content that converts
+                Meet the AI agents that transform your raw product data into sales-ready content
               </p>
             </div>
             
