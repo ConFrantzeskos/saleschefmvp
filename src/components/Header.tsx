@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -6,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { path: '/how-it-works', label: 'How It Works' },
+  { path: '/faq', label: 'FAQ' },
   { path: '/pricing', label: 'Pricing' },
   { path: '/industries', label: 'Industries' }
 ];
