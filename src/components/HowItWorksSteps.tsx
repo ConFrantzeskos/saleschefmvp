@@ -12,7 +12,7 @@ const HowItWorksSteps = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight mb-3">
-            How to turn a SKU into a sales machine
+            How to turn your specs into a sales machine
           </h2>
         </div>
         
