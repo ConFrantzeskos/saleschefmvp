@@ -18,7 +18,7 @@ const HowItWorksAgents = () => {
 
       {/* Always-On Agents Section */}
       <AgentSection 
-        title="Always on Agents"
+        title="👨‍🍳 Always on Agents"
         description="These four are always-on agents, observing and steering. Everything else happens because they decide it must."
         agents={coreAgents}
         gridCols="md:grid-cols-2 lg:grid-cols-4"
