@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import FAQSection from '@/components/FAQSection';
+import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 import { 
   generalFAQs,
   retailerFAQs, 
@@ -17,6 +18,9 @@ import {
 } from '@/components/constants/faqData';
 
 const FAQ = () => {
+  const { handleSubmit: handleEmailSubmit } = useEmailSubmission();
+  
+  // Individual email states for each section
   const [generalEmail, setGeneralEmail] = useState('');
   const [retailEmail, setRetailEmail] = useState('');
   const [travelEmail, setTravelEmail] = useState('');
@@ -27,15 +31,24 @@ const FAQ = () => {
   const [realEstateEmail, setRealEstateEmail] = useState('');
   const [automotiveEmail, setAutomotiveEmail] = useState('');
   const [investorEmail, setInvestorEmail] = useState('');
-  const navigate = useNavigate();
 
-  const handleSubmit = (email: string) => (e: React.FormEvent) => {
+  const createHandleSubmit = (email: string, setEmail: (email: string) => void) => async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    toast.success("Welcome to SalesChef! Let's get started with your upload.");
-    setTimeout(() => {
-      navigate('/upload');
-    }, 1000);
+    
+    // Create a mock event with the email value
+    const mockEvent = {
+      preventDefault: () => {},
+      target: { value: email }
+    } as any;
+    
+    // Temporarily set the email in the hook and submit
+    const emailSubmission = useEmailSubmission();
+    emailSubmission.setEmail(email);
+    await emailSubmission.handleSubmit(mockEvent);
+    
+    // Clear the local email state
+    setEmail('');
   };
 
   return (
@@ -57,7 +70,7 @@ const FAQ = () => {
             emoji="🚀" 
             email={generalEmail}
             setEmail={setGeneralEmail}
-            handleSubmit={handleSubmit(generalEmail)}
+            handleSubmit={createHandleSubmit(generalEmail, setGeneralEmail)}
             ctaText="Ready to transform your content with SalesChef?"
           />
           
@@ -67,7 +80,7 @@ const FAQ = () => {
             emoji="🛍️" 
             email={retailEmail}
             setEmail={setRetailEmail}
-            handleSubmit={handleSubmit(retailEmail)}
+            handleSubmit={createHandleSubmit(retailEmail, setRetailEmail)}
             ctaText="Ready to transform your product content?"
           />
           
@@ -77,7 +90,7 @@ const FAQ = () => {
             emoji="✈️" 
             email={travelEmail}
             setEmail={setTravelEmail}
-            handleSubmit={handleSubmit(travelEmail)}
+            handleSubmit={createHandleSubmit(travelEmail, setTravelEmail)}
             ctaText="Transform your tourism content at scale?"
           />
           
@@ -87,7 +100,7 @@ const FAQ = () => {
             emoji="🎬" 
             email={mediaEmail}
             setEmail={setMediaEmail}
-            handleSubmit={handleSubmit(mediaEmail)}
+            handleSubmit={createHandleSubmit(mediaEmail, setMediaEmail)}
             ctaText="Unlock your content's revenue potential?"
           />
 
@@ -97,7 +110,7 @@ const FAQ = () => {
             emoji="💰" 
             email={financeEmail}
             setEmail={setFinanceEmail}
-            handleSubmit={handleSubmit(financeEmail)}
+            handleSubmit={createHandleSubmit(financeEmail, setFinanceEmail)}
             ctaText="Ready to streamline your financial communications?"
           />
 
@@ -107,7 +120,7 @@ const FAQ = () => {
             emoji="🏭" 
             email={industrialEmail}
             setEmail={setIndustrialEmail}
-            handleSubmit={handleSubmit(industrialEmail)}
+            handleSubmit={createHandleSubmit(industrialEmail, setIndustrialEmail)}
             ctaText="Transform your technical content pipeline?"
           />
 
@@ -117,7 +130,7 @@ const FAQ = () => {
             emoji="🏥" 
             email={healthcareEmail}
             setEmail={setHealthcareEmail}
-            handleSubmit={handleSubmit(healthcareEmail)}
+            handleSubmit={createHandleSubmit(healthcareEmail, setHealthcareEmail)}
             ctaText="Ready to enhance your medical communications?"
           />
 
@@ -127,7 +140,7 @@ const FAQ = () => {
             emoji="🏠" 
             email={realEstateEmail}
             setEmail={setRealEstateEmail}
-            handleSubmit={handleSubmit(realEstateEmail)}
+            handleSubmit={createHandleSubmit(realEstateEmail, setRealEstateEmail)}
             ctaText="Transform your property marketing content?"
           />
 
@@ -137,7 +150,7 @@ const FAQ = () => {
             emoji="🚗" 
             email={automotiveEmail}
             setEmail={setAutomotiveEmail}
-            handleSubmit={handleSubmit(automotiveEmail)}
+            handleSubmit={createHandleSubmit(automotiveEmail, setAutomotiveEmail)}
             ctaText="Ready to accelerate your vehicle content?"
           />
 
@@ -147,7 +160,7 @@ const FAQ = () => {
             emoji="📈" 
             email={investorEmail}
             setEmail={setInvestorEmail}
-            handleSubmit={handleSubmit(investorEmail)}
+            handleSubmit={createHandleSubmit(investorEmail, setInvestorEmail)}
             ctaText="Transform your investor communications?"
           />
         </div>

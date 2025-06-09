@@ -2,13 +2,15 @@
 import { useState, useCallback } from 'react';
 import { validateEmail, sanitizeInput } from '@/lib/validation';
 import { logSecurityEvent } from '@/lib/security';
+import { secureStorage, validateWebhookUrl } from '@/lib/secureStorage';
 
 interface UseSecureFormProps {
-  onSubmit: (email: string) => void;
+  onSubmit?: (email: string) => void;
   rateLimitMs?: number;
+  redirectPath?: string;
 }
 
-export const useSecureForm = ({ onSubmit, rateLimitMs = 2000 }: UseSecureFormProps) => {
+export const useSecureForm = ({ onSubmit, rateLimitMs = 2000, redirectPath = '/upload' }: UseSecureFormProps) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,8 +44,43 @@ export const useSecureForm = ({ onSubmit, rateLimitMs = 2000 }: UseSecureFormPro
         return;
       }
 
+      // Get webhook URL from secure storage
+      const webhookUrl = secureStorage.getItem('zapier_webhook_url') || 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/';
+      
+      // Validate webhook URL
+      const urlValidation = validateWebhookUrl(webhookUrl);
+      if (!urlValidation.isValid) {
+        setError('Zapier webhook not configured properly');
+        return;
+      }
+
+      // Send to Zapier webhook
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({
+          email: email,
+          timestamp: new Date().toISOString(),
+          source: window.location.pathname,
+          user_agent: navigator.userAgent,
+        }),
+      });
+
       setLastSubmit(now);
-      await onSubmit(email);
+      
+      // Call custom onSubmit if provided, otherwise use default behavior
+      if (onSubmit) {
+        await onSubmit(email);
+      } else {
+        // Default redirect behavior
+        setTimeout(() => {
+          window.location.href = redirectPath;
+        }, 1000);
+      }
+      
       setEmail(''); // Clear form on success
     } catch (err) {
       setError('Submission failed. Please try again.');
@@ -56,7 +93,7 @@ export const useSecureForm = ({ onSubmit, rateLimitMs = 2000 }: UseSecureFormPro
     } finally {
       setIsSubmitting(false);
     }
-  }, [email, onSubmit, lastSubmit, rateLimitMs]);
+  }, [email, onSubmit, lastSubmit, rateLimitMs, redirectPath]);
 
   return {
     email,
