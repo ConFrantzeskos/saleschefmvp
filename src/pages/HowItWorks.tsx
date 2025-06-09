@@ -155,8 +155,8 @@ const HowItWorks = () => {
 
         {/* Core Always-On Agents */}
         <AgentSection 
-          title="Core Always-On Agents"
-          description="These four are always-on agents, observing and steering. Everything else happens because they decide it must."
+          title="How SalesChef Works"
+          description="Meet the AI agents that transform your raw product data into sales-ready content. These four are always-on agents, observing and steering. Everything else happens because they decide it must."
           agents={coreAgents}
           gridCols="md:grid-cols-2 lg:grid-cols-4"
         />
