@@ -47,7 +47,6 @@ const PricingHeader = () => {
               className={`bg-gradient-to-br ${item.gradient} rounded-xl p-4 sm:p-5 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/20 transition-all duration-300 group hover:-translate-y-1`}
             >
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-gradient-brand rounded-full flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
                 <span className="text-sm sm:text-base font-medium text-foreground leading-relaxed">
                   {item.text}
                 </span>
