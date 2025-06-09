@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -113,14 +112,11 @@ const HowItWorks = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Page header with title */}
-      <div className="bg-gradient-to-b from-primary/5 to-background py-12 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">How SalesChef Works</h1>
-          <p className="text-xl text-muted-foreground">
-            Meet the AI agents that transform your raw product data into sales-ready content
-          </p>
-        </div>
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-4">How SalesChef Works</h1>
+        <p className="text-xl text-muted-foreground">
+          Meet the AI agents that transform your raw product data into sales-ready content
+        </p>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
