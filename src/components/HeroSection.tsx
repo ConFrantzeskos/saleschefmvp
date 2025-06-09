@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowRight } from 'lucide-react';
@@ -10,7 +10,7 @@ interface HeroSectionProps {
   handleSubmit: (e: React.FormEvent) => void;
 }
 
-const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
+const HeroSection = memo(({ email, setEmail, handleSubmit }: HeroSectionProps) => {
   return (
     <section className="px-4 sm:px-6 py-12 sm:py-16 lg:py-20 text-center bg-gradient-to-br from-muted/30 via-background to-muted/20 animate-fade-in">
       <div className="content-width">
@@ -19,6 +19,8 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
             src="/lovable-uploads/0b8c5ffe-edc7-4ea5-af28-bc947207ee19.png" 
             alt="SalesChef Logo" 
             className="w-full h-full object-contain"
+            loading="eager"
+            fetchPriority="high"
           />
         </div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance animate-slide-up leading-tight">
@@ -40,6 +42,7 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-10 sm:h-12 lg:h-14 text-sm sm:text-base border-0 bg-transparent focus-visible:ring-0 flex-1"
                 required
+                autoComplete="email"
               />
               <Button 
                 type="submit" 
@@ -58,6 +61,8 @@ const HeroSection = ({ email, setEmail, handleSubmit }: HeroSectionProps) => {
       </div>
     </section>
   );
-};
+});
+
+HeroSection.displayName = 'HeroSection';
 
 export default HeroSection;

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowRight } from 'lucide-react';
@@ -10,7 +10,7 @@ interface CTASectionProps {
   handleSubmitWithRedirect: (e: React.FormEvent) => void;
 }
 
-const CTASection = ({ tryItEmail, setTryItEmail, handleSubmitWithRedirect }: CTASectionProps) => {
+const CTASection = memo(({ tryItEmail, setTryItEmail, handleSubmitWithRedirect }: CTASectionProps) => {
   return (
     <section className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
       <div className="content-width">
@@ -29,6 +29,7 @@ const CTASection = ({ tryItEmail, setTryItEmail, handleSubmitWithRedirect }: CTA
                   onChange={(e) => setTryItEmail(e.target.value)}
                   className="h-12 sm:h-14 text-sm sm:text-base border-0 bg-transparent focus-visible:ring-0 flex-1"
                   required
+                  autoComplete="email"
                 />
                 <Button 
                   type="submit" 
@@ -47,6 +48,8 @@ const CTASection = ({ tryItEmail, setTryItEmail, handleSubmitWithRedirect }: CTA
       </div>
     </section>
   );
-};
+});
+
+CTASection.displayName = 'CTASection';
 
 export default CTASection;

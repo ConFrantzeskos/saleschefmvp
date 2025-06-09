@@ -1,29 +1,37 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 
-const Header = () => {
+const navItems = [
+  { path: '/how-it-works', label: 'How It Works' },
+  { path: '/pricing', label: 'Pricing' },
+  { path: '/industries', label: 'Industries' }
+];
+
+const Header = memo(() => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  
-  const navItems = [
-    { path: '/how-it-works', label: 'How It Works' },
-    { path: '/pricing', label: 'Pricing' },
-    { path: '/industries', label: 'Industries' }
-  ];
+
+  const handleScroll = useCallback(() => {
+    const scrolled = window.scrollY > 100;
+    setIsVisible(scrolled);
+  }, []);
+
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
+
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 100;
-      setIsVisible(scrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -39,6 +47,7 @@ const Header = () => {
               src="/lovable-uploads/0b8c5ffe-edc7-4ea5-af28-bc947207ee19.png" 
               alt="SalesChef" 
               className="h-6 sm:h-8 w-auto"
+              loading="lazy"
             />
           </Link>
           
@@ -64,7 +73,8 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -82,7 +92,7 @@ const Header = () => {
                 }
                 
                 return (
-                  <Link key={item.path} to={item.path} onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link key={item.path} to={item.path} onClick={closeMobileMenu}>
                     <Button variant="ghost" size="sm" className="w-full justify-start">
                       {item.label}
                     </Button>
@@ -95,6 +105,8 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;
