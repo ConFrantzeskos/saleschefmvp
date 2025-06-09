@@ -1,14 +1,15 @@
-
 import React from 'react';
 import { ArrowRight, Upload, Search, Brain, Zap, Globe, BarChart3 } from 'lucide-react';
 
 const IntroducingSalesChef = () => {
   const inputTypes = [
-    'CSV, ERP dump, PDF, PIM export, raw PDPs, supplier spreadsheets',
+    'Bulk upload 100s, 1,000s, or 100,000s of SKUs',
+    'CSV, ERP dumps, PDFs, PIM exports, raw PDPs, supplier spreadsheets — any format, any volume.',
     'SalesChef corrects missing data, categorises products intelligently',
     'Standardises formats across all channels and systems',
     'Validates and enriches incomplete specifications',
-    'Organises chaotic data into structured, usable formats'
+    'Organises chaotic data into structured, usable formats',
+    'Automates processing at scale - no manual touch required'
   ];
 
   const discoveryFeatures = [
