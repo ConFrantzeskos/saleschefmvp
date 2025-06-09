@@ -11,7 +11,7 @@ const ProblemSection = () => {
   ];
 
   const results = [
-    { text: 'Poor quality, incomplete PDPs', icon: AlertTriangle, color: 'text-destructive' },
+    { text: 'Your PDPs have the same content and specs as your competitors', icon: AlertTriangle, color: 'text-destructive' },
     { text: 'SEO and SEM performance is costly to improve', icon: TrendingDown, color: 'text-orange-500' },
     { text: 'Conversion gains take significant time and spend', icon: Users, color: 'text-red-500' },
     { text: 'Even optimised content quickly falls out of date', icon: RefreshCw, color: 'text-yellow-600' }
