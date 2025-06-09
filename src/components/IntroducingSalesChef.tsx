@@ -1,10 +1,13 @@
-
 import React from 'react';
 import { ArrowRight, Upload, Search, Brain, Zap, Globe } from 'lucide-react';
 
 const IntroducingSalesChef = () => {
   const inputTypes = [
-    'CSV', 'ERP dump', 'PDF', 'PIM export', 'raw PDPs', 'supplier spreadsheets'
+    'CSV, ERP dump, PDF, PIM export, raw PDPs, supplier spreadsheets',
+    'SalesChef corrects missing data, categorises products intelligently',
+    'Standardises formats across all channels and systems',
+    'Validates and enriches incomplete specifications',
+    'Organises chaotic data into structured, usable formats'
   ];
 
   const discoveryFeatures = [
@@ -110,7 +113,7 @@ const IntroducingSalesChef = () => {
     </div>
   );
 
-  // Visual examples using CD1234 headphone content
+  // Enhanced visual example for inputs showing processing
   const InputVisual = () => (
     <div className="w-full max-w-sm space-y-4">
       <div className="bg-muted rounded-xl p-4 border">
@@ -124,8 +127,24 @@ const IntroducingSalesChef = () => {
           <div className="text-muted-foreground">...</div>
         </div>
       </div>
-      <div className="flex items-center justify-center text-muted-foreground text-sm">
-        Raw specs from suppliers
+      
+      <div className="flex justify-center">
+        <ArrowRight className="w-4 h-4 text-primary animate-pulse" />
+      </div>
+      
+      <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-xl p-4 border border-accent/20">
+        <div className="text-xs font-medium text-accent mb-2">✨ SalesChef Processed:</div>
+        <div className="space-y-1 text-xs">
+          <div className="bg-white/60 rounded p-2">
+            <span className="font-medium">Category:</span> Audio Equipment → Headphones → Wireless
+          </div>
+          <div className="bg-white/60 rounded p-2">
+            <span className="font-medium">Standardized:</span> 24-hour battery life
+          </div>
+          <div className="bg-white/60 rounded p-2">
+            <span className="font-medium">Enriched:</span> Bluetooth 5.0 (enhanced connectivity)
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -255,7 +274,7 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={Upload}
-              title="1. INPUTS"
+              title="1. INPUTS + INTELLIGENT PROCESSING"
               items={inputTypes}
               visualExample={<InputVisual />}
             />
