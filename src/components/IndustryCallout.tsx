@@ -5,15 +5,15 @@ import { cn } from '@/lib/utils';
 
 const IndustryCallout = () => {
   const industries = [
-    { emoji: '🛍️', name: 'Retail & Ecommerce', path: '/industries/retail' },
-    { emoji: '✈️', name: 'Travel & Tourism', path: '/industries/travel-tourism' },
-    { emoji: '🎬', name: 'Media & Entertainment', path: '/industries/media-entertainment' },
-    { emoji: '💰', name: 'Finance & Financial Services', path: '/industries/finance' },
-    { emoji: '🏭', name: 'Industrial & Manufacturing', path: '/industries/industrial-manufacturing' },
-    { emoji: '🏥', name: 'Healthcare & Medical', path: '/industries/healthcare-medical' },
-    { emoji: '🏠', name: 'Real Estate & Property', path: '/industries/real-estate' },
-    { emoji: '🚗', name: 'Automotive', path: '/industries/automotive' },
-    { emoji: '📊', name: 'Investor Communications', path: '/industries/investor-communications' }
+    { emoji: '🛍️', name: 'Retail & Ecommerce', path: '/retail' },
+    { emoji: '✈️', name: 'Travel & Tourism', path: '/travel-tourism' },
+    { emoji: '🎬', name: 'Media & Entertainment', path: '/media-entertainment' },
+    { emoji: '💰', name: 'Finance & Financial Services', path: '/finance' },
+    { emoji: '🏭', name: 'Industrial & Manufacturing', path: '/industrial-manufacturing' },
+    { emoji: '🏥', name: 'Healthcare & Medical', path: '/healthcare-medical' },
+    { emoji: '🏠', name: 'Real Estate & Property', path: '/real-estate' },
+    { emoji: '🚗', name: 'Automotive', path: '/automotive' },
+    { emoji: '📊', name: 'Investor Communications', path: '/investor-communications' }
   ];
 
   return (
