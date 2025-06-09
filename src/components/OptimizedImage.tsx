@@ -67,8 +67,19 @@ const OptimizedImage = memo(({
           "w-full h-full object-contain transition-opacity duration-300",
           isLoading ? "opacity-0" : "opacity-100"
         )}
+        decoding="async"
       />
     </div>
+  );
+}, (prevProps, nextProps) => {
+  // Custom comparison function for memoization
+  return (
+    prevProps.src === nextProps.src &&
+    prevProps.alt === nextProps.alt &&
+    prevProps.className === nextProps.className &&
+    prevProps.fallbackSrc === nextProps.fallbackSrc &&
+    prevProps.loading === nextProps.loading &&
+    prevProps.priority === nextProps.priority
   );
 });
 

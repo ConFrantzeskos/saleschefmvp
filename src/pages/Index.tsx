@@ -6,10 +6,10 @@ import { usePerformanceMonitor } from '@/hooks/usePerformanceMonitor';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ErrorBoundary } from 'react-error-boundary';
 
-// Optimized lazy loading with preloading
+// Optimized lazy loading with strategic preloading and smaller bundles
 const HeroSection = React.lazy(() => 
   import('@/components/HeroSection').then(module => {
-    // Preload next critical component
+    // Preload only the next critical component
     import('@/components/ProblemSection');
     return module;
   })
@@ -31,6 +31,13 @@ const IntroducingSalesChef = React.lazy(() =>
 
 const ResultsSection = React.lazy(() => 
   import('@/components/ResultsSection').then(module => {
+    import('@/components/IndustryCallout');
+    return module;
+  })
+);
+
+const IndustryCallout = React.lazy(() => 
+  import('@/components/IndustryCallout').then(module => {
     import('@/components/TrustSection');
     return module;
   })
@@ -52,12 +59,13 @@ const CTASection = React.lazy(() =>
 
 const Footer = React.lazy(() => import('@/components/Footer'));
 const LiveTracker = React.lazy(() => import('@/components/LiveTracker'));
-const IndustryCallout = React.lazy(() => import('@/components/IndustryCallout'));
 
-// Optimized fallback component
-const SectionFallback = ({ height = "h-32" }: { height?: string }) => (
-  <div className={`${height} bg-muted/30 animate-pulse rounded-lg mx-4 sm:mx-6`} />
-);
+// Optimized fallback components with better performance
+const SectionFallback = React.memo(({ height = "h-32" }: { height?: string }) => (
+  <div className={`${height} bg-muted/20 animate-pulse rounded-lg mx-4 sm:mx-6`} />
+));
+
+SectionFallback.displayName = 'SectionFallback';
 
 // Error fallback component
 const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => (
