@@ -12,6 +12,7 @@ import SecurityBoundary from "./components/SecurityBoundary";
 // Lazy load all pages for better performance
 const Index = lazy(() => import("./pages/Index"));
 const HowItWorks = lazy(() => import("./pages/HowItWorks"));
+const Pricing = lazy(() => import("./pages/Pricing"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const FileUpload = lazy(() => import("./pages/FileUpload"));
 const SchemaMapping = lazy(() => import("./pages/SchemaMapping"));
@@ -51,6 +52,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/pricing" element={<Pricing />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/upload" element={<FileUpload />} />
                 <Route path="/mapping" element={<SchemaMapping />} />
