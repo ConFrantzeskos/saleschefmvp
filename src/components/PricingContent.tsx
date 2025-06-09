@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PageSection } from '@/components/layout/PageSection';
+import PageSection from '@/components/layout/PageSection';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, TrendingUp, TrendingDown, Zap, Target, DollarSign } from 'lucide-react';
 

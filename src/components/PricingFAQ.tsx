@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PageSection } from '@/components/layout/PageSection';
+import PageSection from '@/components/layout/PageSection';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const PricingFAQ = () => {

@@ -1,7 +1,6 @@
-
 import React from 'react';
-import { SectionHeader } from '@/components/layout/SectionHeader';
-import { PageSection } from '@/components/layout/PageSection';
+import SectionHeader from '@/components/layout/SectionHeader';
+import PageSection from '@/components/layout/PageSection';
 
 const PricingHeader = () => {
   return (
