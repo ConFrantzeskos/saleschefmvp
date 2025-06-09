@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import FAQSection from '@/components/FAQSection';
 import { 
+  generalFAQs,
   retailerFAQs, 
   travelTourismFAQs, 
   mediaEntertainmentFAQs,
@@ -16,6 +17,7 @@ import {
 } from '@/components/constants/faqData';
 
 const FAQ = () => {
+  const [generalEmail, setGeneralEmail] = useState('');
   const [retailEmail, setRetailEmail] = useState('');
   const [travelEmail, setTravelEmail] = useState('');
   const [mediaEmail, setMediaEmail] = useState('');
@@ -42,7 +44,7 @@ const FAQ = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">
-              Frequently Asked Questions
+              SalesChef FAQ
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Find answers to common questions about SalesChef for different industries
@@ -50,7 +52,17 @@ const FAQ = () => {
           </div>
           
           <FAQSection 
-            title="FAQs — For Retailers" 
+            title="General SalesChef FAQs" 
+            faqs={generalFAQs} 
+            emoji="🚀" 
+            email={generalEmail}
+            setEmail={setGeneralEmail}
+            handleSubmit={handleSubmit(generalEmail)}
+            ctaText="Ready to transform your content with SalesChef?"
+          />
+          
+          <FAQSection 
+            title="Retail & eCommerce" 
             faqs={retailerFAQs} 
             emoji="🛍️" 
             email={retailEmail}
@@ -60,7 +72,7 @@ const FAQ = () => {
           />
           
           <FAQSection 
-            title="FAQs — For Travel & Tourism" 
+            title="Travel & Tourism" 
             faqs={travelTourismFAQs} 
             emoji="✈️" 
             email={travelEmail}
@@ -70,7 +82,7 @@ const FAQ = () => {
           />
           
           <FAQSection 
-            title="FAQs — For Media & Entertainment" 
+            title="Media & Entertainment" 
             faqs={mediaEntertainmentFAQs} 
             emoji="🎬" 
             email={mediaEmail}
@@ -80,7 +92,7 @@ const FAQ = () => {
           />
 
           <FAQSection 
-            title="FAQs — For Finance" 
+            title="Finance" 
             faqs={financeFAQs} 
             emoji="💰" 
             email={financeEmail}
@@ -90,7 +102,7 @@ const FAQ = () => {
           />
 
           <FAQSection 
-            title="FAQs — For Industrial & Manufacturing" 
+            title="Industrial & Manufacturing" 
             faqs={industrialManufacturingFAQs} 
             emoji="🏭" 
             email={industrialEmail}
@@ -100,7 +112,7 @@ const FAQ = () => {
           />
 
           <FAQSection 
-            title="FAQs — For Healthcare & Medical" 
+            title="Healthcare & Medical" 
             faqs={healthcareMedicalFAQs} 
             emoji="🏥" 
             email={healthcareEmail}
@@ -110,7 +122,7 @@ const FAQ = () => {
           />
 
           <FAQSection 
-            title="FAQs — For Real Estate" 
+            title="Real Estate" 
             faqs={realEstateFAQs} 
             emoji="🏠" 
             email={realEstateEmail}
@@ -120,7 +132,7 @@ const FAQ = () => {
           />
 
           <FAQSection 
-            title="FAQs — For Automotive" 
+            title="Automotive" 
             faqs={automotiveFAQs} 
             emoji="🚗" 
             email={automotiveEmail}
@@ -130,9 +142,9 @@ const FAQ = () => {
           />
 
           <FAQSection 
-            title="FAQs — For Investor Communications" 
+            title="Investor Communications" 
             faqs={investorCommunicationsFAQs} 
-            emoji="📊" 
+            emoji="📈" 
             email={investorEmail}
             setEmail={setInvestorEmail}
             handleSubmit={handleSubmit(investorEmail)}

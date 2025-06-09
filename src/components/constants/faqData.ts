@@ -1,324 +1,297 @@
 
+// General SalesChef FAQs
+export const generalFAQs = [
+  {
+    question: "What is SalesChef and how does it work?",
+    answer: "SalesChef is an AI-native, agentic content transformation platform. It ingests fragmented product or content data from any source, cleans and structures it, enriches it with intelligence, and outputs high-performance, channel-ready content — at scale — for any industry."
+  },
+  {
+    question: "Do I need to replace my existing tech stack to use SalesChef?",
+    answer: "No — SalesChef is stateless and agentic. It works alongside your existing systems (ERP, CRM, PIM, DAM, CMS, DMS, MAM, IR platform, marketplace feeds, booking engines, investor reporting tools, etc.). There is no need to rip and replace."
+  },
+  {
+    question: "How does SalesChef ensure content accuracy, compliance, and governance?",
+    answer: "SalesChef has built-in QA, Diligence, and audit agents. All content is validated against business rules, compliance requirements, and regulatory needs. Every content change is fully versioned with an audit trail."
+  },
+  {
+    question: "Can SalesChef handle multilingual content and localisation?",
+    answer: "Yes — SalesChef supports multilingual content creation and localisation workflows. It can handle region-specific variants, market-specific compliance language, and localisation of key metrics or attributes."
+  },
+  {
+    question: "How does SalesChef keep content updated over time?",
+    answer: "SalesChef includes Detect and Monitor agents that continuously track changes in source data, regulatory requirements, and market signals. It can automatically trigger content updates and redeployment as needed."
+  },
+  {
+    question: "Is SalesChef AI/LLM ready — will it future-proof my content?",
+    answer: "Yes — SalesChef structures content to be fully optimised for AI-driven search, voice interfaces, LLM discovery, and emerging channels. Structured data and taxonomy alignment ensure your content is discoverable and usable by next-gen buyer and investor journeys."
+  },
+  {
+    question: "What is SalesChef's pricing model?",
+    answer: "Pricing is tailored based on factors such as data volume, content complexity, number of channels, degree of automation required, multilingual/localisation needs, and industry-specific compliance requirements. Contact us for a personalised pricing discussion."
+  },
+  {
+    question: "What's the typical onboarding time for SalesChef?",
+    answer: "Onboarding depends on project scope, but typical implementation runs from 4 to 12 weeks for initial rollout — often with first agents in production much sooner."
+  }
+];
+
+// Retail & eCommerce FAQs
 export const retailerFAQs = [
   {
-    question: "What exactly is SalesChef?",
-    answer: "SalesChef is an agentic system that ingests raw, messy product data — from any source — and transforms it into rich, persuasive, sales-ready content. It operates as a dynamic transformation layer, not a system of record. You feed in the mess. It serves up the magic."
+    question: "Can SalesChef ingest product data from our ERP, PIM, supplier feeds, and spreadsheets?",
+    answer: "Yes — SalesChef is optimised to ingest data from ERP systems, PIMs, supplier spreadsheets, legacy CMS exports, PDFs, and even scraped PDPs — no matter how messy or inconsistent."
   },
   {
-    question: "What kinds of product data can SalesChef handle?",
-    answer: "Anything. CSVs, Excel, PDFs, URLs, supplier feeds, ERP dumps, CMS exports, ZIPs of images, even scraped web data. No structured PIM required."
+    question: "How does SalesChef help clean and standardise product data?",
+    answer: "SalesChef automatically cleans, deduplicates, and standardises product attributes, taxonomy, units of measure, language, and compliance statements — delivering consistent, high-quality product content across channels."
   },
   {
-    question: "What does SalesChef actually output?",
-    answer: "Persuasive, search-optimised, enriched content blocks: PDPs, SEO copy, FAQs, product comparisons, buying guides, banners, campaign assets, localisation-ready variants, sales training blurbs — ready for any channel."
+    question: "Can SalesChef handle SEO optimisation for PDPs and category pages?",
+    answer: "Absolutely — SalesChef generates SEO-optimised product content, meta fields, structured data (schema.org), and FAQ markup — helping drive organic traffic and conversion for ecommerce."
   },
   {
-    question: "Do I have to integrate SalesChef into my tech stack?",
-    answer: "No. It's not another system to manage. SalesChef is a stateless layer — you upload or connect your data, it transforms it, and you take the outputs wherever you want: PIM, CMS, marketplace, ad platform, print."
+    question: "Does SalesChef support content localisation for global retail markets?",
+    answer: "Yes — SalesChef supports multilingual content generation, localisation, and optimisation — enabling seamless product marketing across multiple markets, languages, and cultural contexts."
   },
   {
-    question: "How is SalesChef different from a PIM or MDM?",
-    answer: "SalesChef isn't a PIM. It doesn't store data or become your 'single source of truth'. It's an intelligent processing engine that radically improves and enriches content — fast — with no migration or stack overhaul required."
+    question: "How does SalesChef manage content updates across multiple channels — ecommerce, marketplaces, retail media, apps, POS?",
+    answer: "SalesChef outputs content optimised for all retail channels — including ecommerce storefronts (Shopify, Salesforce Commerce Cloud, Magento, BigCommerce), marketplaces (Amazon, eBay, Walmart, Zalando, The Iconic), retail media platforms, mobile apps, in-store POS systems, and product packaging."
   },
   {
-    question: "Will it work if I already have a PIM or ERP?",
-    answer: "Yes. SalesChef can sit on top of any existing system. It ingests your current data, enhances it, and outputs enriched content. No need to rip and replace."
+    question: "Can SalesChef generate content beyond PDPs — for retail marketing campaigns?",
+    answer: "Yes — SalesChef's TAVISH agents can generate full retail content suites: PDPs, category landing pages, email marketing content, paid ad copy, social content, retail media creative, video scripts, in-store signage, and more."
   },
   {
-    question: "How does SalesChef help with SEO?",
-    answer: "It auto-generates optimised SEO copy, keywords, FAQs, and meta content tailored to your products and categories — aligned with your brand voice and audience intent."
+    question: "How does SalesChef keep product content updated — for seasonal launches, pricing changes, promotions?",
+    answer: "SalesChef continuously monitors source data and external signals — automatically detecting when updates are needed (new product ranges, price changes, seasonal campaigns, promotional overlays) and pushing refreshed content to target channels."
   },
   {
-    question: "Can it handle multilingual content?",
-    answer: "Yes. SalesChef agents can generate and localise content into multiple languages — adapting for local tone, SEO, and cultural nuances."
-  },
-  {
-    question: "How does SalesChef ensure content accuracy?",
-    answer: "You remain in control. The system includes review and approval workflows. Certain content elements (e.g. legal, warranty) are flagged as fixed and cannot be altered."
-  },
-  {
-    question: "How long does it take to see value?",
-    answer: "Usually within days. You can upload sample files and immediately generate enriched content for review. Full category transformation typically takes weeks, not months."
+    question: "How does SalesChef help reduce content operations workload for retail teams?",
+    answer: "By automating product content transformation at scale, SalesChef reduces or eliminates many manual tasks — freeing content, ecommerce, and marketing teams to focus on strategy, creative, and merchandising."
   }
 ];
 
+// Travel & Tourism FAQs
 export const travelTourismFAQs = [
   {
-    question: "What is SalesChef and how does it help tourism organisations?",
-    answer: "SalesChef is an agentic content engine that ingests messy, inconsistent, and unstructured tourism data (from thousands of asset owners) and transforms it into beautiful, accurate, multi-language content — ready for any platform."
+    question: "Can SalesChef handle messy operator data — PDFs, spreadsheets, old CMS, emails?",
+    answer: "Yes — SalesChef ingests all common tourism content formats, including PDFs, spreadsheets, URLs, emails, booking system exports, and more. It can normalise content from even the most inconsistent operator sources."
   },
   {
-    question: "What types of tourism data can it handle?",
-    answer: "Everything — tour descriptions, accommodation details, menus, event listings, transport timetables, activity guides, opening hours, availability calendars, user-generated content, reviews — from structured or unstructured sources."
+    question: "Can SalesChef auto-adapt content for different OTAs and marketplaces?",
+    answer: "Yes — SalesChef outputs channel-specific content optimised for Viator, GetYourGuide, Booking.com, Klook, Expedia, Google Things To Do, and more."
   },
   {
-    question: "How does SalesChef deal with content that's constantly changing?",
-    answer: "SalesChef agents can detect changes, trigger updates, and reprocess content rapidly. It reduces the burden of manually chasing asset owners or keeping content current."
+    question: "How does SalesChef handle live availability and dynamic pricing?",
+    answer: "SalesChef integrates with booking engines to ensure that availability, pricing, and seasonal updates are accurately reflected in content outputs."
   },
   {
-    question: "What about language and localisation?",
-    answer: "SalesChef excels at multi-language generation. It creates content adapted for different audiences, regions, and platforms — handling translation and local nuance at scale."
+    question: "How does SalesChef manage multilingual travel content?",
+    answer: "SalesChef automates translation, localisation, and optimisation for multiple languages and regions — critical for global tourism markets."
   },
   {
-    question: "How will SalesChef save us time and effort?",
-    answer: "It automates what is currently an impossible manual task: cleaning, structuring, enriching, translating, and maintaining huge volumes of tourism asset data. Your teams can focus on experience and growth, not wrangling content."
+    question: "Does SalesChef work with major booking platforms and reservation systems?",
+    answer: "Yes — SalesChef integrates with major booking platforms including Amadeus, Sabre, Travelport, and reservation systems to ensure content consistency across all touchpoints while maintaining real-time accuracy."
   },
   {
-    question: "Can SalesChef handle seasonal content updates?",
-    answer: "Absolutely. SalesChef can automatically adjust content for seasonal variations, peak periods, and special events — ensuring your offerings are always current and relevant."
-  },
-  {
-    question: "How does it integrate with booking systems?",
-    answer: "SalesChef works with major booking platforms and reservation systems, ensuring content consistency across all touchpoints while maintaining real-time availability and pricing accuracy."
-  },
-  {
-    question: "What about compliance with tourism regulations?",
-    answer: "SalesChef includes built-in compliance validation for tourism industry regulations, safety standards, and local requirements across different markets and jurisdictions."
+    question: "How does SalesChef handle seasonal content and event-driven updates?",
+    answer: "SalesChef can automatically adjust content for seasonal variations, peak periods, festivals, and special events — ensuring your tourism offerings are always current and relevant to market conditions."
   }
 ];
 
+// Media & Entertainment FAQs
 export const mediaEntertainmentFAQs = [
   {
-    question: "What is SalesChef for media companies?",
-    answer: "SalesChef is an intelligent agentic layer that ingests your unstructured media data — articles, videos, metadata, creative assets, audience data — and transforms it into structured, enriched, monetisation-ready content."
+    question: "Can SalesChef structure and enrich legacy media archives?",
+    answer: "Yes — SalesChef can ingest and structure content from MAMs, DAMs, NAS drives, legacy CMS, and unstructured archives — transforming them into discoverable, monetisable assets."
   },
   {
-    question: "What kinds of media data can it work with?",
-    answer: "Editorial archives, video metadata, podcast transcripts, image libraries, ad assets, social content, campaign data, sponsorship decks, CRM data — structured or unstructured."
+    question: "How does SalesChef support FAST, CTV, and OTT content packaging?",
+    answer: "SalesChef outputs metadata and content packaging optimised for FAST/CTV/OTT distribution — aligned with platform requirements (Gracenote, Wurl, Frequency, Amagi, etc.)."
   },
   {
-    question: "How can it help drive advertising revenue?",
+    question: "Can SalesChef manage rights and clearance metadata?",
+    answer: "Yes — SalesChef can ingest, manage, and validate rights and clearance metadata across media assets — helping prevent content misuse and compliance breaches."
+  },
+  {
+    question: "Does SalesChef optimise media content for AI-driven discovery?",
+    answer: "Absolutely — SalesChef structures content for SEO, AI-driven search, LLM surfacing, and contextual targeting — future-proofing your archives for new discovery platforms."
+  },
+  {
+    question: "How does SalesChef help with content monetization and advertising revenue?",
     answer: "By intelligently structuring and packaging your content, SalesChef makes it easier to segment, target, and monetise — enabling richer sponsorship offerings, dynamic content bundles, better programmatic performance, and improved contextual ad targeting."
   },
   {
-    question: "Can it help me understand my content inventory better?",
-    answer: "Yes. SalesChef creates deep content intelligence: understanding what you have, how it performs, where the gaps are, and how to surface the right content for the right audience and partner."
-  },
-  {
-    question: "Does it require me to change my CMS or DMP?",
-    answer: "No. SalesChef is not a replacement system. It ingests from your existing systems and outputs enriched content and metadata back to wherever you want it — CMS, DMP, ad server, partner platform."
-  },
-  {
-    question: "How does SalesChef handle content rights and licensing?",
-    answer: "SalesChef can track and manage content rights, licensing terms, and usage restrictions — ensuring compliance while maximizing monetization opportunities across different markets and platforms."
-  },
-  {
-    question: "Can it optimize content for different distribution channels?",
-    answer: "Yes. SalesChef automatically formats and optimizes content for various channels — streaming platforms, social media, broadcast, print, and digital — maintaining quality while adapting to each channel's requirements."
-  },
-  {
-    question: "What about audience personalization?",
-    answer: "SalesChef analyzes audience behavior and preferences to create personalized content recommendations and targeted advertising opportunities, increasing engagement and revenue per user."
+    question: "Can SalesChef optimize content for different distribution channels?",
+    answer: "Yes — SalesChef automatically formats and optimizes content for various channels — streaming platforms, social media, broadcast, print, and digital — maintaining quality while adapting to each channel's requirements."
   }
 ];
 
+// Finance FAQs
 export const financeFAQs = [
   {
-    question: "How does SalesChef handle sensitive financial data?",
-    answer: "SalesChef operates as a stateless processing layer with enterprise-grade security. Your data is processed and transformed without permanent storage, ensuring maximum security and compliance with financial regulations."
+    question: "Can SalesChef generate compliant PDS/FSG documents automatically?",
+    answer: "Yes — SalesChef can generate, update, and version-control PDS, FSG, KFS, TMD, and other regulatory documents — aligned with regional compliance requirements."
   },
   {
-    question: "What types of financial content can SalesChef process?",
-    answer: "Product fact sheets, regulatory disclosures, investment reports, client communications, compliance documents, marketing materials, risk statements, and educational content — across all financial services verticals."
+    question: "How does SalesChef validate financial content for compliance?",
+    answer: "SalesChef's Diligence agents automatically check content for required disclaimers, disclosures, risk statements, suitability language, and regulatory alignment."
   },
   {
-    question: "How does it ensure regulatory compliance?",
-    answer: "SalesChef includes built-in compliance validation for financial services regulations including MiFID II, GDPR, CCPA, and local regulatory requirements — automatically flagging non-compliant content and suggesting corrections."
+    question: "Can SalesChef support product variants like mortgage tiers, credit cards, super funds?",
+    answer: "Yes — SalesChef is optimised for multi-variant financial products, including tiered offerings, product bundles, and market-specific variants."
   },
   {
-    question: "Can it handle multilingual financial communications?",
-    answer: "Yes. SalesChef can generate compliant financial content in multiple languages while maintaining regulatory accuracy and cultural appropriateness for different markets."
+    question: "How does SalesChef sync content across all channels — website, CRM, call centre, aggregators?",
+    answer: "SalesChef outputs consistent, governed content for your CMS, CRM, call centre systems, aggregator feeds, and regulatory filings — ensuring single-source accuracy."
   },
   {
-    question: "How does SalesChef improve client communication?",
-    answer: "By standardizing and enriching client communications, SalesChef ensures consistent messaging across all touchpoints while personalizing content based on client profiles, risk tolerance, and investment preferences."
+    question: "How does SalesChef handle sensitive financial data and privacy requirements?",
+    answer: "SalesChef operates as a stateless processing layer with enterprise-grade security, ensuring maximum security and compliance with financial regulations including MiFID II, GDPR, and CCPA."
   },
   {
-    question: "What about integration with existing financial systems?",
-    answer: "SalesChef integrates seamlessly with major financial platforms including CRM systems, portfolio management tools, compliance platforms, and client communication systems without requiring system replacement."
-  },
-  {
-    question: "How does it handle real-time market data?",
-    answer: "SalesChef can process real-time market data feeds to automatically update financial content, ensuring clients always receive current and accurate information about their investments and market conditions."
-  },
-  {
-    question: "Can it generate personalized investment reports?",
-    answer: "Absolutely. SalesChef can create personalized investment reports, performance summaries, and market analyses tailored to individual client portfolios and investment objectives."
+    question: "Can SalesChef generate personalized financial communications for different client segments?",
+    answer: "Yes — SalesChef can create personalized investment reports, performance summaries, and market analyses tailored to individual client portfolios, risk tolerance, and investment objectives."
   }
 ];
 
+// Industrial & Manufacturing FAQs
 export const industrialManufacturingFAQs = [
   {
-    question: "How does SalesChef handle complex technical specifications?",
-    answer: "SalesChef's AI agents are trained to understand technical specifications, engineering data, and manufacturing standards — transforming complex technical information into clear, actionable content for different audiences."
+    question: "Can SalesChef extract structured data from spec sheets and engineering documents?",
+    answer: "Yes — SalesChef uses advanced OCR and NLP to extract structured data from PDFs, spec sheets, CAD documentation, and legacy engineering content."
   },
   {
-    question: "What types of manufacturing data can it process?",
-    answer: "CAD files, technical drawings, specification sheets, compliance certificates, safety data sheets, installation guides, maintenance manuals, parts catalogs, and supplier documentation."
+    question: "How does SalesChef align industrial content to marketplace standards?",
+    answer: "SalesChef maps and aligns content to the taxonomies and feed specifications of marketplaces like Amazon Business, Zoro, Grainger, Thomasnet, MSC, and more."
   },
   {
-    question: "How does it ensure compliance with industrial standards?",
-    answer: "SalesChef includes validation for major industrial standards including ISO, ANSI, CE marking, UL listing, and industry-specific regulations — automatically flagging compliance issues and maintaining audit trails."
+    question: "Can SalesChef handle product variants and configurations?",
+    answer: "Yes — SalesChef manages complex SKU variants (size, material, voltage, colour, country-specific compliance) and structures them for search and guided selling."
   },
   {
-    question: "Can it integrate with ERP and PLM systems?",
-    answer: "Yes. SalesChef connects with major ERP and PLM platforms including SAP, Oracle, Siemens PLM, and PTC — ensuring seamless data flow while enriching product information for sales and marketing use."
+    question: "How does SalesChef manage regulatory compliance data — CE, UL, ISO?",
+    answer: "SalesChef validates, tags, and manages compliance content — ensuring correct declarations for CE, UL, RoHS, REACH, ISO, and other global standards."
   },
   {
     question: "How does SalesChef help with technical sales enablement?",
     answer: "By transforming complex technical data into sales-ready content including simplified product guides, competitive comparisons, ROI calculators, and customer-specific proposals — enabling technical sales teams to communicate more effectively."
   },
   {
-    question: "What about multi-language technical documentation?",
-    answer: "SalesChef can generate technical documentation in multiple languages while maintaining technical accuracy and compliance with local regulations and standards in different markets."
-  },
-  {
-    question: "How does it handle product configurability?",
-    answer: "SalesChef can process complex product configuration rules and generate dynamic content that reflects different product options, customizations, and technical specifications based on customer requirements."
-  },
-  {
-    question: "Can it optimize content for different buyer personas?",
-    answer: "Yes. SalesChef creates tailored content for engineers, procurement managers, C-level executives, and end users — presenting the same technical information in formats appropriate for each audience."
+    question: "Can SalesChef integrate with ERP and PLM systems?",
+    answer: "Yes — SalesChef connects with major ERP and PLM platforms including SAP, Oracle, Siemens PLM, and PTC — ensuring seamless data flow while enriching product information for sales and marketing use."
   }
 ];
 
+// Healthcare & Medical FAQs
 export const healthcareMedicalFAQs = [
   {
-    question: "How does SalesChef ensure medical content accuracy and compliance?",
+    question: "How does SalesChef manage UDI, GS1, CE, FDA, and TGA data?",
+    answer: "SalesChef structures healthcare product content aligned with UDI, GS1 GDSN, CE Mark, FDA, TGA ARTG, and MDR requirements — with versioned audit trails."
+  },
+  {
+    question: "Can SalesChef unify regulatory, medical affairs, and marketing content?",
+    answer: "Yes — SalesChef is designed to bridge content silos between Regulatory, Medical Affairs, Marketing, and Commercial — delivering consistent, compliant outputs."
+  },
+  {
+    question: "Does SalesChef support multilingual localisation for regulated healthcare markets?",
+    answer: "Absolutely — SalesChef automates multilingual content workflows with market-specific compliance language and localisation standards."
+  },
+  {
+    question: "How does SalesChef track audit trails for compliance purposes?",
+    answer: "SalesChef maintains full version control and audit trails for every content change — ensuring regulator-ready traceability."
+  },
+  {
+    question: "How does SalesChef ensure medical content accuracy and patient safety?",
     answer: "SalesChef includes specialized validation for healthcare regulations including FDA, EMA, TGA, and local medical device regulations — with built-in approval workflows and audit trails for medical content."
   },
   {
-    question: "What types of healthcare data can it process?",
-    answer: "Clinical trial data, product specifications, safety information, prescribing information, medical device manuals, patient education materials, regulatory submissions, and scientific literature."
-  },
-  {
-    question: "How does it handle patient privacy and HIPAA compliance?",
-    answer: "SalesChef operates with healthcare-grade security and privacy controls, ensuring all processing meets HIPAA, GDPR, and other healthcare privacy regulations without storing sensitive patient data."
-  },
-  {
-    question: "Can it generate content for different healthcare audiences?",
-    answer: "Yes. SalesChef creates tailored content for healthcare professionals, patients, caregivers, and regulatory bodies — adapting medical information to appropriate literacy levels and professional requirements."
-  },
-  {
-    question: "How does SalesChef support medical education?",
-    answer: "By transforming complex medical information into educational materials including training modules, patient education guides, and professional development content — all validated for medical accuracy."
-  },
-  {
-    question: "What about integration with healthcare systems?",
-    answer: "SalesChef integrates with major healthcare platforms including EMR systems, clinical trial management systems, and regulatory submission platforms while maintaining strict data security protocols."
-  },
-  {
-    question: "How does it handle multilingual medical content?",
-    answer: "SalesChef can generate medically accurate content in multiple languages while maintaining compliance with local healthcare regulations and cultural sensitivities in different markets."
-  },
-  {
-    question: "Can it automate regulatory submission content?",
-    answer: "Yes. SalesChef can generate and format content for regulatory submissions including clinical study reports, product labeling, and safety updates — ensuring consistency and compliance across global markets."
+    question: "Can SalesChef handle patient privacy and HIPAA compliance?",
+    answer: "Yes — SalesChef operates with healthcare-grade security and privacy controls, ensuring all processing meets HIPAA, GDPR, and other healthcare privacy regulations without storing sensitive patient data."
   }
 ];
 
+// Real Estate FAQs
 export const realEstateFAQs = [
+  {
+    question: "Can SalesChef standardise listing data from multiple agency CRMs?",
+    answer: "Yes — SalesChef ingests and standardises listing data from CRMs such as VaultRE, Rex, Box+Dice, AgentBox, and others — delivering consistent content across portals."
+  },
+  {
+    question: "How does SalesChef enforce compliance for real estate listings?",
+    answer: "SalesChef automatically validates content for pricing disclaimers, legal language, transparency requirements, and jurisdictional compliance."
+  },
+  {
+    question: "Does SalesChef optimise listings for SEO and voice/AI search?",
+    answer: "Yes — SalesChef generates SEO-optimised property content and structures listings for voice and AI-driven discovery surfaces."
+  },
+  {
+    question: "Can SalesChef adapt listings for different franchise brands and tones?",
+    answer: "Yes — SalesChef supports multi-brand, multi-tone outputs — perfect for large franchise networks and white-label marketplaces."
+  },
   {
     question: "How does SalesChef transform property data into compelling listings?",
     answer: "SalesChef ingests raw property data from multiple sources — MLS, property management systems, photos, floor plans — and creates engaging, SEO-optimized property descriptions and marketing materials."
   },
   {
-    question: "What types of real estate data can it handle?",
-    answer: "MLS data, property photos, floor plans, neighborhood information, market analytics, property histories, inspection reports, financial data, and comparative market analyses."
-  },
-  {
-    question: "How does it ensure listing accuracy and compliance?",
-    answer: "SalesChef includes validation for real estate regulations, fair housing compliance, and local disclosure requirements — automatically flagging potential issues and ensuring consistent, compliant listings."
-  },
-  {
-    question: "Can it personalize content for different buyer segments?",
-    answer: "Yes. SalesChef creates targeted content for first-time buyers, investors, luxury buyers, and commercial clients — highlighting relevant features and benefits for each audience segment."
-  },
-  {
-    question: "How does SalesChef improve SEO for property listings?",
-    answer: "By generating keyword-optimized descriptions, structured data markup, and location-specific content that improves search visibility and drives more qualified leads to property listings."
-  },
-  {
-    question: "What about integration with real estate platforms?",
-    answer: "SalesChef integrates with major real estate platforms including MLS systems, CRM platforms, property management software, and listing portals — ensuring consistent content across all channels."
-  },
-  {
-    question: "How does it handle market analysis and reporting?",
-    answer: "SalesChef can process market data to generate automated market reports, neighborhood analyses, and investment summaries — providing valuable insights for agents and clients."
-  },
-  {
-    question: "Can it create content for commercial real estate?",
-    answer: "Absolutely. SalesChef handles commercial property data including lease terms, zoning information, tenant details, and investment metrics — creating professional marketing materials for commercial properties."
+    question: "Can SalesChef handle both residential and commercial real estate content?",
+    answer: "Absolutely — SalesChef handles commercial property data including lease terms, zoning information, tenant details, and investment metrics — creating professional marketing materials for all property types."
   }
 ];
 
+// Automotive FAQs
 export const automotiveFAQs = [
   {
-    question: "How does SalesChef handle complex vehicle specifications?",
-    answer: "SalesChef processes technical vehicle data from DMS feeds, OEM systems, and dealer inventories — transforming complex specifications into compelling, accurate vehicle listings across all channels."
+    question: "Can SalesChef harmonise DMS, OEM, and dealer content?",
+    answer: "Yes — SalesChef ingests from DMS platforms (Pentana, CDK, Titan, Reynolds), OEM data feeds, and dealer sources — unifying vehicle content across channels."
   },
   {
-    question: "What automotive data sources can it integrate with?",
-    answer: "DMS systems (Pentana ERA, CDK Global, Reynolds & Reynolds), OEM feeds, dealer CRM, inventory management systems, compliance databases, and marketplace platforms."
+    question: "How does SalesChef validate automotive content for compliance?",
+    answer: "SalesChef ensures accurate fuel economy, emissions, ANCAP safety ratings, pricing disclaimers, and regulatory statements are included and validated."
   },
   {
-    question: "How does it ensure compliance with automotive regulations?",
-    answer: "SalesChef includes validation for automotive compliance requirements including fuel economy standards, emissions data, safety ratings, and advertising regulations across different markets."
+    question: "Does SalesChef support dynamic ad platforms — Google Vehicle Ads, Meta Automotive?",
+    answer: "Yes — SalesChef generates structured content feeds optimised for Google Vehicle Ads, Meta Dynamic Automotive Ads, and programmatic ad platforms."
   },
   {
-    question: "Can it optimize listings for different sales channels?",
-    answer: "Yes. SalesChef creates channel-specific content for dealer websites, OEM portals, third-party marketplaces, Google Vehicle Ads, and social media platforms — maintaining consistency while optimizing for each channel."
+    question: "Can SalesChef handle used vehicles and fast-moving inventory?",
+    answer: "Yes — SalesChef manages dynamic stock updates, variant handling, and fast-changing used vehicle content across all channels."
   },
   {
-    question: "How does SalesChef improve vehicle SEO and discoverability?",
-    answer: "By generating SEO-optimized vehicle descriptions, structured data markup, and location-specific content that improves search rankings and drives more qualified leads to vehicle listings."
+    question: "How does SalesChef optimize vehicle listings for different sales channels?",
+    answer: "SalesChef creates channel-specific content for dealer websites, OEM portals, third-party marketplaces, Google Vehicle Ads, and social media platforms — maintaining consistency while optimizing for each channel."
   },
   {
-    question: "What about handling used vehicle inventory?",
-    answer: "SalesChef can process used vehicle data including vehicle history, condition reports, and pricing information — creating compelling listings that build buyer confidence and drive conversions."
-  },
-  {
-    question: "How does it support multi-brand dealerships?",
-    answer: "SalesChef maintains brand consistency across multiple OEM requirements while creating unified dealer experiences — ensuring compliance with brand guidelines while optimizing for local market needs."
-  },
-  {
-    question: "Can it automate pricing and incentive communication?",
-    answer: "Yes. SalesChef can integrate with pricing systems to automatically update incentives, rebates, and promotional offers across all marketing channels while maintaining compliance with advertising regulations."
+    question: "Can SalesChef support multi-brand dealerships?",
+    answer: "Yes — SalesChef maintains brand consistency across multiple OEM requirements while creating unified dealer experiences — ensuring compliance with brand guidelines while optimizing for local market needs."
   }
 ];
 
+// Investor Communications FAQs
 export const investorCommunicationsFAQs = [
   {
-    question: "How does SalesChef transform investor relations content?",
-    answer: "SalesChef ingests fragmented investor data from multiple sources — financial systems, portfolio updates, compliance databases — and creates consistent, professional investor communications across all channels."
+    question: "Can SalesChef unify portfolio data across listed and unlisted companies?",
+    answer: "Yes — SalesChef can ingest and normalise data from both public and private portfolio companies — even with varying data quality."
   },
   {
-    question: "What types of investor data can it process?",
-    answer: "Financial reports, portfolio company updates, ESG data, regulatory filings, analyst reports, investor inquiries, board materials, and market intelligence from both internal and external sources."
+    question: "How does SalesChef ensure investor communications are compliant?",
+    answer: "SalesChef automatically validates forward-looking statements, disclaimers, regulatory alignment, and version control for investor content."
   },
   {
-    question: "How does it ensure regulatory compliance for investor communications?",
-    answer: "SalesChef includes validation for securities regulations, disclosure requirements, and investor protection rules — automatically flagging compliance issues and maintaining audit trails for all communications."
+    question: "Can SalesChef automate LP reports, board decks, earnings presentations?",
+    answer: "Yes — SalesChef can generate consistent, compliant investor reports, decks, and filings — reducing manual effort and turnaround times."
   },
   {
-    question: "Can it handle both public and private investment communications?",
-    answer: "Yes. SalesChef manages content for public companies (earnings releases, SEC filings) and private investment firms (LP reports, investor updates) with appropriate compliance and confidentiality controls."
+    question: "How does SalesChef maintain audit trails for investor communications?",
+    answer: "SalesChef captures full version histories and audit trails — ensuring complete transparency for regulatory and internal governance requirements."
   },
   {
-    question: "How does SalesChef improve ESG reporting efficiency?",
-    answer: "By consolidating ESG data from multiple sources and generating consistent ESG reports, sustainability communications, and impact assessments — reducing manual effort while improving reporting quality."
+    question: "How does SalesChef support ESG reporting and sustainability communications?",
+    answer: "SalesChef consolidates ESG data from multiple sources and generates consistent ESG reports, sustainability communications, and impact assessments — reducing manual effort while improving reporting quality."
   },
   {
-    question: "What about integration with investor relations platforms?",
-    answer: "SalesChef integrates with major IR platforms including Q4, Notified, Nasdaq IR Insight, and financial data providers — ensuring seamless content distribution across all investor touchpoints."
-  },
-  {
-    question: "How does it support global investor communications?",
-    answer: "SalesChef can generate investor content in multiple languages and formats appropriate for different regulatory environments and cultural contexts — ensuring effective global investor engagement."
-  },
-  {
-    question: "Can it automate quarterly and annual reporting processes?",
-    answer: "Absolutely. SalesChef can automate the generation of earnings releases, annual reports, quarterly updates, and regulatory filings — significantly reducing time-to-market for critical investor communications."
+    question: "Can SalesChef handle both public and private investment communications?",
+    answer: "Yes — SalesChef manages content for public companies (earnings releases, SEC filings) and private investment firms (LP reports, investor updates) with appropriate compliance and confidentiality controls."
   }
 ];
 

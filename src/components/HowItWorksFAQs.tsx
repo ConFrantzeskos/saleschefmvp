@@ -23,7 +23,7 @@ const HowItWorksFAQs = () => {
         </div>
         
         <FAQSection 
-          title="FAQs — For Retailers" 
+          title="Retail & eCommerce" 
           faqs={retailerFAQs} 
           emoji="🛍️" 
           email={retailSubmission.email}
@@ -33,7 +33,7 @@ const HowItWorksFAQs = () => {
         />
         
         <FAQSection 
-          title="FAQs — For Travel & Tourism" 
+          title="Travel & Tourism" 
           faqs={travelTourismFAQs} 
           emoji="✈️" 
           email={tourismSubmission.email}
@@ -43,7 +43,7 @@ const HowItWorksFAQs = () => {
         />
         
         <FAQSection 
-          title="FAQs — For Media & Entertainment" 
+          title="Media & Entertainment" 
           faqs={mediaEntertainmentFAQs} 
           emoji="🎬" 
           email={mediaSubmission.email}
