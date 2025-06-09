@@ -40,6 +40,12 @@ const HowItWorksFAQs = () => {
 
   return (
     <div className="border-t pt-16">
+      <div className="text-center mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
+          Frequently Asked Questions
+        </h2>
+      </div>
+      
       <FAQSection 
         title="FAQs — For Retailers" 
         faqs={retailerFAQs} 

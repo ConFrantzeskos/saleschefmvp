@@ -82,11 +82,8 @@ const HowItWorksSteps = () => {
       <div className="container-width">
         <div className="text-center mb-8 sm:mb-12 animate-fade-in">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
-            How SalesChef Works
+            How to turn a SKU into a sales machine
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Meet the AI agents that transform your raw product data into sales-ready content
-          </p>
         </div>
         
         <div className="relative">

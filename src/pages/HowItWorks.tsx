@@ -11,13 +11,13 @@ const HowItWorks = () => {
       <HowItWorksHeader />
 
       <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* How One SKU Becomes a Sales Machine Section */}
+        {/* Section 1: How to turn a SKU into a sales machine */}
         <HowItWorksSteps />
 
-        {/* Agent Sections */}
+        {/* Section 2: Meet the Chefs behind the Scenes */}
         <HowItWorksAgents />
 
-        {/* FAQs */}
+        {/* Section 3: Frequently Asked Questions */}
         <HowItWorksFAQs />
       </div>
     </div>
