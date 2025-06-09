@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { ArrowRight, Upload, Search, Brain, Zap, Globe, BarChart3 } from 'lucide-react';
+import { ArrowDown, Upload, Search, Brain, Zap, Globe, BarChart3 } from 'lucide-react';
 
 const IntroducingSalesChef = () => {
   const inputTypes = [
@@ -496,7 +495,7 @@ const IntroducingSalesChef = () => {
 
           {/* Arrow */}
           <div className="flex justify-center animate-fade-in">
-            <ArrowRight className="w-8 h-8 text-muted-foreground" />
+            <ArrowDown className="w-8 h-8 text-muted-foreground" />
           </div>
 
           {/* Panel 2: Discovery Magic */}
@@ -513,7 +512,7 @@ const IntroducingSalesChef = () => {
 
           {/* Arrow */}
           <div className="flex justify-center animate-fade-in">
-            <ArrowRight className="w-8 h-8 text-muted-foreground" />
+            <ArrowDown className="w-8 h-8 text-muted-foreground" />
           </div>
 
           {/* Panel 3: Strategic Magic */}
@@ -529,7 +528,7 @@ const IntroducingSalesChef = () => {
 
           {/* Arrow */}
           <div className="flex justify-center animate-fade-in">
-            <ArrowRight className="w-8 h-8 text-muted-foreground" />
+            <ArrowDown className="w-8 h-8 text-muted-foreground" />
           </div>
 
           {/* Panel 4: Creative + Content Feast */}
@@ -545,7 +544,7 @@ const IntroducingSalesChef = () => {
 
           {/* Arrow */}
           <div className="flex justify-center animate-fade-in">
-            <ArrowRight className="w-8 h-8 text-muted-foreground" />
+            <ArrowDown className="w-8 h-8 text-muted-foreground" />
           </div>
 
           {/* Panel 5: Distribution */}
@@ -561,7 +560,7 @@ const IntroducingSalesChef = () => {
 
           {/* Arrow */}
           <div className="flex justify-center animate-fade-in">
-            <ArrowRight className="w-8 h-8 text-muted-foreground" />
+            <ArrowDown className="w-8 h-8 text-muted-foreground" />
           </div>
 
           {/* Panel 6: Optimization */}
