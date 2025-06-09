@@ -14,7 +14,6 @@ const Index = lazy(() => import("./pages/Index"));
 const HowItWorks = lazy(() => import("./pages/HowItWorks"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const FAQ = lazy(() => import("./pages/FAQ"));
-const Industries = lazy(() => import("./pages/Industries"));
 const FileUpload = lazy(() => import("./pages/FileUpload"));
 const SchemaMapping = lazy(() => import("./pages/SchemaMapping"));
 const CleaningValidation = lazy(() => import("./pages/CleaningValidation"));
@@ -28,6 +27,16 @@ const EnhanceAssets = lazy(() => import("./pages/EnhanceAssets"));
 const Deploy = lazy(() => import("./pages/Deploy"));
 const Optimization = lazy(() => import("./pages/Optimization"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Lazy load industry pages
+const Retail = lazy(() => import("./pages/industries/Retail"));
+const TravelTourism = lazy(() => import("./pages/industries/TravelTourism"));
+const MediaEntertainment = lazy(() => import("./pages/industries/MediaEntertainment"));
+const Finance = lazy(() => import("./pages/industries/Finance"));
+const IndustrialManufacturing = lazy(() => import("./pages/industries/IndustrialManufacturing"));
+const HealthcareMedical = lazy(() => import("./pages/industries/HealthcareMedical"));
+const RealEstate = lazy(() => import("./pages/industries/RealEstate"));
+const Automotive = lazy(() => import("./pages/industries/Automotive"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,7 +64,18 @@ const App = () => (
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/faq" element={<FAQ />} />
-                <Route path="/industries" element={<Industries />} />
+                
+                {/* Industry Pages */}
+                <Route path="/retail" element={<Retail />} />
+                <Route path="/travel-tourism" element={<TravelTourism />} />
+                <Route path="/media-entertainment" element={<MediaEntertainment />} />
+                <Route path="/finance" element={<Finance />} />
+                <Route path="/industrial-manufacturing" element={<IndustrialManufacturing />} />
+                <Route path="/healthcare-medical" element={<HealthcareMedical />} />
+                <Route path="/real-estate" element={<RealEstate />} />
+                <Route path="/automotive" element={<Automotive />} />
+                
+                {/* Application Flow Pages */}
                 <Route path="/upload" element={<FileUpload />} />
                 <Route path="/mapping" element={<SchemaMapping />} />
                 <Route path="/cleaning" element={<CleaningValidation />} />

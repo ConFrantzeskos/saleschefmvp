@@ -1,13 +1,30 @@
+
 import React, { useState, useEffect, memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const navItems = [
   { path: '/how-it-works', label: 'How It Works' },
   { path: '/faq', label: 'FAQ' },
-  { path: '/pricing', label: 'Pricing' },
-  { path: '/industries', label: 'Industries' }
+  { path: '/pricing', label: 'Pricing' }
+];
+
+const industries = [
+  { path: '/retail', label: '🛍️ Retail', name: 'Retail' },
+  { path: '/travel-tourism', label: '✈️ Travel & Tourism', name: 'Travel & Tourism' },
+  { path: '/media-entertainment', label: '🎬 Media & Entertainment', name: 'Media & Entertainment' },
+  { path: '/finance', label: '💰 Finance', name: 'Finance' },
+  { path: '/industrial-manufacturing', label: '🏭 Industrial & Manufacturing', name: 'Industrial & Manufacturing' },
+  { path: '/healthcare-medical', label: '🏥 Healthcare & Medical', name: 'Healthcare & Medical' },
+  { path: '/real-estate', label: '🏠 Real Estate', name: 'Real Estate' },
+  { path: '/automotive', label: '🚗 Automotive', name: 'Automotive' }
 ];
 
 const Header = memo(() => {
@@ -32,6 +49,8 @@ const Header = memo(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
+
+  const isIndustryPage = industries.some(industry => location.pathname === industry.path);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -68,6 +87,27 @@ const Header = memo(() => {
                 </Link>
               );
             })}
+            
+            {/* Industries Dropdown */}
+            {!isIndustryPage && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-1">
+                    Industries
+                    <ChevronDown className="w-4 h-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  {industries.map((industry) => (
+                    <DropdownMenuItem key={industry.path} asChild>
+                      <Link to={industry.path} className="flex items-center gap-2">
+                        {industry.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -99,6 +139,20 @@ const Header = memo(() => {
                   </Link>
                 );
               })}
+              
+              {/* Mobile Industries */}
+              {!isIndustryPage && (
+                <div className="pt-2 border-t border-border/50 mt-2">
+                  <p className="text-sm font-medium text-muted-foreground px-3 pb-2">Industries</p>
+                  {industries.map((industry) => (
+                    <Link key={industry.path} to={industry.path} onClick={closeMobileMenu}>
+                      <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
+                        {industry.label}
+                      </Button>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </nav>
         )}
