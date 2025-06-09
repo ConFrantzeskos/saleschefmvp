@@ -55,24 +55,49 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Solutions */}
+          {/* Industries */}
           <div className="space-y-4">
-            <h3 className="text-sm font-display font-semibold text-foreground">Solutions</h3>
+            <h3 className="text-sm font-display font-semibold text-foreground">Industries</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Retail / eCommerce
-                </a>
+                <Link to="/retail" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  🛍️ Retail
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Travel and Leisure
-                </a>
+                <Link to="/travel-tourism" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  ✈️ Travel & Tourism
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Media
-                </a>
+                <Link to="/media-entertainment" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  🎬 Media & Entertainment
+                </Link>
+              </li>
+              <li>
+                <Link to="/finance" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  💰 Finance
+                </Link>
+              </li>
+              <li>
+                <Link to="/industrial-manufacturing" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  🏭 Industrial & Manufacturing
+                </Link>
+              </li>
+              <li>
+                <Link to="/healthcare-medical" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  🏥 Healthcare & Medical
+                </Link>
+              </li>
+              <li>
+                <Link to="/real-estate" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  🏠 Real Estate
+                </Link>
+              </li>
+              <li>
+                <Link to="/automotive" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  🚗 Automotive
+                </Link>
               </li>
             </ul>
           </div>
