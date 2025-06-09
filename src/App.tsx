@@ -1,103 +1,46 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'sonner';
+import { TooltipProvider } from "@/components/ui/tooltip"
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
-import Header from "./components/Header";
-import LoadingSpinner from "./components/LoadingSpinner";
-import SecurityBoundary from "./components/SecurityBoundary";
+import HomePage from '@/pages/HomePage';
+import FileUpload from '@/pages/FileUpload';
+import MappingPage from '@/pages/MappingPage';
+import CleaningPage from '@/pages/CleaningPage';
+import GenerationPage from '@/pages/GenerationPage';
+import ReviewPage from '@/pages/ReviewPage';
+import DeployPage from '@/pages/DeployPage';
+import ZapierConfig from '@/components/ZapierConfig';
 
-// Lazy load all pages for better performance
-const Index = lazy(() => import("./pages/Index"));
-const HowItWorks = lazy(() => import("./pages/HowItWorks"));
-const Pricing = lazy(() => import("./pages/Pricing"));
-const FAQ = lazy(() => import("./pages/FAQ"));
-const FileUpload = lazy(() => import("./pages/FileUpload"));
-const SchemaMapping = lazy(() => import("./pages/SchemaMapping"));
-const CleaningValidation = lazy(() => import("./pages/CleaningValidation"));
-const Enrichment = lazy(() => import("./pages/Enrichment"));
-const EnrichmentReview = lazy(() => import("./pages/EnrichmentReview"));
-const EnrichmentAssetReview = lazy(() => import("./pages/EnrichmentAssetReview"));
-const ContentGeneration = lazy(() => import("./pages/ContentGeneration"));
-const ReviewContent = lazy(() => import("./pages/ReviewContent"));
-const AssetReview = lazy(() => import("./pages/AssetReview"));
-const EnhanceAssets = lazy(() => import("./pages/EnhanceAssets"));
-const Deploy = lazy(() => import("./pages/Deploy"));
-const Optimization = lazy(() => import("./pages/Optimization"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import SecurityMonitor from '@/components/SecurityMonitor';
+import SecurityBoundary from '@/components/SecurityBoundary';
 
-// Lazy load industry pages
-const Retail = lazy(() => import("./pages/industries/Retail"));
-const TravelTourism = lazy(() => import("./pages/industries/TravelTourism"));
-const MediaEntertainment = lazy(() => import("./pages/industries/MediaEntertainment"));
-const Finance = lazy(() => import("./pages/industries/Finance"));
-const IndustrialManufacturing = lazy(() => import("./pages/industries/IndustrialManufacturing"));
-const HealthcareMedical = lazy(() => import("./pages/industries/HealthcareMedical"));
-const RealEstate = lazy(() => import("./pages/industries/RealEstate"));
-const Automotive = lazy(() => import("./pages/industries/Automotive"));
-const InvestorCommunications = lazy(() => import("./pages/industries/InvestorCommunications"));
+const queryClient = new QueryClient();
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes
-      retry: 1, // Reduce retries for better performance
-      refetchOnWindowFocus: false, // Prevent unnecessary refetches
-    },
-  },
-});
-
-const App = () => (
-  <SecurityBoundary>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Header />
-          <div className="pt-20">
-            <Suspense fallback={<LoadingSpinner />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/how-it-works" element={<HowItWorks />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/faq" element={<FAQ />} />
-                
-                {/* Industry Pages */}
-                <Route path="/retail" element={<Retail />} />
-                <Route path="/travel-tourism" element={<TravelTourism />} />
-                <Route path="/media-entertainment" element={<MediaEntertainment />} />
-                <Route path="/finance" element={<Finance />} />
-                <Route path="/industrial-manufacturing" element={<IndustrialManufacturing />} />
-                <Route path="/healthcare-medical" element={<HealthcareMedical />} />
-                <Route path="/real-estate" element={<RealEstate />} />
-                <Route path="/automotive" element={<Automotive />} />
-                <Route path="/investor-communications" element={<InvestorCommunications />} />
-                
-                {/* Application Flow Pages */}
-                <Route path="/upload" element={<FileUpload />} />
-                <Route path="/mapping" element={<SchemaMapping />} />
-                <Route path="/cleaning" element={<CleaningValidation />} />
-                <Route path="/enrichment" element={<Enrichment />} />
-                <Route path="/enrichment-review" element={<EnrichmentReview />} />
-                <Route path="/enrichment-review/:id" element={<EnrichmentAssetReview />} />
-                <Route path="/generation" element={<ContentGeneration />} />
-                <Route path="/review" element={<ReviewContent />} />
-                <Route path="/review/:id" element={<AssetReview />} />
-                <Route path="/enhance" element={<EnhanceAssets />} />
-                <Route path="/deploy" element={<Deploy />} />
-                <Route path="/optimization" element={<Optimization />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </div>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </SecurityBoundary>
-);
+function App() {
+  return (
+    <SecurityBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <SecurityMonitor />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/upload" element={<FileUpload />} />
+              <Route path="/mapping" element={<MappingPage />} />
+              <Route path="/cleaning" element={<CleaningPage />} />
+              <Route path="/generation" element={<GenerationPage />} />
+              <Route path="/review" element={<ReviewPage />} />
+              <Route path="/deploy" element={<DeployPage />} />
+              <Route path="/zapier" element={<ZapierConfig />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </SecurityBoundary>
+  );
+}
 
 export default App;

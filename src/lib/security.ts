@@ -78,6 +78,12 @@ export const logSecurityEvent = (event: string, details?: any): void => {
   if (import.meta.env.DEV) {
     console.warn(`🔐 Security Event: ${event}`, details);
   }
+  
+  // Dispatch custom event for security monitoring
+  window.dispatchEvent(new CustomEvent('security-event', {
+    detail: { type: event, ...details }
+  }));
+  
   // In production, this could send to a security monitoring service
 };
 

@@ -1,6 +1,7 @@
 
 import { useState, useCallback } from 'react';
 import { validateEmail, sanitizeInput } from '@/lib/validation';
+import { logSecurityEvent } from '@/lib/security';
 
 interface UseSecureFormProps {
   onSubmit: (email: string) => void;
@@ -26,6 +27,7 @@ export const useSecureForm = ({ onSubmit, rateLimitMs = 2000 }: UseSecureFormPro
     const now = Date.now();
     if (now - lastSubmit < rateLimitMs) {
       setError('Please wait before submitting again');
+      logSecurityEvent('Rate limit exceeded', { timestamp: now });
       return;
     }
     
@@ -36,6 +38,7 @@ export const useSecureForm = ({ onSubmit, rateLimitMs = 2000 }: UseSecureFormPro
       const validation = validateEmail(email);
       if (!validation.isValid) {
         setError(validation.error || 'Invalid email');
+        logSecurityEvent('Email validation failed', { email: email.substring(0, 3) + '***' });
         return;
       }
 
@@ -44,7 +47,12 @@ export const useSecureForm = ({ onSubmit, rateLimitMs = 2000 }: UseSecureFormPro
       setEmail(''); // Clear form on success
     } catch (err) {
       setError('Submission failed. Please try again.');
-      console.error('Form submission error:', err);
+      // Only log errors in development mode
+      if (import.meta.env.DEV) {
+        console.error('Form submission error:', err);
+      } else {
+        logSecurityEvent('Form submission failed');
+      }
     } finally {
       setIsSubmitting(false);
     }
