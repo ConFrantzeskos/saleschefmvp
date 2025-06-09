@@ -488,6 +488,7 @@ const IntroducingSalesChef = () => {
             <FlowPanel
               icon={Upload}
               title="1. SUPPLIER CHAOS → STANDARDISED FOUNDATION"
+              subtitle="Saves you hours of manual cleanup - works at any scale"
               items={inputTypes}
               visualExample={<InputVisual />}
             />
@@ -503,6 +504,7 @@ const IntroducingSalesChef = () => {
             <FlowPanel
               icon={Search}
               title="2. STRUCTURED DATA → DEEP MARKET DISCOVERY"
+              subtitle="You learn what customers care about - not just what's in the spec"
               items={discoveryFeatures}
               highlight={true}
               visualExample={<DiscoveryVisual />}
@@ -519,7 +521,7 @@ const IntroducingSalesChef = () => {
             <FlowPanel
               icon={Brain}
               title="3. MARKET INSIGHTS → PERSUASION STRATEGY"
-              subtitle="agency planner agent — Distil + Define"
+              subtitle="You get smarter positioning and sharper content - automatically"
               items={strategicFeatures}
               visualExample={<StrategyVisual />}
             />
@@ -535,6 +537,7 @@ const IntroducingSalesChef = () => {
             <FlowPanel
               icon={Zap}
               title="4. STRATEGY MAPPED → SALES CONTENT COOKED"
+              subtitle="SalesChef gives you a full feast of content for every use and channel"
               items={contentOutputs}
               visualExample={<ContentVisual />}
             />
@@ -550,7 +553,7 @@ const IntroducingSalesChef = () => {
             <FlowPanel
               icon={Globe}
               title="5. CONTENT FEAST → LIVE IN MARKET"
-              subtitle="Auto-deploys optimized content across every platform"
+              subtitle="Everything goes live immediately, everywhere your customers shop"
               items={channels}
               visualExample={<DistributionVisual />}
             />
