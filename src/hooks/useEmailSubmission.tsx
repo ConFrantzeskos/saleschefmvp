@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { validateEmail, sanitizeInput } from '@/lib/validation';
 
 // Your Zapier webhook URL
 const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/';
@@ -15,8 +16,21 @@ export const useEmailSubmission = () => {
     e.preventDefault();
     if (!email) return;
     
+    // Sanitize and validate email input
+    const sanitizedEmail = sanitizeInput(email);
+    const validation = validateEmail(sanitizedEmail);
+    
+    if (!validation.isValid) {
+      toast.error(validation.error || "Invalid email address");
+      return;
+    }
+    
     setIsSubmitting(true);
-    console.log("Submitting email:", email);
+    
+    // Only log in development mode without sensitive data
+    if (import.meta.env.DEV) {
+      console.log("Processing email submission...");
+    }
 
     try {
       // Send to Zapier webhook
@@ -27,20 +41,25 @@ export const useEmailSubmission = () => {
         },
         mode: "no-cors",
         body: JSON.stringify({
-          email: email,
+          email: sanitizedEmail,
           timestamp: new Date().toISOString(),
           source: window.location.pathname,
           user_agent: navigator.userAgent,
         }),
       });
-      console.log("Email sent to Zapier webhook");
+      
+      if (import.meta.env.DEV) {
+        console.log("Email submission successful");
+      }
 
       toast.success("Welcome to SalesChef! Let's get started with your upload.");
       setTimeout(() => {
         navigate('/upload');
       }, 1000);
     } catch (error) {
-      console.error("Error submitting email:", error);
+      if (import.meta.env.DEV) {
+        console.error("Error submitting email:", error);
+      }
       toast.error("Failed to submit email. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -51,7 +70,7 @@ export const useEmailSubmission = () => {
 
   return {
     email,
-    setEmail,
+    setEmail: (value: string) => setEmail(sanitizeInput(value)),
     handleSubmit,
     resetEmail,
     isSubmitting

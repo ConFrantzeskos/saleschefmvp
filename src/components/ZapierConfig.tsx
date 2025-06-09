@@ -5,26 +5,52 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
-import { Copy, ExternalLink } from 'lucide-react';
+import { Copy, ExternalLink, Shield, AlertTriangle } from 'lucide-react';
+import { secureStorage, validateWebhookUrl } from '@/lib/secureStorage';
+import { sanitizeInput } from '@/lib/validation';
 
 const ZapierConfig = () => {
   const [webhookUrl, setWebhookUrl] = useState(
-    localStorage.getItem('zapier_webhook_url') || 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/'
+    secureStorage.getItem('zapier_webhook_url') || 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/'
   );
+  const [lastSave, setLastSave] = useState<number>(0);
 
   const handleSave = () => {
-    localStorage.setItem('zapier_webhook_url', webhookUrl);
-    toast.success('Zapier webhook URL saved successfully!');
+    // Rate limiting - prevent rapid saves
+    const now = Date.now();
+    if (now - lastSave < 2000) {
+      toast.error('Please wait before saving again');
+      return;
+    }
+
+    const sanitizedUrl = sanitizeInput(webhookUrl);
+    const validation = validateWebhookUrl(sanitizedUrl);
+    
+    if (!validation.isValid) {
+      toast.error(validation.error || 'Invalid webhook URL');
+      return;
+    }
+
+    secureStorage.setItem('zapier_webhook_url', sanitizedUrl);
+    setLastSave(now);
+    toast.success('Zapier webhook URL saved securely!');
+    
+    if (import.meta.env.DEV) {
+      console.log('Webhook URL configuration updated');
+    }
   };
 
   const handleTest = async () => {
-    if (!webhookUrl) {
-      toast.error('Please enter a webhook URL first');
+    const sanitizedUrl = sanitizeInput(webhookUrl);
+    const validation = validateWebhookUrl(sanitizedUrl);
+    
+    if (!validation.isValid) {
+      toast.error(validation.error || 'Please enter a valid webhook URL first');
       return;
     }
 
     try {
-      await fetch(webhookUrl, {
+      await fetch(sanitizedUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +65,9 @@ const ZapierConfig = () => {
       });
       toast.success('Test request sent to Zapier! Check your Zap history to confirm it was received.');
     } catch (error) {
-      console.error('Error testing webhook:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error testing webhook:', error);
+      }
       toast.error('Failed to send test request');
     }
   };
@@ -56,10 +84,16 @@ const ZapierConfig = () => {
     toast.success('Sample payload copied to clipboard!');
   };
 
+  const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const sanitized = sanitizeInput(e.target.value);
+    setWebhookUrl(sanitized);
+  };
+
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
+          <Shield className="w-5 h-5" />
           Zapier Integration Setup
           <ExternalLink className="w-4 h-4" />
         </CardTitle>
@@ -68,6 +102,18 @@ const ZapierConfig = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Security Warning */}
+        <div className="flex items-start gap-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+          <div className="text-sm">
+            <p className="font-medium text-yellow-800 mb-1">Security Notice</p>
+            <p className="text-yellow-700">
+              Webhook URLs contain sensitive information. Keep them secure and don't share them publicly.
+              This URL is stored encrypted in your browser's local storage.
+            </p>
+          </div>
+        </div>
+
         <div className="space-y-2">
           <Label htmlFor="webhook">Zapier Webhook URL</Label>
           <Input
@@ -75,12 +121,14 @@ const ZapierConfig = () => {
             type="url"
             placeholder="https://hooks.zapier.com/hooks/catch/..."
             value={webhookUrl}
-            onChange={(e) => setWebhookUrl(e.target.value)}
+            onChange={handleUrlChange}
+            maxLength={500}
           />
         </div>
         
         <div className="flex gap-2">
           <Button onClick={handleSave} className="flex-1">
+            <Shield className="w-4 h-4 mr-2" />
             Save Configuration
           </Button>
           <Button onClick={handleTest} variant="outline">

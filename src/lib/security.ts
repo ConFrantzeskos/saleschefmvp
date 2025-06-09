@@ -1,4 +1,3 @@
-
 // Content Security Policy configuration
 export const getCSPHeader = (isDevelopment: boolean = false): string => {
   const baseDirectives = [
@@ -68,7 +67,18 @@ export const logSecurityWarnings = (): void => {
     console.log('  - Rate limiting on form submissions');
     console.log('  - Strengthened Content Security Policy');
     console.log('  - Security headers configured');
+    console.log('  - Encrypted local storage for sensitive data');
+    console.log('  - Webhook URL validation');
+    console.log('  - Sanitized console logging (dev only)');
   }
+};
+
+// Security event logging for monitoring
+export const logSecurityEvent = (event: string, details?: any): void => {
+  if (import.meta.env.DEV) {
+    console.warn(`🔐 Security Event: ${event}`, details);
+  }
+  // In production, this could send to a security monitoring service
 };
 
 // Initialize security checks
@@ -76,11 +86,29 @@ export const initializeSecurity = (): void => {
   validateSecureContext();
   logSecurityWarnings();
   
-  // Additional runtime security checks can be added here
+  // Clear any legacy insecure storage
+  try {
+    const legacyKey = 'zapier_webhook_url';
+    if (localStorage.getItem(legacyKey)) {
+      localStorage.removeItem(legacyKey);
+      logSecurityEvent('Legacy webhook URL storage cleared');
+    }
+  } catch (error) {
+    // Ignore storage errors
+  }
+  
+  // Additional runtime security checks
   if (import.meta.env.PROD) {
     // Hide sensitive information in production
+    const originalLog = console.log;
+    const originalWarn = console.warn;
+    const originalError = console.error;
+    
     console.log = () => {};
     console.warn = () => {};
     console.error = () => {};
+    
+    // Keep a reference for critical errors
+    window.__criticalError = originalError;
   }
 };

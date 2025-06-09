@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { validateEmail, sanitizeInput } from '@/lib/validation';
+import { validateWebhookUrl } from '@/lib/secureStorage';
 
 interface UseZapierSubmissionProps {
   webhookUrl?: string;
@@ -14,7 +16,15 @@ export const useZapierSubmission = ({ webhookUrl }: UseZapierSubmissionProps = {
 
   const handleSubmit = async (e: React.FormEvent, customWebhookUrl?: string) => {
     e.preventDefault();
-    if (!email) return;
+    
+    // Sanitize and validate email
+    const sanitizedEmail = sanitizeInput(email);
+    const emailValidation = validateEmail(sanitizedEmail);
+    
+    if (!emailValidation.isValid) {
+      toast.error(emailValidation.error || "Invalid email address");
+      return;
+    }
 
     const finalWebhookUrl = customWebhookUrl || webhookUrl;
     
@@ -23,18 +33,30 @@ export const useZapierSubmission = ({ webhookUrl }: UseZapierSubmissionProps = {
       return;
     }
 
+    // Validate webhook URL
+    const sanitizedWebhookUrl = sanitizeInput(finalWebhookUrl);
+    const urlValidation = validateWebhookUrl(sanitizedWebhookUrl);
+    
+    if (!urlValidation.isValid) {
+      toast.error("Invalid webhook configuration");
+      return;
+    }
+
     setIsSubmitting(true);
-    console.log("Sending email to Zapier:", email, "via webhook:", finalWebhookUrl);
+    
+    if (import.meta.env.DEV) {
+      console.log("Processing Zapier submission...");
+    }
 
     try {
-      await fetch(finalWebhookUrl, {
+      await fetch(sanitizedWebhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         mode: "no-cors",
         body: JSON.stringify({
-          email: email,
+          email: sanitizedEmail,
           timestamp: new Date().toISOString(),
           source: window.location.pathname,
           user_agent: navigator.userAgent,
@@ -46,7 +68,9 @@ export const useZapierSubmission = ({ webhookUrl }: UseZapierSubmissionProps = {
         navigate('/upload');
       }, 1000);
     } catch (error) {
-      console.error("Error sending to Zapier:", error);
+      if (import.meta.env.DEV) {
+        console.error("Error sending to Zapier:", error);
+      }
       toast.error("Failed to submit email. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -57,7 +81,7 @@ export const useZapierSubmission = ({ webhookUrl }: UseZapierSubmissionProps = {
 
   return {
     email,
-    setEmail,
+    setEmail: (value: string) => setEmail(sanitizeInput(value)),
     handleSubmit,
     resetEmail,
     isSubmitting
