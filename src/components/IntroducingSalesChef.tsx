@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, Upload, Search, Brain, Zap, Globe } from 'lucide-react';
 
@@ -294,35 +295,74 @@ const IntroducingSalesChef = () => {
   );
 
   const DistributionVisual = () => (
-    <div className="w-full max-w-sm space-y-3">
-      <div className="grid grid-cols-2 gap-2">
-        <div className="bg-muted rounded-lg p-3 text-center">
-          <div className="text-xs font-medium mb-1">Shopify</div>
-          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
-            ✓ Deployed
+    <div className="w-full max-w-sm space-y-4">
+      <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-4 border border-primary/20">
+        <div className="flex items-center gap-2 mb-3">
+          <Globe className="w-4 h-4 text-primary" />
+          <span className="text-sm font-medium">Live Deployments</span>
+        </div>
+        
+        <div className="grid grid-cols-2 gap-3">
+          {/* E-commerce Platforms */}
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">🛍️</div>
+            <div className="text-xs font-medium">Shopify</div>
+            <div className="text-xs text-green-600 font-medium">✓ Live</div>
+          </div>
+          
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">📦</div>
+            <div className="text-xs font-medium">Amazon</div>
+            <div className="text-xs text-green-600 font-medium">✓ Live</div>
+          </div>
+          
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">🛒</div>
+            <div className="text-xs font-medium">BigCommerce</div>
+            <div className="text-xs text-green-600 font-medium">✓ Live</div>
+          </div>
+          
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">🏪</div>
+            <div className="text-xs font-medium">Magento</div>
+            <div className="text-xs text-green-600 font-medium">✓ Live</div>
+          </div>
+          
+          {/* Marketplaces */}
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">👗</div>
+            <div className="text-xs font-medium">Zalando</div>
+            <div className="text-xs text-green-600 font-medium">✓ Live</div>
+          </div>
+          
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">📘</div>
+            <div className="text-xs font-medium">Meta</div>
+            <div className="text-xs text-green-600 font-medium">✓ Live</div>
+          </div>
+          
+          {/* Retail Media */}
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">📺</div>
+            <div className="text-xs font-medium">Retail Media</div>
+            <div className="text-xs text-green-600 font-medium">✓ Active</div>
+          </div>
+          
+          <div className="bg-white/80 rounded-lg p-3 text-center border">
+            <div className="text-2xl mb-1">🏬</div>
+            <div className="text-xs font-medium">Mirakl</div>
+            <div className="text-xs text-green-600 font-medium">✓ Live</div>
           </div>
         </div>
-        <div className="bg-muted rounded-lg p-3 text-center">
-          <div className="text-xs font-medium mb-1">Amazon</div>
-          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
-            ✓ Live
+        
+        <div className="mt-3 p-2 bg-accent/10 rounded-lg border border-accent/20">
+          <div className="text-xs font-medium text-accent text-center">
+            CD1234 deployed across 8+ channels
+          </div>
+          <div className="text-xs text-muted-foreground text-center mt-1">
+            Content auto-optimized per platform
           </div>
         </div>
-        <div className="bg-muted rounded-lg p-3 text-center">
-          <div className="text-xs font-medium mb-1">BigCommerce</div>
-          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
-            ✓ Published
-          </div>
-        </div>
-        <div className="bg-muted rounded-lg p-3 text-center">
-          <div className="text-xs font-medium mb-1">Retail Media</div>
-          <div className="w-full h-8 bg-gradient-to-r from-accent/30 to-primary/30 rounded text-xs flex items-center justify-center">
-            ✓ Active
-          </div>
-        </div>
-      </div>
-      <div className="text-center text-xs text-muted-foreground">
-        CD1234 live across all channels
       </div>
     </div>
   );
@@ -408,7 +448,8 @@ const IntroducingSalesChef = () => {
           <div className="animate-slide-up">
             <FlowPanel
               icon={Globe}
-              title="5. Distributes content across any channel you have"
+              title="5. OMNICHANNEL DEPLOYMENT AT SCALE"
+              subtitle="Auto-deploys optimized content across every platform"
               items={channels}
               visualExample={<DistributionVisual />}
             />
