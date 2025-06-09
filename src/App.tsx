@@ -37,6 +37,7 @@ const IndustrialManufacturing = lazy(() => import("./pages/industries/Industrial
 const HealthcareMedical = lazy(() => import("./pages/industries/HealthcareMedical"));
 const RealEstate = lazy(() => import("./pages/industries/RealEstate"));
 const Automotive = lazy(() => import("./pages/industries/Automotive"));
+const InvestorCommunications = lazy(() => import("./pages/industries/InvestorCommunications"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -74,6 +75,7 @@ const App = () => (
                 <Route path="/healthcare-medical" element={<HealthcareMedical />} />
                 <Route path="/real-estate" element={<RealEstate />} />
                 <Route path="/automotive" element={<Automotive />} />
+                <Route path="/investor-communications" element={<InvestorCommunications />} />
                 
                 {/* Application Flow Pages */}
                 <Route path="/upload" element={<FileUpload />} />
