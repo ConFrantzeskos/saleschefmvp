@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, Upload, Search, Brain, Zap, Globe } from 'lucide-react';
 
@@ -205,17 +204,33 @@ const IntroducingSalesChef = () => {
           <span className="text-sm font-medium">Strategy Output</span>
         </div>
         <div className="space-y-3 text-xs">
-          <div className="space-y-1">
-            <div className="font-medium text-secondary">Target: Remote Workers</div>
-            <div className="text-muted-foreground">Pain: Battery anxiety during long calls</div>
+          <div className="bg-white/60 rounded p-2">
+            <div className="font-medium text-secondary mb-1">Target Segment:</div>
+            <div>Remote Workers & Business Travelers</div>
           </div>
-          <div className="space-y-1">
-            <div className="font-medium text-primary">Key Message:</div>
-            <div className="italic">"All-day wireless freedom"</div>
+          
+          <div className="bg-white/60 rounded p-2">
+            <div className="font-medium text-primary mb-1">Category Entry Point:</div>
+            <div>"All-day wireless productivity"</div>
           </div>
+          
+          <div className="bg-white/60 rounded p-2">
+            <div className="font-medium mb-1">Ladder of Benefits:</div>
+            <div className="text-xs space-y-1">
+              <div>• Feature: 24hr battery</div>
+              <div>• Benefit: Uninterrupted work</div>
+              <div>• Emotional: Peace of mind</div>
+            </div>
+          </div>
+          
+          <div className="bg-white/60 rounded p-2">
+            <div className="font-medium mb-1">Differentiation vs Sony:</div>
+            <div>20% longer battery + travel-ready design</div>
+          </div>
+          
           <div className="bg-accent/20 rounded p-2">
-            <div className="font-medium">Positioning vs Sony WH-720N:</div>
-            <div>20% longer battery + travel-friendly</div>
+            <div className="font-medium text-accent">Funnel Strategy:</div>
+            <div>Awareness → Battery anxiety → Solution</div>
           </div>
         </div>
       </div>
