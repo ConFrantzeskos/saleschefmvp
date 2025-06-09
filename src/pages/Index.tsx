@@ -8,6 +8,7 @@ import { ArrowRight } from 'lucide-react';
 // Lazy load components for better performance
 const HeroSection = React.lazy(() => import('@/components/HeroSection'));
 const ProblemSection = React.lazy(() => import('@/components/ProblemSection'));
+const IntroducingSalesChef = React.lazy(() => import('@/components/IntroducingSalesChef'));
 const ResultsSection = React.lazy(() => import('@/components/ResultsSection'));
 const TrustSection = React.lazy(() => import('@/components/TrustSection'));
 const CTASection = React.lazy(() => import('@/components/CTASection'));
@@ -54,6 +55,7 @@ const Index = () => {
         <LiveTracker />
         <HeroSection email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
         <ProblemSection />
+        <IntroducingSalesChef />
         <ResultsSection />
         <TrustSection />
         <CTASection 
