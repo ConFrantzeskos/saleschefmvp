@@ -34,33 +34,33 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
   ];
 
   return (
-    <section className="px-4 sm:px-6 py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
-      <div className="container-width">
-        <div className="text-center mb-8 sm:mb-12 animate-fade-in">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight mb-4 sm:mb-6 text-balance">
+    <section className="px-4 sm:px-6 py-8 lg:py-12 bg-gradient-to-b from-background to-muted/30">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-6 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-tight mb-3 text-balance">
             How SalesChef works — One messy SKU in → Sales-ready content out.
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm lg:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             SalesChef is not another system to manage. It's a team of specialised AI agents — like chefs — each trained to transform raw product specs into a content banquet that sells.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-slide-up">
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="text-center animate-slide-up" 
+              className="text-center" 
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border hover:shadow-medium transition-all duration-300 group hover:border-primary/20">
-                <div className={`w-16 h-16 ${step.color} text-white rounded-3xl flex items-center justify-center mx-auto mb-4 font-display font-bold text-xl shadow-soft group-hover:scale-105 transition-transform`}>
+              <div className="bg-card rounded-xl p-4 shadow-soft border border-border hover:shadow-medium transition-all duration-300 group hover:border-primary/20">
+                <div className={`w-12 h-12 ${step.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-3 font-display font-bold text-lg shadow-soft group-hover:scale-105 transition-transform`}>
                   {step.step}
                 </div>
-                <step.icon className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-display font-bold text-lg text-foreground mb-3 group-hover:text-primary transition-colors">
+                <step.icon className="w-6 h-6 text-primary mx-auto mb-3" />
+                <h3 className="font-display font-bold text-base text-foreground mb-2 group-hover:text-primary transition-colors">
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">{step.desc}</p>
+                <p className="text-xs text-muted-foreground">{step.desc}</p>
               </div>
             </div>
           ))}
