@@ -66,12 +66,6 @@ const IntroducingSalesChef = () => {
         ? 'bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 shadow-medium' 
         : 'bg-card border-border hover:border-border/60'
     }`}>
-      {highlight && (
-        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full text-sm font-semibold shadow-brand">
-          </div>
-        </div>
-      )}
       
       <div className="grid lg:grid-cols-2 gap-8 p-8">
         {/* Left Column - Content */}
