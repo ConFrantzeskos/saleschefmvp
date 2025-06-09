@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, Upload, Search, Brain, Zap, Globe } from 'lucide-react';
 
@@ -143,21 +144,43 @@ const IntroducingSalesChef = () => {
   );
 
   const DiscoveryVisual = () => (
-    <div className="w-full max-w-sm space-y-4">
+    <div className="w-full max-w-sm space-y-3">
       <div className="relative">
         <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-4 border border-primary/20">
           <div className="flex items-center gap-2 mb-3">
             <Search className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Customer Insights</span>
+            <span className="text-sm font-medium">Multi-Source Discovery</span>
           </div>
           <div className="space-y-2 text-xs">
             <div className="bg-white/60 rounded p-2">
-              ⭐⭐⭐⭐⭐ "Perfect for remote work! Battery lasts my entire workday..."
+              <div className="flex items-center gap-1 mb-1">
+                <span className="text-xs">📝</span>
+                <span className="font-medium">Amazon Reviews</span>
+              </div>
+              ⭐⭐⭐⭐⭐ "Perfect for remote work! Battery lasts..."
             </div>
             <div className="bg-white/60 rounded p-2">
-              🏆 "Best value for battery life. Folding design is genius..."
+              <div className="flex items-center gap-1 mb-1">
+                <span className="text-xs">🐦</span>
+                <span className="font-medium">Social Media</span>
+              </div>
+              "Just got these headphones - folding design is genius!"
             </div>
-            <div className="text-primary font-medium">+2,847 reviews analyzed</div>
+            <div className="bg-white/60 rounded p-2">
+              <div className="flex items-center gap-1 mb-1">
+                <span className="text-xs">🎥</span>
+                <span className="font-medium">YouTube Reviews</span>
+              </div>
+              "Best value for battery life in this price range"
+            </div>
+            <div className="bg-white/60 rounded p-2">
+              <div className="flex items-center gap-1 mb-1">
+                <span className="text-xs">🛒</span>
+                <span className="font-medium">Retail Forums</span>
+              </div>
+              "Compared to Sony WH-720N, these last 20% longer"
+            </div>
+            <div className="text-primary font-medium">+15 sources analyzed</div>
           </div>
         </div>
         <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
