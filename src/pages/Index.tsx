@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -14,6 +13,7 @@ const TrustSection = React.lazy(() => import('@/components/TrustSection'));
 const CTASection = React.lazy(() => import('@/components/CTASection'));
 const Footer = React.lazy(() => import('@/components/Footer'));
 const LiveTracker = React.lazy(() => import('@/components/LiveTracker'));
+const IndustryCallout = React.lazy(() => import('@/components/IndustryCallout'));
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -57,6 +57,7 @@ const Index = () => {
         <ProblemSection />
         <IntroducingSalesChef />
         <ResultsSection />
+        <IndustryCallout />
         <TrustSection />
         <CTASection 
           tryItEmail={tryItEmail} 
