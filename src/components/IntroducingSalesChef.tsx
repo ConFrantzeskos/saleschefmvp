@@ -136,7 +136,7 @@ const IntroducingSalesChef = () => {
       </div>
       
       <div className="flex justify-center">
-        <ArrowRight className="w-4 h-4 text-primary animate-pulse" />
+        <ArrowDown className="w-4 h-4 text-primary animate-pulse" />
       </div>
       
       <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-xl p-4 border border-accent/20">
