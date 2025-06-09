@@ -48,7 +48,7 @@ const ProblemSection = () => {
           {/* The Compounding Cost */}
           <div className="animate-slide-up">
             <h3 className="text-lg sm:text-xl font-display font-semibold mb-4 sm:mb-6 text-center text-foreground">
-              Scaling quality content shouldn't be this hard.
+              💸 The Cost of Chaos
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {costs.map((cost, index) => (

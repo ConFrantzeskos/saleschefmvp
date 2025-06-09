@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -19,18 +18,18 @@ const TravelTourism = () => {
     '🌍 Translation and localisation painfully manual',
     '🔍 No scalable SEO — too slow, too inconsistent',
     '👥 Human-driven onboarding takes 6–12 weeks per product',
-    '💰 Most marketplaces and OTAs leave massive revenue on the table because of this mess'
+    'Most marketplaces and OTAs leave massive revenue on the table because of this mess'
   ];
 
   const chaosConsequences = [
-    '📉 Low conversion rates on marketplaces',
-    '⏱️ Expensive and slow operator onboarding',
-    '💸 Poor quality listings → SEM waste → declining ROI',
-    '🔧 Manual maintenance overhead',
-    '📈 Stalled marketplace growth',
-    '⚖️ Legal risk (compliance gaps)',
-    '🌍 Limited ability to scale globally (multi-language, multi-market)',
-    '📞 Rising customer service costs due to inaccurate or inconsistent listings'
+    'Low conversion rates on marketplaces',
+    'Expensive and slow operator onboarding',
+    'Poor quality listings → SEM waste → declining ROI',
+    'Manual maintenance overhead',
+    'Stalled marketplace growth',
+    'Legal risk (compliance gaps)',
+    'Limited ability to scale globally (multi-language, multi-market)',
+    'Rising customer service costs due to inaccurate or inconsistent listings'
   ];
 
   const ingestSources = [
@@ -179,7 +178,7 @@ const TravelTourism = () => {
       {/* The cost of the chaos */}
       <PageSection background="muted">
         <SectionHeader
-          title="💸 The cost of the chaos"
+          title="💸 The Cost of Chaos"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chaosConsequences.map((consequence, index) => (

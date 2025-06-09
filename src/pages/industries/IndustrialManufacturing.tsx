@@ -21,13 +21,13 @@ const IndustrialManufacturing = () => {
   ];
 
   const chaosConsequences = [
-    '💸 Lost sales due to poor search & discoverability',
-    '🚪 High buyer abandonment on ecommerce platforms (can\'t find right product)',
-    '✋ Manual syndication to marketplaces → slow, error-prone',
-    '⚖️ Compliance & legal risk (wrong specs published, outdated regulatory info)',
-    '💰 Costly, unscalable content ops → constant human rework',
-    '⏱️ Delayed market entry for new SKUs and product variants',
-    '🤖 Inability to support modern B2B buying journeys: AI assistants, configurators, CPQ, self-serve ecommerce'
+    'Lost sales due to poor search & discoverability',
+    'High buyer abandonment on ecommerce platforms (can\'t find right product)',
+    'Manual syndication to marketplaces → slow, error-prone',
+    'Compliance & legal risk (wrong specs published, outdated regulatory info)',
+    'Costly, unscalable content ops → constant human rework',
+    'Delayed market entry for new SKUs and product variants',
+    'Inability to support modern B2B buying journeys: AI assistants, configurators, CPQ, self-serve ecommerce'
   ];
 
   const ingestSources = [
@@ -187,7 +187,7 @@ const IndustrialManufacturing = () => {
       {/* The cost of the chaos */}
       <PageSection background="muted">
         <SectionHeader
-          title="💸 The cost of the chaos"
+          title="💸 The Cost of Chaos"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chaosConsequences.map((consequence, index) => (

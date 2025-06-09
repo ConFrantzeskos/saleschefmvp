@@ -19,14 +19,14 @@ const MediaEntertainment = () => {
   ];
 
   const chaosConsequences = [
-    '💰 Lost syndication and licensing revenue (archive not fully monetised)',
-    '✋ Manual, expensive packaging for advertisers & sponsors',
-    '⏱️ Delayed content onboarding → lost market opportunities',
-    '🎯 Inconsistent audience targeting → lower CPMs',
-    '📺 Missed FAST/CTV monetisation windows',
-    '🔍 Poor SEO → under-leveraged owned channels',
-    '⚖️ Legal & rights risk → incorrect or missing usage metadata',
-    '🤖 Inability to feed AI agents / LLM search experiences'
+    'Lost syndication and licensing revenue (archive not fully monetised)',
+    'Manual, expensive packaging for advertisers & sponsors',
+    'Delayed content onboarding → lost market opportunities',
+    'Inconsistent audience targeting → lower CPMs',
+    'Missed FAST/CTV monetisation windows',
+    'Poor SEO → under-leveraged owned channels',
+    'Legal & rights risk → incorrect or missing usage metadata',
+    'Inability to feed AI agents / LLM search experiences'
   ];
 
   const ingestSources = [
@@ -189,7 +189,7 @@ const MediaEntertainment = () => {
       {/* The cost of the chaos */}
       <PageSection background="muted">
         <SectionHeader
-          title="💸 The cost of the chaos"
+          title="💸 The Cost of Chaos"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chaosConsequences.map((consequence, index) => (
