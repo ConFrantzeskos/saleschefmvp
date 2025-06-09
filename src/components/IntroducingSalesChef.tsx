@@ -69,7 +69,6 @@ const IntroducingSalesChef = () => {
       {highlight && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
           <div className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full text-sm font-semibold shadow-brand">
-            The Magic 99% of tools can't do
           </div>
         </div>
       )}
