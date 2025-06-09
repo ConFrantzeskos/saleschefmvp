@@ -17,6 +17,29 @@ const ProblemSection = () => {
     { text: 'Even optimised content quickly falls out of date', icon: RefreshCw, color: 'text-yellow-600' }
   ];
 
+  const compoundingCosts = [
+    {
+      title: 'Inconsistent PDPs',
+      description: 'Hard to differentiate, variable SEO performance, poor conversion',
+      color: 'destructive'
+    },
+    {
+      title: 'Rising Marketing Spend', 
+      description: 'Increasing costs to drive traffic and lift conversion',
+      color: 'orange'
+    },
+    {
+      title: 'Bland, Identical PDPs',
+      description: 'Only way to compete is performance media and price competition',
+      color: 'yellow'
+    },
+    {
+      title: 'Poor ROI',
+      description: 'Content teams overwhelmed, marketing budgets strained',
+      color: 'destructive'
+    }
+  ];
+
   return (
     <section className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-background to-muted/30">
       <div className="content-width">
@@ -80,25 +103,20 @@ const ProblemSection = () => {
               The Compounding Cost of Inconsistent Content:
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <div className="bg-destructive/5 border border-destructive/20 rounded-lg sm:rounded-xl p-2 sm:p-3">
-                <h4 className="font-display font-semibold text-destructive mb-1 text-xs">Inconsistent PDPs</h4>
-                <p className="text-xs text-destructive/80">→ Hard to differentiate, variable SEO performance, poor conversion</p>
-              </div>
-              
-              <div className="bg-orange-50 border border-orange-200 rounded-lg sm:rounded-xl p-2 sm:p-3">
-                <h4 className="font-display font-semibold text-orange-600 mb-1 text-xs">Rising Marketing Spend</h4>
-                <p className="text-xs text-orange-500">→ Increasing costs to drive traffic and lift conversion</p>
-              </div>
-              
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg sm:rounded-xl p-2 sm:p-3">
-                <h4 className="font-display font-semibold text-yellow-600 mb-1 text-xs">Bland, identical PDPs</h4>
-                <p className="text-xs text-yellow-600">→ If everyone's PDPs look the same, the only way to compete is by investing in performance media and/or price competition.</p>
-              </div>
-              
-              <div className="bg-destructive/5 border border-destructive/20 rounded-lg sm:rounded-xl p-2 sm:p-3 flex flex-col justify-center text-center">
-                <h4 className="font-display font-semibold text-destructive text-xs mb-1">Poor ROI</h4>
-                <p className="text-xs text-destructive/80">→ Content teams overwhelmed, marketing budgets strained</p>
-              </div>
+              {compoundingCosts.map((cost, index) => {
+                const colorClasses = {
+                  destructive: 'bg-destructive/5 border-destructive/20 text-destructive',
+                  orange: 'bg-orange-50 border-orange-200 text-orange-600',
+                  yellow: 'bg-yellow-50 border-yellow-200 text-yellow-600'
+                };
+                
+                return (
+                  <div key={index} className={`${colorClasses[cost.color]} border rounded-lg sm:rounded-xl p-2 sm:p-3 min-h-[80px] flex flex-col justify-between`}>
+                    <h4 className="font-display font-semibold mb-1 text-xs">{cost.title}</h4>
+                    <p className="text-xs opacity-80">→ {cost.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
