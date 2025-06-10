@@ -1,15 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
-import { Progress } from '@/components/ui/progress';
+import TemplateUpload from '@/components/TemplateUpload';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Sparkles, FileText, Image, Video, Globe, Mail, Printer, GraduationCap, HelpCircle } from 'lucide-react';
 
 const ContentGeneration = () => {
   const navigate = useNavigate();
-  const [progress, setProgress] = useState(0);
-  const [currentTask, setCurrentTask] = useState(0);
+  const [selectedTemplate, setSelectedTemplate] = useState<File | null>(null);
+  const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
 
   const steps = [
     { id: 'upload', label: 'Upload', completed: true, current: false },
@@ -72,27 +74,41 @@ const ContentGeneration = () => {
     }
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress(prev => {
-        const newProgress = prev + 1.5;
-        
-        // Update current task based on progress
-        const taskProgress = Math.floor(newProgress / 12.5);
-        if (taskProgress !== currentTask && taskProgress < generationTasks.length) {
-          setCurrentTask(taskProgress);
-        }
-        
-        if (newProgress >= 100) {
-          setTimeout(() => navigate('/review'), 1500);
-          return 100;
-        }
-        return newProgress;
-      });
-    }, 150);
+  const handleTemplateSelect = (file: File) => {
+    setSelectedTemplate(file);
+  };
 
-    return () => clearInterval(timer);
-  }, [navigate, currentTask]);
+  const handleRemoveTemplate = () => {
+    setSelectedTemplate(null);
+  };
+
+  const handleTaskToggle = (taskIndex: number) => {
+    setSelectedTasks(prev => {
+      if (prev.includes(taskIndex)) {
+        return prev.filter(i => i !== taskIndex);
+      } else {
+        return [...prev, taskIndex];
+      }
+    });
+  };
+
+  const handleSelectAll = () => {
+    if (selectedTasks.length === generationTasks.length) {
+      setSelectedTasks([]);
+    } else {
+      setSelectedTasks(generationTasks.map((_, index) => index));
+    }
+  };
+
+  const handleGenerateContent = () => {
+    console.log('Starting content generation with:', {
+      template: selectedTemplate?.name,
+      selectedTasks: selectedTasks.map(i => generationTasks[i].title)
+    });
+    // Here you would trigger the actual generation process
+    // For now, we'll navigate to the review page
+    navigate('/review');
+  };
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -101,94 +117,113 @@ const ContentGeneration = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <div className="inline-flex items-center space-x-2 mb-4">
-            <Sparkles className="w-8 h-8 text-primary animate-pulse" />
-            <h1 className="text-3xl font-semibold">Cooking up your content</h1>
+            <Sparkles className="w-8 h-8 text-primary" />
+            <h1 className="text-3xl font-semibold">Ready to cook up your content</h1>
           </div>
           <p className="text-lg text-muted-foreground">
-            Using enriched product intelligence to create sales-ready content
+            Upload your brand template and select the content you'd like to generate
           </p>
         </div>
 
-        <div className="mb-8">
-          <Progress value={progress} className="w-full h-4 mb-4" />
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>Generating content...</span>
-            <span>{progress}% complete</span>
-          </div>
-        </div>
+        <div className="space-y-8">
+          {/* Template Upload Section */}
+          <TemplateUpload
+            onTemplateSelect={handleTemplateSelect}
+            selectedTemplate={selectedTemplate}
+            onRemoveTemplate={handleRemoveTemplate}
+          />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {generationTasks.map((task, index) => {
-            const isActive = index === currentTask;
-            const isCompleted = index < currentTask;
-            const Icon = task.icon;
-            
-            return (
-              <Card 
-                key={index}
-                className={`transition-all duration-500 ${
-                  isActive 
-                    ? 'border-primary shadow-lg scale-105' 
-                    : isCompleted
-                      ? 'border-green-500 bg-green-50'
-                      : 'border-muted opacity-50'
-                }`}
+          {/* Content Selection Section */}
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-semibold">Select Content to Generate</h2>
+              <Button
+                variant="outline"
+                onClick={handleSelectAll}
+                className="text-sm"
               >
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className={`p-3 rounded-lg ${
-                      isCompleted 
-                        ? 'bg-green-100 text-green-600'
-                        : isActive
-                          ? 'bg-primary/10 text-primary'
-                          : 'bg-muted text-muted-foreground'
-                    }`}>
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-2">{task.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        {task.description}
-                      </p>
-                      
-                      <ul className="space-y-1">
-                        {task.items.map((item, itemIndex) => (
-                          <li 
-                            key={itemIndex}
-                            className={`text-sm flex items-center space-x-2 ${
-                              isCompleted || isActive 
-                                ? 'text-foreground' 
-                                : 'text-muted-foreground'
-                            }`}
-                          >
-                            <div className={`w-1 h-1 rounded-full ${
-                              isCompleted 
-                                ? 'bg-green-500'
-                                : isActive
-                                  ? 'bg-primary'
-                                  : 'bg-muted-foreground'
-                            }`} />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+                {selectedTasks.length === generationTasks.length ? 'Deselect All' : 'Select All'}
+              </Button>
+            </div>
 
-        {progress === 100 && (
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center space-x-2 text-green-600 font-medium">
-              <Sparkles className="w-5 h-5" />
-              <span>Content generation complete! Preparing review...</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {generationTasks.map((task, index) => {
+                const isSelected = selectedTasks.includes(index);
+                const Icon = task.icon;
+                
+                return (
+                  <Card 
+                    key={index}
+                    className={`transition-all duration-200 cursor-pointer hover:shadow-md ${
+                      isSelected 
+                        ? 'border-primary shadow-lg bg-primary/5' 
+                        : 'border-muted hover:border-primary/50'
+                    }`}
+                    onClick={() => handleTaskToggle(index)}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={isSelected}
+                            onChange={() => handleTaskToggle(index)}
+                            className="mt-1"
+                          />
+                          <div className={`p-3 rounded-lg ${
+                            isSelected
+                              ? 'bg-primary/10 text-primary'
+                              : 'bg-muted text-muted-foreground'
+                          }`}>
+                            <Icon className="w-6 h-6" />
+                          </div>
+                        </div>
+                        
+                        <div className="flex-1">
+                          <h3 className="font-semibold mb-2">{task.title}</h3>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            {task.description}
+                          </p>
+                          
+                          <ul className="space-y-1">
+                            {task.items.map((item, itemIndex) => (
+                              <li 
+                                key={itemIndex}
+                                className="text-sm flex items-center space-x-2 text-foreground"
+                              >
+                                <div className={`w-1 h-1 rounded-full ${
+                                  isSelected ? 'bg-primary' : 'bg-muted-foreground'
+                                }`} />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
-        )}
+
+          {/* Generate Button */}
+          <div className="text-center pt-8">
+            <Button
+              onClick={handleGenerateContent}
+              disabled={selectedTasks.length === 0}
+              size="lg"
+              className="px-12 py-4 text-lg"
+            >
+              <Sparkles className="w-6 h-6 mr-2" />
+              Generate a feast of content
+            </Button>
+            {selectedTasks.length === 0 && (
+              <p className="text-sm text-muted-foreground mt-2">
+                Please select at least one content type to generate
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
