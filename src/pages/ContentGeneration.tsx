@@ -482,5 +482,3 @@ const ContentGeneration = () => {
 };
 
 export default ContentGeneration;
-
-}
