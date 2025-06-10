@@ -1,6 +1,7 @@
 
 import React from 'react';
 import FAQSection from '@/components/FAQSection';
+import Footer from '@/components/Footer';
 import { 
   generalFAQs,
   retailerFAQs, 
@@ -99,6 +100,7 @@ const FAQ = () => {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
