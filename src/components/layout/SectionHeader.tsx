@@ -18,25 +18,25 @@ const SectionHeader = ({
   className 
 }: SectionHeaderProps) => {
   const titleSizes = {
-    sm: 'text-xl sm:text-2xl md:text-3xl',
-    md: 'text-2xl sm:text-3xl md:text-4xl',
-    lg: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
+    sm: 'text-subsection-title',
+    md: 'text-section-title',
+    lg: 'text-hero'
   };
 
   return (
     <div className={cn(
-      'mb-8',
+      'space-elements-sm',
       centered && 'text-center',
       className
     )}>
       <h2 className={cn(
-        'font-display font-bold tracking-tight mb-3',
+        'font-display font-bold tracking-tight',
         titleSizes[size]
       )}>
         {title}
       </h2>
       {subtitle && (
-        <div className="text-lg text-muted-foreground">
+        <div className="text-body-large text-muted-foreground">
           {subtitle}
         </div>
       )}

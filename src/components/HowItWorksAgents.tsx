@@ -5,14 +5,14 @@ import { coreAgents, inputAgents, strategyAgents, contentAgents, qualityAgents }
 
 const HowItWorksAgents = () => {
   return (
-    <section className="py-8 sm:py-12 bg-muted/20">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="content-padding section-spacing-md bg-muted/20">
+      <div className="content-width space-elements-lg">
         {/* Main section heading */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight mb-3">
+        <div className="text-center space-elements-sm">
+          <h2 className="text-section-title text-balance">
             Meet the Chefs behind the Scenes
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-body-large text-muted-foreground">
             Meet the AI agents that transform your raw product data into a feast of sales-ready content
           </p>
         </div>

@@ -24,17 +24,17 @@ const PageSection = ({
   };
 
   const paddingClasses = {
-    sm: 'py-6 sm:py-8',
-    md: 'py-8 sm:py-12',
-    lg: 'py-12 sm:py-16 lg:py-20'
+    sm: 'section-spacing-sm',
+    md: 'section-spacing-md',
+    lg: 'section-spacing-lg'
   };
 
   const maxWidthClasses = {
     sm: 'max-w-2xl',
     md: 'max-w-4xl',
-    lg: 'max-w-5xl',
+    lg: 'content-width',
     xl: 'max-w-6xl',
-    '2xl': 'max-w-7xl',
+    '2xl': 'container-width',
     '6xl': 'max-w-6xl'
   };
 
@@ -42,9 +42,10 @@ const PageSection = ({
     <section className={cn(
       backgroundClasses[background],
       paddingClasses[padding],
+      'content-padding',
       className
     )}>
-      <div className={cn(maxWidthClasses[maxWidth], 'mx-auto px-4')}>
+      <div className={cn(maxWidthClasses[maxWidth], 'mx-auto')}>
         {children}
       </div>
     </section>

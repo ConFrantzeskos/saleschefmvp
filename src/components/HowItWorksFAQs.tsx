@@ -14,43 +14,45 @@ const HowItWorksFAQs = () => {
   const mediaSubmission = useEmailSubmission();
 
   return (
-    <section className="py-8 sm:py-12 border-t">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight mb-3">
+    <section className="content-padding section-spacing-md border-t">
+      <div className="content-width space-elements-lg">
+        <div className="text-center space-elements-sm">
+          <h2 className="text-section-title text-balance">
             Frequently Asked Questions
           </h2>
         </div>
         
-        <FAQSection 
-          title="Retail & eCommerce" 
-          faqs={retailerFAQs} 
-          emoji="🛍️" 
-          email={retailSubmission.email}
-          setEmail={retailSubmission.setEmail}
-          handleSubmit={retailSubmission.handleSubmit}
-          ctaText="Ready to transform your product content?"
-        />
-        
-        <FAQSection 
-          title="Travel & Tourism" 
-          faqs={travelTourismFAQs} 
-          emoji="✈️" 
-          email={tourismSubmission.email}
-          setEmail={tourismSubmission.setEmail}
-          handleSubmit={tourismSubmission.handleSubmit}
-          ctaText="Transform your tourism content at scale?"
-        />
-        
-        <FAQSection 
-          title="Media & Entertainment" 
-          faqs={mediaEntertainmentFAQs} 
-          emoji="🎬" 
-          email={mediaSubmission.email}
-          setEmail={mediaSubmission.setEmail}
-          handleSubmit={mediaSubmission.handleSubmit}
-          ctaText="Unlock your content's revenue potential?"
-        />
+        <div className="space-elements-lg">
+          <FAQSection 
+            title="Retail & eCommerce" 
+            faqs={retailerFAQs} 
+            emoji="🛍️" 
+            email={retailSubmission.email}
+            setEmail={retailSubmission.setEmail}
+            handleSubmit={retailSubmission.handleSubmit}
+            ctaText="Ready to transform your product content?"
+          />
+          
+          <FAQSection 
+            title="Travel & Tourism" 
+            faqs={travelTourismFAQs} 
+            emoji="✈️" 
+            email={tourismSubmission.email}
+            setEmail={tourismSubmission.setEmail}
+            handleSubmit={tourismSubmission.handleSubmit}
+            ctaText="Transform your tourism content at scale?"
+          />
+          
+          <FAQSection 
+            title="Media & Entertainment" 
+            faqs={mediaEntertainmentFAQs} 
+            emoji="🎬" 
+            email={mediaSubmission.email}
+            setEmail={mediaSubmission.setEmail}
+            handleSubmit={mediaSubmission.handleSubmit}
+            ctaText="Unlock your content's revenue potential?"
+          />
+        </div>
       </div>
     </section>
   );

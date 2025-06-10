@@ -21,25 +21,27 @@ const TourismProblems = () => {
 
   return (
     <PageSection>
-      <SectionHeader
-        title="Why tourism content is broken — and why SalesChef fixes it"
-      />
-      <div className="space-y-8">
-        <div className="text-center">
-          <p className="text-lg font-medium mb-2">Tourism runs on content.</p>
-          <p className="text-lg text-muted-foreground mb-8">Content sells the experience — before a single dollar is booked.</p>
-          <p className="text-lg font-medium text-foreground">But here's the reality:</p>
-        </div>
-        
-        <div className="bg-destructive/5 border border-destructive/20 rounded-xl p-6">
-          <h3 className="text-xl font-semibold mb-6 text-center">Most supplier content is an operational nightmare:</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {supplierProblems.map((problem, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <X className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-foreground">{problem}</span>
-              </div>
-            ))}
+      <div className="space-elements-lg">
+        <SectionHeader
+          title="Why tourism content is broken — and why SalesChef fixes it"
+        />
+        <div className="space-elements-md">
+          <div className="text-center space-elements-sm">
+            <p className="text-body-large font-medium">Tourism runs on content.</p>
+            <p className="text-body-large text-muted-foreground">Content sells the experience — before a single dollar is booked.</p>
+            <p className="text-body-large font-medium text-foreground">But here's the reality:</p>
+          </div>
+          
+          <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-6 sm:p-8">
+            <h3 className="text-subsection-title text-center mb-6">Most supplier content is an operational nightmare:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {supplierProblems.map((problem, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <X className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
+                  <span className="text-body text-foreground">{problem}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

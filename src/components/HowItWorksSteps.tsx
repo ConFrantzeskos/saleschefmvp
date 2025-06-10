@@ -8,10 +8,10 @@ const HowItWorksSteps = () => {
   const { email: tryItEmail, setEmail: setTryItEmail, handleSubmit: handleSubmitWithRedirect } = useEmailSubmission();
 
   return (
-    <section className="py-8 sm:py-12">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight mb-3">
+    <section className="content-padding section-spacing-md">
+      <div className="content-width space-elements-lg">
+        <div className="text-center space-elements-sm">
+          <h2 className="text-section-title text-balance">
             How to turn your specs into a sales machine
           </h2>
         </div>

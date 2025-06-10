@@ -62,17 +62,17 @@ const LiveTracker = React.lazy(() => import('@/components/LiveTracker'));
 
 // Optimized fallback components with better performance
 const SectionFallback = React.memo(({ height = "h-32" }: { height?: string }) => (
-  <div className={`${height} bg-muted/20 animate-pulse rounded-lg mx-4 sm:mx-6`} />
+  <div className={`${height} bg-muted/20 animate-pulse rounded-lg content-padding`} />
 ));
 
 SectionFallback.displayName = 'SectionFallback';
 
 // Error fallback component
 const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => (
-  <div className="min-h-screen flex items-center justify-center p-4">
-    <div className="text-center max-w-md">
-      <h2 className="text-2xl font-bold mb-4">Something went wrong</h2>
-      <p className="text-muted-foreground mb-4">
+  <div className="min-h-screen flex items-center justify-center content-padding">
+    <div className="text-center content-width space-elements-md">
+      <h2 className="text-section-title">Something went wrong</h2>
+      <p className="text-body-large text-muted-foreground">
         {import.meta.env.DEV ? error.message : 'Please try refreshing the page'}
       </p>
       <button
@@ -127,35 +127,35 @@ const Index = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <div className="min-h-screen bg-background">
-        <Suspense fallback={<SectionFallback height="h-8" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-xs" />}>
           <LiveTracker />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-96" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-xl" />}>
           <HeroSection email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-64" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
           <ProblemSection />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-80" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
           <IntroducingSalesChef />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-64" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
           <ResultsSection />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-48" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-md" />}>
           <IndustryCallout />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-64" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
           <TrustSection />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-64" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
           <CTASection 
             tryItEmail={tryItEmail} 
             setTryItEmail={setTryItEmail} 
@@ -163,7 +163,7 @@ const Index = () => {
           />
         </Suspense>
         
-        <Suspense fallback={<SectionFallback height="h-32" />}>
+        <Suspense fallback={<SectionFallback height="section-spacing-sm" />}>
           <Footer />
         </Suspense>
       </div>
