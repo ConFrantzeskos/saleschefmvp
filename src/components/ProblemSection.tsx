@@ -4,20 +4,20 @@ import { AlertTriangle, TrendingDown, Users, Database, RefreshCw, FileX, Clock, 
 
 const ProblemSection = () => {
   const challenges = [
-    { text: 'Thousands of SKUs across scattered systems', icon: Database },
-    { text: 'Constant product updates and new ranges', icon: RefreshCw },
-    { text: 'Inconsistent, messy specs across channels', icon: FileX },
-    { text: 'Content teams doing manual copy/paste workflows', icon: Clock },
-    { text: 'PDPs identical to competitors', icon: AlertTriangle },
-    { text: 'Costly SEO and conversion improvements', icon: TrendingDown },
-    { text: 'Content quickly becomes outdated', icon: RefreshCw }
+    { text: '🗃️ Thousands of SKUs across scattered systems', icon: Database },
+    { text: '🔄 Constant product updates and new ranges', icon: RefreshCw },
+    { text: '📄 Inconsistent, messy specs across channels', icon: FileX },
+    { text: '⏱️ Content teams doing manual copy/paste workflows', icon: Clock },
+    { text: '📋 PDPs identical to competitors', icon: AlertTriangle },
+    { text: '📈 Costly SEO and conversion improvements', icon: TrendingDown },
+    { text: '⏰ Content quickly becomes outdated', icon: RefreshCw }
   ];
 
   const costs = [
-    'Inconsistent PDPs → Poor differentiation & conversion',
-    'Rising marketing spend → Higher acquisition costs', 
-    'Price competition → Shrinking margins',
-    'Team burnout → Slower time-to-market'
+    '📉 Inconsistent PDPs → Poor differentiation & conversion',
+    '💰 Rising marketing spend → Higher acquisition costs', 
+    '💸 Price competition → Shrinking margins',
+    '😴 Team burnout → Slower time-to-market'
   ];
 
   return (

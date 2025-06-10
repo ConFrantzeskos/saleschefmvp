@@ -19,14 +19,14 @@ const MediaEntertainment = () => {
   ];
 
   const chaosConsequences = [
-    'Lost syndication and licensing revenue (archive not fully monetised)',
-    'Manual, expensive packaging for advertisers & sponsors',
-    'Delayed content onboarding → lost market opportunities',
-    'Inconsistent audience targeting → lower CPMs',
-    'Missed FAST/CTV monetisation windows',
-    'Poor SEO → under-leveraged owned channels',
-    'Legal & rights risk → incorrect or missing usage metadata',
-    'Inability to feed AI agents / LLM search experiences'
+    '📉 Lost syndication and licensing revenue (archive not fully monetised)',
+    '🔧 Manual, expensive packaging for advertisers & sponsors',
+    '⏱️ Delayed content onboarding → lost market opportunities',
+    '🎯 Inconsistent audience targeting → lower CPMs',
+    '📺 Missed FAST/CTV monetisation windows',
+    '🔍 Poor SEO → under-leveraged owned channels',
+    '⚖️ Legal & rights risk → incorrect or missing usage metadata',
+    '🤖 Inability to feed AI agents / LLM search experiences'
   ];
 
   const ingestSources = [
@@ -173,9 +173,8 @@ const MediaEntertainment = () => {
           <div className="bg-destructive/5 border border-destructive/20 rounded-xl p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {mediaProblems.map((problem, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-foreground">{problem}</span>
+                <div key={index} className="flex items-start gap-3 p-4 rounded-lg bg-background/50 border border-border/30 hover:shadow-soft transition-shadow">
+                  <span className="text-sm text-foreground font-medium leading-relaxed">{problem}</span>
                 </div>
               ))}
             </div>
@@ -189,12 +188,16 @@ const MediaEntertainment = () => {
       {/* The cost of the chaos */}
       <PageSection background="muted">
         <SectionHeader
-          title="💸 The Cost of Chaos"
+          title={
+            <span>
+              💸 The Cost of Chaos
+            </span>
+          }
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chaosConsequences.map((consequence, index) => (
-            <div key={index} className="bg-background rounded-xl p-6 border border-border/50 shadow-soft">
-              <p className="text-foreground font-medium">{consequence}</p>
+            <div key={index} className="bg-background rounded-xl p-6 border border-border/50 shadow-soft hover:shadow-medium transition-shadow">
+              <p className="text-foreground font-medium leading-relaxed">{consequence}</p>
             </div>
           ))}
         </div>
