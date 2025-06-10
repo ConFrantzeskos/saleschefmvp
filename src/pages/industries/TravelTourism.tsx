@@ -13,16 +13,42 @@ const TravelTourism = () => {
     <div className="min-h-screen bg-background">
       <TourismHero />
       <TourismProblems />
+      
+      {/* First CTA after problems */}
+      <EmailCTA
+        headline="Stop losing content quality"
+        subtitle="See how travel leaders are transforming their content operations"
+        placeholder="Enter your work email"
+        buttonText="Show Me How"
+        variant="card"
+        size="sm"
+      />
+      
       <TourismChaos />
       <TourismSolution />
+      
+      {/* Second CTA after solution */}
+      <EmailCTA
+        headline="See this solution in action"
+        subtitle="Custom demo tailored to your travel marketplace challenges"
+        placeholder="Enter your work email"
+        buttonText="Book Demo"
+        variant="gradient"
+        size="sm"
+      />
+      
       <TourismOutcomes />
+      
+      {/* Final CTA after outcomes */}
       <EmailCTA
         headline="Ready to transform your marketplace content engine?"
-        subtitle="Custom-tailored for your OTA, marketplace, DMO or aggregator."
+        subtitle="Join travel industry leaders already maximizing their content operations"
+        placeholder="Enter your work email"
         buttonText="Book Tourism Demo"
         variant="default"
-        size="md"
+        size="sm"
       />
+      
       <Footer />
     </div>
   );
