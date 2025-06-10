@@ -24,9 +24,9 @@ const PageSection = ({
   };
 
   const paddingClasses = {
-    sm: 'section-spacing-sm',
-    md: 'section-spacing-md',
-    lg: 'section-spacing-lg'
+    sm: 'py-8',
+    md: 'py-12',
+    lg: 'py-16'
   };
 
   const maxWidthClasses = {
@@ -42,7 +42,7 @@ const PageSection = ({
     <section className={cn(
       backgroundClasses[background],
       paddingClasses[padding],
-      'content-padding',
+      'px-4 md:px-6',
       className
     )}>
       <div className={cn(maxWidthClasses[maxWidth], 'mx-auto')}>

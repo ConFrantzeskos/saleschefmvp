@@ -18,9 +18,9 @@ const IndustryProblemsSection = ({
   conclusionText 
 }: IndustryProblemsSectionProps) => {
   return (
-    <PageSection>
+    <PageSection padding="sm">
       <SectionHeader title={title} />
-      <div className="space-elements-lg">
+      <div className="space-y-6 mt-8">
         {description && (
           <div className="text-center">
             <p className="text-body-large text-muted-foreground max-w-4xl mx-auto">
@@ -29,12 +29,12 @@ const IndustryProblemsSection = ({
           </div>
         )}
         
-        <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-8 shadow-soft">
-          <div className="space-elements-md">
+        <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-6 shadow-soft">
+          <div className="space-y-3">
             {problems.map((problem, index) => (
-              <div key={index} className="flex items-start gap-4">
-                <X className="w-5 h-5 text-destructive mt-1 flex-shrink-0" />
-                <span className="text-body text-foreground leading-relaxed">{problem}</span>
+              <div key={index} className="flex items-start gap-3">
+                <X className="w-4 h-4 text-destructive mt-1 flex-shrink-0" />
+                <span className="text-sm text-foreground leading-relaxed">{problem}</span>
               </div>
             ))}
           </div>
@@ -42,7 +42,7 @@ const IndustryProblemsSection = ({
         
         {conclusionText && (
           <div className="text-center">
-            <p className="text-body-large font-semibold text-primary max-w-3xl mx-auto">
+            <p className="text-body font-semibold text-primary max-w-3xl mx-auto">
               {conclusionText}
             </p>
           </div>

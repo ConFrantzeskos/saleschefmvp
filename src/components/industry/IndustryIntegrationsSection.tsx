@@ -11,17 +11,17 @@ interface IndustryIntegrationsSectionProps {
 
 const IndustryIntegrationsSection = ({ title, integrations }: IndustryIntegrationsSectionProps) => {
   return (
-    <PageSection background="muted">
+    <PageSection padding="sm">
       <SectionHeader title={title} />
-      <div className="space-elements-lg">
-        <p className="text-center text-body-large text-muted-foreground">
+      <div className="space-y-4 mt-8">
+        <p className="text-center text-body text-muted-foreground">
           SalesChef works seamlessly with:
         </p>
-        <div className="space-elements-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {integrations.map((integration, index) => (
-            <div key={index} className="flex items-start gap-3 bg-background rounded-lg p-4 border border-border/50 hover:shadow-soft transition-shadow duration-300">
-              <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-              <span className="text-body text-foreground leading-relaxed">{integration}</span>
+            <div key={index} className="flex items-start gap-2 bg-background rounded-lg p-3 border border-border/50 hover:shadow-soft transition-shadow duration-300">
+              <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <span className="text-xs text-foreground leading-relaxed">{integration}</span>
             </div>
           ))}
         </div>

@@ -21,8 +21,8 @@ interface DetailedIndustryPageTemplateProps {
 const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplateProps) => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <PageSection background="gradient" padding="lg">
+      {/* Hero Section - Reduced padding */}
+      <PageSection background="gradient" padding="md">
         <SectionHeader
           title={industry.title}
           subtitle={industry.subtitle}
@@ -30,7 +30,7 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         />
       </PageSection>
 
-      {/* Problems Section */}
+      {/* Problems Section - Reduced padding */}
       <IndustryProblemsSection
         title={industry.problemsTitle || "The Challenge"}
         description={industry.problemsDescription}
@@ -38,13 +38,13 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         conclusionText="👉 Investor communications is a strategic function — but content chaos is holding it back."
       />
 
-      {/* Consequences Section */}
+      {/* Consequences Section - Reduced padding */}
       <IndustryConsequencesSection
         title={industry.consequencesTitle || "The Cost of Chaos"}
         consequences={industry.consequences}
       />
 
-      {/* Reality/Complexity Section */}
+      {/* Reality/Complexity Section - Reduced padding */}
       {industry.realityPoints && (
         <IndustryRealitySection
           title={industry.realityTitle || "Built for Complexity"}
@@ -54,7 +54,7 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         />
       )}
 
-      {/* How SalesChef Works */}
+      {/* How SalesChef Works - Reduced padding */}
       <IndustrySolutionSteps
         title={`How SalesChef works for ${industry.name}`}
         ingestSources={industry.ingestSources}
@@ -63,28 +63,28 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         outputChannels={industry.outputChannels}
       />
 
-      {/* Business Outcomes */}
+      {/* Business Outcomes - Reduced padding */}
       <IndustryOutcomesSection
         title={`Business outcomes for ${industry.name.toLowerCase()} teams`}
         outcomes={industry.businessOutcomes}
       />
 
-      {/* Why Choose Section */}
+      {/* Why Choose Section - Reduced padding */}
       <IndustryWhyChooseSection
         title={industry.whyChooseTitle || `Why leaders choose SalesChef for ${industry.name}`}
         reasons={industry.whyChooseReasons}
       />
 
-      {/* Use Cases */}
+      {/* Use Cases - Reduced padding */}
       <IndustryUseCases industry={industry} />
 
-      {/* Integrations */}
+      {/* Integrations - Reduced padding */}
       <IndustryIntegrationsSection
         title="Key integrations & stack fit"
         integrations={industry.integrations}
       />
 
-      {/* CTA */}
+      {/* CTA - Reduced padding */}
       <IndustryCTA industryName={industry.name.toLowerCase()} />
 
       <Footer />
