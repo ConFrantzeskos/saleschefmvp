@@ -35,6 +35,7 @@ const AppRoutes = () => {
       <Route path="/enhance" element={<pageComponents.EnhanceAssets />} />
       <Route path="/deploy" element={<pageComponents.Deploy />} />
       <Route path="/optimization" element={<pageComponents.Optimization />} />
+      <Route path="/dashboard" element={<pageComponents.Dashboard />} />
       <Route path="*" element={<pageComponents.NotFound />} />
     </Routes>
   );
