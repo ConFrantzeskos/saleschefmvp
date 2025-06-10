@@ -106,144 +106,178 @@
 }
 
 @layer components {
-  /* Standardized spacing system */
+  /* Apple-inspired consistent spacing system - follows 8pt grid */
   .section-spacing-xs {
-    @apply py-4 sm:py-6;
-  }
-  
-  .section-spacing-sm {
-    @apply py-6 sm:py-8;
-  }
-  
-  .section-spacing-md {
     @apply py-8 sm:py-12;
   }
   
-  .section-spacing-lg {
+  .section-spacing-sm {
     @apply py-12 sm:py-16;
   }
   
-  .section-spacing-xl {
-    @apply py-16 sm:py-20 lg:py-24;
+  .section-spacing-md {
+    @apply py-16 sm:py-20;
   }
   
+  .section-spacing-lg {
+    @apply py-20 sm:py-24;
+  }
+  
+  .section-spacing-xl {
+    @apply py-24 sm:py-32;
+  }
+  
+  /* Container system with consistent max-widths */
   .container-width {
     @apply max-w-7xl mx-auto;
   }
   
   .content-width {
-    @apply max-w-5xl mx-auto;
+    @apply max-w-4xl mx-auto;
   }
   
   .content-padding {
-    @apply px-4 sm:px-6;
+    @apply px-6 sm:px-8;
   }
   
-  /* Standardized text hierarchy */
+  /* Enhanced typography hierarchy */
   .text-hero {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight;
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight;
   }
   
   .text-section-title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight;
+    @apply text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight;
   }
   
   .text-subsection-title {
-    @apply text-xl sm:text-2xl md:text-3xl font-display font-bold tracking-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight;
   }
   
   .text-body-large {
-    @apply text-base sm:text-lg leading-relaxed;
+    @apply text-lg sm:text-xl leading-relaxed;
   }
   
   .text-body {
-    @apply text-sm sm:text-base leading-relaxed;
+    @apply text-base sm:text-lg leading-relaxed;
   }
   
   .text-body-small {
-    @apply text-xs sm:text-sm leading-relaxed;
+    @apply text-sm sm:text-base leading-relaxed;
   }
   
-  /* Standardized spacing utilities */
+  /* Consistent element spacing - Apple 8pt grid system */
   .space-elements-xs > * + * {
-    @apply mt-2 sm:mt-3;
+    @apply mt-4;
   }
   
   .space-elements-sm > * + * {
-    @apply mt-3 sm:mt-4;
+    @apply mt-6;
   }
   
   .space-elements-md > * + * {
-    @apply mt-4 sm:mt-6;
+    @apply mt-8;
   }
   
   .space-elements-lg > * + * {
-    @apply mt-6 sm:mt-8;
+    @apply mt-12;
   }
   
-  /* Professional shadow system */
+  .space-elements-xl > * + * {
+    @apply mt-16;
+  }
+  
+  /* Refined shadow system - more subtle, Apple-like */
   .shadow-soft {
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
   }
   
   .shadow-medium {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
   }
   
   .shadow-large {
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
   }
   
   .shadow-brand {
-    box-shadow: 0 4px 14px 0 hsl(var(--primary) / 0.15);
+    box-shadow: 0 4px 20px -4px hsl(var(--primary) / 0.15);
   }
   
   .shadow-accent {
-    box-shadow: 0 4px 14px 0 hsl(var(--accent) / 0.15);
+    box-shadow: 0 4px 20px -4px hsl(var(--accent) / 0.15);
   }
   
-  /* Enhanced card styles */
+  /* Refined card system - cleaner, more purposeful */
   .card-interactive {
-    @apply bg-card rounded-2xl p-6 sm:p-8 shadow-soft border border-border hover:shadow-large hover:border-primary/20 transition-all duration-300 group cursor-pointer transform hover:-translate-y-1;
+    @apply bg-card rounded-3xl p-8 sm:p-10 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/20 transition-all duration-300 group cursor-pointer;
   }
   
   .card-content {
-    @apply bg-card rounded-2xl p-6 sm:p-8 shadow-soft border border-border;
+    @apply bg-card rounded-3xl p-8 sm:p-10 shadow-soft border border-border/50;
   }
   
   .card-feature {
-    @apply bg-gradient-to-br from-card to-card/50 rounded-3xl p-6 sm:p-8 shadow-medium border border-border/50 hover:shadow-large hover:border-primary/20 transition-all duration-500 group backdrop-blur-sm;
+    @apply bg-gradient-to-br from-card to-muted/20 rounded-3xl p-8 sm:p-10 shadow-medium border border-border/30 hover:shadow-large hover:border-primary/20 transition-all duration-500 group;
   }
   
-  /* Enhanced button styles */
+  .card-minimal {
+    @apply bg-card/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-border/30 hover:border-border/60 transition-all duration-300;
+  }
+  
+  /* Enhanced button system - more SalesChef branded */
   .btn-primary {
-    @apply bg-gradient-brand hover:opacity-90 transition-all duration-300 shadow-brand hover:shadow-large transform hover:scale-[1.02] active:scale-[0.98];
+    @apply bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80 text-white font-semibold rounded-2xl px-8 py-4 shadow-brand hover:shadow-large transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
   }
   
   .btn-secondary {
-    @apply bg-secondary hover:bg-secondary/90 transition-all duration-300 shadow-soft hover:shadow-medium transform hover:scale-[1.02] active:scale-[0.98];
+    @apply bg-gradient-to-r from-secondary to-secondary/90 hover:from-secondary/90 hover:to-secondary/80 text-white font-semibold rounded-2xl px-8 py-4 shadow-soft hover:shadow-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
   }
   
   .btn-accent {
-    @apply bg-gradient-accent hover:opacity-90 transition-all duration-300 shadow-accent hover:shadow-large transform hover:scale-[1.02] active:scale-[0.98];
+    @apply bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent/80 text-white font-semibold rounded-2xl px-8 py-4 shadow-accent hover:shadow-large transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
   }
   
-  /* Enhanced form elements */
+  .btn-outline {
+    @apply border-2 border-primary/20 hover:border-primary/40 bg-transparent hover:bg-primary/5 text-primary font-semibold rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent hover:bg-muted/50 text-foreground font-medium rounded-xl px-6 py-3 transition-all duration-300;
+  }
+  
+  /* Enhanced form system - more elegant, Apple-inspired */
   .form-group {
-    @apply space-y-3;
+    @apply space-y-4;
   }
   
   .form-container {
-    @apply p-4 bg-card rounded-3xl shadow-soft border border-border hover:border-primary/30 transition-all duration-300 backdrop-blur-sm;
+    @apply bg-card/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-soft border border-border/50 hover:border-primary/30 transition-all duration-300;
   }
   
-  /* Icon containers */
+  .form-input {
+    @apply w-full bg-background/80 border border-border/50 rounded-2xl px-6 py-4 text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all duration-300;
+  }
+  
+  /* Icon containers - more refined */
   .icon-container {
-    @apply w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110;
+    @apply w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110;
   }
   
   .icon-container-large {
-    @apply w-16 h-16 rounded-3xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-soft;
+    @apply w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-soft;
+  }
+  
+  /* Enhanced layouts */
+  .section-hero {
+    @apply bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden;
+  }
+  
+  .section-alt {
+    @apply bg-gradient-to-b from-muted/10 to-background/50 relative;
+  }
+  
+  .section-brand {
+    @apply bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 relative;
   }
 }
 
@@ -252,7 +286,7 @@
     text-wrap: balance;
   }
   
-  /* Enhanced gradient system */
+  /* SalesChef-specific gradient system */
   .bg-gradient-brand {
     background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
   }
@@ -261,12 +295,16 @@
     background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 100%);
   }
   
+  .bg-gradient-chef {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(var(--secondary)) 100%);
+  }
+  
   .bg-gradient-subtle {
-    background: linear-gradient(135deg, hsl(var(--muted)/0.3) 0%, hsl(var(--background)) 50%, hsl(var(--muted)/0.2) 100%);
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)/0.3) 50%, hsl(var(--background)) 100%);
   }
   
   .bg-gradient-warm {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)/0.5) 100%);
+    background: linear-gradient(135deg, hsl(var(--muted)/0.2) 0%, hsl(var(--background)) 100%);
   }
   
   .text-gradient-brand {
@@ -276,38 +314,38 @@
     background-clip: text;
   }
   
-  .text-gradient-subtle {
-    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
+  .text-gradient-chef {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(var(--secondary)) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
-  /* Professional animations */
+  /* Refined animations - more purposeful */
   .animate-fade-in {
-    animation: fadeIn 0.8s ease-out;
+    animation: fadeIn 1s ease-out;
   }
   
   .animate-slide-up {
-    animation: slideUp 0.8s ease-out;
+    animation: slideUp 1s ease-out;
   }
   
   .animate-scale-in {
-    animation: scaleIn 0.6s ease-out;
+    animation: scaleIn 0.8s ease-out;
   }
   
   .animate-float {
-    animation: float 6s ease-in-out infinite;
+    animation: float 8s ease-in-out infinite;
   }
   
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .animate-pulse-soft {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
     }
     to {
       opacity: 1;
@@ -318,7 +356,7 @@
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(32px);
     }
     to {
       opacity: 1;
@@ -329,7 +367,7 @@
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.9);
+      transform: scale(0.95);
     }
     to {
       opacity: 1;
@@ -342,13 +380,13 @@
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
   }
   
-  /* Interactive elements */
+  /* Enhanced interactive elements */
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-large;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-large;
   }
   
   .hover-glow {
@@ -359,16 +397,41 @@
     @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-background;
   }
   
-  /* Backdrop effects */
+  /* Enhanced glass effects */
   .backdrop-glass {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.8);
   }
   
   .backdrop-warm {
-    backdrop-filter: blur(8px);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(12px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
   }
+  
+  /* Consistent border radius system */
+  .rounded-brand {
+    border-radius: 1.5rem;
+  }
+  
+  .rounded-brand-lg {
+    border-radius: 2rem;
+  }
+  
+  .rounded-brand-xl {
+    border-radius: 2.5rem;
+  }
+}
+
+/* Enhanced selection and focus */
+::selection {
+  background: hsl(var(--primary) / 0.15);
+  color: hsl(var(--primary));
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 0.5rem;
 }
 
 /* Smooth scrolling */
@@ -376,14 +439,20 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Selection styling */
-::selection {
-  background: hsl(var(--primary) / 0.2);
-  color: hsl(var(--primary));
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Enhanced focus visibility */
-:focus-visible {
-  outline: 2px solid hsl(var(--primary));
-  outline-offset: 2px;
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.6);
 }
