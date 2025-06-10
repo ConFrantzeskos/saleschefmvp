@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
@@ -6,7 +5,7 @@ import TemplateUpload from '@/components/TemplateUpload';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Sparkles, FileText, Image, Video, Globe, Mail, Printer, GraduationCap, HelpCircle, Instagram, MessageSquare, Camera, Edit3, Users, ShoppingBag, Megaphone, TrendingUp, AudioWaveform, Code, Software, Hardware } from 'lucide-react';
+import { Sparkles, FileText, Image, Video, Globe, Mail, Printer, GraduationCap, HelpCircle, Instagram, MessageSquare, Camera, Edit3, Users, ShoppingBag, Megaphone, TrendingUp, AudioWaveform, Code, Monitor, Cpu } from 'lucide-react';
 
 const ContentGeneration = () => {
   const navigate = useNavigate();
@@ -209,7 +208,7 @@ const ContentGeneration = () => {
       title: "Software Content",
       tasks: [
         {
-          icon: Software,
+          icon: Monitor,
           title: "App Store Content",
           description: "Mobile and web app descriptions",
           items: ["App descriptions", "Feature lists", "Screenshots text", "Update notes"]
@@ -221,7 +220,7 @@ const ContentGeneration = () => {
           items: ["API guides", "Code examples", "Integration docs", "SDKs"]
         },
         {
-          icon: Software,
+          icon: Monitor,
           title: "User Interfaces",
           description: "In-app content and microcopy",
           items: ["Button text", "Error messages", "Tooltips", "Onboarding flows"]
@@ -238,25 +237,25 @@ const ContentGeneration = () => {
       title: "Hardware Content",
       tasks: [
         {
-          icon: Hardware,
+          icon: Cpu,
           title: "User Manuals",
           description: "Hardware instruction guides",
           items: ["Setup guides", "Troubleshooting", "Safety instructions", "Warranty info"]
         },
         {
-          icon: Hardware,
+          icon: Cpu,
           title: "Technical Datasheets",
           description: "Hardware specifications and data",
           items: ["Component specs", "Performance data", "Electrical ratings", "Dimensions"]
         },
         {
-          icon: Hardware,
+          icon: Cpu,
           title: "Installation Guides",
           description: "Hardware installation instructions",
           items: ["Step-by-step guides", "Tool requirements", "Safety warnings", "Diagrams"]
         },
         {
-          icon: Hardware,
+          icon: Cpu,
           title: "Compliance Docs",
           description: "Regulatory and compliance documentation",
           items: ["Certifications", "Safety standards", "Environmental specs", "Regulatory info"]
