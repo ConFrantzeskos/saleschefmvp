@@ -27,7 +27,12 @@ export const useEmailSubmission = () => {
     const webhookUrl = secureStorage.getItem('zapier_webhook_url');
     
     if (!webhookUrl) {
-      toast.error("Webhook URL is not configured. Please configure it in settings.");
+      toast.error("Webhook URL is not configured. Please configure it in settings first.", {
+        action: {
+          label: "Configure Now",
+          onClick: () => navigate('/zapier')
+        }
+      });
       return;
     }
 
@@ -36,7 +41,12 @@ export const useEmailSubmission = () => {
     const urlValidation = validateWebhookUrl(sanitizedWebhookUrl);
     
     if (!urlValidation.isValid) {
-      toast.error("Invalid webhook configuration. Please check settings.");
+      toast.error("Invalid webhook configuration. Please check settings.", {
+        action: {
+          label: "Fix Settings",
+          onClick: () => navigate('/zapier')
+        }
+      });
       return;
     }
     
