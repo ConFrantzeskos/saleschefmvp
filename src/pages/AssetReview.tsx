@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import AssetHeader from '@/components/AssetHeader';
 import FactoryDataSection from '@/components/FactoryDataSection';
 import EnhancedContentSection from '@/components/EnhancedContentSection';
+import GeneratedVisualContent from '@/components/GeneratedVisualContent';
 import { contentSections } from '@/data/contentSections';
 import { Asset } from '@/types/asset';
 
@@ -135,10 +136,17 @@ RETAIL_PRICE,USD_79.99`;
       <div className="max-w-7xl mx-auto p-6 flex-1 flex flex-col">
         <AssetHeader asset={asset} onApprove={handleApprove} />
 
-        {/* Two-column layout with independent scrolling - takes remaining space */}
-        <div className="grid grid-cols-2 gap-6 flex-1 min-h-0">
+        {/* Three-column layout with independent scrolling - takes remaining space */}
+        <div className="grid grid-cols-3 gap-6 flex-1 min-h-0">
           {/* Left Column - Original Factory Data */}
           <FactoryDataSection consolidatedRawData={consolidatedRawData} />
+
+          {/* Middle Column - Generated Visual Content */}
+          <GeneratedVisualContent 
+            keywords={asset.seoKeywords}
+            keyBenefits={asset.keyBenefits}
+            competitiveAdvantage={asset.competitiveAdvantage}
+          />
 
           {/* Right Column - Enhanced Content */}
           <EnhancedContentSection
