@@ -1,20 +1,25 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { Copy, ExternalLink, Shield, AlertTriangle, CheckCircle, Info } from 'lucide-react';
-import { secureStorage, validateWebhookUrl } from '@/lib/secureStorage';
+import { useSecureWebhook } from '@/hooks/useSecureWebhook';
 import { sanitizeInput } from '@/lib/validation';
 
 const ZapierConfig = () => {
-  const [webhookUrl, setWebhookUrl] = useState(
-    secureStorage.getItem('zapier_webhook_url') || ''
-  );
+  const { webhookUrl, isConfigured, updateWebhookUrl, removeWebhookUrl } = useSecureWebhook();
+  const [inputValue, setInputValue] = useState('');
   const [lastSave, setLastSave] = useState<number>(0);
   const [validationError, setValidationError] = useState<string>('');
+
+  // Sync input value with stored webhook URL on mount and when it changes
+  useEffect(() => {
+    setInputValue(webhookUrl);
+    setValidationError('');
+  }, [webhookUrl]);
 
   const handleSave = () => {
     // Rate limiting - prevent rapid saves
@@ -24,17 +29,17 @@ const ZapierConfig = () => {
       return;
     }
 
-    const sanitizedUrl = sanitizeInput(webhookUrl);
-    const validation = validateWebhookUrl(sanitizedUrl);
+    const sanitizedUrl = sanitizeInput(inputValue);
     
-    if (!validation.isValid) {
-      setValidationError(validation.error || 'Invalid webhook URL');
-      toast.error(validation.error || 'Invalid webhook URL');
+    if (!sanitizedUrl.trim()) {
+      setValidationError('Webhook URL is required');
+      toast.error('Webhook URL is required');
       return;
     }
 
-    try {
-      secureStorage.setItem('zapier_webhook_url', sanitizedUrl);
+    const result = updateWebhookUrl(sanitizedUrl);
+    
+    if (result.success) {
       setLastSave(now);
       setValidationError('');
       toast.success('Zapier webhook URL saved! All email submissions will now be sent to your Zap.');
@@ -42,11 +47,17 @@ const ZapierConfig = () => {
       if (import.meta.env.DEV) {
         console.log('Webhook URL configuration updated');
       }
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to save webhook URL';
-      setValidationError(errorMessage);
-      toast.error(errorMessage);
+    } else {
+      setValidationError(result.error || 'Failed to save webhook URL');
+      toast.error(result.error || 'Failed to save webhook URL');
     }
+  };
+
+  const handleRemove = () => {
+    removeWebhookUrl();
+    setInputValue('');
+    setValidationError('');
+    toast.success('Webhook URL removed');
   };
 
   const copyWebhookFormat = () => {
@@ -64,23 +75,13 @@ const ZapierConfig = () => {
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const sanitized = sanitizeInput(e.target.value);
-    setWebhookUrl(sanitized);
+    setInputValue(sanitized);
     
     // Clear validation error when user starts typing
     if (validationError) {
       setValidationError('');
     }
-    
-    // Live validation feedback
-    if (sanitized.trim()) {
-      const validation = validateWebhookUrl(sanitized);
-      if (!validation.isValid) {
-        setValidationError(validation.error || 'Invalid webhook URL');
-      }
-    }
   };
-
-  const isConfigured = !!secureStorage.getItem('zapier_webhook_url');
 
   return (
     <div className="container mx-auto p-6">
@@ -138,7 +139,7 @@ const ZapierConfig = () => {
               id="webhook"
               type="url"
               placeholder="https://hooks.zapier.com/hooks/catch/YOUR_ID/YOUR_KEY"
-              value={webhookUrl}
+              value={inputValue}
               onChange={handleUrlChange}
               maxLength={500}
               className={validationError ? 'border-red-300 focus:border-red-500' : ''}
@@ -151,14 +152,26 @@ const ZapierConfig = () => {
             </div>
           </div>
           
-          <Button 
-            onClick={handleSave} 
-            className="w-full" 
-            disabled={!webhookUrl.trim() || !!validationError}
-          >
-            <Shield className="w-4 h-4 mr-2" />
-            Save Webhook Configuration
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              onClick={handleSave} 
+              className="flex-1" 
+              disabled={!inputValue.trim() || !!validationError}
+            >
+              <Shield className="w-4 h-4 mr-2" />
+              Save Webhook Configuration
+            </Button>
+            
+            {isConfigured && (
+              <Button 
+                onClick={handleRemove} 
+                variant="outline"
+                className="px-4"
+              >
+                Remove
+              </Button>
+            )}
+          </div>
 
           <div className="p-4 bg-muted rounded-lg">
             <div className="flex items-center justify-between mb-2">
