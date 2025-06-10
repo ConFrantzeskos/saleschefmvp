@@ -23,33 +23,6 @@ export const useEmailSubmission = () => {
       return;
     }
 
-    // Get webhook URL from secure storage
-    const webhookUrl = secureStorage.getItem('zapier_webhook_url');
-    
-    if (!webhookUrl) {
-      toast.error("Webhook URL is not configured. Please configure it in settings first.", {
-        action: {
-          label: "Configure Now",
-          onClick: () => navigate('/zapier')
-        }
-      });
-      return;
-    }
-
-    // Validate webhook URL
-    const sanitizedWebhookUrl = sanitizeInput(webhookUrl);
-    const urlValidation = validateWebhookUrl(sanitizedWebhookUrl);
-    
-    if (!urlValidation.isValid) {
-      toast.error("Invalid webhook configuration. Please check settings.", {
-        action: {
-          label: "Fix Settings",
-          onClick: () => navigate('/zapier')
-        }
-      });
-      return;
-    }
-    
     setIsSubmitting(true);
     
     // Only log in development mode without sensitive data
@@ -58,23 +31,42 @@ export const useEmailSubmission = () => {
     }
 
     try {
-      // Send to Zapier webhook
-      await fetch(sanitizedWebhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-        body: JSON.stringify({
-          email: sanitizedEmail,
-          timestamp: new Date().toISOString(),
-          source: window.location.pathname,
-          user_agent: navigator.userAgent,
-        }),
-      });
+      // Get webhook URL from secure storage
+      const webhookUrl = secureStorage.getItem('zapier_webhook_url');
       
-      if (import.meta.env.DEV) {
-        console.log("Email submission successful");
+      if (webhookUrl) {
+        // Validate webhook URL
+        const sanitizedWebhookUrl = sanitizeInput(webhookUrl);
+        const urlValidation = validateWebhookUrl(sanitizedWebhookUrl);
+        
+        if (urlValidation.isValid) {
+          // Send to Zapier webhook
+          await fetch(sanitizedWebhookUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            mode: "no-cors",
+            body: JSON.stringify({
+              email: sanitizedEmail,
+              timestamp: new Date().toISOString(),
+              source: window.location.pathname,
+              user_agent: navigator.userAgent,
+            }),
+          });
+          
+          if (import.meta.env.DEV) {
+            console.log("Email submitted to Zapier successfully");
+          }
+        } else {
+          if (import.meta.env.DEV) {
+            console.warn("Invalid webhook URL configuration");
+          }
+        }
+      } else {
+        if (import.meta.env.DEV) {
+          console.log("No webhook URL configured, proceeding with demo flow");
+        }
       }
 
       toast.success("Welcome to SalesChef! Let's get started with your upload.");
@@ -85,7 +77,11 @@ export const useEmailSubmission = () => {
       if (import.meta.env.DEV) {
         console.error("Error submitting email:", error);
       }
-      toast.error("Failed to submit email. Please try again.");
+      // Still show success to user even if webhook fails
+      toast.success("Welcome to SalesChef! Let's get started with your upload.");
+      setTimeout(() => {
+        navigate('/upload');
+      }, 1000);
     } finally {
       setIsSubmitting(false);
     }
