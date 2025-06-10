@@ -19,32 +19,32 @@ const IndustryRealitySection = ({
   return (
     <PageSection>
       <SectionHeader title={title} />
-      <div className="space-y-8">
+      <div className="space-elements-lg">
         {description && (
-          <p className="text-lg text-center text-muted-foreground">
+          <p className="text-body-large text-center text-muted-foreground max-w-4xl mx-auto">
             {description}
           </p>
         )}
         
         <div className="text-center">
-          <p className="text-lg font-semibold text-primary mb-4">
+          <p className="text-body-large font-semibold text-primary mb-8">
             Investor comms is a perfect fit:
           </p>
         </div>
         
-        <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
-          <h3 className="text-xl font-semibold mb-6 text-center">Your reality:</h3>
-          <div className="space-y-3">
+        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 shadow-soft">
+          <h3 className="text-subsection-title font-semibold mb-8 text-center text-foreground">Your reality:</h3>
+          <div className="space-elements-md">
             {realityPoints.map((reality, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <span className="text-primary font-bold">👉</span>
-                <span className="text-foreground">{reality}</span>
+              <div key={index} className="flex items-start gap-4">
+                <span className="text-primary font-bold text-xl">👉</span>
+                <span className="text-body text-foreground leading-relaxed">{reality}</span>
               </div>
             ))}
           </div>
           {conclusionText && (
-            <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-              <p className="text-foreground font-medium">{conclusionText}</p>
+            <div className="mt-8 p-6 bg-muted/50 rounded-xl border border-border/50">
+              <p className="text-body text-foreground font-medium leading-relaxed">{conclusionText}</p>
             </div>
           )}
         </div>

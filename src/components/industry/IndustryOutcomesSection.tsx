@@ -18,10 +18,12 @@ const IndustryOutcomesSection = ({ title, outcomes }: IndustryOutcomesSectionPro
       <SectionHeader title={title} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {outcomes.map((outcome, index) => (
-          <div key={index} className="bg-muted/20 rounded-xl p-6 border border-border/50 text-center hover:shadow-medium transition-shadow">
-            <TrendingUp className="w-10 h-10 mx-auto text-primary mb-4" />
-            <div className="text-2xl font-bold text-primary mb-2">{outcome.metric}</div>
-            <p className="text-sm text-muted-foreground">{outcome.description}</p>
+          <div key={index} className="card-content text-center group hover:shadow-medium hover:-translate-y-1 transition-all duration-300">
+            <div className="icon-container bg-primary/10 text-primary mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <TrendingUp className="w-8 h-8" />
+            </div>
+            <div className="text-2xl font-bold text-primary mb-3">{outcome.metric}</div>
+            <p className="text-body text-muted-foreground leading-relaxed">{outcome.description}</p>
           </div>
         ))}
       </div>

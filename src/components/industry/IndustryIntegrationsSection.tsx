@@ -13,13 +13,15 @@ const IndustryIntegrationsSection = ({ title, integrations }: IndustryIntegratio
   return (
     <PageSection background="muted">
       <SectionHeader title={title} />
-      <div className="space-y-6">
-        <p className="text-center text-muted-foreground">SalesChef works seamlessly with:</p>
-        <div className="space-y-3">
+      <div className="space-elements-lg">
+        <p className="text-center text-body-large text-muted-foreground">
+          SalesChef works seamlessly with:
+        </p>
+        <div className="space-elements-sm">
           {integrations.map((integration, index) => (
-            <div key={index} className="flex items-start gap-2 bg-background rounded-lg p-4 border border-border/50">
+            <div key={index} className="flex items-start gap-3 bg-background rounded-lg p-4 border border-border/50 hover:shadow-soft transition-shadow duration-300">
               <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-              <span className="text-sm">{integration}</span>
+              <span className="text-body text-foreground leading-relaxed">{integration}</span>
             </div>
           ))}
         </div>

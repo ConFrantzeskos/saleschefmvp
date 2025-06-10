@@ -15,10 +15,10 @@ const IndustryWhyChooseSection = ({ title, reasons }: IndustryWhyChooseSectionPr
       <SectionHeader title={title} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {reasons.map((reason, index) => (
-          <div key={index} className="bg-background rounded-xl p-6 shadow-soft border border-border/50">
-            <div className="flex items-start gap-3">
-              <CheckCircle className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-              <span className="font-medium">{reason}</span>
+          <div key={index} className="card-content group hover:shadow-medium hover:-translate-y-1 transition-all duration-300">
+            <div className="flex items-start gap-4">
+              <CheckCircle className="w-6 h-6 text-primary mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-body font-medium text-foreground leading-relaxed">{reason}</span>
             </div>
           </div>
         ))}
