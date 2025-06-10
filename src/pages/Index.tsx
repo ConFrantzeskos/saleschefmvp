@@ -43,13 +43,13 @@ const IndustryCallout = React.lazy(() =>
 
 const TrustSection = React.lazy(() => 
   import('@/components/TrustSection').then(module => {
-    import('@/components/CTASection');
+    import('@/components/EmailCTA');
     return module;
   })
 );
 
-const CTASection = React.lazy(() => 
-  import('@/components/CTASection').then(module => {
+const EmailCTA = React.lazy(() => 
+  import('@/components/EmailCTA').then(module => {
     import('@/components/Footer');
     return module;
   })
@@ -118,7 +118,12 @@ const Index = () => {
         </Suspense>
         
         <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
-          <CTASection />
+          <EmailCTA
+            headline="Ready to transform your marketplace content engine?"
+            subtitle="Custom-tailored for your OTA, marketplace, DMO or aggregator."
+            variant="gradient"
+            size="md"
+          />
         </Suspense>
         
         <Suspense fallback={<SectionFallback height="section-spacing-sm" />}>
