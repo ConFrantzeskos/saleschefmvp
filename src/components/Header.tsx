@@ -88,26 +88,24 @@ const Header = memo(() => {
               );
             })}
             
-            {/* Industries Dropdown */}
-            {!isIndustryPage && (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="gap-1">
-                    Industries
-                    <ChevronDown className="w-4 h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  {industries.map((industry) => (
-                    <DropdownMenuItem key={industry.path} asChild>
-                      <Link to={industry.path} className="flex items-center gap-2">
-                        {industry.label}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )}
+            {/* Industries Dropdown - Always visible */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="gap-1">
+                  Industries
+                  <ChevronDown className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                {industries.map((industry) => (
+                  <DropdownMenuItem key={industry.path} asChild>
+                    <Link to={industry.path} className="flex items-center gap-2">
+                      {industry.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -140,19 +138,17 @@ const Header = memo(() => {
                 );
               })}
               
-              {/* Mobile Industries */}
-              {!isIndustryPage && (
-                <div className="pt-2 border-t border-border/50 mt-2">
-                  <p className="text-sm font-medium text-muted-foreground px-3 pb-2">Industries</p>
-                  {industries.map((industry) => (
-                    <Link key={industry.path} to={industry.path} onClick={closeMobileMenu}>
-                      <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
-                        {industry.label}
-                      </Button>
-                    </Link>
-                  ))}
-                </div>
-              )}
+              {/* Mobile Industries - Always visible */}
+              <div className="pt-2 border-t border-border/50 mt-2">
+                <p className="text-sm font-medium text-muted-foreground px-3 pb-2">Industries</p>
+                {industries.map((industry) => (
+                  <Link key={industry.path} to={industry.path} onClick={closeMobileMenu}>
+                    <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
+                      {industry.label}
+                    </Button>
+                  </Link>
+                ))}
+              </div>
             </div>
           </nav>
         )}
