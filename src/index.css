@@ -106,9 +106,25 @@
 }
 
 @layer components {
-  /* Enhanced spacing utilities */
-  .section-spacing {
-    @apply py-24 px-6;
+  /* Standardized spacing system */
+  .section-spacing-xs {
+    @apply py-4 sm:py-6;
+  }
+  
+  .section-spacing-sm {
+    @apply py-6 sm:py-8;
+  }
+  
+  .section-spacing-md {
+    @apply py-8 sm:py-12;
+  }
+  
+  .section-spacing-lg {
+    @apply py-12 sm:py-16;
+  }
+  
+  .section-spacing-xl {
+    @apply py-16 sm:py-20 lg:py-24;
   }
   
   .container-width {
@@ -119,25 +135,50 @@
     @apply max-w-5xl mx-auto;
   }
   
-  /* Enhanced text hierarchy */
+  .content-padding {
+    @apply px-4 sm:px-6;
+  }
+  
+  /* Standardized text hierarchy */
   .text-hero {
-    @apply text-5xl md:text-7xl font-display font-bold tracking-tight;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight;
   }
   
   .text-section-title {
-    @apply text-4xl md:text-5xl font-display font-bold tracking-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight;
   }
   
   .text-subsection-title {
-    @apply text-2xl md:text-3xl font-display font-bold tracking-tight;
+    @apply text-xl sm:text-2xl md:text-3xl font-display font-bold tracking-tight;
   }
   
   .text-body-large {
-    @apply text-xl leading-relaxed;
+    @apply text-base sm:text-lg leading-relaxed;
   }
   
   .text-body {
-    @apply text-lg leading-relaxed;
+    @apply text-sm sm:text-base leading-relaxed;
+  }
+  
+  .text-body-small {
+    @apply text-xs sm:text-sm leading-relaxed;
+  }
+  
+  /* Standardized spacing utilities */
+  .space-elements-xs > * + * {
+    @apply mt-2 sm:mt-3;
+  }
+  
+  .space-elements-sm > * + * {
+    @apply mt-3 sm:mt-4;
+  }
+  
+  .space-elements-md > * + * {
+    @apply mt-4 sm:mt-6;
+  }
+  
+  .space-elements-lg > * + * {
+    @apply mt-6 sm:mt-8;
   }
   
   /* Professional shadow system */
@@ -163,15 +204,15 @@
   
   /* Enhanced card styles */
   .card-interactive {
-    @apply bg-card rounded-2xl p-8 shadow-soft border border-border hover:shadow-large hover:border-primary/20 transition-all duration-300 group cursor-pointer transform hover:-translate-y-1;
+    @apply bg-card rounded-2xl p-6 sm:p-8 shadow-soft border border-border hover:shadow-large hover:border-primary/20 transition-all duration-300 group cursor-pointer transform hover:-translate-y-1;
   }
   
   .card-content {
-    @apply bg-card rounded-2xl p-8 shadow-soft border border-border;
+    @apply bg-card rounded-2xl p-6 sm:p-8 shadow-soft border border-border;
   }
   
   .card-feature {
-    @apply bg-gradient-to-br from-card to-card/50 rounded-3xl p-8 shadow-medium border border-border/50 hover:shadow-large hover:border-primary/20 transition-all duration-500 group backdrop-blur-sm;
+    @apply bg-gradient-to-br from-card to-card/50 rounded-3xl p-6 sm:p-8 shadow-medium border border-border/50 hover:shadow-large hover:border-primary/20 transition-all duration-500 group backdrop-blur-sm;
   }
   
   /* Enhanced button styles */

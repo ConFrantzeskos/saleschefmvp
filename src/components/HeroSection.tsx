@@ -12,9 +12,9 @@ interface HeroSectionProps {
 
 const HeroSection = memo(({ email, setEmail, handleSubmit }: HeroSectionProps) => {
   return (
-    <section className="px-4 sm:px-6 py-6 sm:py-8 lg:py-12 text-center bg-gradient-to-br from-muted/30 via-background to-muted/20 animate-fade-in">
-      <div className="content-width">
-        <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 mx-auto mb-4 sm:mb-6 animate-scale-in">
+    <section className="content-padding section-spacing-lg text-center bg-gradient-to-br from-muted/30 via-background to-muted/20 animate-fade-in">
+      <div className="content-width space-elements-md">
+        <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 mx-auto animate-scale-in">
           <img 
             src="/lovable-uploads/0b8c5ffe-edc7-4ea5-af28-bc947207ee19.png" 
             alt="SalesChef Logo" 
@@ -23,11 +23,11 @@ const HeroSection = memo(({ email, setEmail, handleSubmit }: HeroSectionProps) =
             fetchPriority="high"
           />
         </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-tight mb-3 sm:mb-4 text-balance animate-slide-up leading-tight">
+        <h1 className="text-hero text-balance animate-slide-up leading-tight">
           From Raw Specs to a Feast of <br className="hidden sm:block" />
           <span className="text-gradient-brand">Sales-Ready Content</span>
         </h1>
-        <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-4 sm:mb-6 max-w-2xl lg:max-w-3xl mx-auto animate-slide-up leading-relaxed">
+        <p className="text-body-large text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto animate-slide-up">
           SalesChef transforms messy product specs - no matter where they live - into persuasive, 
           high-converting content for every channel.
         </p>

@@ -16,27 +16,29 @@ const TourismChaos = () => {
   ];
 
   return (
-    <PageSection background="muted">
-      <SectionHeader
-        title={
-          <span>
-            💸 The Cost of Chaos
-          </span>
-        }
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {chaosConsequences.map((consequence, index) => (
-          <div key={index} className="bg-background rounded-xl p-6 border border-border/50 shadow-soft hover:shadow-medium transition-shadow">
-            <p className="text-foreground font-medium leading-relaxed">{consequence}</p>
-          </div>
-        ))}
+    <section className="content-padding section-spacing-md bg-muted/20">
+      <div className="content-width space-elements-md">
+        <SectionHeader
+          title={
+            <span>
+              💸 The Cost of Chaos
+            </span>
+          }
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {chaosConsequences.map((consequence, index) => (
+            <div key={index} className="card-content">
+              <p className="text-foreground font-medium leading-relaxed text-body">{consequence}</p>
+            </div>
+          ))}
+        </div>
+        <div className="text-center">
+          <p className="text-body-large font-semibold text-foreground">
+            Tourism is one of the hardest verticals in the world to structure and scale. <span className="text-primary">Until now.</span>
+          </p>
+        </div>
       </div>
-      <div className="text-center mt-12">
-        <p className="text-lg font-semibold text-foreground">
-          Tourism is one of the hardest verticals in the world to structure and scale. <span className="text-primary">Until now.</span>
-        </p>
-      </div>
-    </PageSection>
+    </section>
   );
 };
 
