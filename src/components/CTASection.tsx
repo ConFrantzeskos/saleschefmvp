@@ -1,13 +1,8 @@
 
 import React, { memo } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ArrowRight } from 'lucide-react';
-import { useEmailSubmission } from '@/hooks/useEmailSubmission';
+import EmailCTA from '@/components/EmailCTA';
 
 const CTASection = memo(() => {
-  const { email, setEmail, handleSubmit } = useEmailSubmission();
-
   return (
     <section className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
       <div className="content-width">
@@ -17,26 +12,13 @@ const CTASection = memo(() => {
             <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 lg:mb-10 leading-relaxed">
               See how SalesChef can revolutionize your content pipeline with a personalized demo
             </p>
-            <form onSubmit={handleSubmit} className="max-w-sm sm:max-w-md mx-auto">
-              <div className="form-container">
-                <Input
-                  type="email"
-                  placeholder="Enter your work email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-12 sm:h-14 text-sm sm:text-base border-0 bg-transparent focus-visible:ring-0 flex-1"
-                  required
-                  autoComplete="email"
-                />
-                <Button 
-                  type="submit" 
-                  className="h-12 sm:h-14 px-6 sm:px-8 font-semibold btn-accent mt-3 w-full text-sm sm:text-base" 
-                  disabled={!email}
-                >
-                  Book a Demo <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                </Button>
-              </div>
-            </form>
+            <EmailCTA
+              headline=""
+              placeholder="Enter your work email"
+              buttonText="Book a Demo"
+              variant="default"
+              size="md"
+            />
           </div>
         </div>
       </div>

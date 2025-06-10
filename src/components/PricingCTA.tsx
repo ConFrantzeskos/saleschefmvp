@@ -1,14 +1,9 @@
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ArrowRight } from 'lucide-react';
+import EmailCTA from '@/components/EmailCTA';
 import PageSection from '@/components/layout/PageSection';
-import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 
 const PricingCTA = () => {
-  const { email, setEmail, handleSubmit } = useEmailSubmission();
-
   return (
     <PageSection background="gradient" padding="lg">
       <div className="text-center">
@@ -25,40 +20,28 @@ const PricingCTA = () => {
           </p>
         </div>
 
-        <div className="max-w-md mx-auto mb-12">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              type="email"
-              placeholder="Your work email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="h-12 text-base"
-              required
-            />
-            <Button 
-              type="submit" 
-              className="w-full h-12 text-base font-semibold"
-              disabled={!email}
-            >
-              Book a Demo <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </form>
-        </div>
+        <EmailCTA
+          headline=""
+          placeholder="Your work email"
+          buttonText="Book a Demo"
+          variant="default"
+          size="md"
+        />
 
-        <div className="bg-card rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto shadow-medium border border-border">
+        <div className="bg-card rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto shadow-medium border border-border mt-12">
           <h3 className="text-xl sm:text-2xl font-display font-bold mb-4">
             One messy dataset in. A feast of sales-ready content out.
           </h3>
           <p className="text-muted-foreground mb-6">
             Let's tailor SalesChef to your business with a personalized demo.
           </p>
-          <Button 
-            onClick={handleSubmit}
-            className="font-semibold"
-            disabled={!email}
-          >
-            Book a Demo <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
+          <EmailCTA
+            headline=""
+            placeholder="Your work email"
+            buttonText="Book a Demo"
+            variant="default"
+            size="sm"
+          />
         </div>
       </div>
     </PageSection>
