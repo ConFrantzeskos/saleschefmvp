@@ -12,7 +12,7 @@ interface HeroSectionProps {
 
 const HeroSection = memo(({ email, setEmail, handleSubmit }: HeroSectionProps) => {
   return (
-    <section className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16 text-center bg-gradient-to-br from-muted/30 via-background to-muted/20 animate-fade-in">
+    <section className="px-4 sm:px-6 py-6 sm:py-8 lg:py-12 text-center bg-gradient-to-br from-muted/30 via-background to-muted/20 animate-fade-in">
       <div className="content-width">
         <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 mx-auto mb-4 sm:mb-6 animate-scale-in">
           <img 

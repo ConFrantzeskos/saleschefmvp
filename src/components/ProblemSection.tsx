@@ -20,7 +20,7 @@ const ProblemSection = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-background to-muted/30">
+    <section className="px-4 sm:px-6 py-6 sm:py-8 lg:py-12 bg-gradient-to-b from-background to-muted/30">
       <div className="content-width">
         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-center mb-4 sm:mb-6 text-balance animate-fade-in">
           Why Retail Content is Such a Big Problem
