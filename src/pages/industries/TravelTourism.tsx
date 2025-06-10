@@ -39,16 +39,6 @@ const TravelTourism = () => {
       
       <TourismOutcomes />
       
-      {/* Final CTA after outcomes */}
-      <EmailCTA
-        headline="Ready to transform your marketplace content engine?"
-        subtitle="Join travel industry leaders already maximizing their content operations"
-        placeholder="Enter your work email"
-        buttonText="Book Tourism Demo"
-        variant="default"
-        size="sm"
-      />
-      
       <Footer />
     </div>
   );
