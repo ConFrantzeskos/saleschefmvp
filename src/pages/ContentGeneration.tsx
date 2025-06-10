@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
@@ -6,7 +5,7 @@ import TemplateUpload from '@/components/TemplateUpload';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Sparkles, FileText, Image, Video, Globe, Mail, Printer, GraduationCap, HelpCircle } from 'lucide-react';
+import { Sparkles, FileText, Image, Video, Globe, Mail, Printer, GraduationCap, HelpCircle, Instagram, MessageSquare, Camera, Edit3, Users, ShoppingBag, Megaphone, TrendingUp } from 'lucide-react';
 
 const ContentGeneration = () => {
   const navigate = useNavigate();
@@ -24,6 +23,7 @@ const ContentGeneration = () => {
   ];
 
   const generationTasks = [
+    // E-commerce & Product Content
     {
       icon: Globe,
       title: "PDP",
@@ -42,6 +42,92 @@ const ContentGeneration = () => {
       description: "Sales-focused one-pagers",
       items: ["Key selling points", "Competitive advantages", "Pricing strategy"]
     },
+    
+    // Social Media Content
+    {
+      icon: Instagram,
+      title: "Instagram",
+      description: "Visual-first Instagram content",
+      items: ["Post captions", "Story templates", "Reel scripts", "Shopping tags"]
+    },
+    {
+      icon: Video,
+      title: "TikTok",
+      description: "Short-form video content for TikTok",
+      items: ["Video scripts", "Trending hashtags", "Hook ideas", "CTA overlays"]
+    },
+    {
+      icon: Video,
+      title: "YouTube",
+      description: "Long-form video content and optimization",
+      items: ["Video descriptions", "Thumbnails copy", "End screen CTAs", "Shorts scripts"]
+    },
+    {
+      icon: MessageSquare,
+      title: "LinkedIn",
+      description: "Professional social media content",
+      items: ["Business posts", "Thought leadership", "Company updates", "B2B messaging"]
+    },
+    {
+      icon: Camera,
+      title: "Pinterest",
+      description: "Visual discovery and shopping content",
+      items: ["Pin descriptions", "Board titles", "Rich Pins", "Shopping catalogs"]
+    },
+    {
+      icon: MessageSquare,
+      title: "Facebook",
+      description: "Community-focused social content",
+      items: ["Post copy", "Event descriptions", "Marketplace listings", "Ad creative"]
+    },
+
+    // Editorial & Content Marketing
+    {
+      icon: Edit3,
+      title: "Blog Content",
+      description: "SEO-optimized blog posts and articles",
+      items: ["Product features", "How-to guides", "Industry insights", "Buying guides"]
+    },
+    {
+      icon: FileText,
+      title: "Press Releases",
+      description: "Professional PR and media content",
+      items: ["Product launches", "Company news", "Partnership announcements", "Awards"]
+    },
+    {
+      icon: Edit3,
+      title: "Newsletter",
+      description: "Email newsletter content",
+      items: ["Product spotlights", "Seasonal campaigns", "Customer stories", "Exclusive offers"]
+    },
+
+    // Retail Chain Content
+    {
+      icon: Users,
+      title: "Supplier Content",
+      description: "Content for retail partners and suppliers",
+      items: ["Partner briefs", "Product onboarding", "Brand guidelines", "Co-op marketing"]
+    },
+    {
+      icon: ShoppingBag,
+      title: "In-Store Materials",
+      description: "Physical retail environment content",
+      items: ["Shelf talkers", "End cap displays", "Window graphics", "Point-of-sale"]
+    },
+    {
+      icon: Megaphone,
+      title: "Trade Marketing",
+      description: "B2B marketing materials for retailers",
+      items: ["Buyer presentations", "Trade show content", "Channel partner kits", "Merchandising guides"]
+    },
+    {
+      icon: TrendingUp,
+      title: "Market Research",
+      description: "Data-driven content and insights",
+      items: ["Trend reports", "Competitor analysis", "Market positioning", "Consumer insights"]
+    },
+
+    // Existing Options
     {
       icon: Globe,
       title: "SEO Content",
@@ -146,7 +232,7 @@ const ContentGeneration = () => {
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {generationTasks.map((task, index) => {
                 const isSelected = selectedTasks.includes(index);
                 const Icon = task.icon;
