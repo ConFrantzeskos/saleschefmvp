@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -285,7 +284,7 @@ const Optimization = () => {
                               <div>
                                 <h4 className="font-semibold text-sm">{option.name}</h4>
                                 {option.status === 'recommended' && (
-                                  <Badge className="mt-1" size="sm">Recommended</Badge>
+                                  <Badge className="mt-1">Recommended</Badge>
                                 )}
                               </div>
                             </div>
