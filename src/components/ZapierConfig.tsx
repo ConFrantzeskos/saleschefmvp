@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
-import { Copy, ExternalLink, Shield, AlertTriangle } from 'lucide-react';
+import { Copy, ExternalLink, Shield, AlertTriangle, CheckCircle } from 'lucide-react';
 import { secureStorage, validateWebhookUrl } from '@/lib/secureStorage';
 import { sanitizeInput } from '@/lib/validation';
 
@@ -13,6 +14,7 @@ const ZapierConfig = () => {
     secureStorage.getItem('zapier_webhook_url') || ''
   );
   const [lastSave, setLastSave] = useState<number>(0);
+  const [isTestingWebhook, setIsTestingWebhook] = useState(false);
 
   const handleSave = () => {
     // Rate limiting - prevent rapid saves
@@ -48,26 +50,44 @@ const ZapierConfig = () => {
       return;
     }
 
+    setIsTestingWebhook(true);
+    
     try {
+      const testPayload = {
+        test: true,
+        email: "test@saleschef.com",
+        timestamp: new Date().toISOString(),
+        source: "zapier_config_test",
+        user_agent: navigator.userAgent,
+        test_message: "This is a test from SalesChef Zapier configuration"
+      };
+
+      // Since we're using no-cors, we can't read the response
+      // But we can still send the request
       await fetch(sanitizedUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         mode: "no-cors",
-        body: JSON.stringify({
-          test: true,
-          email: "test@example.com",
-          timestamp: new Date().toISOString(),
-          source: "zapier_config_test",
-        }),
+        body: JSON.stringify(testPayload),
       });
-      toast.success('Test request sent to Zapier! Check your Zap history to confirm it was received.');
+      
+      toast.success(
+        'Test webhook sent successfully! Check your Zap history in Zapier to confirm it was received.',
+        { duration: 6000 }
+      );
+      
+      if (import.meta.env.DEV) {
+        console.log('Test payload sent:', testPayload);
+      }
     } catch (error) {
       if (import.meta.env.DEV) {
         console.error('Error testing webhook:', error);
       }
-      toast.error('Failed to send test request');
+      toast.error('Failed to send test request. Please check your webhook URL.');
+    } finally {
+      setIsTestingWebhook(false);
     }
   };
 
@@ -76,7 +96,8 @@ const ZapierConfig = () => {
       email: "user@example.com",
       timestamp: "2025-01-01T12:00:00.000Z",
       source: "/homepage",
-      user_agent: "Mozilla/5.0..."
+      user_agent: "Mozilla/5.0...",
+      test: false
     }, null, 2);
     
     navigator.clipboard.writeText(samplePayload);
@@ -88,13 +109,15 @@ const ZapierConfig = () => {
     setWebhookUrl(sanitized);
   };
 
+  const isConfigured = !!secureStorage.getItem('zapier_webhook_url');
+
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Shield className="w-5 h-5" />
           Zapier Integration Setup
-          <ExternalLink className="w-4 h-4" />
+          {isConfigured && <CheckCircle className="w-5 h-5 text-green-600" />}
         </CardTitle>
         <CardDescription>
           Configure your Zapier webhook to receive email submissions from SalesChef
@@ -117,13 +140,13 @@ const ZapierConfig = () => {
         </div>
 
         {/* Success Message for Secure Configuration */}
-        {webhookUrl && (
+        {isConfigured && (
           <div className="flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <Shield className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm">
-              <p className="font-medium text-green-800 mb-1">Secure Configuration Active</p>
+              <p className="font-medium text-green-800 mb-1">✅ Webhook Configured</p>
               <p className="text-green-700">
-                Your webhook URL is securely stored and validated. All email submissions will use this configuration.
+                Your webhook URL is securely stored and validated. All email submissions will be sent to your Zap.
               </p>
             </div>
           </div>
@@ -146,14 +169,18 @@ const ZapierConfig = () => {
             <Shield className="w-4 h-4 mr-2" />
             Save Configuration
           </Button>
-          <Button onClick={handleTest} variant="outline">
-            Test Webhook
+          <Button 
+            onClick={handleTest} 
+            variant="outline" 
+            disabled={!webhookUrl || isTestingWebhook}
+          >
+            {isTestingWebhook ? 'Testing...' : 'Test Webhook'}
           </Button>
         </div>
 
         <div className="p-4 bg-muted rounded-lg">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="font-medium">Sample Payload Format</h4>
+            <h4 className="font-medium">Expected Payload Format</h4>
             <Button onClick={copyWebhookFormat} variant="ghost" size="sm">
               <Copy className="w-4 h-4" />
             </Button>
@@ -163,7 +190,8 @@ const ZapierConfig = () => {
   "email": "user@example.com",
   "timestamp": "2025-01-01T12:00:00.000Z",
   "source": "/homepage",
-  "user_agent": "Mozilla/5.0..."
+  "user_agent": "Mozilla/5.0...",
+  "test": false
 }`}
           </pre>
         </div>
@@ -175,9 +203,16 @@ const ZapierConfig = () => {
             <li>Choose "Webhooks by Zapier" as the trigger</li>
             <li>Select "Catch Hook" as the trigger event</li>
             <li>Copy the webhook URL and paste it above</li>
+            <li>Save the configuration and test it</li>
             <li>Connect your desired action (Google Sheets, Email, etc.)</li>
-            <li>Test the webhook using the button above</li>
+            <li>Check your Zap history to confirm the test was received</li>
           </ol>
+        </div>
+
+        <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-800">
+            <strong>💡 Troubleshooting:</strong> If you're not receiving webhooks, check that your Zap is turned ON and verify the webhook URL is correct. The test button will help you confirm the connection is working.
+          </p>
         </div>
       </CardContent>
     </Card>
