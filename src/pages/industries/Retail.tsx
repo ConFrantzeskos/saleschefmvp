@@ -1,10 +1,10 @@
 
 import React from 'react';
-import IndustryPageTemplate from '@/components/IndustryPageTemplate';
-import { industryData } from '@/data/industryData';
+import DetailedIndustryPageTemplate from '@/components/DetailedIndustryPageTemplate';
+import { detailedIndustryData } from '@/data/enhancedIndustryData';
 
 const Retail = () => {
-  return <IndustryPageTemplate industry={industryData.retail} />;
+  return <DetailedIndustryPageTemplate industry={detailedIndustryData.retail} />;
 };
 
 export default Retail;
