@@ -1,12 +1,9 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ArrowRight } from 'lucide-react';
 import PageSection from '@/components/layout/PageSection';
 import SectionHeader from '@/components/layout/SectionHeader';
 import Footer from '@/components/Footer';
+import EmailCTA from '@/components/EmailCTA';
 import { CheckCircle, X, TrendingUp } from 'lucide-react';
-import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 
 const MediaEntertainment = () => {
   const { email, setEmail, handleSubmit } = useEmailSubmission();
@@ -412,36 +409,12 @@ const MediaEntertainment = () => {
       </PageSection>
 
       {/* CTA */}
-      <PageSection>
-        <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Ready to unlock your full <span className="text-primary">media monetisation potential</span>?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Custom-tailored for your media business: broadcaster, publisher, streamer, or studio.
-          </p>
-          <div className="max-w-md mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                type="email"
-                placeholder="Enter your work email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="h-12 text-base"
-                required
-              />
-              <Button 
-                type="submit" 
-                size="lg" 
-                className="w-full h-12 text-lg px-8 py-6"
-                disabled={!email}
-              >
-                Book a Demo <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </form>
-          </div>
-        </div>
-      </PageSection>
+      <EmailCTA
+        headline="Ready to unlock your full media monetisation potential?"
+        subtitle="Custom-tailored for your media business: broadcaster, publisher, streamer, or studio."
+        variant="default"
+        size="lg"
+      />
 
       <Footer />
     </div>
