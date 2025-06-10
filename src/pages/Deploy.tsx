@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
-import { Rocket, Download, Store, Globe, Share2, FileText, Archive, Tv, Radio, Mail, Smartphone, Monitor } from 'lucide-react';
+import { Rocket, Download, Store, Globe, Share2, FileText, Archive, Tv, Radio, Mail, Smartphone, Monitor, ShoppingCart } from 'lucide-react';
 
 const Deploy = () => {
   const navigate = useNavigate();
@@ -23,16 +23,63 @@ const Deploy = () => {
   ];
 
   const deployTargets = [
-    // E-commerce & Retail
+    // E-commerce Platforms
     {
       id: 'shopify',
       name: 'Shopify Store',
-      description: 'Update product listings in your Shopify store',
+      description: 'Sync product listings to your Shopify store',
       icon: Store,
       status: 'Connected',
       products: 847,
-      category: 'E-commerce'
+      category: 'E-commerce Platforms'
     },
+    {
+      id: 'woocommerce',
+      name: 'WooCommerce',
+      description: 'Deploy enhanced content to WooCommerce stores',
+      icon: Store,
+      status: 'Available',
+      products: 847,
+      category: 'E-commerce Platforms'
+    },
+    {
+      id: 'magento',
+      name: 'Magento Commerce',
+      description: 'Sync product data to Magento stores',
+      icon: Store,
+      status: 'Available',
+      products: 847,
+      category: 'E-commerce Platforms'
+    },
+    {
+      id: 'bigcommerce',
+      name: 'BigCommerce',
+      description: 'Update product listings in BigCommerce',
+      icon: Store,
+      status: 'Available',
+      products: 847,
+      category: 'E-commerce Platforms'
+    },
+    {
+      id: 'prestashop',
+      name: 'PrestaShop',
+      description: 'Deploy product content to PrestaShop stores',
+      icon: Store,
+      status: 'Available',
+      products: 847,
+      category: 'E-commerce Platforms'
+    },
+    {
+      id: 'opencart',
+      name: 'OpenCart',
+      description: 'Sync enhanced listings to OpenCart',
+      icon: Store,
+      status: 'Available',
+      products: 847,
+      category: 'E-commerce Platforms'
+    },
+
+    // Marketplaces
     {
       id: 'amazon',
       name: 'Amazon Seller Central',
@@ -40,8 +87,55 @@ const Deploy = () => {
       icon: Globe,
       status: 'Available',
       products: 203,
-      category: 'E-commerce'
+      category: 'Marketplaces'
     },
+    {
+      id: 'ebay',
+      name: 'eBay',
+      description: 'Deploy product listings to eBay marketplace',
+      icon: Globe,
+      status: 'Available',
+      products: 847,
+      category: 'Marketplaces'
+    },
+    {
+      id: 'etsy',
+      name: 'Etsy',
+      description: 'Sync product content to Etsy marketplace',
+      icon: Globe,
+      status: 'Available',
+      products: 847,
+      category: 'Marketplaces'
+    },
+    {
+      id: 'walmart',
+      name: 'Walmart Marketplace',
+      description: 'Deploy listings to Walmart marketplace',
+      icon: Globe,
+      status: 'Available',
+      products: 847,
+      category: 'Marketplaces'
+    },
+    {
+      id: 'facebook-marketplace',
+      name: 'Facebook Marketplace',
+      description: 'Sync products to Facebook Marketplace',
+      icon: Globe,
+      status: 'Available',
+      products: 847,
+      category: 'Marketplaces'
+    },
+    {
+      id: 'mercadolibre',
+      name: 'MercadoLibre',
+      description: 'Deploy product listings to MercadoLibre',
+      icon: Globe,
+      status: 'Available',
+      products: 847,
+      category: 'Marketplaces'
+    },
+
+    // Advertising & Media
     {
       id: 'retail-media',
       name: 'Retail Media Networks',
@@ -85,7 +179,7 @@ const Deploy = () => {
     {
       id: 'email-marketing',
       name: 'Email Marketing',
-      description: 'Generate product newsletters and campaigns',
+      description: 'Deploy product newsletters and campaigns',
       icon: Mail,
       status: 'Ready',
       products: 847,
@@ -105,7 +199,7 @@ const Deploy = () => {
     {
       id: 'zip-download',
       name: 'Download ZIP Package',
-      description: 'Complete content package with all generated assets',
+      description: 'Complete content package with all assets',
       icon: Archive,
       status: 'Ready',
       products: 847,
@@ -125,7 +219,7 @@ const Deploy = () => {
     {
       id: 'training',
       name: 'Training Materials',
-      description: 'Generate sales team training content',
+      description: 'Deploy sales team training content',
       icon: FileText,
       status: 'Ready',
       products: 847,
@@ -178,7 +272,7 @@ const Deploy = () => {
                 return (
                   <div key={targetId} className="flex items-center justify-center space-x-2">
                     <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                    <span>Publishing to {target?.name}...</span>
+                    <span>Deploying to {target?.name}...</span>
                   </div>
                 );
               })}
