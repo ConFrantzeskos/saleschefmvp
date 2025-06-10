@@ -5,7 +5,7 @@ import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 import { stepsData } from '@/constants/stepsData';
 
 const HowItWorksSteps = () => {
-  const { email: tryItEmail, setEmail: setTryItEmail, handleSubmit: handleSubmitWithRedirect } = useEmailSubmission();
+  const { email, setEmail, handleSubmit } = useEmailSubmission();
 
   return (
     <section className="content-padding section-spacing-md">
@@ -26,9 +26,9 @@ const HowItWorksSteps = () => {
                 key={index}
                 step={step}
                 index={index}
-                tryItEmail={tryItEmail}
-                setTryItEmail={setTryItEmail}
-                handleSubmitWithRedirect={handleSubmitWithRedirect}
+                tryItEmail={email}
+                setTryItEmail={setEmail}
+                handleSubmitWithRedirect={handleSubmit}
               />
             ))}
           </div>

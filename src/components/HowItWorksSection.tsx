@@ -5,14 +5,8 @@ import CTASection from './CTASection';
 import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 import { stepsData } from '@/constants/stepsData';
 
-interface HowItWorksSectionProps {
-  tryItEmail: string;
-  setTryItEmail: (email: string) => void;
-  handleTryItSubmit: (e: React.FormEvent) => void;
-}
-
-const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: HowItWorksSectionProps) => {
-  const { handleSubmit: handleSubmitWithRedirect } = useEmailSubmission();
+const HowItWorksSection = () => {
+  const { email, setEmail, handleSubmit } = useEmailSubmission();
 
   return (
     <section className="content-padding section-spacing-lg bg-gradient-to-b from-background to-muted/30">
@@ -36,19 +30,15 @@ const HowItWorksSection = ({ tryItEmail, setTryItEmail, handleTryItSubmit }: How
                 key={index}
                 step={step}
                 index={index}
-                tryItEmail={tryItEmail}
-                setTryItEmail={setTryItEmail}
-                handleSubmitWithRedirect={handleSubmitWithRedirect}
+                tryItEmail={email}
+                setTryItEmail={setEmail}
+                handleSubmitWithRedirect={handleSubmit}
               />
             ))}
           </div>
         </div>
         
-        <CTASection 
-          tryItEmail={tryItEmail}
-          setTryItEmail={setTryItEmail}
-          handleSubmitWithRedirect={handleSubmitWithRedirect}
-        />
+        <CTASection />
       </div>
     </section>
   );

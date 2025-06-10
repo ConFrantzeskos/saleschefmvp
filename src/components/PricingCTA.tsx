@@ -18,7 +18,7 @@ const PricingCTA = () => {
         </h2>
         <div className="max-w-2xl mx-auto mb-8">
           <p className="text-lg text-muted-foreground mb-4">
-            No obligation. Just a quick conversation.
+            No obligation. Just a quick conversation about your content needs.
           </p>
           <p className="text-base text-muted-foreground">
             We'll show you how SalesChef can transform your content operations — and scope the right pricing for your needs.
@@ -29,30 +29,18 @@ const PricingCTA = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               type="email"
-              placeholder="Your Business Email"
+              placeholder="Your work email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="h-12 text-base"
               required
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Input
-                type="text"
-                placeholder="Your Role"
-                className="h-12 text-base"
-              />
-              <Input
-                type="text"
-                placeholder="Company Name"
-                className="h-12 text-base"
-              />
-            </div>
             <Button 
               type="submit" 
               className="w-full h-12 text-base font-semibold"
               disabled={!email}
             >
-              Get Pricing & Demo <ArrowRight className="ml-2 w-5 h-5" />
+              Book a Demo <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </form>
         </div>
@@ -62,14 +50,14 @@ const PricingCTA = () => {
             One messy dataset in. A feast of sales-ready content out.
           </h3>
           <p className="text-muted-foreground mb-6">
-            Let's tailor SalesChef to your business.
+            Let's tailor SalesChef to your business with a personalized demo.
           </p>
           <Button 
             onClick={handleSubmit}
             className="font-semibold"
             disabled={!email}
           >
-            Get Pricing & Demo <ArrowRight className="ml-2 w-4 h-4" />
+            Book a Demo <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </div>
       </div>

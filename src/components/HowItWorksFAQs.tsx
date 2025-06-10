@@ -1,7 +1,6 @@
 
 import React from 'react';
 import FAQSection from './FAQSection';
-import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 import { 
   retailerFAQs, 
   travelTourismFAQs, 
@@ -9,10 +8,6 @@ import {
 } from './constants/faqData';
 
 const HowItWorksFAQs = () => {
-  const retailSubmission = useEmailSubmission();
-  const tourismSubmission = useEmailSubmission();
-  const mediaSubmission = useEmailSubmission();
-
   return (
     <section className="content-padding section-spacing-md border-t">
       <div className="content-width space-elements-lg">
@@ -27,9 +22,6 @@ const HowItWorksFAQs = () => {
             title="Retail & eCommerce" 
             faqs={retailerFAQs} 
             emoji="🛍️" 
-            email={retailSubmission.email}
-            setEmail={retailSubmission.setEmail}
-            handleSubmit={retailSubmission.handleSubmit}
             ctaText="Ready to transform your product content?"
           />
           
@@ -37,9 +29,6 @@ const HowItWorksFAQs = () => {
             title="Travel & Tourism" 
             faqs={travelTourismFAQs} 
             emoji="✈️" 
-            email={tourismSubmission.email}
-            setEmail={tourismSubmission.setEmail}
-            handleSubmit={tourismSubmission.handleSubmit}
             ctaText="Transform your tourism content at scale?"
           />
           
@@ -47,9 +36,6 @@ const HowItWorksFAQs = () => {
             title="Media & Entertainment" 
             faqs={mediaEntertainmentFAQs} 
             emoji="🎬" 
-            email={mediaSubmission.email}
-            setEmail={mediaSubmission.setEmail}
-            handleSubmit={mediaSubmission.handleSubmit}
             ctaText="Unlock your content's revenue potential?"
           />
         </div>

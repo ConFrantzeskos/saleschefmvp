@@ -1,7 +1,5 @@
 
-import React, { useState, useCallback, Suspense } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import React, { Suspense } from 'react';
 import { usePerformanceMonitor } from '@/hooks/usePerformanceMonitor';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -86,43 +84,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetError
 );
 
 const Index = () => {
-  const [email, setEmail] = useState('');
-  const [tryItEmail, setTryItEmail] = useState('');
-  const navigate = useNavigate();
   const { measureAsync } = usePerformanceMonitor('IndexPage');
-
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    
-    await measureAsync(async () => {
-      toast.success("Welcome to SalesChef! Let's transform your product data.");
-      
-      // Optimize navigation with requestIdleCallback
-      const redirect = () => navigate('/upload');
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => setTimeout(redirect, 300));
-      } else {
-        setTimeout(redirect, 300);
-      }
-    }, 'hero-form-submission');
-  }, [email, navigate, measureAsync]);
-
-  const handleTryItSubmit = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!tryItEmail) return;
-    
-    await measureAsync(async () => {
-      toast.success("Welcome to SalesChef! Let's get started with your upload.");
-      
-      const redirect = () => navigate('/upload');
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => setTimeout(redirect, 300));
-      } else {
-        setTimeout(redirect, 300);
-      }
-    }, 'cta-form-submission');
-  }, [tryItEmail, navigate, measureAsync]);
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -132,7 +94,7 @@ const Index = () => {
         </Suspense>
         
         <Suspense fallback={<SectionFallback height="section-spacing-xl" />}>
-          <HeroSection email={email} setEmail={setEmail} handleSubmit={handleSubmit} />
+          <HeroSection />
         </Suspense>
         
         <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
@@ -156,11 +118,7 @@ const Index = () => {
         </Suspense>
         
         <Suspense fallback={<SectionFallback height="section-spacing-lg" />}>
-          <CTASection 
-            tryItEmail={tryItEmail} 
-            setTryItEmail={setTryItEmail} 
-            handleSubmitWithRedirect={handleTryItSubmit} 
-          />
+          <CTASection />
         </Suspense>
         
         <Suspense fallback={<SectionFallback height="section-spacing-sm" />}>
