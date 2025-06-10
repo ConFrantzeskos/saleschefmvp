@@ -19,7 +19,7 @@ const IndustryCallout = () => {
 
   return (
     <section className="content-padding section-spacing-lg bg-gradient-to-b from-background to-muted/20">
-      <div className="container-width">
+      <div className="container-width space-elements-lg">
         <div className="text-center space-elements-lg animate-fade-in">
           <h2 className="text-section-title text-balance">
             Works beautifully for your industry, too.
