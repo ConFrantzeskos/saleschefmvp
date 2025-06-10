@@ -70,6 +70,7 @@ export const logSecurityWarnings = (): void => {
     console.log('  - Encrypted local storage for sensitive data');
     console.log('  - Webhook URL validation');
     console.log('  - Sanitized console logging (dev only)');
+    console.log('  - Secure webhook URL management');
   }
 };
 
@@ -81,10 +82,31 @@ export const logSecurityEvent = (event: string, details?: any): void => {
   // In production, this could send to a security monitoring service
 };
 
+// Check for hardcoded sensitive values (development only)
+const checkForHardcodedSecrets = (): void => {
+  if (import.meta.env.DEV) {
+    // Check for common patterns that might indicate hardcoded secrets
+    const sourceCode = document.documentElement.innerHTML;
+    const suspiciousPatterns = [
+      /hooks\.zapier\.com\/hooks\/catch\/\d+\/[a-zA-Z0-9]+/g,
+      /sk_[a-zA-Z0-9]{24,}/g, // Stripe secret keys
+      /pk_[a-zA-Z0-9]{24,}/g, // Public keys (less critical but worth noting)
+    ];
+
+    suspiciousPatterns.forEach((pattern, index) => {
+      if (pattern.test(sourceCode)) {
+        const patternNames = ['Zapier webhook URL', 'Stripe secret key', 'Public API key'];
+        logSecurityEvent(`Potential hardcoded secret detected: ${patternNames[index]}`);
+      }
+    });
+  }
+};
+
 // Initialize security checks
 export const initializeSecurity = (): void => {
   validateSecureContext();
   logSecurityWarnings();
+  checkForHardcodedSecrets();
   
   // Clear any legacy insecure storage
   try {

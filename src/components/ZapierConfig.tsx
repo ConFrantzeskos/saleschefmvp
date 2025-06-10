@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +10,7 @@ import { sanitizeInput } from '@/lib/validation';
 
 const ZapierConfig = () => {
   const [webhookUrl, setWebhookUrl] = useState(
-    secureStorage.getItem('zapier_webhook_url') || 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/'
+    secureStorage.getItem('zapier_webhook_url') || ''
   );
   const [lastSave, setLastSave] = useState<number>(0);
 
@@ -102,17 +101,33 @@ const ZapierConfig = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/* Security Warning */}
+        {/* Enhanced Security Warning */}
         <div className="flex items-start gap-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
           <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
           <div className="text-sm">
             <p className="font-medium text-yellow-800 mb-1">Security Notice</p>
-            <p className="text-yellow-700">
-              Webhook URLs contain sensitive information. Keep them secure and don't share them publicly.
-              This URL is stored encrypted in your browser's local storage.
+            <p className="text-yellow-700 mb-2">
+              Webhook URLs contain sensitive information and should never be hardcoded in source code.
+              This configuration uses encrypted local storage for security.
+            </p>
+            <p className="text-yellow-700 text-xs">
+              ⚠️ If you're migrating from a previous setup, make sure to remove any hardcoded webhook URLs from your codebase.
             </p>
           </div>
         </div>
+
+        {/* Success Message for Secure Configuration */}
+        {webhookUrl && (
+          <div className="flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <Shield className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <div className="text-sm">
+              <p className="font-medium text-green-800 mb-1">Secure Configuration Active</p>
+              <p className="text-green-700">
+                Your webhook URL is securely stored and validated. All email submissions will use this configuration.
+              </p>
+            </div>
+          </div>
+        )}
 
         <div className="space-y-2">
           <Label htmlFor="webhook">Zapier Webhook URL</Label>

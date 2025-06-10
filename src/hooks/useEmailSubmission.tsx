@@ -3,9 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { validateEmail, sanitizeInput } from '@/lib/validation';
-
-// Your Zapier webhook URL
-const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/2266471/uyt9ob0/';
+import { secureStorage, validateWebhookUrl } from '@/lib/secureStorage';
 
 export const useEmailSubmission = () => {
   const [email, setEmail] = useState('');
@@ -24,6 +22,23 @@ export const useEmailSubmission = () => {
       toast.error(validation.error || "Invalid email address");
       return;
     }
+
+    // Get webhook URL from secure storage
+    const webhookUrl = secureStorage.getItem('zapier_webhook_url');
+    
+    if (!webhookUrl) {
+      toast.error("Webhook URL is not configured. Please configure it in settings.");
+      return;
+    }
+
+    // Validate webhook URL
+    const sanitizedWebhookUrl = sanitizeInput(webhookUrl);
+    const urlValidation = validateWebhookUrl(sanitizedWebhookUrl);
+    
+    if (!urlValidation.isValid) {
+      toast.error("Invalid webhook configuration. Please check settings.");
+      return;
+    }
     
     setIsSubmitting(true);
     
@@ -34,7 +49,7 @@ export const useEmailSubmission = () => {
 
     try {
       // Send to Zapier webhook
-      await fetch(ZAPIER_WEBHOOK_URL, {
+      await fetch(sanitizedWebhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
