@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import TemplateUpload from '@/components/TemplateUpload';
+import GenerationAnimation from '@/components/GenerationAnimation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -11,6 +12,7 @@ const ContentGeneration = () => {
   const navigate = useNavigate();
   const [selectedTemplate, setSelectedTemplate] = useState<File | null>(null);
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const steps = [
     { id: 'upload', label: 'Upload', completed: true, current: false },
@@ -339,13 +341,19 @@ const ContentGeneration = () => {
       template: selectedTemplate?.name,
       selectedTasks: selectedTasks.map(i => allTasks[i].title)
     });
-    // Here you would trigger the actual generation process
-    // For now, we'll navigate to the review page
+    setIsGenerating(true);
+  };
+
+  const handleAnimationComplete = () => {
     navigate('/review');
   };
 
   return (
     <div className="min-h-screen bg-background p-6">
+      {isGenerating && (
+        <GenerationAnimation onComplete={handleAnimationComplete} />
+      )}
+      
       <ProgressIndicator steps={steps} />
       
       <div className="max-w-6xl mx-auto">
@@ -462,7 +470,7 @@ const ContentGeneration = () => {
           <div className="text-center pt-8">
             <Button
               onClick={handleGenerateContent}
-              disabled={selectedTasks.length === 0}
+              disabled={selectedTasks.length === 0 || isGenerating}
               size="lg"
               className="px-12 py-4 text-lg"
             >
