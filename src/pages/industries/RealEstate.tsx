@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import PageSection from '@/components/layout/PageSection';
 import SectionHeader from '@/components/layout/SectionHeader';
 import Footer from '@/components/Footer';
+import EmailCTA from '@/components/EmailCTA';
 import { CheckCircle, X, TrendingUp } from 'lucide-react';
 
 const RealEstate = () => {
@@ -157,10 +157,10 @@ const RealEstate = () => {
           }
           subtitle={
             <span>
-              Transform fragmented property data into <span className="font-semibold text-primary">high-conversion, omni-channel-ready listings</span> — at scale.
+              Transform fragmented property data into <span className="font-semibold text-primary">high-converting, channel-ready listings</span> — at scale.
               <br />
               <span className="text-gradient-brand font-medium">
-                Messy agency CMS inputs in. High-performance listings, optimised for every channel, out.
+                Messy agent-generated listings in. Revenue-driving property content out.
               </span>
             </span>
           }
@@ -171,12 +171,13 @@ const RealEstate = () => {
       {/* Why real estate content is broken */}
       <PageSection>
         <SectionHeader
-          title="Why real estate content is broken — and why SalesChef fixes it"
+          title="Why real estate listing content is broken — and why SalesChef fixes it"
         />
         <div className="space-y-8">
           <div className="text-center">
-            <p className="text-lg font-medium mb-2">Real estate portals and marketplaces live or die by content quality and speed.</p>
-            <p className="text-lg text-muted-foreground mb-6">But today's reality:</p>
+            <p className="text-lg font-medium mb-2">Real estate is one of the highest-value content games in commerce.</p>
+            <p className="text-lg text-muted-foreground mb-8">One listing. One seller. One shot to drive the maximum possible engagement, enquiries, and price.</p>
+            <p className="text-lg font-medium text-foreground">But here's what agents & agencies are dealing with today:</p>
           </div>
           
           <div className="bg-destructive/5 border border-destructive/20 rounded-xl p-6">
@@ -188,12 +189,9 @@ const RealEstate = () => {
                 </div>
               ))}
             </div>
-          </div>
-          
-          <div className="text-center">
-            <p className="text-lg font-semibold text-primary">
-              👉 Real estate is a content race — and today's processes are too slow, inconsistent, and fragile.
-            </p>
+            <div className="mt-6 p-4 bg-muted/50 rounded-lg">
+              <p className="text-foreground font-medium">👉 Real estate is content-driven commerce — and most agencies are leaving money on the table.</p>
+            </div>
           </div>
         </div>
       </PageSection>
@@ -201,33 +199,26 @@ const RealEstate = () => {
       {/* The cost of the chaos */}
       <PageSection background="muted">
         <SectionHeader
-          title="The cost of the chaos"
+          title="💸 The cost of the chaos"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chaosConsequences.map((consequence, index) => (
             <div key={index} className="bg-background rounded-xl p-6 border border-border/50 shadow-soft">
-              <div className="text-destructive text-2xl mb-3">💸</div>
               <p className="text-foreground font-medium">{consequence}</p>
             </div>
           ))}
         </div>
       </PageSection>
 
-      {/* SalesChef: Built for complexity */}
+      {/* SalesChef: Built for the complexity of real estate content */}
       <PageSection>
         <SectionHeader
           title="SalesChef: Built for the complexity of real estate content"
         />
         <div className="space-y-8">
           <p className="text-lg text-center text-muted-foreground">
-            SalesChef is purpose-built for industries where fragmented, inconsistent, high-volume content must be transformed into governed, scalable, revenue-driving assets.
+            SalesChef is designed for industries where high-volume, high-frequency content drives massive commercial outcomes. Real estate is the perfect example.
           </p>
-          
-          <div className="text-center">
-            <p className="text-lg font-semibold text-primary mb-4">
-              Real estate is ground zero:
-            </p>
-          </div>
           
           <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
             <h3 className="text-xl font-semibold mb-6 text-center">Your reality:</h3>
@@ -240,7 +231,7 @@ const RealEstate = () => {
               ))}
             </div>
             <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-              <p className="text-foreground font-medium">SalesChef automates this entire transformation layer — and turns it into a competitive advantage.</p>
+              <p className="text-foreground font-medium">SalesChef automates this transformation — and delivers measurable listing performance improvements.</p>
             </div>
           </div>
         </div>
@@ -270,9 +261,8 @@ const RealEstate = () => {
             </div>
             <div className="mt-6 p-4 bg-primary/10 rounded-lg">
               <p className="font-medium text-foreground mb-2">Key value:</p>
-              <p className="text-sm">👉 Breaks down CRM and channel silos</p>
-              <p className="text-sm">👉 Validates and harmonises property attributes</p>
-              <p className="text-sm">👉 Eliminates need for manual rekeying & reconciliation across channels</p>
+              <p className="text-sm">👉 No more manual entry across systems — unified property data in one transformation layer<br />
+              👉 Real-time sync with agency CRM and franchise network portals</p>
             </div>
           </div>
 
@@ -314,9 +304,9 @@ const RealEstate = () => {
           <div className="bg-background rounded-xl p-8 shadow-soft border border-border/50">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">4</div>
-              <h3 className="text-xl font-semibold">Generate & deploy across property channels</h3>
+              <h3 className="text-xl font-semibold">Generate & deploy across property marketing channels</h3>
             </div>
-            <p className="text-muted-foreground mb-6">SalesChef outputs high-performance, governed property content to:</p>
+            <p className="text-muted-foreground mb-6">SalesChef outputs high-performance, compliant property content to:</p>
             <div className="space-y-2">
               {outputChannels.map((channel, index) => (
                 <div key={index} className="flex items-start gap-2">
@@ -332,7 +322,7 @@ const RealEstate = () => {
       {/* Business Outcomes */}
       <PageSection>
         <SectionHeader
-          title="Business outcomes for real estate networks & marketplaces"
+          title="Business outcomes for real estate agencies, networks & portals"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {businessOutcomes.map((outcome, index) => (
@@ -348,18 +338,18 @@ const RealEstate = () => {
       {/* Why leaders choose SalesChef */}
       <PageSection background="muted">
         <SectionHeader
-          title="Why leading property networks & marketplaces are moving to SalesChef"
+          title="Why leading real estate brands, networks & portals are moving to SalesChef"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
-            'Solves the "messy property data" problem across large-scale networks',
-            'Harmonises multi-agency, multi-brand, multi-market content',
-            'Automates compliance → essential for regulated markets',
-            'Feeds next-gen channels → AI, voice, programmatic, personalisation',
-            'Powers SEO and AI-first property search',
-            'Dramatically reduces manual content overhead → faster, more scalable growth',
-            'Stateless, agentic → no need to rip-and-replace CRM or CMS',
-            'Future-proofs real estate content for the next decade of buyer and renter journeys'
+            'Solves the real estate content consistency problem at scale',
+            'Automates compliance & brand governance across networks',
+            'Drives measurable listing performance improvements',
+            'Speeds up agent productivity — less admin, more selling',
+            'Optimises for SEO, voice, AI-driven property discovery',
+            'Stateless architecture → integrates with agency CRMs and franchise systems',
+            'Powers multi-brand, multi-market real estate groups',
+            'Unlocks AI-native property buying experiences — future-proof advantage'
           ].map((reason, index) => (
             <div key={index} className="bg-background rounded-xl p-6 shadow-soft border border-border/50">
               <div className="flex items-start gap-3">
@@ -417,21 +407,12 @@ const RealEstate = () => {
       </PageSection>
 
       {/* CTA */}
-      <PageSection>
-        <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Ready to make your <span className="text-primary">property listings perform across every channel</span>?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Custom-tailored for your business: real estate portal, franchise network, large agency, property marketplace, or proptech innovator.
-          </p>
-          <Link to="/pricing">
-            <Button size="lg" className="text-lg px-8 py-6">
-              Get Pricing & Demo
-            </Button>
-          </Link>
-        </div>
-      </PageSection>
+      <EmailCTA
+        headline="Ready to turn your property listings into revenue magnets?"
+        subtitle="Custom-tailored for your business: agency, franchise network, or property portal."
+        variant="default"
+        size="lg"
+      />
 
       <Footer />
     </div>
