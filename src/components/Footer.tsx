@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Linkedin, Twitter } from 'lucide-react';
@@ -49,73 +50,60 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Industries */}
-          <div className="space-y-4">
+          {/* Industries - Split into two columns */}
+          <div className="space-y-4 md:col-span-2">
             <h3 className="text-sm font-display font-semibold text-foreground">Industries</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/retail" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  🛍️ Retail
-                </Link>
-              </li>
-              <li>
-                <Link to="/travel-tourism" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  ✈️ Travel & Tourism
-                </Link>
-              </li>
-              <li>
-                <Link to="/media-entertainment" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  🎬 Media & Entertainment
-                </Link>
-              </li>
-              <li>
-                <Link to="/finance" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  💰 Finance
-                </Link>
-              </li>
-              <li>
-                <Link to="/industrial-manufacturing" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  🏭 Industrial & Manufacturing
-                </Link>
-              </li>
-              <li>
-                <Link to="/healthcare-medical" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  🏥 Healthcare & Medical
-                </Link>
-              </li>
-              <li>
-                <Link to="/real-estate" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  🏠 Real Estate
-                </Link>
-              </li>
-              <li>
-                <Link to="/automotive" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  🚗 Automotive
-                </Link>
-              </li>
-              <li>
-                <Link to="/investor-communications" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  📊 Investor Communications
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-display font-semibold text-foreground">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/retail" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    🛍️ Retail
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/travel-tourism" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    ✈️ Travel & Tourism
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/media-entertainment" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    🎬 Media & Entertainment
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/finance" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    💰 Finance
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/industrial-manufacturing" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    🏭 Industrial & Manufacturing
+                  </Link>
+                </li>
+              </ul>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/healthcare-medical" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    🏥 Healthcare & Medical
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/real-estate" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    🏠 Real Estate
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/automotive" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    🚗 Automotive
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/investor-communications" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    📊 Investor Communications
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
