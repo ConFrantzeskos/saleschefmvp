@@ -6,8 +6,6 @@ import EmailCTA from '@/components/EmailCTA';
 import { CheckCircle, X, TrendingUp } from 'lucide-react';
 
 const MediaEntertainment = () => {
-  const { email, setEmail, handleSubmit } = useEmailSubmission();
-
   const mediaProblems = [
     '🗄️ Archives scattered across DAMs, NAS drives, legacy MAMs',
     '🏷️ Poorly tagged video & image content',
