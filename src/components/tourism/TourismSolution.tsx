@@ -94,63 +94,63 @@ const TourismSolution = () => {
       </PageSection>
 
       <PageSection background="muted">
-        <SectionHeader
-          title="How SalesChef works for Tourism & Travel"
-        />
-        
-        <div className="space-y-12">
+        <div className="space-y-16">
+          <SectionHeader
+            title="How SalesChef works for Tourism & Travel"
+          />
+          
           {/* Step 1: Ingest */}
           <div className="bg-background rounded-xl p-8 shadow-soft border border-border/50">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">1</div>
-              <h3 className="text-xl font-semibold">Ingest & normalise every supplier source</h3>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">1</div>
+              <h3 className="text-2xl font-semibold">Ingest & normalise every supplier source</h3>
             </div>
-            <p className="text-muted-foreground mb-6">SalesChef's Drop Agent ingests from:</p>
-            <div className="space-y-2">
+            <p className="text-muted-foreground mb-8 text-lg">SalesChef's Drop Agent ingests from:</p>
+            <div className="space-y-4 mb-8">
               {ingestSources.map((source, index) => (
-                <div key={index} className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{source}</span>
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <span className="text-foreground">{source}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-6 p-4 bg-primary/10 rounded-lg">
-              <p className="font-medium text-foreground">No manual mapping. No "data cleansing projects". No weeks of human effort.</p>
+            <div className="mt-8 p-6 bg-primary/10 rounded-lg">
+              <p className="font-medium text-foreground text-lg">No manual mapping. No "data cleansing projects". No weeks of human effort.</p>
             </div>
           </div>
 
           {/* Step 2: Clean */}
           <div className="bg-background rounded-xl p-8 shadow-soft border border-border/50">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white font-bold">2</div>
-              <h3 className="text-xl font-semibold">Clean & structure with tourism-specific logic</h3>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold text-lg">2</div>
+              <h3 className="text-2xl font-semibold">Clean & structure with tourism-specific logic</h3>
             </div>
-            <p className="text-muted-foreground mb-6">SalesChef automates:</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <p className="text-muted-foreground mb-8 text-lg">SalesChef automates:</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               {cleaningFeatures.map((feature, index) => (
-                <div key={index} className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{feature}</span>
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                  <span className="text-foreground">{feature}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-6 p-4 bg-accent/10 rounded-lg">
-              <p className="font-medium text-foreground">Result: OTA-ready, compliant, high-converting product content.</p>
+            <div className="mt-8 p-6 bg-accent/10 rounded-lg">
+              <p className="font-medium text-foreground text-lg">Result: OTA-ready, compliant, high-converting product content.</p>
             </div>
           </div>
 
           {/* Step 3: Enrich */}
           <div className="bg-background rounded-xl p-8 shadow-soft border border-border/50">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center text-white font-bold">3</div>
-              <h3 className="text-xl font-semibold">Enrich with dynamic intelligence</h3>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-lg">3</div>
+              <h3 className="text-2xl font-semibold">Enrich with dynamic intelligence</h3>
             </div>
-            <p className="text-muted-foreground mb-6">SalesChef's Discover Agents add:</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <p className="text-muted-foreground mb-8 text-lg">SalesChef's Discover Agents add:</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               {enrichmentFeatures.map((feature, index) => (
-                <div key={index} className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{feature}</span>
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
+                  <span className="text-foreground">{feature}</span>
                 </div>
               ))}
             </div>
@@ -158,16 +158,16 @@ const TourismSolution = () => {
 
           {/* Step 4: Generate */}
           <div className="bg-background rounded-xl p-8 shadow-soft border border-border/50">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">4</div>
-              <h3 className="text-xl font-semibold">Generate & deploy across channels</h3>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">4</div>
+              <h3 className="text-2xl font-semibold">Generate & deploy across channels</h3>
             </div>
-            <p className="text-muted-foreground mb-6">SalesChef outputs optimised content to:</p>
-            <div className="space-y-2">
+            <p className="text-muted-foreground mb-8 text-lg">SalesChef outputs optimised content to:</p>
+            <div className="space-y-4">
               {outputChannels.map((channel, index) => (
-                <div key={index} className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{channel}</span>
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <span className="text-foreground">{channel}</span>
                 </div>
               ))}
             </div>
