@@ -41,42 +41,54 @@ export const useEmailSubmission = () => {
         
         if (urlValidation.isValid) {
           // Send to Zapier webhook
+          const payload = {
+            email: sanitizedEmail,
+            timestamp: new Date().toISOString(),
+            source: window.location.pathname,
+            user_agent: navigator.userAgent,
+            form_type: "email_capture"
+          };
+
+          if (import.meta.env.DEV) {
+            console.log("Sending email to Zapier:", { email: sanitizedEmail, webhook: sanitizedWebhookUrl });
+          }
+
           await fetch(sanitizedWebhookUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             mode: "no-cors",
-            body: JSON.stringify({
-              email: sanitizedEmail,
-              timestamp: new Date().toISOString(),
-              source: window.location.pathname,
-              user_agent: navigator.userAgent,
-            }),
+            body: JSON.stringify(payload),
           });
           
           if (import.meta.env.DEV) {
-            console.log("Email submitted to Zapier successfully");
+            console.log("Email successfully sent to Zapier webhook");
           }
         } else {
           if (import.meta.env.DEV) {
-            console.warn("Invalid webhook URL configuration");
+            console.warn("Invalid webhook URL configuration:", urlValidation.error);
           }
         }
       } else {
         if (import.meta.env.DEV) {
-          console.log("No webhook URL configured, proceeding with demo flow");
+          console.log("No webhook URL configured - email not sent to Zapier");
         }
       }
 
+      // Always show success to user and navigate
       toast.success("Welcome to SalesChef! Let's get started with your upload.");
+      
+      // Small delay to let user see the success message
       setTimeout(() => {
         navigate('/upload');
       }, 1000);
+
     } catch (error) {
       if (import.meta.env.DEV) {
-        console.error("Error submitting email:", error);
+        console.error("Error submitting email to Zapier:", error);
       }
+      
       // Still show success to user even if webhook fails
       toast.success("Welcome to SalesChef! Let's get started with your upload.");
       setTimeout(() => {

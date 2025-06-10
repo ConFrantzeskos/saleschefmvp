@@ -14,7 +14,6 @@ const ZapierConfig = () => {
     secureStorage.getItem('zapier_webhook_url') || ''
   );
   const [lastSave, setLastSave] = useState<number>(0);
-  const [isTestingWebhook, setIsTestingWebhook] = useState(false);
 
   const handleSave = () => {
     // Rate limiting - prevent rapid saves
@@ -34,60 +33,10 @@ const ZapierConfig = () => {
 
     secureStorage.setItem('zapier_webhook_url', sanitizedUrl);
     setLastSave(now);
-    toast.success('Zapier webhook URL saved securely!');
+    toast.success('Zapier webhook URL saved! All email submissions will now be sent to your Zap.');
     
     if (import.meta.env.DEV) {
       console.log('Webhook URL configuration updated');
-    }
-  };
-
-  const handleTest = async () => {
-    const sanitizedUrl = sanitizeInput(webhookUrl);
-    const validation = validateWebhookUrl(sanitizedUrl);
-    
-    if (!validation.isValid) {
-      toast.error(validation.error || 'Please enter a valid webhook URL first');
-      return;
-    }
-
-    setIsTestingWebhook(true);
-    
-    try {
-      const testPayload = {
-        test: true,
-        email: "test@saleschef.com",
-        timestamp: new Date().toISOString(),
-        source: "zapier_config_test",
-        user_agent: navigator.userAgent,
-        test_message: "This is a test from SalesChef Zapier configuration"
-      };
-
-      // Since we're using no-cors, we can't read the response
-      // But we can still send the request
-      await fetch(sanitizedUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-        body: JSON.stringify(testPayload),
-      });
-      
-      toast.success(
-        'Test webhook sent successfully! Check your Zap history in Zapier to confirm it was received.',
-        { duration: 6000 }
-      );
-      
-      if (import.meta.env.DEV) {
-        console.log('Test payload sent:', testPayload);
-      }
-    } catch (error) {
-      if (import.meta.env.DEV) {
-        console.error('Error testing webhook:', error);
-      }
-      toast.error('Failed to send test request. Please check your webhook URL.');
-    } finally {
-      setIsTestingWebhook(false);
     }
   };
 
@@ -97,7 +46,7 @@ const ZapierConfig = () => {
       timestamp: "2025-01-01T12:00:00.000Z",
       source: "/homepage",
       user_agent: "Mozilla/5.0...",
-      test: false
+      form_type: "email_capture"
     }, null, 2);
     
     navigator.clipboard.writeText(samplePayload);
@@ -133,9 +82,6 @@ const ZapierConfig = () => {
               Webhook URLs contain sensitive information and should never be hardcoded in source code.
               This configuration uses encrypted local storage for security.
             </p>
-            <p className="text-yellow-700 text-xs">
-              ⚠️ If you're migrating from a previous setup, make sure to remove any hardcoded webhook URLs from your codebase.
-            </p>
           </div>
         </div>
 
@@ -144,9 +90,9 @@ const ZapierConfig = () => {
           <div className="flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
             <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm">
-              <p className="font-medium text-green-800 mb-1">✅ Webhook Configured</p>
+              <p className="font-medium text-green-800 mb-1">✅ Webhook Active</p>
               <p className="text-green-700">
-                Your webhook URL is securely stored and validated. All email submissions will be sent to your Zap.
+                Your webhook URL is configured and validated. All email submissions from forms will be automatically sent to your Zap.
               </p>
             </div>
           </div>
@@ -164,23 +110,14 @@ const ZapierConfig = () => {
           />
         </div>
         
-        <div className="flex gap-2">
-          <Button onClick={handleSave} className="flex-1">
-            <Shield className="w-4 h-4 mr-2" />
-            Save Configuration
-          </Button>
-          <Button 
-            onClick={handleTest} 
-            variant="outline" 
-            disabled={!webhookUrl || isTestingWebhook}
-          >
-            {isTestingWebhook ? 'Testing...' : 'Test Webhook'}
-          </Button>
-        </div>
+        <Button onClick={handleSave} className="w-full">
+          <Shield className="w-4 h-4 mr-2" />
+          Save Webhook Configuration
+        </Button>
 
         <div className="p-4 bg-muted rounded-lg">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="font-medium">Expected Payload Format</h4>
+            <h4 className="font-medium">Email Payload Format</h4>
             <Button onClick={copyWebhookFormat} variant="ghost" size="sm">
               <Copy className="w-4 h-4" />
             </Button>
@@ -191,7 +128,7 @@ const ZapierConfig = () => {
   "timestamp": "2025-01-01T12:00:00.000Z",
   "source": "/homepage",
   "user_agent": "Mozilla/5.0...",
-  "test": false
+  "form_type": "email_capture"
 }`}
           </pre>
         </div>
@@ -203,15 +140,16 @@ const ZapierConfig = () => {
             <li>Choose "Webhooks by Zapier" as the trigger</li>
             <li>Select "Catch Hook" as the trigger event</li>
             <li>Copy the webhook URL and paste it above</li>
-            <li>Save the configuration and test it</li>
+            <li>Save the configuration</li>
             <li>Connect your desired action (Google Sheets, Email, etc.)</li>
-            <li>Check your Zap history to confirm the test was received</li>
+            <li>Turn your Zap ON</li>
+            <li>Submit an email through any form to test the integration</li>
           </ol>
         </div>
 
         <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
           <p className="text-sm text-blue-800">
-            <strong>💡 Troubleshooting:</strong> If you're not receiving webhooks, check that your Zap is turned ON and verify the webhook URL is correct. The test button will help you confirm the connection is working.
+            <strong>💡 How it works:</strong> Once configured, every email submitted through any form on SalesChef will automatically trigger your Zap with the email data. Check your Zap history to see incoming emails.
           </p>
         </div>
       </CardContent>
