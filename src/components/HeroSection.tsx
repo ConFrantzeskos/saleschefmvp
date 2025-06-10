@@ -1,13 +1,8 @@
 
 import React, { memo } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ArrowRight } from 'lucide-react';
-import { useEmailSubmission } from '@/hooks/useEmailSubmission';
+import EmailCTA from '@/components/EmailCTA';
 
 const HeroSection = memo(() => {
-  const { email, setEmail, handleSubmit } = useEmailSubmission();
-
   return (
     <section className="section-hero section-spacing-xl content-padding text-center animate-fade-in">
       <div className="content-width space-elements-lg">
@@ -33,27 +28,15 @@ const HeroSection = memo(() => {
           </p>
         </div>
         
-        <div className="animate-slide-up max-w-md mx-auto">
-          <form onSubmit={handleSubmit}>
-            <div className="form-container space-elements-sm">
-              <Input
-                type="email"
-                placeholder="Enter your work email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-input h-14 text-lg"
-                required
-                autoComplete="email"
-              />
-              <Button 
-                type="submit" 
-                className="btn-primary w-full h-14 text-lg" 
-                disabled={!email}
-              >
-                Book a Demo <ArrowRight className="ml-3 w-5 h-5" />
-              </Button>
-            </div>
-          </form>
+        <div className="animate-slide-up">
+          <EmailCTA
+            headline=""
+            placeholder="Enter your work email"
+            buttonText="Book a Demo"
+            variant="brand"
+            size="lg"
+            className="bg-transparent border-none shadow-none p-0"
+          />
         </div>
       </div>
     </section>

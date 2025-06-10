@@ -1,12 +1,9 @@
 
 import React from 'react';
 import StepCard from './StepCard';
-import { useEmailSubmission } from '@/hooks/useEmailSubmission';
 import { stepsData } from '@/constants/stepsData';
 
 const HowItWorksSteps = () => {
-  const { email, setEmail, handleSubmit } = useEmailSubmission();
-
   return (
     <section className="content-padding section-spacing-md">
       <div className="content-width space-elements-lg">
@@ -26,9 +23,6 @@ const HowItWorksSteps = () => {
                 key={index}
                 step={step}
                 index={index}
-                tryItEmail={email}
-                setTryItEmail={setEmail}
-                handleSubmitWithRedirect={handleSubmit}
               />
             ))}
           </div>
