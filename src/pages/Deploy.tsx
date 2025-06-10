@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
-import { Rocket, Download, Store, Globe, Share2, FileText } from 'lucide-react';
+import { Rocket, Download, Store, Globe, Share2, FileText, Archive, Tv, Radio, Mail, Smartphone, Monitor } from 'lucide-react';
 
 const Deploy = () => {
   const navigate = useNavigate();
@@ -23,13 +23,15 @@ const Deploy = () => {
   ];
 
   const deployTargets = [
+    // E-commerce & Retail
     {
       id: 'shopify',
       name: 'Shopify Store',
       description: 'Update product listings in your Shopify store',
       icon: Store,
       status: 'Connected',
-      products: 847
+      products: 847,
+      category: 'E-commerce'
     },
     {
       id: 'amazon',
@@ -37,15 +39,77 @@ const Deploy = () => {
       description: 'Sync enhanced content to Amazon listings',
       icon: Globe,
       status: 'Available',
-      products: 203
+      products: 203,
+      category: 'E-commerce'
     },
+    {
+      id: 'retail-media',
+      name: 'Retail Media Networks',
+      description: 'Deploy to Amazon DSP, Walmart Connect, Target Roundel',
+      icon: Tv,
+      status: 'Available',
+      products: 847,
+      category: 'Advertising'
+    },
+    {
+      id: 'google-shopping',
+      name: 'Google Shopping',
+      description: 'Sync product feeds to Google Merchant Center',
+      icon: Monitor,
+      status: 'Available',
+      products: 847,
+      category: 'Advertising'
+    },
+    
+    // Social Commerce
     {
       id: 'social',
       name: 'Social Media',
       description: 'Post product content to social channels',
       icon: Share2,
       status: 'Available',
-      products: 847
+      products: 847,
+      category: 'Social'
+    },
+    {
+      id: 'instagram-shop',
+      name: 'Instagram Shopping',
+      description: 'Update Instagram product catalog',
+      icon: Smartphone,
+      status: 'Available',
+      products: 847,
+      category: 'Social'
+    },
+    
+    // Marketing & Communications
+    {
+      id: 'email-marketing',
+      name: 'Email Marketing',
+      description: 'Generate product newsletters and campaigns',
+      icon: Mail,
+      status: 'Ready',
+      products: 847,
+      category: 'Marketing'
+    },
+    {
+      id: 'radio-ads',
+      name: 'Radio & Audio Ads',
+      description: 'Create scripts for radio and podcast advertising',
+      icon: Radio,
+      status: 'Ready',
+      products: 847,
+      category: 'Marketing'
+    },
+    
+    // File Exports
+    {
+      id: 'zip-download',
+      name: 'Download ZIP Package',
+      description: 'Complete content package with all generated assets',
+      icon: Archive,
+      status: 'Ready',
+      products: 847,
+      category: 'Export'
     },
     {
       id: 'csv',
@@ -53,17 +117,31 @@ const Deploy = () => {
       description: 'Export enhanced data as CSV file',
       icon: Download,
       status: 'Ready',
-      products: 847
+      products: 847,
+      category: 'Export'
     },
+    
+    // Training & Internal
     {
       id: 'training',
       name: 'Training Materials',
       description: 'Generate sales team training content',
       icon: FileText,
       status: 'Ready',
-      products: 847
+      products: 847,
+      category: 'Internal'
     }
   ];
+
+  // Group targets by category
+  const groupedTargets = deployTargets.reduce((acc, target) => {
+    const category = target.category;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(target);
+    return acc;
+  }, {} as Record<string, typeof deployTargets>);
 
   const handleTargetToggle = (targetId: string) => {
     setSelectedTargets(prev => 
@@ -115,7 +193,7 @@ const Deploy = () => {
     <div className="min-h-screen bg-background p-6">
       <ProgressIndicator steps={steps} />
       
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-semibold mb-4">Deploy Your Content</h1>
           <p className="text-lg text-muted-foreground">
@@ -123,56 +201,61 @@ const Deploy = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {deployTargets.map((target) => {
-            const Icon = target.icon;
-            const isSelected = selectedTargets.includes(target.id);
-            
-            return (
-              <Card 
-                key={target.id}
-                className={`cursor-pointer transition-all ${
-                  isSelected ? 'border-primary shadow-lg' : 'hover:border-primary/50'
-                }`}
-                onClick={() => handleTargetToggle(target.id)}
-              >
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-primary/10 rounded-lg">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg">{target.name}</CardTitle>
-                        <Badge 
-                          variant={target.status === 'Connected' ? 'default' : 'outline'}
-                          className="mt-1"
-                        >
-                          {target.status}
-                        </Badge>
-                      </div>
-                    </div>
-                    <Checkbox 
-                      checked={isSelected}
-                      onCheckedChange={() => handleTargetToggle(target.id)}
-                    />
-                  </div>
-                </CardHeader>
+        {Object.entries(groupedTargets).map(([category, targets]) => (
+          <div key={category} className="mb-8">
+            <h2 className="text-xl font-semibold mb-4 text-primary">{category}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {targets.map((target) => {
+                const Icon = target.icon;
+                const isSelected = selectedTargets.includes(target.id);
                 
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    {target.description}
-                  </p>
-                  <div className="text-sm font-medium">
-                    {target.products} products ready
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+                return (
+                  <Card 
+                    key={target.id}
+                    className={`cursor-pointer transition-all ${
+                      isSelected ? 'border-primary shadow-lg' : 'hover:border-primary/50'
+                    }`}
+                    onClick={() => handleTargetToggle(target.id)}
+                  >
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="p-2 bg-primary/10 rounded-lg">
+                            <Icon className="w-5 h-5 text-primary" />
+                          </div>
+                          <div>
+                            <CardTitle className="text-base">{target.name}</CardTitle>
+                            <Badge 
+                              variant={target.status === 'Connected' ? 'default' : 'outline'}
+                              className="mt-1 text-xs"
+                            >
+                              {target.status}
+                            </Badge>
+                          </div>
+                        </div>
+                        <Checkbox 
+                          checked={isSelected}
+                          onCheckedChange={() => handleTargetToggle(target.id)}
+                        />
+                      </div>
+                    </CardHeader>
+                    
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {target.description}
+                      </p>
+                      <div className="text-sm font-medium">
+                        {target.products} products ready
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        ))}
 
-        <div className="flex justify-center space-x-4">
+        <div className="flex justify-center space-x-4 mt-8">
           <Button 
             variant="outline" 
             onClick={() => navigate('/review')}
