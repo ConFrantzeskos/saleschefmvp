@@ -3,6 +3,7 @@ import React from 'react';
 import Footer from '@/components/Footer';
 import PageSection from '@/components/layout/PageSection';
 import SectionHeader from '@/components/layout/SectionHeader';
+import EmailCTA from '@/components/EmailCTA';
 import IndustryProblemsSection from '@/components/industry/IndustryProblemsSection';
 import IndustryConsequencesSection from '@/components/industry/IndustryConsequencesSection';
 import IndustryRealitySection from '@/components/industry/IndustryRealitySection';
@@ -44,6 +45,16 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         consequences={industry.consequences}
       />
 
+      {/* High-engagement CTA after Cost of Chaos */}
+      <EmailCTA
+        headline="Stop the content chaos"
+        subtitle={`See how ${industry.name.toLowerCase()} leaders are transforming their operations`}
+        placeholder="Enter your work email"
+        buttonText="Show Me How"
+        variant="card"
+        size="sm"
+      />
+
       {/* Reality/Complexity Section - Reduced padding */}
       {industry.realityPoints && (
         <IndustryRealitySection
@@ -63,10 +74,30 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         outputChannels={industry.outputChannels}
       />
 
+      {/* Solution-focused CTA after steps explanation */}
+      <EmailCTA
+        headline="See this solution in action"
+        subtitle="Custom demo tailored to your content challenges"
+        placeholder="Enter your work email"
+        buttonText="Book Demo"
+        variant="gradient"
+        size="md"
+      />
+
       {/* Business Outcomes - Reduced padding */}
       <IndustryOutcomesSection
         title={`Business outcomes for ${industry.name.toLowerCase()} teams`}
         outcomes={industry.businessOutcomes}
+      />
+
+      {/* Outcome-focused CTA after benefits */}
+      <EmailCTA
+        headline="Get these outcomes for your team"
+        subtitle="Join industry leaders already transforming their content operations"
+        placeholder="Enter your work email"
+        buttonText="Book Demo"
+        variant="default"
+        size="sm"
       />
 
       {/* Why Choose Section - Reduced padding */}
@@ -84,7 +115,7 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         integrations={industry.integrations}
       />
 
-      {/* CTA - Reduced padding */}
+      {/* Final CTA - Reduced padding */}
       <IndustryCTA industryName={industry.name.toLowerCase()} />
 
       <Footer />
