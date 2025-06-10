@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import Header from "./components/Header";
 import LoadingSpinner from "./components/LoadingSpinner";
 import SecurityBoundary from "./components/SecurityBoundary";
+import ZapierConfig from "./components/ZapierConfig";
 import { usePerformanceMonitor } from "./hooks/usePerformanceMonitor";
 
 // Enhanced lazy loading with strategic preloading
@@ -186,6 +188,7 @@ const AppContent = () => {
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/zapier-config" element={<ZapierConfig />} />
             
             {/* Industry Pages */}
             <Route path="/retail" element={<Retail />} />
