@@ -1,4 +1,3 @@
-
 export interface DetailedIndustryData {
   name: string;
   emoji: string;
@@ -74,16 +73,16 @@ export const detailedIndustryData: Record<string, DetailedIndustryData> = {
       '⏳ Always behind the curve → last-minute scrambles ahead of earnings, AGMs, investor days'
     ],
     
-    consequencesTitle: "The cost of the chaos",
+    consequencesTitle: "The cost of chaos",
     consequences: [
-      '📉 Slower time-to-market for investor updates → damages transparency & trust',
-      '📢 Inconsistent messaging across channels → weakens market position',
-      '⚖️ Compliance & legal risk → missing disclaimers, outdated figures',
-      '💰 Opportunity cost → more time wrangling data, less time crafting strategic narratives',
-      '😤 Investor fatigue → poor quality comms erode credibility',
-      '🌱 Lagging ESG & thematic reporting → out of step with modern investor expectations',
-      '🤖 No readiness for AI-powered investor experiences → falling behind the market',
-      '🔄 Poor content reuse → manual rework drains team capacity'
+      'Slower time-to-market for investor updates → damages transparency & trust',
+      'Inconsistent messaging across channels → weakens market position',
+      'Compliance & legal risk → missing disclaimers, outdated figures',
+      'Opportunity cost → more time wrangling data, less time crafting strategic narratives',
+      'Investor fatigue → poor quality comms erode credibility',
+      'Lagging ESG & thematic reporting → out of step with modern investor expectations',
+      'No readiness for AI-powered investor experiences → falling behind the market',
+      'Poor content reuse → manual rework drains team capacity'
     ],
     
     realityTitle: "SalesChef: Built for the complexity of investor communications",

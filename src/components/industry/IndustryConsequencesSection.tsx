@@ -9,13 +9,15 @@ interface IndustryConsequencesSectionProps {
 }
 
 const IndustryConsequencesSection = ({ title, consequences }: IndustryConsequencesSectionProps) => {
+  // Ensure the title has the flying dollar emoji if it doesn't already
+  const displayTitle = title.startsWith('💸') ? title : `💸 ${title}`;
+
   return (
     <PageSection background="muted">
-      <SectionHeader title={title} />
+      <SectionHeader title={displayTitle} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {consequences.map((consequence, index) => (
           <div key={index} className="card-content group hover:shadow-medium transition-all duration-300">
-            <div className="text-destructive text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">💸</div>
             <p className="text-body text-foreground font-medium leading-relaxed">{consequence}</p>
           </div>
         ))}
