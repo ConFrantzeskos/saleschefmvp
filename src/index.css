@@ -209,7 +209,7 @@
   
   /* Refined card system - cleaner, more purposeful */
   .card-interactive {
-    @apply bg-card rounded-3xl p-8 sm:p-10 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/20 transition-all duration-300 group cursor-pointer;
+    @apply bg-card rounded-3xl p-8 sm:p-10 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/20 transition-all duration-300 cursor-pointer;
   }
   
   .card-content {
@@ -217,7 +217,7 @@
   }
   
   .card-feature {
-    @apply bg-gradient-to-br from-card to-muted/20 rounded-3xl p-8 sm:p-10 shadow-medium border border-border/30 hover:shadow-large hover:border-primary/20 transition-all duration-500 group;
+    @apply bg-gradient-to-br from-card to-muted/20 rounded-3xl p-8 sm:p-10 shadow-medium border border-border/30 hover:shadow-large hover:border-primary/20 transition-all duration-500;
   }
   
   .card-minimal {
@@ -260,11 +260,11 @@
   
   /* Icon containers - more refined */
   .icon-container {
-    @apply w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110;
+    @apply w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300;
   }
   
   .icon-container-large {
-    @apply w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-soft;
+    @apply w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-300 shadow-soft;
   }
   
   /* Enhanced layouts */
