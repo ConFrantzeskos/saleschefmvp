@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import PageSection from '@/components/layout/PageSection';
 import SectionHeader from '@/components/layout/SectionHeader';
 import Footer from '@/components/Footer';
+import EmailCTA from '@/components/EmailCTA';
 import { CheckCircle, X, TrendingUp } from 'lucide-react';
 
 const Finance = () => {
@@ -405,21 +406,12 @@ const Finance = () => {
       </PageSection>
 
       {/* CTA */}
-      <PageSection>
-        <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Ready to transform your <span className="text-primary">financial product content operations</span>?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Custom-tailored for your institution: bank, insurer, super fund, fintech, or wealth manager.
-          </p>
-          <Link to="/pricing">
-            <Button size="lg" className="text-lg px-8 py-6">
-              Get Pricing & Demo
-            </Button>
-          </Link>
-        </div>
-      </PageSection>
+      <EmailCTA
+        headline="Ready to transform your financial product content operations?"
+        subtitle="Custom-tailored for your institution: bank, insurer, super fund, fintech, or wealth manager."
+        variant="default"
+        size="lg"
+      />
 
       <Footer />
     </div>

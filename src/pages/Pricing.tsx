@@ -3,7 +3,7 @@ import React from 'react';
 import PricingHeader from '@/components/PricingHeader';
 import PricingContent from '@/components/PricingContent';
 import PricingFAQ from '@/components/PricingFAQ';
-import PricingCTA from '@/components/PricingCTA';
+import EmailCTA from '@/components/EmailCTA';
 import Footer from '@/components/Footer';
 
 const Pricing = () => {
@@ -12,7 +12,12 @@ const Pricing = () => {
       <PricingHeader />
       <PricingContent />
       <PricingFAQ />
-      <PricingCTA />
+      <EmailCTA
+        headline="Ready to transform your content operations?"
+        subtitle="Start your journey with SalesChef today. Custom pricing for your business needs."
+        variant="gradient"
+        size="lg"
+      />
       <Footer />
     </div>
   );
