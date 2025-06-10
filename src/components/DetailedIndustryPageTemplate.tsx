@@ -45,7 +45,7 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         consequences={industry.consequences}
       />
 
-      {/* High-engagement CTA after Cost of Chaos */}
+      {/* High-engagement CTA after Cost of Chaos - Consistent design */}
       <EmailCTA
         headline="Stop the content chaos"
         subtitle={`See how ${industry.name.toLowerCase()} leaders are transforming their operations`}
@@ -74,14 +74,14 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         outputChannels={industry.outputChannels}
       />
 
-      {/* Solution-focused CTA after steps explanation */}
+      {/* Solution-focused CTA after steps explanation - Consistent design */}
       <EmailCTA
         headline="See this solution in action"
         subtitle="Custom demo tailored to your content challenges"
         placeholder="Enter your work email"
         buttonText="Book Demo"
         variant="gradient"
-        size="md"
+        size="sm"
       />
 
       {/* Business Outcomes - Reduced padding */}
@@ -90,7 +90,7 @@ const DetailedIndustryPageTemplate = ({ industry }: DetailedIndustryPageTemplate
         outcomes={industry.businessOutcomes}
       />
 
-      {/* Outcome-focused CTA after benefits */}
+      {/* Outcome-focused CTA after benefits - Consistent design */}
       <EmailCTA
         headline="Get these outcomes for your team"
         subtitle="Join industry leaders already transforming their content operations"
