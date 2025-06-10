@@ -1,3 +1,4 @@
+
 // Simple encryption utility for client-side storage
 // Note: This provides basic obfuscation, not cryptographic security
 const STORAGE_KEY_PREFIX = 'saleschef_secure_';
