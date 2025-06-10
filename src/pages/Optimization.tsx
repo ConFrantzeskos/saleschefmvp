@@ -358,7 +358,7 @@ const Optimization = () => {
               <Button onClick={() => navigate('/enhance')}>
                 Upload More Products
               </Button>
-              <Button variant="outline">
+              <Button variant="outline" onClick={() => navigate('/dashboard')}>
                 View Dashboard
               </Button>
             </div>

@@ -45,7 +45,7 @@ const Enrichment = lazy(() =>
 );
 const EnrichmentReview = lazy(() => 
   import("../pages/EnrichmentReview").then(module => {
-    import("../pages/ContentGeneration");
+    import("../pages/EnrichmentAssetReview");
     return module;
   })
 );
@@ -61,6 +61,7 @@ const AssetReview = lazy(() => import("../pages/AssetReview"));
 const EnhanceAssets = lazy(() => import("../pages/EnhanceAssets"));
 const Deploy = lazy(() => import("../pages/Deploy"));
 const Optimization = lazy(() => import("../pages/Optimization"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 // Industry pages
@@ -95,6 +96,7 @@ export const pageComponents = {
   EnhanceAssets,
   Deploy,
   Optimization,
+  Dashboard,
   NotFound,
   Retail,
   TravelTourism,
