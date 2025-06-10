@@ -279,6 +279,12 @@ const ContentGeneration = () => {
         },
         {
           icon: Megaphone,
+          title: "Retail Media",
+          description: "Retail media network advertising content",
+          items: ["Sponsored product ads", "Display campaigns", "Video ads", "Search campaigns", "Banner creatives", "Product targeting"]
+        },
+        {
+          icon: Megaphone,
           title: "Trade Marketing",
           description: "B2B marketing materials for retailers",
           items: ["Buyer presentations", "Trade show content", "Channel partner kits", "Merchandising guides"]
@@ -476,3 +482,5 @@ const ContentGeneration = () => {
 };
 
 export default ContentGeneration;
+
+}
