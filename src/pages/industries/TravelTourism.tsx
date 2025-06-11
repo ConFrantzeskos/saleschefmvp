@@ -39,6 +39,16 @@ const TravelTourism = () => {
       
       <TourismOutcomes />
       
+      {/* Final CTA - replacing the text-only section */}
+      <EmailCTA
+        headline="Ready to transform your marketplace content engine?"
+        subtitle="Custom-tailored for your OTA, marketplace, DMO or aggregator."
+        placeholder="Enter your work email"
+        buttonText="Book a Demo"
+        variant="default"
+        size="md"
+      />
+      
       <Footer />
     </div>
   );
