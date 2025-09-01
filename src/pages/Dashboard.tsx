@@ -350,11 +350,11 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        <Tabs defaultValue="diagnostics" className="space-y-6">
+        <Tabs defaultValue="optimization" className="space-y-6">
           <TabsList>
+            <TabsTrigger value="optimization">Active Optimizations</TabsTrigger>
             <TabsTrigger value="diagnostics">AI Diagnostics</TabsTrigger>
             <TabsTrigger value="channels">Channel Performance</TabsTrigger>
-            <TabsTrigger value="optimization">Active Optimizations</TabsTrigger>
           </TabsList>
 
           <TabsContent value="diagnostics" className="space-y-6">
