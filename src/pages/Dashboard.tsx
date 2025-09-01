@@ -155,6 +155,78 @@ const Dashboard = () => {
       estimatedImpact: '+8% seasonal sales',
       timeToComplete: '6 hours',
       progress: 0
+    },
+    {
+      id: 5,
+      title: 'Cold weather promotion optimization',
+      category: 'Seasonal',
+      priority: 'high',
+      estimatedImpact: '+18% winter sales',
+      timeToComplete: '3 hours',
+      progress: 20
+    },
+    {
+      id: 6,
+      title: "Father's Day gift guide content",
+      category: 'Holiday',
+      priority: 'medium',
+      estimatedImpact: '+12% June conversions',
+      timeToComplete: '4 hours',
+      progress: 0
+    },
+    {
+      id: 7,
+      title: 'Back-to-school campaign setup',
+      category: 'Educational',
+      priority: 'high',
+      estimatedImpact: '+25% August sales',
+      timeToComplete: '5 hours',
+      progress: 45
+    },
+    {
+      id: 8,
+      title: 'Weekend flash sale automation',
+      category: 'Promotional',
+      priority: 'medium',
+      estimatedImpact: '+9% weekend revenue',
+      timeToComplete: '2 hours',
+      progress: 70
+    },
+    {
+      id: 9,
+      title: 'Rainy day indoor product highlights',
+      category: 'Weather',
+      priority: 'low',
+      estimatedImpact: '+6% engagement',
+      timeToComplete: '3 hours',
+      progress: 0
+    },
+    {
+      id: 10,
+      title: 'Black Friday early access content',
+      category: 'Holiday',
+      priority: 'high',
+      estimatedImpact: '+35% pre-sales',
+      timeToComplete: '8 hours',
+      progress: 15
+    },
+    {
+      id: 11,
+      title: 'Local event-based promotions',
+      category: 'Geographic',
+      priority: 'medium',
+      estimatedImpact: '+14% local sales',
+      timeToComplete: '4 hours',
+      progress: 30
+    },
+    {
+      id: 12,
+      title: 'Heat wave cooling product push',
+      category: 'Weather',
+      priority: 'medium',
+      estimatedImpact: '+20% summer items',
+      timeToComplete: '2 hours',
+      progress: 0
     }
   ];
 
