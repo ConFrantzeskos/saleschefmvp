@@ -42,6 +42,11 @@ export function calculateSimilarity(str1: string, str2: string): number {
 
 // Detect unit information from field name
 export function detectUnits(fieldName: string): UnitInfo {
+  // Exclude Category fields from unit detection
+  if (fieldName.toLowerCase().includes('category')) {
+    return { unit: '', system: 'none', field: fieldName };
+  }
+  
   const lower = fieldName.toLowerCase();
   
   // Check weight units
