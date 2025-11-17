@@ -32,7 +32,31 @@ const SchemaMapping = () => {
     'Size (inches)',     // Imperial
     'Height_CM',         // Metric
     'Package Dimensions (L x W x H)',  // Complex
-    'Color', 'Material'
+    'Color', 'Material',
+    // Identity & Compliance
+    'UPC', 'GTIN', 'EAN Code', 'Barcode',
+    'Manufacturer Name', 'Mfg', 'Supplier',
+    'Model #', 'Model Number', 'Model_ID',
+    'Warranty Info', 'Warranty_Period', 'Warranty (months)',
+    'Origin Country', 'Made In', 'Country_of_Origin',
+    'Certifications', 'Compliance', 'Safety_Certs', 'Quality_Certificates',
+    // Media & SEO
+    'Image_URL', 'Product Image', 'Main_Image', 'Product_Photo',
+    'Product_Tags', 'Keywords', 'Tags',
+    'SEO_Keywords', 'Search Terms', 'Search_Keywords',
+    'Meta_Title', 'SEO Title', 'Page Title',
+    'Meta_Description', 'SEO Description', 'Page Description',
+    // Rich Product Content
+    'Features', 'Product_Features', 'Key Features', 'Feature_List',
+    'Benefits', 'Value Props', 'Key_Benefits', 'Product_Benefits',
+    'Target Market', 'Audience', 'Customer_Profile', 'Intended_Audience',
+    'Tech_Specs', 'Specifications', 'Technical Details', 'Spec_Sheet',
+    'Bullet Points', 'Highlights', 'Product_Bullets', 'Key_Points',
+    'Use_Cases', 'Applications', 'Usage Scenarios', 'How_to_Use',
+    'Package_Contents', 'Whats Included', 'Box Contents', 'Contents',
+    'Care_Instructions', 'Maintenance', 'How to Care', 'Care_Guide',
+    'Competitive_Edge', 'Differentiators', 'Why Choose', 'Advantages',
+    'Long_Description', 'Detailed Description', 'Extended_Desc', 'Full_Description'
   ];
 
   const requiredFields = [
