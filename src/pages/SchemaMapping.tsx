@@ -16,6 +16,8 @@ const SchemaMapping = () => {
     { id: 'upload', label: 'Upload', completed: true, current: false },
     { id: 'mapping', label: 'Map Fields', completed: false, current: true },
     { id: 'clean', label: 'Clean Data', completed: false, current: false },
+    { id: 'enrich', label: 'Enrich', completed: false, current: false },
+    { id: 'enhance', label: 'Enhance', completed: false, current: false },
     { id: 'generate', label: 'Generate', completed: false, current: false },
     { id: 'review', label: 'Review', completed: false, current: false },
     { id: 'deploy', label: 'Deploy', completed: false, current: false },

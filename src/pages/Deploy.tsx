@@ -32,7 +32,7 @@ const Deploy = () => {
       description: 'Sync product listings to your Shopify store',
       icon: Store,
       status: 'Connected',
-      products: 847,
+      products: 3,
       category: 'E-commerce Platforms'
     },
     {
@@ -41,7 +41,7 @@ const Deploy = () => {
       description: 'Deploy enhanced content to WooCommerce stores',
       icon: Store,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'E-commerce Platforms'
     },
     {
@@ -50,7 +50,7 @@ const Deploy = () => {
       description: 'Sync product data to Magento stores',
       icon: Store,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'E-commerce Platforms'
     },
     {
@@ -59,7 +59,7 @@ const Deploy = () => {
       description: 'Update product listings in BigCommerce',
       icon: Store,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'E-commerce Platforms'
     },
     {
@@ -68,7 +68,7 @@ const Deploy = () => {
       description: 'Deploy product content to PrestaShop stores',
       icon: Store,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'E-commerce Platforms'
     },
     {
@@ -77,7 +77,7 @@ const Deploy = () => {
       description: 'Sync enhanced listings to OpenCart',
       icon: Store,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'E-commerce Platforms'
     },
 
@@ -88,7 +88,7 @@ const Deploy = () => {
       description: 'Sync enhanced content to Amazon listings',
       icon: Globe,
       status: 'Available',
-      products: 203,
+      products: 3,
       category: 'Marketplaces'
     },
     {
@@ -97,7 +97,7 @@ const Deploy = () => {
       description: 'Deploy product listings to eBay marketplace',
       icon: Globe,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Marketplaces'
     },
     {
@@ -106,7 +106,7 @@ const Deploy = () => {
       description: 'Sync product content to Etsy marketplace',
       icon: Globe,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Marketplaces'
     },
     {
@@ -115,7 +115,7 @@ const Deploy = () => {
       description: 'Deploy listings to Walmart marketplace',
       icon: Globe,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Marketplaces'
     },
     {
@@ -124,7 +124,7 @@ const Deploy = () => {
       description: 'Sync products to Facebook Marketplace',
       icon: Globe,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Marketplaces'
     },
     {
@@ -133,7 +133,7 @@ const Deploy = () => {
       description: 'Deploy product listings to MercadoLibre',
       icon: Globe,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Marketplaces'
     },
 
@@ -144,7 +144,7 @@ const Deploy = () => {
       description: 'Deploy to Amazon DSP, Walmart Connect, Target Roundel',
       icon: Tv,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Advertising'
     },
     {
@@ -153,7 +153,7 @@ const Deploy = () => {
       description: 'Sync product feeds to Google Merchant Center',
       icon: Monitor,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Advertising'
     },
     
@@ -164,7 +164,7 @@ const Deploy = () => {
       description: 'Post product content to social channels',
       icon: Share2,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Social'
     },
     {
@@ -173,7 +173,7 @@ const Deploy = () => {
       description: 'Update Instagram product catalog',
       icon: Smartphone,
       status: 'Available',
-      products: 847,
+      products: 3,
       category: 'Social'
     },
     
@@ -184,7 +184,7 @@ const Deploy = () => {
       description: 'Deploy product newsletters and campaigns',
       icon: Mail,
       status: 'Ready',
-      products: 847,
+      products: 3,
       category: 'Marketing'
     },
     {
@@ -193,7 +193,7 @@ const Deploy = () => {
       description: 'Create scripts for radio and podcast advertising',
       icon: Radio,
       status: 'Ready',
-      products: 847,
+      products: 3,
       category: 'Marketing'
     },
     
@@ -204,7 +204,7 @@ const Deploy = () => {
       description: 'Complete content package with all assets',
       icon: Archive,
       status: 'Ready',
-      products: 847,
+      products: 3,
       category: 'Export'
     },
     {
@@ -213,7 +213,7 @@ const Deploy = () => {
       description: 'Export enhanced data as CSV file',
       icon: Download,
       status: 'Ready',
-      products: 847,
+      products: 3,
       category: 'Export'
     },
     
@@ -224,7 +224,7 @@ const Deploy = () => {
       description: 'Deploy sales team training content',
       icon: FileText,
       status: 'Ready',
-      products: 847,
+      products: 3,
       category: 'Internal'
     }
   ];
