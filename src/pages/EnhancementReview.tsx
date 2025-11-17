@@ -13,9 +13,9 @@ const EnhancementReview = () => {
     { id: 'mapping', label: 'Map Fields', completed: true, current: false },
     { id: 'clean', label: 'Clean Data', completed: true, current: false },
     { id: 'enrich', label: 'Enrich', completed: true, current: false },
-    { id: 'enhance', label: 'Enhance', completed: false, current: true },
+    { id: 'enhance', label: 'Enhance', completed: true, current: false },
+    { id: 'review-enhancement', label: 'Review Enhancement', completed: false, current: true },
     { id: 'generate', label: 'Generate', completed: false, current: false },
-    { id: 'review', label: 'Review', completed: false, current: false },
     { id: 'deploy', label: 'Deploy', completed: false, current: false },
   ];
 
@@ -45,13 +45,13 @@ const EnhancementReview = () => {
           onProceed={handleProceedToGeneration}
         />
 
-        <div className="bg-white rounded-xl border shadow-soft">
-          <div className="p-6 border-b">
+        <div className="bg-card rounded-xl border shadow-soft animate-fade-in" style={{ animationDelay: '0.5s' }}>
+          <div className="p-6 border-b bg-gradient-to-r from-primary/5 to-secondary/5">
             <h2 className="text-xl font-display font-semibold text-foreground">
-              Strategic Briefs ({sampleAssets.length})
+              Strategic Product Briefs ({sampleAssets.length})
             </h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Click "View Brief" to see the complete strategic framework for each product
+              Click "View Full Brief" to explore complete strategic frameworks, personas, and conversion heuristics
             </p>
           </div>
           
