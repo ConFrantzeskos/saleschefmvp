@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Images, Camera, Share2, Download, Loader2, RefreshCw } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
+import { Images, Camera, Share2, Download, Loader2, RefreshCw, Edit2, Check, X } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -101,6 +102,8 @@ const GeneratedVisualContent = ({ keywords, keyBenefits, competitiveAdvantage }:
   ]);
 
   const [generatingAll, setGeneratingAll] = useState(false);
+  const [editingPrompt, setEditingPrompt] = useState<string | null>(null);
+  const [editedPromptValue, setEditedPromptValue] = useState('');
 
   const generateImage = async (prompt: string): Promise<string> => {
     const { data, error } = await supabase.functions.invoke('generate-image', {
@@ -213,6 +216,36 @@ const GeneratedVisualContent = ({ keywords, keyBenefits, competitiveAdvantage }:
     document.body.removeChild(link);
   };
 
+  const startEditingPrompt = (category: string, imageId: number, currentPrompt: string) => {
+    setEditingPrompt(`${category}-${imageId}`);
+    setEditedPromptValue(currentPrompt);
+  };
+
+  const savePromptEdit = (category: 'product' | 'lifestyle' | 'social', imageId: number) => {
+    const setState = category === 'product' 
+      ? setProductImages 
+      : category === 'lifestyle' 
+      ? setLifestyleImages 
+      : setSocialMediaTiles;
+
+    setState(prev => prev.map(img => 
+      img.id === imageId ? { ...img, prompt: editedPromptValue } : img
+    ));
+
+    setEditingPrompt(null);
+    setEditedPromptValue('');
+    
+    toast({
+      title: 'Prompt updated',
+      description: 'Your custom prompt has been saved',
+    });
+  };
+
+  const cancelPromptEdit = () => {
+    setEditingPrompt(null);
+    setEditedPromptValue('');
+  };
+
   const renderImageCard = (
     image: ImageData,
     category: 'product' | 'lifestyle' | 'social'
@@ -246,30 +279,74 @@ const GeneratedVisualContent = ({ keywords, keyBenefits, competitiveAdvantage }:
           )}
         </div>
         
-        <p className="text-xs text-muted-foreground line-clamp-2">{image.prompt}</p>
+        {editingPrompt === `${category}-${image.id}` ? (
+          <div className="space-y-2">
+            <Textarea
+              value={editedPromptValue}
+              onChange={(e) => setEditedPromptValue(e.target.value)}
+              className="text-xs min-h-[80px] resize-none"
+              placeholder="Enter your custom prompt..."
+            />
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant="default"
+                onClick={() => savePromptEdit(category, image.id)}
+                className="flex-1"
+              >
+                <Check className="w-3 h-3 mr-1" />
+                Save
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={cancelPromptEdit}
+                className="flex-1"
+              >
+                <X className="w-3 h-3 mr-1" />
+                Cancel
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div className="group/prompt relative">
+            <p className="text-xs text-muted-foreground line-clamp-2 pr-8">{image.prompt}</p>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => startEditingPrompt(category, image.id, image.prompt)}
+              className="absolute top-0 right-0 h-6 w-6 p-0 opacity-0 group-hover/prompt:opacity-100 transition-opacity"
+              disabled={image.loading || generatingAll}
+            >
+              <Edit2 className="w-3 h-3" />
+            </Button>
+          </div>
+        )}
         
-        <div className="flex gap-2 pt-2">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => regenerateImage(category, image.id)}
-            disabled={image.loading || generatingAll}
-            className="flex-1"
-          >
-            <RefreshCw className="w-3 h-3 mr-1" />
-            Regenerate
-          </Button>
-          {image.url && (
+        {editingPrompt !== `${category}-${image.id}` && (
+          <div className="flex gap-2 pt-2">
             <Button
               size="sm"
               variant="outline"
-              onClick={() => downloadImage(image.url, `${image.alt}.png`)}
+              onClick={() => regenerateImage(category, image.id)}
               disabled={image.loading || generatingAll}
+              className="flex-1"
             >
-              <Download className="w-3 h-3" />
+              <RefreshCw className="w-3 h-3 mr-1" />
+              Regenerate
             </Button>
-          )}
-        </div>
+            {image.url && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => downloadImage(image.url, `${image.alt}.png`)}
+                disabled={image.loading || generatingAll}
+              >
+                <Download className="w-3 h-3" />
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
