@@ -50,6 +50,14 @@ const EnrichmentReview = lazy(() =>
   })
 );
 const EnrichmentAssetReview = lazy(() => import("../pages/EnrichmentAssetReview"));
+const Enhancement = lazy(() => 
+  import("../pages/Enhancement").then(module => {
+    import("../pages/EnhancementReview");
+    return module;
+  })
+);
+const EnhancementReview = lazy(() => import("../pages/EnhancementReview"));
+const StrategicBriefDetail = lazy(() => import("../pages/StrategicBriefDetail"));
 const ContentGeneration = lazy(() => 
   import("../pages/ContentGeneration").then(module => {
     import("../pages/ReviewContent");
@@ -90,6 +98,9 @@ export const pageComponents = {
   Enrichment,
   EnrichmentReview,
   EnrichmentAssetReview,
+  Enhancement,
+  EnhancementReview,
+  StrategicBriefDetail,
   ContentGeneration,
   ReviewContent,
   AssetReview,
