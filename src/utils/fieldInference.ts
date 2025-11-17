@@ -71,7 +71,17 @@ export function detectUnits(fieldName: string): UnitInfo {
   return { unit: '', system: 'none', field: fieldName };
 }
 
-// Generate field suggestions with confidence scores
+// Confidence thresholds for demo
+// High: 85%+ (auto-mapped)
+// Medium: 70-84% (suggested) 
+// Low: <70% (suggested with caution)
+
+/**
+ * AI-powered field inference with clear confidence ranking:
+ * - High (85-100%): Auto-mapped - strong keyword match or common pairing
+ * - Medium (70-84%): Suggested - good match but requires review
+ * - Low (<70%): Shown for reference but needs manual mapping
+ */
 export function generateFieldSuggestions(
   targetField: string,
   detectedFields: string[],

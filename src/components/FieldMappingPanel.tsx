@@ -92,8 +92,8 @@ const FieldMappingPanel = ({
                   </SelectContent>
                 </Select>
                 
-                {/* Show suggestion if field is not mapped or has low confidence */}
-                {suggestion && (!hasMapping || suggestion.confidence < 0.8) && (
+                {/* Show suggestion if field not mapped OR has medium/low confidence (<85%) */}
+                {suggestion && (!hasMapping || suggestion.confidence < 0.85) && (
                   <FieldSuggestion suggestion={suggestion} />
                 )}
                 
