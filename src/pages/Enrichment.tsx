@@ -4,7 +4,7 @@ import ProgressIndicator from '@/components/ProgressIndicator';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, ArrowRight, Globe2, Shield, Video, FileText, Network, Leaf, Link2, Image, Store, Award, HelpCircle, DollarSign } from 'lucide-react';
+import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, ArrowRight, Globe2, Shield, Video, FileText, Network, Leaf, Link2, Image, Store, Award, HelpCircle, DollarSign, MessageCircle, Target, ShoppingBag, AlertCircle, Sparkles } from 'lucide-react';
 
 const Enrichment = () => {
   const navigate = useNavigate();
@@ -35,8 +35,15 @@ const Enrichment = () => {
       icon: MessageSquare,
       title: "Customer Reviews",
       description: "Mining insights from customer feedback",
-      details: ["Sentiment analysis", "Feature mentions", "Pain points"],
+      details: ["Sentiment analysis", "Feature mentions", "Pain points", "Critical feedback", "Comparative insights"],
       status: "Analyzing 1,847 customer reviews..."
+    },
+    {
+      icon: AlertCircle,
+      title: "Critical Reviews & Critique",
+      description: "Deep analysis of product limitations and drawbacks",
+      details: ["Common complaints", "Product weaknesses", "Improvement areas", "Critical feedback patterns"],
+      status: "Processing 890 critical reviews..."
     },
     {
       icon: Users,
@@ -46,11 +53,25 @@ const Enrichment = () => {
       status: "Processing 324 customer verbatims..."
     },
     {
+      icon: ShoppingBag,
+      title: "Reasons to Buy Analysis",
+      description: "Understanding purchase motivations and decision drivers",
+      details: ["Purchase triggers", "Decision factors", "Value propositions", "Buying journey insights"],
+      status: "Analyzing 1,650 purchase decisions..."
+    },
+    {
       icon: TrendingUp,
       title: "Social Sentiment",
-      description: "Gathering social media insights",
-      details: ["Brand mentions", "Product discussions", "Trend analysis"],
+      description: "Gathering social media insights and commentary",
+      details: ["Brand mentions", "Product discussions", "Trend analysis", "Social media commentary", "Influencer discussions"],
       status: "Scanning social platforms..."
+    },
+    {
+      icon: MessageCircle,
+      title: "Online Forums & Communities",
+      description: "Mining discussions from Reddit, forums, and community boards",
+      details: ["Reddit threads analysis", "Specialized forum discussions", "Community sentiment", "User problem-solving patterns"],
+      status: "Analyzing 3,200+ forum discussions..."
     },
     {
       icon: Globe,
@@ -95,6 +116,13 @@ const Enrichment = () => {
       status: "Mining technical documentation..."
     },
     {
+      icon: Sparkles,
+      title: "Feature Research & Innovation",
+      description: "Tracking feature importance and product innovations",
+      details: ["Feature popularity ranking", "Innovation trends", "Competitive feature gaps", "Future feature demand"],
+      status: "Researching 230+ features..."
+    },
+    {
       icon: Network,
       title: "Nomenclature & Taxonomy Building",
       description: "Standardizing product names and categorization",
@@ -116,6 +144,13 @@ const Enrichment = () => {
       status: "Mapping product ecosystems..."
     },
     {
+      icon: Target,
+      title: "Category Use Case Research",
+      description: "Identifying product applications and real-world scenarios",
+      details: ["Primary use cases", "Secondary applications", "Context-specific usage", "Industry applications"],
+      status: "Mapping 47 use case scenarios..."
+    },
+    {
       icon: Image,
       title: "Visual Intelligence",
       description: "Analyzing product imagery and visual trends",
@@ -133,7 +168,7 @@ const Enrichment = () => {
       icon: Award,
       title: "Expert Reviews & Publications",
       description: "Mining professional tech reviews and awards",
-      details: ["Editorial reviews", "Industry awards", "Expert ratings", "Publication mentions"],
+      details: ["Editorial reviews", "Industry awards", "Expert ratings", "Publication mentions", "In-depth critiques"],
       status: "Analyzing 89 expert reviews..."
     },
     {
@@ -196,7 +231,7 @@ const Enrichment = () => {
             <h1 className="text-3xl font-semibold">Enriching Product Intelligence</h1>
           </div>
           <p className="text-lg text-muted-foreground">
-            Gathering insights from 18 intelligence sources including search data, reviews, social sentiment, competitor analysis, cultural research, technical specifications, sustainability data, and more
+            Gathering insights from 23 intelligence sources including search data, reviews, social commentary, online forums, purchase motivations, critical analysis, feature research, competitor intelligence, cultural insights, and more
           </p>
         </div>
 
