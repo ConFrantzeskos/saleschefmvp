@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { ArrowLeft, RefreshCw, Send, Download, Search, MessageSquare, Users, TrendingUp, Hash, Brain, Target, BarChart3 } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Send, Download, Search, MessageSquare, Users, TrendingUp, Hash, Brain, Target, BarChart3, Globe2, MessageCircle, Video, FileText, Leaf, Link2, DollarSign, AlertCircle, HelpCircle, Store, Image, Sparkles } from 'lucide-react';
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
 import ExecutiveBriefing from '@/components/ExecutiveBriefing';
 import CollapsibleIntelligenceSection from '@/components/CollapsibleIntelligenceSection';
@@ -19,7 +19,14 @@ const EnrichmentAssetReview = () => {
     reasonsToBuy: false,
     competitive: false,
     targetAudience: false,
-    performance: false
+    performance: false,
+    forums: false,
+    influencer: false,
+    technical: false,
+    sustainability: false,
+    crossCategory: false,
+    pricing: false,
+    cultural: false
   });
 
   // Mock data for the enrichment asset
@@ -47,7 +54,51 @@ const EnrichmentAssetReview = () => {
     relativeStrengths: "vs Sony WH-1000XM4:\n✓ Better value proposition ($150 less)\n✓ Comparable battery life\n✗ No active noise cancellation\n✗ Less premium build materials\n\nvs Bose QC45:\n✓ Equal battery performance\n✓ Significantly lower price\n✓ Foldable design advantage\n✗ No noise cancellation\n✗ Less brand prestige\n\nvs Beats Studio3:\n✓ 20% longer battery life\n✓ Better value for money\n✓ More universal compatibility\n✗ Less fashion appeal\n✗ No ecosystem integration\n\nvs JBL Live 650BTNC:\n✓ Premium build quality\n✓ Brand reliability\n✓ Better customer support\n✓ Foldable design\n= Similar battery life\n\nvs Sennheiser HD 450BT:\n✓ Foldable portability\n✓ Quick charge feature\n✓ Better connectivity\n= Comparable audio quality\n✗ Less audiophile credibility",
     verbatimQuotes: '"The battery life on these is absolutely insane - I used them for an entire cross-country flight and still had juice left!" - @TechReviewer23 (Twitter, Dec 2024)\n\n"Finally found headphones that last through my 12-hour workdays. Game changer for remote work." - Sarah M. (Amazon Review, 5★)\n\n"Sound quality is surprisingly good for the price point. Bass is punchy without being overwhelming." - AudioPhile_Dan (Reddit r/headphones)\n\n"Comfort is decent but the headband gets tight after 4+ hours of gaming" - GamerGirl_2024 (Best Buy Review, 4★)\n\n"Quick charge feature saved me so many times when I forgot to charge overnight. 15 mins gives you hours!" - Mike_Travels (YouTube comment on TechDaily review)\n\n"Foldable design is perfect for my carry-on. Much more compact than my old Beats." - @FrequentFlyer (Instagram story)\n\n"No noise cancellation is a dealbreaker for me. Great otherwise but need ANC for my commute." - CommuteCritic (Amazon Review, 3★)',
     relatedSearchTerms: "🔍 Direct Related Terms:\n• 'wireless earbuds long battery' (4,200 searches/month)\n• 'over ear bluetooth headphones' (3,800 searches/month)\n• 'gaming headset wireless' (6,100 searches/month)\n• 'noise cancelling vs regular headphones' (1,900 searches/month)\n• 'best headphones for work from home' (2,400 searches/month)\n\n🎯 Category Adjacent:\n• 'bluetooth speaker portable' (8,900 searches/month)\n• 'laptop accessories for travel' (1,600 searches/month)\n• 'wireless charging pad' (5,200 searches/month)\n• 'portable phone charger' (7,300 searches/month)\n\n✈️ Context-Driven:\n• 'travel tech essentials' (2,100 searches/month)\n• 'airplane mode bluetooth headphones' (890 searches/month)\n• 'remote work setup 2024' (3,400 searches/month)\n• 'digital nomad gear' (1,200 searches/month)",
-    searchOpportunities: "🛌 Lateral Content Opportunities:\n\n'How to sleep on a plane?' (12,000 searches/month)\n→ Content angle: '24-hour battery headphones for red-eye flights'\n→ Hook: No mid-flight charging needed\n\n'Best travel accessories for long flights' (3,400 searches/month)\n→ Position as essential travel tech\n→ Emphasize foldable, space-saving design\n\n'How to focus while working from home' (8,200 searches/month)\n→ Audio quality for video calls\n→ All-day comfort for productivity\n\n'Gaming setup on a budget' (4,600 searches/month)\n→ Value positioning vs premium gaming headsets\n→ Long session comfort + battery life\n\n🎯 Problem-Solution Angles:\n\n'Headphones keep dying during calls' (1,100 searches/month)\n→ 24-hour battery solves charging anxiety\n\n'Best headphones for small luggage' (780 searches/month)\n→ Foldable design advantage\n\n'Wireless headphones connection problems' (2,200 searches/month)\n→ Bluetooth 5.0 stability messaging\n\n💡 Trending Intersections:\n\n'Sustainable tech products 2024' (1,800 searches/month)\n→ Long battery = less frequent charging = energy efficient\n\n'Minimalist travel gear' (2,900 searches/month)\n→ One device, multiple use cases (calls, music, travel)"
+    searchOpportunities: "🛌 Lateral Content Opportunities:\n\n'How to sleep on a plane?' (12,000 searches/month)\n→ Content angle: '24-hour battery headphones for red-eye flights'\n→ Hook: No mid-flight charging needed\n\n'Best travel accessories for long flights' (3,400 searches/month)\n→ Position as essential travel tech\n→ Emphasize foldable, space-saving design\n\n'How to focus while working from home' (8,200 searches/month)\n→ Audio quality for video calls\n→ All-day comfort for productivity\n\n'Gaming setup on a budget' (4,600 searches/month)\n→ Value positioning vs premium gaming headsets\n→ Long session comfort + battery life\n\n🎯 Problem-Solution Angles:\n\n'Headphones keep dying during calls' (1,100 searches/month)\n→ 24-hour battery solves charging anxiety\n\n'Best headphones for small luggage' (780 searches/month)\n→ Foldable design advantage\n\n'Wireless headphones connection problems' (2,200 searches/month)\n→ Bluetooth 5.0 stability messaging\n\n💡 Trending Intersections:\n\n'Sustainable tech products 2024' (1,800 searches/month)\n→ Long battery = less frequent charging = energy efficient\n\n'Minimalist travel gear' (2,900 searches/month)\n→ One device, multiple use cases (calls, music, travel)",
+    
+    // Cultural & Regional Intelligence
+    culturalInsights: "🌍 Regional Market Preferences:\n\n• North America: Battery life #1 priority, convenience features highly valued\n• Europe: Sustainability and build quality emphasized, longer product lifecycle expected\n• Asia-Pacific: Design aesthetics critical, color options and premium feel important\n• Middle East: Heat resistance and warranty coverage key concerns",
+    regionalPreferences: "Regional Terminology & Preferences:\n\n🇺🇸 United States: 'Wireless headphones', 'over-ear', emphasis on tech specs\n🇬🇧 United Kingdom: 'Wireless headphones', 'Bluetooth headphones', value for money focus\n🇦🇺 Australia: 'Bluetooth headphones', durability for outdoor use important\n🇩🇪 Germany: Technical precision, 'Kabellose Kopfhörer', engineering quality valued\n🇯🇵 Japan: Compact design, 'ワイヤレスヘッドフォン', brand reputation critical",
+    complianceData: "Regional Compliance & Certifications:\n\n✅ CE Marking (Europe) - Confirmed\n✅ FCC Certification (USA) - Approved\n✅ RoHS Compliant - Yes\n✅ Bluetooth SIG Certification - Verified\n⚠️ MIC Certification (Japan) - Pending\n⚠️ BSMI Certification (Taiwan) - In progress",
+    
+    // Forums & Community Intelligence
+    forumDiscussions: "Reddit Analysis (from 3,200+ discussions):\n\n📊 r/headphones (156 mentions):\n• Battery life praised as 'exceptional for price point'\n• Comfort debates: 67% positive, 33% concerns about headband pressure\n• Sound signature: 'Warm sound', 'good bass', some want more treble detail\n\n🎮 r/gaming (89 mentions):\n• Popular for long gaming sessions\n• Mic quality adequate but not studio-grade\n• Comfort priority for 4+ hour sessions\n\n✈️ r/TravelHacks (47 mentions):\n• Foldable design highly appreciated\n• Battery life 'perfect for international flights'\n• Request for hard case inclusion",
+    communityInsights: "Community Problem-Solving Patterns:\n\n🔧 Common DIY Fixes Discussed:\n• Headband padding mods for extended comfort\n• EQ settings shared for optimal sound\n• Firmware update recommendations\n\n💡 Expert Community Sentiment:\n• Tech forums: 'Best battery-to-price ratio'\n• Audiophile communities: 'Good entry-level, upgrade cable recommended'\n• Travel communities: 'Essential carry-on item'",
+    
+    // Influencer & Creator Intelligence
+    influencerReviews: "YouTube Creator Analysis (67 videos, 2.1M views):\n\n🎥 Top Reviews:\n• TechDaily (450K subs): 8.5/10 - 'Best battery life in this price range'\n• AudioReviewHub (280K subs): 4/5 stars - 'Great value, lacks premium features'\n• GadgetGuru (890K subs): 'Recommended' - Featured in 'Top 10 Travel Tech 2024'",
+    creatorContent: "Unboxing & First Impressions (23 videos):\n\n📦 Common Themes:\n• Packaging: 'Premium feel', 'sustainable materials'\n• First touch: 'Solid build quality', 'comfortable immediately'\n• Setup: 'Quick Bluetooth pairing', 'intuitive controls'\n\n😊 Creator Sentiment: 87% positive, 13% neutral (no negative reviews)",
+    videoSentiment: "Video Content Sentiment Summary:\n\n👍 Positive (87%):\n• Battery life consistently praised\n• Value proposition emphasized\n• Build quality exceeds price expectations\n\n😐 Neutral (13%):\n• Missing ANC noted as limitation\n• Comparison to premium brands\n• 'Good but not great' positioning",
+    
+    // Technical Specifications
+    technicalSpecs: "Detailed Technical Specifications:\n\n🔊 Audio:\n• Driver Size: 40mm dynamic drivers\n• Frequency Response: 20Hz - 20kHz\n• Impedance: 32 ohms\n• Sensitivity: 105dB ±3dB\n• THD: <1% @ 1kHz\n\n🔌 Connectivity:\n• Bluetooth Version: 5.0\n• Codec Support: SBC, AAC\n• Range: 10 meters (33 feet)\n• Pairing: Auto-pairing memory\n\n🔋 Battery:\n• Capacity: 800mAh Li-polymer\n• Playback Time: 24 hours @ 50% volume\n• Charge Time: 2.5 hours (full charge)\n• Quick Charge: 15min = 3 hours playback\n• Standby Time: 300 hours",
+    performanceBenchmarks: "Performance Testing Results:\n\n📊 Independent Lab Tests:\n• Battery Life Test: 23.8 hours actual (98.3% of claimed)\n• Audio Quality Score: 78/100 (RTings.com methodology)\n• Bluetooth Stability: 98.2% connection reliability\n• Comfort Score: 7.5/10 (4-hour wear test)\n\n🏆 Meets Standards:\n• Bluetooth SIG Test Suite: Passed\n• Audio Engineering Society: AES-2id compliant\n• IEC 60268 Sound System Equipment: Certified",
+    
+    // Sustainability & Ethics
+    sustainabilityScore: "Sustainability Assessment: B+ (78/100)\n\n🌱 Positive Factors:\n• Recyclable packaging materials\n• Long battery life = fewer replacements\n• Energy-efficient charging\n• 2-year warranty (extended lifecycle)\n\n⚠️ Areas for Improvement:\n• No repair program currently\n• Plastic components not biodegradable\n• Battery not user-replaceable",
+    environmentalImpact: "Environmental Impact Analysis:\n\n♻️ Manufacturing:\n• Factory: ISO 14001 certified\n• Carbon Footprint: 12.5 kg CO2e per unit\n• Renewable Energy: 45% of production energy\n\n📦 Materials:\n• 80% recyclable components\n• RoHS compliant (lead-free)\n• Conflict-free minerals certified\n• Packaging: 90% recycled materials",
+    
+    // Cross-Category & Ecosystem
+    compatibleProducts: "Product Ecosystem & Compatibility:\n\n🔌 Essential Accessories:\n• Hard travel case ($19.99) - 78% attach rate\n• Replacement ear cushions ($14.99) - Popular upgrade\n• 3.5mm backup cable ($9.99) - Wired mode option\n• USB-C fast charger ($12.99) - Quick charge enabler\n\n🎮 Gaming Bundle Opportunities:\n• + Gaming mouse pad = 'Remote Work Bundle'\n• + Blue light glasses = 'Productivity Pack'\n• + Laptop stand = 'Ergonomic Setup'",
+    ecosystemFit: "Cross-Category Integration:\n\n💼 Business Travel Bundle:\n• Headphones + Power bank + Travel adapter\n• Market: Business travelers, digital nomads\n• Bundle discount: 15% (strong uptake predicted)\n\n🎮 Gaming Starter Pack:\n• Headphones + Mouse + Keyboard\n• Target: Budget-conscious gamers\n• Bundle positioning: 'Everything you need under $300'",
+    
+    // Pricing & Value Intelligence
+    priceHistory: "Price History & Trends (12-month analysis):\n\n📈 Pricing Timeline:\n• Launch Price: $199.99 (Jan 2024)\n• Current MSRP: $189.99 (5% reduction)\n• Average Sale Price: $159.99 (20% off promotions)\n• Black Friday 2024: $139.99 (30% off - limited time)\n\n📊 Competitor Price Movements:\n• Sony WH-1000XM4: $349 → $279 (20% drop)\n• Bose QC45: $329 → $299 (9% drop)\n• Our positioning: Stable with strategic promotions",
+    valuePositioning: "Value Perception Analysis:\n\n💰 Price-to-Feature Ratio:\n• Market: 8.2/10 value score (vs 6.5 category average)\n• Consumer Perception: 'Best bang for buck'\n• Price Elasticity: Moderate (responsive to 15-25% discounts)\n\n🎯 Competitive Positioning:\n• Premium features at mid-range price\n• 'Affordable premium' messaging resonates\n• Sweet spot: $149-179 drives highest conversion",
+    
+    // Enhanced Customer Voice
+    criticalReviews: "Critical Feedback Analysis (890 reviews):\n\n⚠️ Top Complaints:\n1. No Active Noise Cancellation (68% of negative reviews)\n   • Impact: High - mentioned in most critical reviews\n   • Solution potential: Hardware limitation, not addressable\n   \n2. Headband Pressure (23% of negative reviews)\n   • Impact: Medium - comfort over 4+ hours\n   • Solution potential: Revised padding design possible\n   \n3. No App Support (18% of negative reviews)\n   • Impact: Low - power users only\n   • Solution potential: Software development required\n   \n4. Basic Controls (15% of negative reviews)\n   • Impact: Low - preference-based\n   • Solution potential: Touch controls in v2",
+    featureRequests: "Customer Feature Requests (from 230+ suggestions):\n\n🔝 Most Requested (by volume):\n1. Active Noise Cancellation (156 requests) - 'Deal-breaker for many'\n2. Mobile App with EQ (89 requests) - 'Want to customize sound'\n3. Multi-device Connection (67 requests) - 'Switch between phone & laptop'\n4. Wireless Charging (54 requests) - 'Modern convenience'\n5. Touch Controls (48 requests) - 'Prefer over buttons'\n\n💡 Innovation Opportunities:\n• Transparency mode (47 requests)\n• Voice assistant integration (43 requests)\n• Fitness tracking integration (21 requests)",
+    qaInsights: "Q&A Intelligence Analysis (from 780 questions):\n\n❓ Most Common Questions:\n1. 'Do these have noise cancellation?' (187 asks) - ANC confusion\n2. 'Can I use while charging?' (134 asks) - Yes, confirmed\n3. 'Compatible with iPhone/Android?' (98 asks) - Universal compatibility\n4. 'How long does battery actually last?' (89 asks) - 22-24 hours real-world\n5. 'Are they good for gaming?' (76 asks) - Yes, low latency confirmed\n\n📊 Question Patterns:\n• Feature clarification: 54%\n• Compatibility: 23%\n• Durability concerns: 15%\n• Comparison requests: 8%",
+    
+    // Enhanced Market Intelligence
+    categoryUseCases: "Real-World Use Case Research (47 scenarios identified):\n\n💼 Primary Use Cases:\n1. Remote Work & Video Calls (35% of users)\n   • All-day comfort essential\n   • Clear mic for meetings\n   • Battery lasts full workday\n   \n2. Travel & Commuting (28% of users)\n   • Foldable design crucial\n   • Battery for long flights\n   • Portable solution\n   \n3. Gaming Sessions (22% of users)\n   • Extended wear comfort\n   • Low latency important\n   • Long battery for marathons\n   \n4. Content Creation (10% of users)\n   • Monitoring audio\n   • Reliable connection\n   • Comfortable for editing\n   \n5. Fitness & Exercise (5% of users)\n   • Sweat resistance concern\n   • Secure fit needed\n   • Wireless freedom valued",
+    retailerIntelligence: "Retailer Intelligence Summary:\n\n🏪 Amazon (Based on 1,247 reviews):\n• Rating: 4.2/5 stars\n• 'Amazon's Choice' badge earned\n• Lightning Deal history: 8 promotions, 94% sellthrough\n• Question frequency: High (indicates strong interest)\n\n🛒 Best Buy:\n• In-store demo units: Positive feedback\n• Associate recommendation rate: High\n• Open-box return rate: 8% (below category 12% average)\n\n📊 Direct Website:\n• Conversion rate: 3.2% (above 2.1% industry average)\n• Cart abandonment: 58% (pricing concerns cited)\n• Bundle uptake: 24% add accessories",
+    visualPerformance: "Visual Content Performance Analysis:\n\n📸 Product Imagery Effectiveness:\n• Hero image CTR: 4.2% (vs 2.8% category average)\n• Lifestyle images: +32% engagement vs product-only\n• Video content: +67% time on page\n• 360° view: +18% conversion rate\n\n🎨 Visual Trends:\n• Minimalist backgrounds perform best\n• In-use lifestyle shots drive emotion\n• Close-up texture shots build trust\n• Travel context resonates with target audience",
+    
+    // Enhanced Competitive Intelligence
+    expertReviewComparisons: "Expert Review Comparisons:\n\n📰 Tech Publications (9 reviews analyzed):\n\n• TechRadar: 4/5 stars\n  'Best battery life in class, lacks premium features'\n  vs Sony WH-1000XM4: 4.5/5 stars\n  vs Bose QC45: 4.5/5 stars\n  \n• CNET: 7.5/10 'Editor's Choice - Value'\n  'Exceptional value, smart compromises'\n  vs Sony: 8.5/10 'Editor's Choice'\n  vs Bose: 8/10\n  \n• What Hi-Fi: 4/5 stars\n  'Strong performance for price'\n  vs Sony: 5/5 stars\n  vs Beats Studio3: 4/5 stars",
+    innovationGaps: "Innovation Gap Analysis:\n\n🔬 Feature Opportunities vs Competitors:\n\n1. Active Noise Cancellation\n   • Gap Impact: HIGH - 68% of complaints\n   • Competitor Advantage: Sony, Bose lead here\n   • Development Cost: Significant (new hardware)\n   \n2. Adaptive Sound Technology\n   • Gap Impact: MEDIUM - Emerging trend\n   • Leader: Sony's Adaptive Sound Control\n   • Opportunity: Software-based future update\n   \n3. Spatial Audio Support\n   • Gap Impact: MEDIUM - Apple ecosystem advantage\n   • Leaders: AirPods Max, Sony WH-1000XM5\n   • Opportunity: License Dolby Atmos\n   \n4. Health & Wellness Features\n   • Gap Impact: LOW - Niche interest\n   • Innovation: Hearing protection monitoring\n   • Opportunity: Differentiation play"
   };
 
   const toggleSection = (section: keyof typeof openSections) => {
@@ -101,7 +152,7 @@ const EnrichmentAssetReview = () => {
                 <span>•</span>
                 <span>Last updated: 2 hours ago</span>
                 <span>•</span>
-                <span>Sources: ERP + Reviews + Search + Social</span>
+                <span>Sources: 23 Intelligence Sources (ERP + Reviews + Search + Social + Forums + Influencers + Technical + Sustainability + Pricing + more)</span>
               </div>
             </div>
           </div>
@@ -235,6 +286,166 @@ const EnrichmentAssetReview = () => {
               <div>
                 <h4 className="font-semibold mb-2">Social Media Intelligence</h4>
                 <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.socialMentions}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Online Forums & Community Insights */}
+          <CollapsibleIntelligenceSection
+            title="Online Forums & Community Insights"
+            icon={<MessageCircle className="w-5 h-5 text-primary" />}
+            agents={['Discover.Forums', 'Distil']}
+            isOpen={openSections.forums}
+            onToggle={() => toggleSection('forums')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Forum Discussions Analysis</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.forumDiscussions}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Community Problem-Solving Patterns</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.communityInsights}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Critical Reviews & Common Complaints</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.criticalReviews}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Feature Request Analysis</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.featureRequests}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Q&A Intelligence</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.qaInsights}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Influencer & Creator Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Influencer & Creator Intelligence"
+            icon={<Video className="w-5 h-5 text-primary" />}
+            agents={['Discover.Influencer', 'Detect']}
+            isOpen={openSections.influencer}
+            onToggle={() => toggleSection('influencer')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">YouTube & Creator Reviews</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.influencerReviews}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Unboxing & First Impressions</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.creatorContent}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Video Content Sentiment</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.videoSentiment}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Technical & Specifications Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Technical & Specifications Intelligence"
+            icon={<FileText className="w-5 h-5 text-primary" />}
+            agents={['Discover.Technical', 'Define']}
+            isOpen={openSections.technical}
+            onToggle={() => toggleSection('technical')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Detailed Technical Specifications</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.technicalSpecs}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Performance Benchmarks</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.performanceBenchmarks}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Sustainability & Ethics Profile */}
+          <CollapsibleIntelligenceSection
+            title="Sustainability & Ethics Profile"
+            icon={<Leaf className="w-5 h-5 text-primary" />}
+            agents={['Discover.Sustainability', 'Define']}
+            isOpen={openSections.sustainability}
+            onToggle={() => toggleSection('sustainability')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Sustainability Score & Assessment</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.sustainabilityScore}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Environmental Impact Analysis</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.environmentalImpact}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Cross-Category & Ecosystem Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Cross-Category & Ecosystem Intelligence"
+            icon={<Link2 className="w-5 h-5 text-primary" />}
+            agents={['Discover', 'Define']}
+            isOpen={openSections.crossCategory}
+            onToggle={() => toggleSection('crossCategory')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Compatible Products & Accessories</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.compatibleProducts}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Ecosystem Integration & Bundle Opportunities</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.ecosystemFit}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Pricing & Value Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Pricing & Value Intelligence"
+            icon={<DollarSign className="w-5 h-5 text-primary" />}
+            agents={['Discover.Pricing', 'Detect']}
+            isOpen={openSections.pricing}
+            onToggle={() => toggleSection('pricing')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Price History & Trends</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.priceHistory}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Value Perception & Positioning</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.valuePositioning}</pre>
+              </div>
+            </div>
+          </CollapsibleIntelligenceSection>
+
+          {/* Cultural & Market Context Intelligence */}
+          <CollapsibleIntelligenceSection
+            title="Cultural & Market Context Intelligence"
+            icon={<Globe2 className="w-5 h-5 text-primary" />}
+            agents={['Discover.Cultural', 'Define']}
+            isOpen={openSections.cultural}
+            onToggle={() => toggleSection('cultural')}
+          >
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Regional Preferences & Localization</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.regionalPreferences}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Cultural Buying Patterns</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.culturalInsights}</pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Regional Compliance & Certifications</h4>
+                <pre className="whitespace-pre-wrap text-sm bg-muted/30 p-4 rounded-lg">{asset.complianceData}</pre>
               </div>
             </div>
           </CollapsibleIntelligenceSection>
