@@ -1,7 +1,7 @@
 import { EnhancedAsset } from '@/types/enhancedAsset';
 
 export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
-  return [
+  const baseAssets: EnhancedAsset[] = [
     {
       id: 1,
       sku: 'CD1234',
@@ -1111,7 +1111,7 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
   ];
 
   // Generate additional 197 SKUs for table views - matching assetGenerator IDs 4-200
-  const additionalProducts = Array.from({ length: 197 }, (_, i) => {
+  const additionalProducts: EnhancedAsset[] = Array.from({ length: 197 }, (_, i) => {
     const id = i + 4;
     const confidenceScore = 85 + Math.floor(Math.random() * 13);
     
@@ -1125,17 +1125,90 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       primaryPersona: 'Tech-savvy Consumer',
       keyDifferentiator: 'Superior performance and value',
       contentApproach: 'Feature-benefit focused messaging',
-      benefitLadder: { levels: [{ feature: 'Advanced technology', functionalBenefit: 'Enhanced performance', emotionalBenefit: 'Confidence in quality', value: 'Reliable investment', proof: 'Customer satisfaction' }] },
-      personas: [{ name: 'Primary User', description: 'Target consumer', demographics: 'Broad market', psychographics: 'Quality-focused', buyingMotivations: ['Quality', 'Value'], painPoints: ['Cost concerns'], decisionCriteria: ['Features', 'Price'], messagingPreferences: 'Direct and clear', matchScore: 85 }],
-      messaging: [{ hook: 'Premium quality', bodyPoints: ['Feature 1', 'Feature 2'], callToAction: 'Learn more', targetPersona: 'Primary User', channel: 'Digital', confidence: 85 }],
-      reasonsToBuy: [{ reason: 'Quality construction', category: 'Product', confidence: 85, supportingEvidence: ['Reviews'], objections: [] }],
-      socialProof: [{ type: 'reviews', content: 'Positive feedback', source: 'Customers', credibility: 85 }],
-      positioning: { competitiveSet: 'Market leaders', differentiators: ['Quality'], alternatives: 'Other brands', visualIdentity: 'Modern' },
-      storytelling: { narrative: 'Innovation story', heroJourney: { ordinary: 'Consumer need', callToAdventure: 'Product discovery', transformation: 'Satisfaction' }, emotionalArc: 'Positive', brandVoice: 'Professional' },
-      objectionHandling: [{ objection: 'Price concern', response: 'Value justification', confidence: 80 }],
-      conversionHeuristics: { clarity: 85, relevance: 85, urgency: 80, anxiety: 75, distraction: 70, valueProposition: 'Clear benefits' },
-      psychologyTriggers: [{ trigger: 'Social proof', application: 'Customer reviews', effectiveness: 85 }],
-      contentBriefs: { productPage: { headline: 'Product name', subheadline: 'Key benefit', heroImage: 'Product shot', keyMessages: ['Feature 1'], cta: 'Buy now' }, emailCampaign: { subjectLine: 'New product', preheader: 'Learn more', bodyStructure: ['Intro', 'Features'], cta: 'Shop' }, socialMedia: { platforms: ['Instagram'], postTypes: ['Product'], contentPillars: ['Features'], hashtagStrategy: ['#tech'] }, videoScript: { hook: 'Attention grabber', problemStatement: 'Consumer need', solutionReveal: 'Product intro', demonstration: 'Features', socialProof: 'Reviews', cta: 'Visit site' } },
+      benefitLadder: { 
+        levels: [{ 
+          feature: 'Advanced technology', 
+          functionalBenefit: 'Enhanced performance', 
+          emotionalBenefit: 'Confidence in quality', 
+          value: 'Reliable investment', 
+          proof: 'Customer satisfaction' 
+        }] 
+      },
+      personas: [{ 
+        name: 'Primary User', 
+        description: 'Target consumer', 
+        demographics: 'Broad market', 
+        psychographics: 'Quality-focused', 
+        buyingMotivations: ['Quality', 'Value'], 
+        painPoints: ['Cost concerns'], 
+        decisionCriteria: ['Features', 'Price'], 
+        messagingPreferences: 'Direct and clear', 
+        matchScore: 85 
+      }],
+      messageHierarchy: {
+        primaryMessage: 'Premium quality electronics',
+        supportingMessages: [
+          { content: 'Advanced features', priority: 1, type: 'primary' as const, score: 85 },
+          { content: 'Great value', priority: 2, type: 'supporting' as const, score: 80 }
+        ],
+        proofPoints: ['Customer reviews', 'Industry certifications']
+      },
+      reasonsToBuy: [
+        { category: 'rational' as const, reason: 'Quality construction', supportingEvidence: 'Reviews', confidenceScore: 85 },
+        { category: 'emotional' as const, reason: 'Confidence in brand', supportingEvidence: 'Brand reputation', confidenceScore: 80 }
+      ],
+      socialProof: {
+        awards: ['Industry recognition'],
+        certifications: ['CE', 'FCC'],
+        expertEndorsements: ['Tech reviewers'],
+        customerTestimonials: ['Positive feedback'],
+        statisticalProof: ['4+ star rating'],
+        mediaMentions: ['Featured in reviews']
+      },
+      positioning: { 
+        positioningStatement: 'Premium quality at accessible price',
+        competitiveAdvantages: [{ competitor: 'Brand X', advantage: 'Better value' }],
+        differentiationStrategy: 'Quality-value balance',
+        marketPosition: 'Mid-premium segment'
+      },
+      storytelling: { 
+        hero: 'The consumer',
+        problem: 'Finding quality products',
+        solution: 'Our product',
+        transformation: 'Satisfied customer',
+        callToAction: 'Purchase now',
+        emotionalArc: 'Discovery to satisfaction'
+      },
+      objections: [
+        { 
+          objection: 'Price concern', 
+          counterArgument: 'Long-term value', 
+          supportingEvidence: 'Cost per use analysis',
+          toneRecommendation: 'Reassuring and factual'
+        }
+      ],
+      conversionHeuristics: { 
+        highImpactElements: ['Clear pricing', 'Reviews'],
+        messageVariants: [{ variant: 'Value-focused', predictedLift: '+15%' }],
+        abTestRecommendations: ['Test pricing display', 'Test CTA wording'],
+        estimatedLift: '+20% conversion'
+      },
+      psychologyTriggers: [
+        { 
+          principle: 'Social proof', 
+          application: 'Customer reviews', 
+          implementation: 'Display ratings prominently'
+        }
+      ],
+      contentBrief: {
+        toneOfVoice: 'Professional and approachable',
+        keyMessages: ['Quality', 'Value', 'Reliability'],
+        personaTargeting: 'Tech-savvy consumers',
+        requiredElements: ['Product images', 'Specifications', 'Reviews'],
+        contentStructure: 'Hero section, features, testimonials, CTA',
+        dos: ['Highlight key features', 'Show social proof'],
+        donts: ['Avoid technical jargon', 'Don\'t oversell']
+      },
       confidenceScore,
       personaMatchScore: 85,
       messageStrengthScore: 85,
