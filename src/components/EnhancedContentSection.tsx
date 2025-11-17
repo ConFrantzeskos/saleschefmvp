@@ -33,6 +33,7 @@ interface EnhancedContentSectionProps {
   onSave: (sectionIndex: number, itemIndex: number) => void;
   onCancel: () => void;
   onEditValueChange: (fieldKey: string, value: string) => void;
+  showMetadata?: boolean;
 }
 
 const EnhancedContentSection = ({
@@ -42,7 +43,8 @@ const EnhancedContentSection = ({
   onEdit,
   onSave,
   onCancel,
-  onEditValueChange
+  onEditValueChange,
+  showMetadata = true
 }: EnhancedContentSectionProps) => {
   return (
     <div className="flex flex-col">
@@ -82,6 +84,7 @@ const EnhancedContentSection = ({
                           onSave={onSave}
                           onCancel={onCancel}
                           onEditValueChange={(value) => onEditValueChange(fieldKey, value)}
+                          showMetadata={showMetadata}
                         />
                       );
                     })}

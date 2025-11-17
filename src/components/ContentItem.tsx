@@ -25,6 +25,7 @@ interface ContentItemProps {
   onSave: (sectionIndex: number, itemIndex: number) => void;
   onCancel: () => void;
   onEditValueChange: (value: string) => void;
+  showMetadata?: boolean;
 }
 
 const ContentItem = ({
@@ -36,7 +37,8 @@ const ContentItem = ({
   onEdit,
   onSave,
   onCancel,
-  onEditValueChange
+  onEditValueChange,
+  showMetadata = true
 }: ContentItemProps) => {
   const hasMetadata = item.metadata && (
     item.metadata.frameworks?.length || 
@@ -51,7 +53,7 @@ const ContentItem = ({
           <div className="flex-1 space-y-2">
             <div className="flex items-center gap-2">
               <h5 className="font-medium text-sm text-green-700">{item.label}</h5>
-              {hasMetadata && (
+              {showMetadata && hasMetadata && (
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
@@ -89,7 +91,7 @@ const ContentItem = ({
                 </Tooltip>
               )}
             </div>
-            {hasMetadata && (
+            {showMetadata && hasMetadata && (
               <div className="flex flex-wrap gap-1.5">
                 {item.metadata?.frameworks?.map((framework, idx) => (
                   <Badge 
