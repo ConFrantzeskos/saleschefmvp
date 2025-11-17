@@ -45,9 +45,9 @@ const CleaningValidation = () => {
       issues: "15 formatting errors corrected, 8 price inconsistencies fixed"
     },
     {
-      title: "Categorization",
-      description: "Auto-categorizing products based on attributes",
-      issues: "847 products categorized across 24 categories"
+      title: "Multi-Level Categorization",
+      description: "Assigning products to multiple categories and sub-categories",
+      issues: "847 products assigned 1,523 category tags across 24 primary categories with 156 sub-categories"
     },
     {
       title: "Data Validation",
@@ -62,11 +62,11 @@ const CleaningValidation = () => {
   ];
 
   const correctedItems = [
-    { id: 1, type: 'Add New Category', item: 'Professional Blender BL-3000', change: 'Kitchen Appliances → Small Appliances', status: 'corrected' },
-    { id: 2, type: 'Category Fix', item: 'Smart Watch Series 8', change: 'Electronics → Wearables', status: 'corrected' },
+    { id: 1, type: 'Multi-Category Assignment', item: 'Professional Blender BL-3000', change: 'Added: Kitchen Appliances → Small Appliances → Blenders + Home & Garden → Kitchen Tools', status: 'corrected' },
+    { id: 2, type: 'Category Hierarchy', item: 'Smart Watch Series 8', change: 'Electronics → Wearables → Smart Watches + Health & Fitness → Activity Trackers', status: 'corrected' },
     { id: 3, type: 'Duplicate Merge', item: 'iPhone 15 Pro (Duplicate SKUs)', change: 'SKU-001 + SKU-001A → SKU-001', status: 'merged' },
     { id: 4, type: 'Format Fix', item: 'Gaming Laptop RTX4080', change: 'Description formatting corrected', status: 'corrected' },
-    { id: 5, type: 'Smart Categorization', item: 'Wireless Coffee Maker Pro', change: 'Auto-categorized: Kitchen → Coffee & Espresso', status: 'completed' }
+    { id: 5, type: 'Extended Categorization', item: 'Wireless Coffee Maker Pro', change: 'Primary: Kitchen → Coffee Makers | Secondary: Smart Home → Connected Appliances', status: 'completed' }
   ];
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
