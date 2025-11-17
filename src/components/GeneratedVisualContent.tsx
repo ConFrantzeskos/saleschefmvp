@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Images, Camera, Share2, Download, Loader2, RefreshCw, Edit2, Check, X } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Images, Camera, Share2, Download, Loader2, RefreshCw, Edit2, Check, X, History } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -104,6 +105,34 @@ const GeneratedVisualContent = ({ keywords, keyBenefits, competitiveAdvantage }:
   const [generatingAll, setGeneratingAll] = useState(false);
   const [editingPrompt, setEditingPrompt] = useState<string | null>(null);
   const [editedPromptValue, setEditedPromptValue] = useState('');
+  const [promptHistory, setPromptHistory] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Load prompt history from localStorage
+    const savedHistory = localStorage.getItem('image-prompt-history');
+    if (savedHistory) {
+      try {
+        setPromptHistory(JSON.parse(savedHistory));
+      } catch (error) {
+        console.error('Failed to parse prompt history:', error);
+      }
+    }
+  }, []);
+
+  const addToPromptHistory = (prompt: string) => {
+    if (!prompt.trim()) return;
+    
+    setPromptHistory(prev => {
+      // Remove duplicates and add to beginning
+      const filtered = prev.filter(p => p !== prompt);
+      const updated = [prompt, ...filtered].slice(0, 10); // Keep only last 10
+      
+      // Save to localStorage
+      localStorage.setItem('image-prompt-history', JSON.stringify(updated));
+      
+      return updated;
+    });
+  };
 
   const generateImage = async (prompt: string): Promise<string> => {
     const { data, error } = await supabase.functions.invoke('generate-image', {
@@ -232,6 +261,9 @@ const GeneratedVisualContent = ({ keywords, keyBenefits, competitiveAdvantage }:
       img.id === imageId ? { ...img, prompt: editedPromptValue } : img
     ));
 
+    // Add to history
+    addToPromptHistory(editedPromptValue);
+
     setEditingPrompt(null);
     setEditedPromptValue('');
     
@@ -281,12 +313,48 @@ const GeneratedVisualContent = ({ keywords, keyBenefits, competitiveAdvantage }:
         
         {editingPrompt === `${category}-${image.id}` ? (
           <div className="space-y-2">
-            <Textarea
-              value={editedPromptValue}
-              onChange={(e) => setEditedPromptValue(e.target.value)}
-              className="text-xs min-h-[80px] resize-none"
-              placeholder="Enter your custom prompt..."
-            />
+            <div className="relative">
+              <Textarea
+                value={editedPromptValue}
+                onChange={(e) => setEditedPromptValue(e.target.value)}
+                className="text-xs min-h-[80px] resize-none pr-10"
+                placeholder="Enter your custom prompt..."
+              />
+              {promptHistory.length > 0 && (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="absolute top-2 right-2 h-6 w-6 p-0"
+                      title="View prompt history"
+                    >
+                      <History className="w-3 h-3" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-2" align="end">
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium text-muted-foreground mb-2">Recent Prompts</p>
+                      <ScrollArea className="max-h-60">
+                        <div className="space-y-1">
+                          {promptHistory.map((historyPrompt, idx) => (
+                            <Button
+                              key={idx}
+                              variant="ghost"
+                              size="sm"
+                              className="w-full justify-start text-left h-auto py-2 px-2"
+                              onClick={() => setEditedPromptValue(historyPrompt)}
+                            >
+                              <p className="text-xs line-clamp-2 break-words">{historyPrompt}</p>
+                            </Button>
+                          ))}
+                        </div>
+                      </ScrollArea>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
+            </div>
             <div className="flex gap-2">
               <Button
                 size="sm"
