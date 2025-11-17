@@ -5,6 +5,7 @@ import ProgressIndicator from '@/components/ProgressIndicator';
 import TemplateUpload from '@/components/TemplateUpload';
 import GenerationAnimation from '@/components/GenerationAnimation';
 import ContentCategoriesGrid from '@/components/ContentCategoriesGrid';
+import SpecificContentUnits from '@/components/SpecificContentUnits';
 import GenerateButton from '@/components/GenerateButton';
 import { Sparkles } from 'lucide-react';
 import { generationCategories } from '@/constants/contentCategories';
@@ -13,6 +14,7 @@ const ContentGeneration = () => {
   const navigate = useNavigate();
   const [selectedTemplate, setSelectedTemplate] = useState<File | null>(null);
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
+  const [selectedUnits, setSelectedUnits] = useState<string[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const steps = [
@@ -55,10 +57,21 @@ const ContentGeneration = () => {
     }
   };
 
+  const handleUnitToggle = (unitId: string) => {
+    setSelectedUnits(prev => {
+      if (prev.includes(unitId)) {
+        return prev.filter(id => id !== unitId);
+      } else {
+        return [...prev, unitId];
+      }
+    });
+  };
+
   const handleGenerateContent = () => {
     console.log('Starting content generation with:', {
       template: selectedTemplate?.name,
-      selectedTasks: selectedTasks.map(i => allTasks[i].title)
+      selectedTasks: selectedTasks.map(i => allTasks[i].title),
+      selectedUnits: selectedUnits
     });
     setIsGenerating(true);
   };
@@ -93,6 +106,11 @@ const ContentGeneration = () => {
             onRemoveTemplate={handleRemoveTemplate}
           />
 
+          <SpecificContentUnits
+            selectedUnits={selectedUnits}
+            onUnitToggle={handleUnitToggle}
+          />
+
           <ContentCategoriesGrid
             selectedTasks={selectedTasks}
             onTaskToggle={handleTaskToggle}
@@ -101,7 +119,7 @@ const ContentGeneration = () => {
           />
 
           <GenerateButton
-            selectedTasksCount={selectedTasks.length}
+            selectedTasksCount={selectedTasks.length + selectedUnits.length}
             isGenerating={isGenerating}
             onGenerate={handleGenerateContent}
           />

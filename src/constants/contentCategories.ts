@@ -13,6 +13,155 @@ export interface ContentCategory {
   tasks: ContentTask[];
 }
 
+export interface SpecificContentUnit {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  model: string;
+  specs: {
+    aspectRatio?: string;
+    duration?: string;
+    format?: string;
+    resolution?: string;
+  };
+  category: 'image' | 'video' | 'audio';
+}
+
+export const specificContentUnits: SpecificContentUnit[] = [
+  // Images
+  {
+    id: 'square-image',
+    icon: Image,
+    title: 'Square Image',
+    model: 'Nano Banana',
+    specs: {
+      aspectRatio: '1:1',
+      resolution: '1024×1024',
+      format: 'PNG, JPEG, WebP'
+    },
+    category: 'image'
+  },
+  {
+    id: 'landscape-image',
+    icon: Monitor,
+    title: 'Landscape Image',
+    model: 'Midjourney V7',
+    specs: {
+      aspectRatio: '16:9',
+      resolution: '1792×1024',
+      format: 'PNG, JPEG'
+    },
+    category: 'image'
+  },
+  {
+    id: 'portrait-image',
+    icon: Image,
+    title: 'Portrait Image',
+    model: 'Nano Banana',
+    specs: {
+      aspectRatio: '9:16',
+      resolution: '1024×1792',
+      format: 'PNG, JPEG, WebP'
+    },
+    category: 'image'
+  },
+  {
+    id: 'instagram-post',
+    icon: Instagram,
+    title: 'Instagram Post',
+    model: 'Nano Banana',
+    specs: {
+      aspectRatio: '4:5',
+      resolution: '1080×1350',
+      format: 'PNG, JPEG'
+    },
+    category: 'image'
+  },
+  // Videos
+  {
+    id: 'short-landscape-video',
+    icon: Video,
+    title: 'Short Landscape Video',
+    model: 'Sora 2 Pro',
+    specs: {
+      aspectRatio: '16:9',
+      duration: '4-8 seconds',
+      format: 'MP4'
+    },
+    category: 'video'
+  },
+  {
+    id: 'short-portrait-video',
+    icon: Video,
+    title: 'Short Portrait Video',
+    model: 'Sora 2 Pro',
+    specs: {
+      aspectRatio: '9:16',
+      duration: '4-8 seconds',
+      format: 'MP4'
+    },
+    category: 'video'
+  },
+  {
+    id: 'medium-landscape-video',
+    icon: Monitor,
+    title: 'Medium Landscape Video',
+    model: 'Runway Gen-3',
+    specs: {
+      aspectRatio: '16:9',
+      duration: '10-12 seconds',
+      format: 'MP4'
+    },
+    category: 'video'
+  },
+  {
+    id: 'reel-tiktok-video',
+    icon: Camera,
+    title: 'Instagram Reel / TikTok',
+    model: 'Sora 2 Pro',
+    specs: {
+      aspectRatio: '9:16',
+      duration: '8-12 seconds',
+      format: 'MP4'
+    },
+    category: 'video'
+  },
+  // Audio
+  {
+    id: 'audio-30s',
+    icon: AudioWaveform,
+    title: '30-Second Audio',
+    model: 'ElevenLabs v3',
+    specs: {
+      duration: '30 seconds',
+      format: 'MP3, WAV'
+    },
+    category: 'audio'
+  },
+  {
+    id: 'audio-60s',
+    icon: AudioWaveform,
+    title: '1-Minute Audio',
+    model: 'ElevenLabs v3',
+    specs: {
+      duration: '60 seconds',
+      format: 'MP3, WAV'
+    },
+    category: 'audio'
+  },
+  {
+    id: 'audio-longform',
+    icon: AudioWaveform,
+    title: 'Long-Form Voiceover',
+    model: 'ElevenLabs Multilingual v2',
+    specs: {
+      duration: '2-5 minutes',
+      format: 'MP3, WAV'
+    },
+    category: 'audio'
+  }
+];
+
 export const generationCategories: ContentCategory[] = [
   {
     title: "Text Content",
