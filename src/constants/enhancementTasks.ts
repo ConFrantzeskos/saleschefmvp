@@ -31,7 +31,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: TrendingUp,
     details: ['Feature → Feature Benefit → Consumer Benefit → Emotional/Social', 'Discrete ladders per feature', 'Value progression', 'Outcome-based positioning'],
     statusMessage: 'Climbing benefit ladder for 3 products...',
-    duration: 0.9
+    duration: 1.8
   },
   {
     id: 'jobs-to-be-done',
@@ -40,7 +40,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: Target,
     details: ['Functional jobs', 'Emotional dimensions', 'Social dimensions', 'Unexpected competitors'],
     statusMessage: 'Mapping customer jobs and circumstances...',
-    duration: 0.9
+    duration: 1.8
   },
   {
     id: 'category-entry-points',
@@ -49,7 +49,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: GitMerge,
     details: ['Need-state triggers', 'Buying situations', 'Mental availability', 'Distinctive assets'],
     statusMessage: 'Identifying category entry points...',
-    duration: 0.8
+    duration: 1.6
   },
   {
     id: 'reasons-to-believe',
@@ -58,7 +58,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: Award,
     details: ['Endorsements', 'Demonstrations', 'Statistics', 'Heritage & process'],
     statusMessage: 'Extracting proof points and credibility signals...',
-    duration: 0.8
+    duration: 1.6
   },
   {
     id: 'purchase-barriers',
@@ -67,7 +67,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: Shield,
     details: ['Risk barriers', 'Effort barriers', 'Cost barriers', 'Intervention strategies'],
     statusMessage: 'Mapping friction points across journey...',
-    duration: 0.9
+    duration: 1.8
   },
   {
     id: 'distinctive-memory',
@@ -76,7 +76,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: Brain,
     details: ['Mental availability', 'Physical availability', 'Distinctive assets', 'Memory encoding'],
     statusMessage: 'Creating distinctive brand codes...',
-    duration: 0.8
+    duration: 1.6
   },
   {
     id: 'behavioral-economics',
@@ -85,7 +85,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: Zap,
     details: ['Anchoring', 'Loss aversion', 'Social proof', 'Reciprocity'],
     statusMessage: 'Embedding 14 persuasion principles...',
-    duration: 0.9
+    duration: 1.8
   },
   {
     id: 'competitive-moats',
@@ -94,7 +94,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: Gem,
     details: ['Network effects', 'Switching costs', 'Brand premium', 'Cost advantages'],
     statusMessage: 'Identifying defensible advantages...',
-    duration: 0.8
+    duration: 1.6
   },
   {
     id: 'conversion-mechanics',
@@ -103,7 +103,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: ShoppingBag,
     details: ['Risk reversal stack', 'Value equation', 'Commitment ladder', 'Progressive disclosure'],
     statusMessage: 'Engineering conversion pathways...',
-    duration: 0.9
+    duration: 1.8
   },
   {
     id: 'context-triggers',
@@ -112,7 +112,7 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: BookOpen,
     details: ['Usage occasions', 'Identity triggers', 'Temporal landmarks', 'Environmental cues'],
     statusMessage: 'Identifying contextual prompts...',
-    duration: 0.7
+    duration: 1.4
   },
   {
     id: 'persuasion-stack',
@@ -121,6 +121,6 @@ export const enhancementTasks: EnhancementTask[] = [
     icon: Users,
     details: ['Awareness levels', 'Sophistication stages', 'Message matching', 'Market positioning'],
     statusMessage: 'Calibrating message sophistication...',
-    duration: 0.8
+    duration: 1.6
   }
 ];
