@@ -20,6 +20,7 @@ const ContentGeneration = () => {
     { id: 'mapping', label: 'Map Fields', completed: true, current: false },
     { id: 'clean', label: 'Clean Data', completed: true, current: false },
     { id: 'enrich', label: 'Enrich', completed: true, current: false },
+    { id: 'enhance', label: 'Enhance', completed: true, current: false },
     { id: 'generate', label: 'Generate', completed: false, current: true },
     { id: 'review', label: 'Review', completed: false, current: false },
     { id: 'deploy', label: 'Deploy', completed: false, current: false },

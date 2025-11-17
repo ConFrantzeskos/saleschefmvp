@@ -29,6 +29,9 @@ const AppRoutes = () => {
       <Route path="/enrichment" element={<pageComponents.Enrichment />} />
       <Route path="/enrichment-review" element={<pageComponents.EnrichmentReview />} />
       <Route path="/enrichment-review/:id" element={<pageComponents.EnrichmentAssetReview />} />
+      <Route path="/enhancement" element={<pageComponents.Enhancement />} />
+      <Route path="/enhancement-review" element={<pageComponents.EnhancementReview />} />
+      <Route path="/enhancement-review/:id" element={<pageComponents.StrategicBriefDetail />} />
       <Route path="/generation" element={<pageComponents.ContentGeneration />} />
       <Route path="/review" element={<pageComponents.ReviewContent />} />
       <Route path="/review/:id" element={<pageComponents.AssetReview />} />

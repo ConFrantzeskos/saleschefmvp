@@ -23,7 +23,7 @@ const EnrichmentReview = () => {
   const sampleAssets = generateSampleEnrichmentAssets();
 
   const handleApproveAll = () => {
-    navigate('/generation');
+    navigate('/enhancement');
   };
 
   return (
