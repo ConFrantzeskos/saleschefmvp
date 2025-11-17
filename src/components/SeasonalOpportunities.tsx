@@ -342,6 +342,11 @@ const SeasonalOpportunities = () => {
                     Schedule Optimization
                   </Button>
                 )}
+                {urgency === 'LOW' && (
+                  <Button variant="outline" className="w-full" size="sm">
+                    Schedule Optimization
+                  </Button>
+                )}
               </div>
             </Card>
           );
