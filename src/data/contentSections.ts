@@ -45,7 +45,7 @@ export const contentSections: ContentSection[] = [
       },
       {
         label: "Feature Bullets (Benefit Ladder Applied)",
-        content: "• 24 hours battery life — Never miss a beat in your workday (Functional → Emotional)\n• Bluetooth 5.0 connectivity — Stay seamlessly connected without technical frustration (Functional → Emotional)\n• Foldable design — Feel organized and prepared for any journey (Functional → Emotional)\n• Built-in microphone — Sound professional and confident in every call (Functional → Social)\n• Premium comfort — Focus on your work, not your headphones (Functional → Emotional)",
+        content: "• 24 hours battery life — Never miss a beat in your workday\n• Bluetooth 5.0 connectivity — Stay seamlessly connected without technical frustration\n• Foldable design — Feel organized and prepared for any journey\n• Built-in microphone — Sound professional and confident in every call\n• Premium comfort — Focus on your work, not your headphones",
         metadata: {
           frameworks: ["Ladder of Benefits"],
           enrichmentSources: ["Customer reviews: Comfort rated 4.6/5", "Top features mentioned: Battery, Foldability"]
@@ -53,7 +53,7 @@ export const contentSections: ContentSection[] = [
       },
       {
         label: "Lifestyle Section (Jobs to Be Done)",
-        content: "Designed for professionals who hire headphones to:\n• Transform boring commutes into productive time (Emotional job)\n• Stay reliably connected during back-to-back video calls (Functional job)\n• Signal 'focused professional' in open office environments (Social job)\n• Travel light without sacrificing audio quality (Circumstantial job)",
+        content: "Designed for professionals who hire headphones to:\n• Transform boring commutes into productive time\n• Stay reliably connected during back-to-back video calls\n• Signal 'focused professional' in open office environments\n• Travel light without sacrificing audio quality",
         metadata: {
           frameworks: ["Jobs to Be Done"],
           enrichmentSources: ["Target audience: Remote workers & frequent travelers", "Use cases: Commuting, video calls, travel"]
@@ -61,7 +61,7 @@ export const contentSections: ContentSection[] = [
       },
       {
         label: "When to Use (Category Entry Points)",
-        content: "Perfect for every moment:\n• Morning commute — Start your day with focus music (CEP: 'need motivation')\n• 2:30pm energy slump — Power through with energizing podcasts (CEP: 'afternoon focus')\n• Long flights — Create your own peaceful space (CEP: 'travel entertainment')\n• Back-to-back Zoom calls — Sound professional every time (CEP: 'professional meetings')\n• Gym sessions — Stay motivated with your favorite playlists (CEP: 'workout energy')",
+        content: "Perfect for every moment:\n• Morning commute — Start your day with focus music\n• 2:30pm energy slump — Power through with energizing podcasts\n• Long flights — Create your own peaceful space\n• Back-to-back Zoom calls — Sound professional every time\n• Gym sessions — Stay motivated with your favorite playlists",
         metadata: {
           frameworks: ["Category Entry Points"],
           enrichmentSources: ["Category use cases: Commuting, meetings, travel, fitness"]
@@ -69,7 +69,7 @@ export const contentSections: ContentSection[] = [
       },
       {
         label: "Performance Section (Reasons to Believe)",
-        content: "Proven performance you can trust:\n• 24-hour battery verified by independent testing (Demonstration)\n• Bluetooth 5.0 certified — 99.9% connection stability (Statistics)\n• 40mm drivers deliver studio-quality sound (Technical specs)\n• 10,000+ fold cycle durability testing (Demonstration)\n• 2-year warranty — We stand behind our quality (Guarantee)",
+        content: "Proven performance you can trust:\n• 24-hour battery verified by independent testing\n• Bluetooth 5.0 certified — 99.9% connection stability\n• 40mm drivers deliver studio-quality sound\n• 10,000+ fold cycle durability testing\n• 2-year warranty — We stand behind our quality",
         metadata: {
           frameworks: ["Reasons to Believe"],
           enrichmentSources: ["Technical specs: 40mm drivers, BT 5.0", "Performance benchmarks: 24hr battery tested"]
@@ -77,7 +77,7 @@ export const contentSections: ContentSection[] = [
       },
       {
         label: "Purchase CTA (Behavioral Economics)",
-        content: "🔥 Only 3 left in stock at this price (Scarcity)\n👥 12 people viewing right now (Social Proof)\n✅ Free returns — Risk-free 30-day trial (Loss Aversion)\n🎁 2-year warranty included — Premium protection at no extra cost (Reciprocity)\n⚡ Order within 2 hours for next-day delivery (Urgency)",
+        content: "🔥 Only 3 left in stock at this price\n👥 12 people viewing right now\n✅ Free returns — Risk-free 30-day trial\n🎁 2-year warranty included — Premium protection at no extra cost\n⚡ Order within 2 hours for next-day delivery",
         metadata: {
           frameworks: ["Behavioral Economics Arsenal"],
           behavioralTriggers: ["Scarcity", "Social Proof", "Loss Aversion", "Reciprocity", "Urgency"]
@@ -94,7 +94,7 @@ export const contentSections: ContentSection[] = [
       },
       {
         label: "FAQ Section (Barrier Removal)",
-        content: "Q: How long does the battery really last? (Risk barrier)\nA: Verified 24 hours — tested with continuous playback at 50% volume.\n\nQ: Will they work for professional Zoom calls? (Quality barrier)\nA: Yes — optimised microphone for crystal-clear voice. Rated 4.8/5 by remote workers.\n\nQ: Are they comfortable for all-day wear? (Physical barrier)\nA: Lightweight 250g design with premium protein leather cushions. Tested for 8+ hour comfort.\n\nQ: How do they compare to expensive brands? (Value barrier)\nA: Same manufacturers as luxury brands. Professional quality without the markup.\n\nQ: What if I'm not satisfied? (Trust barrier)\nA: 30-day risk-free returns + 2-year warranty. We've got you covered.",
+        content: "Q: How long does the battery really last?\nA: Verified 24 hours — tested with continuous playback at 50% volume.\n\nQ: Will they work for professional Zoom calls?\nA: Yes — optimised microphone for crystal-clear voice. Rated 4.8/5 by remote workers.\n\nQ: Are they comfortable for all-day wear?\nA: Lightweight 250g design with premium protein leather cushions. Tested for 8+ hour comfort.\n\nQ: How do they compare to expensive brands?\nA: Same manufacturers as luxury brands. Professional quality without the markup.\n\nQ: What if I'm not satisfied?\nA: 30-day risk-free returns + 2-year warranty. We've got you covered.",
         metadata: {
           frameworks: ["Purchase Barriers + Solutions"],
           enrichmentSources: ["Common customer questions from reviews", "Competitor pricing data"]
