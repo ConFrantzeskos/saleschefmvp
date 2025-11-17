@@ -7,16 +7,15 @@ import {
   ArrowLeft, 
   Sparkles, 
   TrendingUp, 
-  Users, 
-  Triangle, 
-  ShoppingBag, 
-  Award, 
   Target,
-  BookOpen,
+  Award,
+  ShoppingBag,
   Shield,
-  Zap,
   Brain,
-  FileText
+  Zap,
+  MessageSquare,
+  Lock,
+  Clock
 } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
@@ -85,7 +84,7 @@ const StrategicBriefDetail = () => {
         </div>
 
         {/* Executive Summary */}
-        <Card className="p-8 mb-6 border-[hsl(var(--chart-2))]">
+        <Card className="p-8 mb-6 border-primary/20">
           <div className="flex items-start justify-between mb-6">
             <div>
               <div className="flex items-center gap-3 mb-2">
@@ -96,451 +95,787 @@ const StrategicBriefDetail = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="text-sm font-medium text-muted-foreground block mb-1">Core Value Proposition</label>
-              <p className="text-foreground">{asset.coreValueProposition}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-muted-foreground block mb-1">Primary Target Persona</label>
-              <p className="text-foreground">{asset.primaryPersona}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-muted-foreground block mb-1">Key Differentiator</label>
-              <p className="text-foreground">{asset.keyDifferentiator}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-muted-foreground block mb-1">Content Approach</label>
-              <p className="text-foreground">{asset.contentApproach}</p>
-            </div>
+          <div className="p-6 rounded-lg bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10">
+            <label className="text-xs font-medium text-muted-foreground block mb-2">CORE VALUE PROPOSITION</label>
+            <p className="text-foreground text-lg font-medium">{asset.coreValueProposition}</p>
           </div>
         </Card>
 
         <div className="space-y-4">
-          {/* Benefit Ladder */}
-          <Section title="Benefit Ladder" icon={TrendingUp} defaultOpen={true}>
-            <div className="space-y-4">
-              {asset.benefitLadder.levels.map((level, index) => (
-                <div key={index} className="relative pl-6 pb-4 border-l-2 border-primary/30 last:border-l-0">
-                  <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
-                  <div className="space-y-2">
-                    <div>
-                      <span className="text-xs font-medium text-muted-foreground">Feature:</span>
-                      <p className="text-sm font-medium">{level.feature}</p>
-                    </div>
-                    <div>
-                      <span className="text-xs font-medium text-muted-foreground">→ Functional Benefit:</span>
-                      <p className="text-sm">{level.functionalBenefit}</p>
-                    </div>
-                    <div>
-                      <span className="text-xs font-medium text-muted-foreground">→ Emotional Benefit:</span>
-                      <p className="text-sm">{level.emotionalBenefit}</p>
-                    </div>
-                    <div>
-                      <span className="text-xs font-medium text-muted-foreground">→ Value:</span>
-                      <p className="text-sm font-medium text-primary">{level.value}</p>
-                    </div>
-                    <div className="pt-2 border-t">
-                      <span className="text-xs font-medium text-muted-foreground">Proof:</span>
-                      <p className="text-sm italic">{level.proof}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          {/* 1. Ladder of Benefits */}
+          <Section title="1. Ladder of Benefits" icon={TrendingUp} defaultOpen={true}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Transforms product features into increasingly powerful consumer motivations, climbing from functional to social identity.
+              </p>
             </div>
-          </Section>
-
-          {/* Target Personas */}
-          <Section title="Target Persona Profiles" icon={Users}>
-            <div className="grid gap-4">
-              {asset.personas.map((persona, index) => (
-                <Card key={index} className="p-6 border-[hsl(var(--chart-3))]">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h4 className="font-display font-semibold text-lg mb-1">{persona.name}</h4>
-                      <p className="text-sm text-muted-foreground">{persona.description}</p>
-                    </div>
-                    <Badge variant="secondary">{persona.matchScore}% Match</Badge>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-1">Demographics</label>
-                      <p className="text-sm">{persona.demographics}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-1">Psychographics</label>
-                      <p className="text-sm">{persona.psychographics}</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-2">Buying Motivations</label>
-                      <ul className="space-y-1">
-                        {persona.buyingMotivations.map((motivation, i) => (
-                          <li key={i} className="text-sm flex items-start gap-2">
-                            <span className="text-primary mt-1">•</span>
-                            <span>{motivation}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-2">Pain Points</label>
-                      <ul className="space-y-1">
-                        {persona.painPoints.map((pain, i) => (
-                          <li key={i} className="text-sm flex items-start gap-2">
-                            <span className="text-destructive mt-1">•</span>
-                            <span>{pain}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-2">Decision Criteria</label>
-                      <div className="flex flex-wrap gap-2">
-                        {persona.decisionCriteria.map((criterion, i) => (
-                          <Badge key={i} variant="outline">{criterion}</Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-1">Messaging Preferences</label>
-                      <p className="text-sm italic">{persona.messagingPreferences}</p>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </Section>
-
-          {/* Message Hierarchy */}
-          <Section title="Message Hierarchy" icon={Triangle}>
             <div className="space-y-4">
-              <div className="p-4 bg-primary/5 rounded-lg border-2 border-primary">
-                <label className="text-xs font-medium text-muted-foreground block mb-2">PRIMARY MESSAGE</label>
-                <p className="text-lg font-display font-semibold text-foreground">{asset.messageHierarchy.primaryMessage}</p>
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-muted-foreground block mb-3">Supporting Messages</label>
+              <div className="relative pl-6 pb-4 border-l-2 border-primary/30">
+                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
                 <div className="space-y-2">
-                  {asset.messageHierarchy.supportingMessages.map((message, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
-                      <Badge variant="outline">Priority {message.priority}</Badge>
-                      <span className="flex-1 text-sm">{message.content}</span>
-                      <span className="text-xs text-muted-foreground">Score: {message.score}</span>
-                    </div>
-                  ))}
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">Feature (What it has):</span>
+                    <p className="text-sm font-medium">24-hour battery life, Bluetooth 5.0, foldable design</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Functional Benefit (What it does):</span>
+                    <p className="text-sm">Listen all day without charging, seamless device switching, portable for travel</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Emotional Benefit (How it makes you feel):</span>
+                    <p className="text-sm">Feel liberated, stress-free, immersed in your world</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Social Benefit (What it says about you):</span>
+                    <p className="text-sm font-medium text-primary">"I'm productive and prepared" / "I value quality experiences"</p>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <label className="text-sm font-medium text-muted-foreground block mb-3">Proof Points</label>
+              <div className="relative pl-6 pb-4 border-l-2 border-primary/30">
+                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
+                <div className="space-y-2">
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">Feature:</span>
+                    <p className="text-sm font-medium">Premium sound drivers, noise isolation</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Functional Benefit:</span>
+                    <p className="text-sm">Crystal clear audio, blocks distractions</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Emotional Benefit:</span>
+                    <p className="text-sm">Feel focused, energized, in control</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Social Benefit:</span>
+                    <p className="text-sm font-medium text-primary">"I'm a professional who invests in quality"</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Humans don't buy features; they buy better versions of themselves. Emotional benefits drive 70% of purchasing decisions, social benefits drive word-of-mouth.</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 2. Jobs to Be Done (JTBD) */}
+          <Section title="2. Jobs to Be Done (JTBD)" icon={Target}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Identifies the progress customers try to make in specific circumstances, revealing the real "job" they hire your product to do.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <Card className="p-4 border-primary/20">
+                <h4 className="font-medium text-foreground mb-3">Primary Job</h4>
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">FUNCTIONAL JOB</label>
+                    <p className="text-sm">Enable uninterrupted audio throughout the workday without worrying about battery life</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">EMOTIONAL JOB</label>
+                    <p className="text-sm">Make long work sessions more enjoyable and maintain focus in distracting environments</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">SOCIAL JOB</label>
+                    <p className="text-sm">Project professionalism and tech-savviness in video calls and co-working spaces</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 bg-muted/30">
+                <h4 className="font-medium text-foreground mb-3">Unexpected Competitors</h4>
                 <ul className="space-y-2">
-                  {asset.messageHierarchy.proofPoints.map((point, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm">
-                      <Award className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
+                  <li className="text-sm flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span><strong>Office silence:</strong> Open-plan offices make noise cancellation the real competitor</span>
+                  </li>
+                  <li className="text-sm flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span><strong>Smartphone speakers:</strong> "Good enough" for casual listening, our endurance wins</span>
+                  </li>
+                  <li className="text-sm flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span><strong>Taking breaks:</strong> Battery anxiety forces breaks; we enable flow state</span>
+                  </li>
                 </ul>
+              </Card>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Products win by solving jobs better, not by having better features. JTBD reveals why customers switch and where disruption opportunities hide.</p>
               </div>
             </div>
           </Section>
 
-          {/* Reasons to Buy */}
-          <Section title="Reasons to Buy (RTB) Framework" icon={ShoppingBag}>
-            <div className="grid gap-3">
-              {asset.reasonsToBuy.map((rtb, index) => (
-                <Card key={index} className="p-4">
-                  <div className="flex items-start gap-3">
-                    <Badge className={
-                      rtb.category === 'rational' ? 'bg-[hsl(var(--chart-1))]' :
-                      rtb.category === 'emotional' ? 'bg-[hsl(var(--chart-2))]' :
-                      rtb.category === 'social' ? 'bg-[hsl(var(--chart-3))]' :
-                      'bg-[hsl(var(--chart-4))]'
-                    }>
-                      {rtb.category}
-                    </Badge>
-                    <div className="flex-1">
-                      <p className="font-medium text-foreground mb-2">{rtb.reason}</p>
-                      <p className="text-sm text-muted-foreground mb-2">{rtb.supportingEvidence}</p>
-                      <div className="flex items-center gap-2">
-                        <div className="flex-1 bg-muted rounded-full h-1.5 max-w-[200px]">
-                          <div
-                            className="bg-primary h-1.5 rounded-full"
-                            style={{ width: `${rtb.confidenceScore}%` }}
-                          />
-                        </div>
-                        <span className="text-xs text-muted-foreground">{rtb.confidenceScore}% confidence</span>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
+          {/* 3. Category Entry Points (CEPs) */}
+          <Section title="3. Category Entry Points (CEPs)" icon={Brain}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Memory structures and need-states that prompt category purchase consideration. Owning more CEPs = more buying occasions.
+              </p>
             </div>
-          </Section>
-
-          {/* Social Proof */}
-          <Section title="Social Proof & Credibility Arsenal" icon={Award}>
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Awards & Recognition</h4>
-                <div className="flex flex-wrap gap-2">
-                  {asset.socialProof.awards.map((award, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs">{award}</Badge>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Expert Endorsements</h4>
-                <div className="space-y-2">
-                  {asset.socialProof.expertEndorsements.map((endorsement, i) => (
-                    <p key={i} className="text-sm italic border-l-2 border-primary pl-3">{endorsement}</p>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Customer Testimonials</h4>
-                <div className="grid gap-3">
-                  {asset.socialProof.customerTestimonials.map((testimonial, i) => (
-                    <Card key={i} className="p-4 bg-muted/30">
-                      <p className="text-sm">{testimonial}</p>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Statistical Proof</h4>
-                <ul className="space-y-2">
-                  {asset.socialProof.statisticalProof.map((stat, i) => (
-                    <li key={i} className="text-sm flex items-start gap-2">
-                      <span className="text-primary font-bold mt-0.5">✓</span>
-                      <span>{stat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Section>
-
-          {/* Competitive Positioning */}
-          <Section title="Competitive Positioning Strategy" icon={Target}>
             <div className="space-y-4">
-              <div className="p-4 bg-muted/30 rounded-lg">
-                <label className="text-xs font-medium text-muted-foreground block mb-2">POSITIONING STATEMENT</label>
-                <p className="text-foreground">{asset.positioning.positioningStatement}</p>
+              <div className="grid grid-cols-2 gap-4">
+                <Card className="p-4 border-[hsl(var(--chart-1))]">
+                  <Badge className="bg-[hsl(var(--chart-1))] mb-3">Owned CEP</Badge>
+                  <h4 className="font-medium mb-2">Long workday ahead</h4>
+                  <p className="text-sm text-muted-foreground">Morning trigger: "I need audio that lasts all day without charging"</p>
+                </Card>
+
+                <Card className="p-4 border-[hsl(var(--chart-1))]">
+                  <Badge className="bg-[hsl(var(--chart-1))] mb-3">Owned CEP</Badge>
+                  <h4 className="font-medium mb-2">Packing for travel</h4>
+                  <p className="text-sm text-muted-foreground">Pre-trip trigger: "I need compact, reliable audio for the journey"</p>
+                </Card>
+
+                <Card className="p-4 border-[hsl(var(--chart-2))]">
+                  <Badge className="bg-[hsl(var(--chart-2))] mb-3">Growth CEP</Badge>
+                  <h4 className="font-medium mb-2">Back-to-back meetings</h4>
+                  <p className="text-sm text-muted-foreground">Calendar trigger: "I need professional audio all day without interruption"</p>
+                </Card>
+
+                <Card className="p-4 border-[hsl(var(--chart-2))]">
+                  <Badge className="bg-[hsl(var(--chart-2))] mb-3">Growth CEP</Badge>
+                  <h4 className="font-medium mb-2">Gaming marathon</h4>
+                  <p className="text-sm text-muted-foreground">Gaming session trigger: "I need comfortable, long-lasting wireless audio"</p>
+                </Card>
               </div>
 
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Competitive Advantages</h4>
-                <div className="space-y-2">
-                  {asset.positioning.competitiveAdvantages.map((adv, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
-                      <Badge variant="outline" className="shrink-0">{adv.competitor}</Badge>
-                      <span className="text-sm">{adv.advantage}</span>
-                    </div>
-                  ))}
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Brands present at more CEPs have 3x market share. Owning one CEP can mean millions in revenue. Each CEP = automatic consideration.</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 4. Reasons to Believe (RTBs) */}
+          <Section title="4. Reasons to Believe (RTBs)" icon={Award}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Concrete proof points that make marketing claims credible and overcome natural skepticism.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <Card className="p-4">
+                <div className="flex items-start gap-3 mb-2">
+                  <Badge variant="outline">Statistics</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">24+ hour battery independently verified</p>
+                    <p className="text-sm text-muted-foreground">Lab-tested by TechReview Magazine: 24.3 hours continuous playback at 70% volume</p>
+                  </div>
                 </div>
-              </div>
+              </Card>
 
+              <Card className="p-4">
+                <div className="flex items-start gap-3 mb-2">
+                  <Badge variant="outline">Demonstrations</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">15-minute quick charge = 3 hours playback</p>
+                    <p className="text-sm text-muted-foreground">Visual demo video showing real-time charging and playback test</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="flex items-start gap-3 mb-2">
+                  <Badge variant="outline">Endorsements</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">4.2/5 stars from 1,247 verified purchasers</p>
+                    <p className="text-sm text-muted-foreground">"Battery life is phenomenal - exactly as advertised" (most common positive sentiment)</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="flex items-start gap-3 mb-2">
+                  <Badge variant="outline">Heritage</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">TechSound: 15 years in professional audio</p>
+                    <p className="text-sm text-muted-foreground">Same battery technology used in studio monitoring headphones trusted by professionals</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="flex items-start gap-3 mb-2">
+                  <Badge variant="outline">Process</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">Advanced lithium polymer cells with intelligent power management</p>
+                    <p className="text-sm text-muted-foreground">Smart chip optimizes power consumption based on volume and connectivity</p>
+                  </div>
+                </div>
+              </Card>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Trust is the conversion killer. Strong RTBs increase conversion 34% on average. Without proof, claims are just noise.</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 5. Purchase Barriers + Solutions */}
+          <Section title="5. Purchase Barriers + Solutions" icon={Shield}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Systematic identification and resolution of all friction points preventing purchase.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <Card className="p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-medium text-destructive block mb-1">BARRIER: Risk</label>
+                    <p className="text-sm">"What if battery doesn't last as claimed?"</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-primary block mb-1">SOLUTION</label>
+                    <p className="text-sm">30-day money-back guarantee + independent lab verification</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-medium text-destructive block mb-1">BARRIER: Cost</label>
+                    <p className="text-sm">"$189 seems expensive for wireless headphones"</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-primary block mb-1">SOLUTION</label>
+                    <p className="text-sm">Price anchor: Compare to $349 competitors with only 20hrs battery. Cost-per-use breakdown: $0.52/day over 1 year</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-medium text-destructive block mb-1">BARRIER: Effort</label>
+                    <p className="text-sm">"Setting up Bluetooth is always complicated"</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-primary block mb-1">SOLUTION</label>
+                    <p className="text-sm">One-click pairing video + "Works in 30 seconds" promise. Pre-paired option at checkout</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-medium text-destructive block mb-1">BARRIER: Knowledge</label>
+                    <p className="text-sm">"I don't know if these work with my devices"</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-primary block mb-1">SOLUTION</label>
+                    <p className="text-sm">Compatibility checker tool + "Works with all Bluetooth devices" badge prominently displayed</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-medium text-destructive block mb-1">BARRIER: Social</label>
+                    <p className="text-sm">"Will I look outdated without ANC?"</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-primary block mb-1">SOLUTION</label>
+                    <p className="text-sm">Reframe: "Noise isolation without the ANC hiss" + testimonials from professionals who prefer it</p>
+                  </div>
+                </div>
+              </Card>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Each barrier removed increases conversion 10-20%. Reducing friction is often easier than increasing desire. Amazon's 1-click patent was worth billions.</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 6. Distinctive Memory Structures */}
+          <Section title="6. Distinctive Memory Structures" icon={Brain}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Unique mental and physical availability patterns that make brands instantly recallable and findable.
+              </p>
+            </div>
+            <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground block mb-1">Differentiation Strategy</label>
-                  <p className="text-sm">{asset.positioning.differentiationStrategy}</p>
-                </div>
-                <div>
-                  <label className="text-xs font-medium text-muted-foreground block mb-1">Market Position</label>
-                  <p className="text-sm">{asset.positioning.marketPosition}</p>
-                </div>
-              </div>
-            </div>
-          </Section>
-
-          {/* Storytelling Framework */}
-          <Section title="Storytelling Architecture" icon={BookOpen}>
-            <div className="space-y-4">
-              {[
-                { label: 'Hero (Customer)', value: asset.storytelling.hero },
-                { label: 'Problem', value: asset.storytelling.problem },
-                { label: 'Solution (Product)', value: asset.storytelling.solution },
-                { label: 'Transformation', value: asset.storytelling.transformation },
-                { label: 'Call to Action', value: asset.storytelling.callToAction },
-                { label: 'Emotional Arc', value: asset.storytelling.emotionalArc }
-              ].map((item, i) => (
-                <div key={i} className="p-4 bg-muted/30 rounded-lg">
-                  <label className="text-xs font-medium text-muted-foreground block mb-1">{item.label.toUpperCase()}</label>
-                  <p className="text-sm">{item.value}</p>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          {/* Objection Handling */}
-          <Section title="Objection Handling Playbook" icon={Shield}>
-            <div className="space-y-3">
-              {asset.objections.map((obj, i) => (
-                <Card key={i} className="p-4">
-                  <div className="space-y-3">
-                    <div>
-                      <label className="text-xs font-medium text-destructive block mb-1">OBJECTION</label>
-                      <p className="text-sm font-medium">{obj.objection}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs font-medium text-primary block mb-1">COUNTER-ARGUMENT</label>
-                      <p className="text-sm">{obj.counterArgument}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-1">SUPPORTING EVIDENCE</label>
-                      <p className="text-sm">{obj.supportingEvidence}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-1">TONE RECOMMENDATION</label>
-                      <p className="text-sm italic">{obj.toneRecommendation}</p>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </Section>
-
-          {/* Conversion Heuristics */}
-          <Section title="Conversion Heuristics & Optimization" icon={Zap}>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium text-foreground mb-3">High-Impact Elements</h4>
-                <ul className="space-y-2">
-                  {asset.conversionHeuristics.highImpactElements.map((element, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <Zap className="w-4 h-4 text-[hsl(var(--chart-2))] mt-0.5 shrink-0" />
-                      <span>{element}</span>
+                  <h4 className="font-medium mb-3">Mental Availability</h4>
+                  <ul className="space-y-2">
+                    <li className="text-sm flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span><strong>"24 Hours"</strong> - Distinctive number owns the long-battery space</span>
                     </li>
-                  ))}
-                </ul>
+                    <li className="text-sm flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span><strong>Folding motion</strong> - Visual memory cue for portability</span>
+                    </li>
+                    <li className="text-sm flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span><strong>Blue accent color</strong> - Distinctive against black competitors</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-medium mb-3">Physical Availability</h4>
+                  <ul className="space-y-2">
+                    <li className="text-sm flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Available on Amazon, Best Buy, direct site (3 major channels)</span>
+                    </li>
+                    <li className="text-sm flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Always in stock (98% availability rate)</span>
+                    </li>
+                    <li className="text-sm flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>2-day shipping standard (no friction)</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Message Variants (A/B Testing)</h4>
+              <Card className="p-4 bg-muted/30">
+                <h4 className="font-medium mb-3">Distinctive Assets</h4>
                 <div className="space-y-2">
-                  {asset.conversionHeuristics.messageVariants.map((variant, i) => (
-                    <div key={i} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                      <span className="text-sm">{variant.variant}</span>
-                      <Badge className="bg-[hsl(var(--chart-2))]">{variant.predictedLift}</Badge>
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-3">
+                    <Badge>Visual</Badge>
+                    <span className="text-sm">Signature blue power indicator that pulses during charging</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Badge>Verbal</Badge>
+                    <span className="text-sm">"All Day. Every Day." tagline consistently used</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Badge>Packaging</Badge>
+                    <span className="text-sm">Transparent case showing folded headphones instantly communicates portability</span>
+                  </div>
                 </div>
-              </div>
+              </Card>
 
-              <div className="p-4 bg-primary/5 rounded-lg">
-                <label className="text-xs font-medium text-muted-foreground block mb-1">ESTIMATED CONVERSION LIFT</label>
-                <p className="text-2xl font-display font-bold text-primary">{asset.conversionHeuristics.estimatedLift}</p>
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Mental availability drives 50% of brand growth. Distinctive assets make advertising 30% more effective. Physical availability caps growth potential.</p>
               </div>
             </div>
           </Section>
 
-          {/* Behavioral Psychology */}
-          <Section title="Behavioral Psychology Triggers" icon={Brain}>
+          {/* 7. Behavioural Economics Arsenal */}
+          <Section title="7. Behavioural Economics Arsenal" icon={Zap}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Psychological triggers that bypass rational evaluation and drive automatic behavior.
+              </p>
+            </div>
             <div className="space-y-3">
-              {asset.psychologyTriggers.map((trigger, i) => (
-                <Card key={i} className="p-4">
-                  <div className="flex items-start gap-3 mb-3">
-                    <Badge className="bg-[hsl(var(--chart-4))]">{trigger.principle}</Badge>
+              <Card className="p-4 border-[hsl(var(--chart-1))]">
+                <div className="flex items-start justify-between mb-2">
+                  <h4 className="font-medium">Anchoring</h4>
+                  <Badge className="bg-[hsl(var(--chart-1))]">Applied</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  <strong>Tactic:</strong> Display Sony WH-1000XM4 ($349) side-by-side comparison first
+                </p>
+                <p className="text-sm">
+                  <strong>Result:</strong> $189 feels like a bargain. Conversion increases 23% when competitor price shown first.
+                </p>
+              </Card>
+
+              <Card className="p-4 border-[hsl(var(--chart-2))]">
+                <div className="flex items-start justify-between mb-2">
+                  <h4 className="font-medium">Loss Aversion</h4>
+                  <Badge className="bg-[hsl(var(--chart-2))]">Applied</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  <strong>Tactic:</strong> "Only 8 left at this price" + "Price increases to $199 in 3 days"
+                </p>
+                <p className="text-sm">
+                  <strong>Result:</strong> Fear of missing out drives 31% faster purchase decisions.
+                </p>
+              </Card>
+
+              <Card className="p-4 border-[hsl(var(--chart-3))]">
+                <div className="flex items-start justify-between mb-2">
+                  <h4 className="font-medium">Social Proof</h4>
+                  <Badge className="bg-[hsl(var(--chart-3))]">Applied</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  <strong>Tactic:</strong> "127 people bought this in the last 24 hours" + real-time purchase notifications
+                </p>
+                <p className="text-sm">
+                  <strong>Result:</strong> Trust increases 45%, cart abandonment drops 18%.
+                </p>
+              </Card>
+
+              <Card className="p-4 border-[hsl(var(--chart-4))]">
+                <div className="flex items-start justify-between mb-2">
+                  <h4 className="font-medium">Reciprocity</h4>
+                  <Badge className="bg-[hsl(var(--chart-4))]">Applied</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  <strong>Tactic:</strong> Free extended warranty (value $29) with purchase + free premium carrying case
+                </p>
+                <p className="text-sm">
+                  <strong>Result:</strong> Perceived obligation to buy increases 27%. Free gifts increase conversion 2-3x.
+                </p>
+              </Card>
+
+              <Card className="p-4 border-primary/20">
+                <div className="flex items-start justify-between mb-2">
+                  <h4 className="font-medium">Decoy Effect</h4>
+                  <Badge>Applied</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  <strong>Tactic:</strong> Show three options: Basic ($149, 18hrs), Standard ($189, 24hrs), Premium ($239, 24hrs + ANC)
+                </p>
+                <p className="text-sm">
+                  <strong>Result:</strong> Standard becomes the "sweet spot." 64% choose the middle option (vs 41% without decoy).
+                </p>
+              </Card>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">BE techniques increase conversion 20-300%. They work regardless of product quality. They're invisible to consumers but devastatingly effective.</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 8. Competitive Moats */}
+          <Section title="8. Competitive Moats" icon={Lock}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Sustainable competitive advantages that protect against competition and commoditization.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <Card className="p-4">
+                <div className="flex items-start gap-3">
+                  <Badge variant="outline">Brand Moat</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">Category ownership: "Long battery wireless headphones"</p>
+                    <p className="text-sm text-muted-foreground">First-to-mind advantage. 67% of "24 hour headphone" searches land on our listings. Brand recall 3x higher than competitors.</p>
                   </div>
-                  <div className="space-y-2">
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="flex items-start gap-3">
+                  <Badge variant="outline">Switching Cost</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">Ecosystem integration with TechSound app</p>
+                    <p className="text-sm text-muted-foreground">Custom EQ profiles, saved device pairings, warranty tracking. Once invested, 73% stay within brand ecosystem for next purchase.</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="flex items-start gap-3">
+                  <Badge variant="outline">Cost Advantage</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">Direct-to-consumer + high-volume battery contracts</p>
+                    <p className="text-sm text-muted-foreground">Cut out middleman markup (30% savings) + bulk battery procurement at $8/unit vs $15 industry average. Can afford 40% margin while undercutting competitors.</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4">
+                <div className="flex items-start gap-3">
+                  <Badge variant="outline">Network Effects</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">Growing user community creates content</p>
+                    <p className="text-sm text-muted-foreground">User-generated reviews, unboxing videos, troubleshooting forums. Each new customer adds value by contributing content. 12K+ reviews create trust barrier for new entrants.</p>
+                  </div>
+                </div>
+              </Card>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Without moats, you're in a race to the bottom. Strong moats enable 10x valuations and 50%+ margins. Warren Buffett only invests in moat businesses.</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 9. Conversion Mechanics */}
+          <Section title="9. Conversion Mechanics" icon={Target}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Systematic optimization of every element that turns interest into purchase.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-medium mb-3">Risk Reversal Stack (in order)</h4>
+                <div className="space-y-2">
+                  <Card className="p-3 bg-muted/30">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-primary">1</Badge>
+                      <span className="text-sm"><strong>Money-back guarantee:</strong> 30 days, no questions asked (removes financial risk)</span>
+                    </div>
+                  </Card>
+                  <Card className="p-3 bg-muted/30">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-primary">2</Badge>
+                      <span className="text-sm"><strong>Free trial period:</strong> "Try for a week, return if not satisfied" (removes performance risk)</span>
+                    </div>
+                  </Card>
+                  <Card className="p-3 bg-muted/30">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-primary">3</Badge>
+                      <span className="text-sm"><strong>Social proof:</strong> 1,247 reviews, 4.2 stars (removes social risk)</span>
+                    </div>
+                  </Card>
+                  <Card className="p-3 bg-muted/30">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-primary">4</Badge>
+                      <span className="text-sm"><strong>Authority endorsement:</strong> "Featured in TechReview" (removes credibility risk)</span>
+                    </div>
+                  </Card>
+                </div>
+              </div>
+
+              <Card className="p-4 bg-primary/5 border-primary/20">
+                <h4 className="font-medium mb-3">Value Equation Optimization</h4>
+                <div className="text-sm space-y-2">
+                  <p className="font-mono text-xs text-muted-foreground">Value = (Dream Outcome × Perceived Likelihood) ÷ (Time Delay × Effort Required)</p>
+                  <div className="grid grid-cols-2 gap-3 mt-3">
                     <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-1">Application</label>
-                      <p className="text-sm">{trigger.application}</p>
+                      <Badge variant="outline" className="mb-1">↑ Dream Outcome</Badge>
+                      <p className="text-sm">24 hours of uninterrupted freedom</p>
                     </div>
                     <div>
-                      <label className="text-xs font-medium text-muted-foreground block mb-1">Implementation</label>
-                      <p className="text-sm font-medium">{trigger.implementation}</p>
+                      <Badge variant="outline" className="mb-1">↑ Likelihood</Badge>
+                      <p className="text-sm">Lab-verified, 1,247 reviews confirm</p>
+                    </div>
+                    <div>
+                      <Badge variant="outline" className="mb-1">↓ Time Delay</Badge>
+                      <p className="text-sm">2-day shipping, instant gratification</p>
+                    </div>
+                    <div>
+                      <Badge variant="outline" className="mb-1">↓ Effort</Badge>
+                      <p className="text-sm">One-click pairing, pre-configured options</p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              <div>
+                <h4 className="font-medium mb-3">Commitment Ladder (Micro-conversions)</h4>
+                <div className="relative pl-6 space-y-3">
+                  <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
+                  <div className="relative">
+                    <div className="absolute -left-7 top-1 w-4 h-4 rounded-full bg-primary" />
+                    <p className="text-sm"><strong>Step 1:</strong> Click product → See hero image with "24 Hours" messaging</p>
+                  </div>
+                  <div className="relative">
+                    <div className="absolute -left-7 top-1 w-4 h-4 rounded-full bg-primary" />
+                    <p className="text-sm"><strong>Step 2:</strong> Scroll to see benefit ladder and reviews</p>
+                  </div>
+                  <div className="relative">
+                    <div className="absolute -left-7 top-1 w-4 h-4 rounded-full bg-primary" />
+                    <p className="text-sm"><strong>Step 3:</strong> Watch 45-second demo video</p>
+                  </div>
+                  <div className="relative">
+                    <div className="absolute -left-7 top-1 w-4 h-4 rounded-full bg-primary" />
+                    <p className="text-sm"><strong>Step 4:</strong> Add to cart (commitment escalates)</p>
+                  </div>
+                  <div className="relative">
+                    <div className="absolute -left-7 top-1 w-4 h-4 rounded-full bg-primary" />
+                    <p className="text-sm"><strong>Step 5:</strong> Enter email (identity investment)</p>
+                  </div>
+                  <div className="relative">
+                    <div className="absolute -left-7 top-1 w-4 h-4 rounded-full bg-primary" />
+                    <p className="text-sm"><strong>Step 6:</strong> Complete purchase (final micro-yes)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Small optimizations compound: 10% improvement at 5 steps = 61% total improvement. Every friction point costs 15-25% conversion.</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 10. Context Triggers */}
+          <Section title="10. Context Triggers" icon={Clock}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Environmental, temporal, and social cues that prompt behavior and purchase.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <Card className="p-4 border-[hsl(var(--chart-1))]">
+                <div className="flex items-start gap-3">
+                  <Badge className="bg-[hsl(var(--chart-1))]">Usage Occasion</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">"Monday morning commute"</p>
+                    <p className="text-sm text-muted-foreground">
+                      <strong>Trigger:</strong> Calendar shows full day of meetings<br/>
+                      <strong>Thought:</strong> "I need audio that lasts all day"<br/>
+                      <strong>Action:</strong> Targeted ads on Sunday evening: "Ready for Monday?"
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 border-[hsl(var(--chart-2))]">
+                <div className="flex items-start gap-3">
+                  <Badge className="bg-[hsl(var(--chart-2))]">Identity Trigger</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">"Professionals who value productivity"</p>
+                    <p className="text-sm text-muted-foreground">
+                      <strong>Trigger:</strong> Seeing colleague with premium headphones<br/>
+                      <strong>Thought:</strong> "People like me use quality audio tools"<br/>
+                      <strong>Action:</strong> LinkedIn ads targeting job titles, co-working space partnerships
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 border-[hsl(var(--chart-3))]">
+                <div className="flex items-start gap-3">
+                  <Badge className="bg-[hsl(var(--chart-3))]">Temporal Landmark</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">"New Year, New Setup"</p>
+                    <p className="text-sm text-muted-foreground">
+                      <strong>Trigger:</strong> January 1st fresh start mentality<br/>
+                      <strong>Thought:</strong> "Time to upgrade my work-from-home setup"<br/>
+                      <strong>Action:</strong> January campaign: "Start the year with unstoppable audio"
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 border-[hsl(var(--chart-4))]">
+                <div className="flex items-start gap-3">
+                  <Badge className="bg-[hsl(var(--chart-4))]">Environmental Cue</Badge>
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground mb-1">"Airport departure lounge"</p>
+                    <p className="text-sm text-muted-foreground">
+                      <strong>Trigger:</strong> Long flight ahead, forgot headphones<br/>
+                      <strong>Thought:</strong> "I need something that'll last the whole flight"<br/>
+                      <strong>Action:</strong> Geo-targeted ads near airports, Amazon same-day delivery partnerships
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Context determines 45% of behavior. Owning a context means automatic selection. Coca-Cola owns "meals," we can own "long workdays."</p>
+              </div>
+            </div>
+          </Section>
+
+          {/* 11. The Persuasion Stack */}
+          <Section title="11. The Persuasion Stack" icon={MessageSquare}>
+            <div className="mb-4 p-4 bg-muted/30 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Eugene Schwartz's framework for matching message sophistication to market awareness. Wrong message to wrong awareness = zero response.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-medium mb-3">Customer Awareness Levels</h4>
+                <div className="space-y-2">
+                  <Card className="p-4 bg-muted/30">
+                    <div className="mb-2">
+                      <Badge variant="outline">Unaware</Badge>
+                      <span className="text-sm font-medium ml-2">Don't know they have battery life problem</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-1"><strong>Message:</strong> "Why do your headphones always die mid-day?"</p>
+                    <p className="text-sm"><strong>Channel:</strong> Social media content educating on battery anxiety</p>
+                  </Card>
+
+                  <Card className="p-4 bg-muted/30">
+                    <div className="mb-2">
+                      <Badge variant="outline">Problem Aware</Badge>
+                      <span className="text-sm font-medium ml-2">Know battery dies, not solution</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-1"><strong>Message:</strong> "24-hour battery means never worrying about charging"</p>
+                    <p className="text-sm"><strong>Channel:</strong> Search ads on "long battery headphones"</p>
+                  </Card>
+
+                  <Card className="p-4 bg-muted/30">
+                    <div className="mb-2">
+                      <Badge variant="outline">Solution Aware</Badge>
+                      <span className="text-sm font-medium ml-2">Know long-battery exists, not our brand</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-1"><strong>Message:</strong> "24hrs + quick charge + $189 = best value long-battery option"</p>
+                    <p className="text-sm"><strong>Channel:</strong> Comparison content, retargeting ads</p>
+                  </Card>
+
+                  <Card className="p-4 bg-muted/30">
+                    <div className="mb-2">
+                      <Badge variant="outline">Product Aware</Badge>
+                      <span className="text-sm font-medium ml-2">Know us, not convinced</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-1"><strong>Message:</strong> Show proof - reviews, lab tests, testimonials, guarantee</p>
+                    <p className="text-sm"><strong>Channel:</strong> Product page, email nurture sequence</p>
+                  </Card>
+
+                  <Card className="p-4 bg-muted/30">
+                    <div className="mb-2">
+                      <Badge variant="outline">Most Aware</Badge>
+                      <span className="text-sm font-medium ml-2">Ready to buy, needs deal</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-1"><strong>Message:</strong> "Limited time: $40 off + free case. Don't miss out."</p>
+                    <p className="text-sm"><strong>Channel:</strong> Cart abandonment email, retargeting with offer</p>
+                  </Card>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-medium mb-3">Market Sophistication Stage</h4>
+                <Card className="p-4 bg-primary/5 border-primary/20">
+                  <div className="mb-2">
+                    <Badge className="bg-primary">Stage 3: Mechanism</Badge>
+                  </div>
+                  <p className="text-sm mb-3">
+                    We're in a mature market. Competitors already claim "long battery." We need to introduce our unique mechanism.
+                  </p>
+                  <div className="space-y-2">
+                    <div className="p-3 bg-background rounded">
+                      <p className="text-sm"><strong>Their claim:</strong> "20-hour battery"</p>
+                      <p className="text-sm text-muted-foreground">Generic, expected</p>
+                    </div>
+                    <div className="p-3 bg-background rounded">
+                      <p className="text-sm"><strong>Our mechanism:</strong> "Intelligent power management adapts to your usage patterns"</p>
+                      <p className="text-sm text-muted-foreground">Unique, explainable, believable</p>
                     </div>
                   </div>
                 </Card>
-              ))}
-            </div>
-          </Section>
-
-          {/* Content Generation Brief */}
-          <Section title="Content Generation Brief" icon={FileText} defaultOpen={true}>
-            <div className="space-y-4">
-              <div className="p-4 bg-primary/5 rounded-lg">
-                <label className="text-xs font-medium text-muted-foreground block mb-1">TONE OF VOICE</label>
-                <p className="text-sm font-medium">{asset.contentBrief.toneOfVoice}</p>
               </div>
 
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Key Messages</h4>
-                <ul className="space-y-2">
-                  {asset.contentBrief.keyMessages.map((message, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="text-primary font-bold mt-0.5">•</span>
-                      <span>{message}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <label className="text-xs font-medium text-muted-foreground block mb-1">PERSONA TARGETING</label>
-                <p className="text-sm">{asset.contentBrief.personaTargeting}</p>
-              </div>
-
-              <div>
-                <h4 className="font-medium text-foreground mb-3">Required Elements</h4>
-                <div className="flex flex-wrap gap-2">
-                  {asset.contentBrief.requiredElements.map((element, i) => (
-                    <Badge key={i} variant="secondary">{element}</Badge>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="text-xs font-medium text-muted-foreground block mb-1">CONTENT STRUCTURE</label>
-                <p className="text-sm">{asset.contentBrief.contentStructure}</p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-medium text-primary mb-3">Do's</h4>
-                  <ul className="space-y-2">
-                    {asset.contentBrief.dos.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-primary font-bold mt-0.5">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium text-destructive mb-3">Don'ts</h4>
-                  <ul className="space-y-2">
-                    {asset.contentBrief.donts.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-destructive font-bold mt-0.5">✗</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
+                <p className="text-sm">Wrong message to wrong awareness level = zero response. Right message = 10x conversion. This framework has generated $1B+ for Agora Publishing.</p>
               </div>
             </div>
           </Section>
         </div>
 
-        <div className="mt-8 flex justify-center">
-          <Button size="lg" onClick={() => navigate('/generation')} className="gap-2">
-            <Sparkles className="w-5 h-5" />
-            Generate Content Using This Brief
-          </Button>
+        {/* Footer Actions */}
+        <div className="border-t bg-background px-0 py-6 mt-8">
+          <div className="flex justify-between items-center">
+            <Button variant="outline" onClick={() => navigate('/enhancement-review')}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to All Briefs
+            </Button>
+            <Button onClick={() => navigate('/generation')} size="lg" className="gap-2">
+              <Sparkles className="w-4 h-4" />
+              Generate Content for This Product
+            </Button>
+          </div>
         </div>
       </div>
     </div>
