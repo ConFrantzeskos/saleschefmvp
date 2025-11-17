@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Edit } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { CheckCircle2 } from 'lucide-react';
 import { Asset } from '@/types/asset';
 
 interface AssetsTableProps {
@@ -18,89 +18,67 @@ const AssetsTable = ({ assets }: AssetsTableProps) => {
     navigate(`/review/${assetId}`);
   };
 
+  const getQualityBadge = (quality: number) => {
+    if (quality >= 95) return { variant: 'default' as const, label: 'Excellent' };
+    if (quality >= 85) return { variant: 'secondary' as const, label: 'Good' };
+    return { variant: 'outline' as const, label: 'Fair' };
+  };
+
   return (
     <div className="overflow-x-auto">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="min-w-[100px]">Asset</TableHead>
-            <TableHead className="min-w-[200px]">Product Name</TableHead>
-            <TableHead className="min-w-[150px]">Category</TableHead>
-            <TableHead className="min-w-[100px]">Brand</TableHead>
-            <TableHead className="min-w-[80px]">Price</TableHead>
-            <TableHead className="min-w-[200px]">Description</TableHead>
-            <TableHead className="min-w-[150px]">Features</TableHead>
-            <TableHead className="min-w-[150px]">Target Audience</TableHead>
-            <TableHead className="min-w-[150px]">Key Benefits</TableHead>
-            <TableHead className="min-w-[150px]">Competitive Advantage</TableHead>
-            <TableHead className="min-w-[150px]">SEO Keywords</TableHead>
-            <TableHead className="min-w-[200px]">Meta Title</TableHead>
-            <TableHead className="min-w-[200px]">Meta Description</TableHead>
-            <TableHead className="min-w-[150px]">Product Bullets</TableHead>
-            <TableHead className="min-w-[150px]">Technical Specs</TableHead>
-            <TableHead className="min-w-[150px]">Use Cases</TableHead>
-            <TableHead className="min-w-[100px]">Warranty</TableHead>
-            <TableHead className="min-w-[100px]">Certifications</TableHead>
-            <TableHead className="min-w-[100px]">Status</TableHead>
-            <TableHead className="min-w-[100px]">Quality</TableHead>
-            <TableHead className="min-w-[100px]">Edit</TableHead>
+            <TableHead className="w-[120px]">SKU</TableHead>
+            <TableHead className="w-[130px]">Status</TableHead>
+            <TableHead>Product Name</TableHead>
+            <TableHead className="w-[280px]">Category</TableHead>
+            <TableHead className="w-[100px]">Price</TableHead>
+            <TableHead className="w-[150px]">Quality</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {assets.map((asset) => (
-            <TableRow 
-              key={asset.id} 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleViewAsset(asset.id)}
-            >
-              <TableCell className="font-mono">{asset.sku}</TableCell>
-              <TableCell className="font-medium max-w-[200px] truncate">{asset.name}</TableCell>
-              <TableCell className="max-w-[150px] truncate">{asset.category}</TableCell>
-              <TableCell>{asset.brand}</TableCell>
-              <TableCell className="font-medium">{asset.price}</TableCell>
-              <TableCell className="max-w-[200px] truncate">{asset.description}</TableCell>
-              <TableCell className="max-w-[150px] truncate">{asset.features}</TableCell>
-              <TableCell className="max-w-[150px] truncate">{asset.targetAudience}</TableCell>
-              <TableCell className="max-w-[150px] truncate">{asset.keyBenefits}</TableCell>
-              <TableCell className="max-w-[150px] truncate">{asset.competitiveAdvantage}</TableCell>
-              <TableCell className="max-w-[150px] truncate">{asset.seoKeywords}</TableCell>
-              <TableCell className="max-w-[200px] truncate">{asset.metaTitle}</TableCell>
-              <TableCell className="max-w-[200px] truncate">{asset.metaDescription}</TableCell>
-              <TableCell className="max-w-[150px] truncate whitespace-pre-line">{asset.productBullets}</TableCell>
-              <TableCell className="max-w-[150px] truncate whitespace-pre-line">{asset.technicalSpecs}</TableCell>
-              <TableCell className="max-w-[150px] truncate">{asset.useCases}</TableCell>
-              <TableCell>{asset.warranty}</TableCell>
-              <TableCell>{asset.certifications}</TableCell>
-              <TableCell>
-                <Badge variant={asset.status === 'Enhanced' ? 'default' : 'secondary'}>
-                  {asset.status}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <div className="flex items-center space-x-2">
-                  <div className="w-16 bg-muted rounded-full h-2">
-                    <div 
-                      className="bg-primary h-2 rounded-full" 
-                      style={{ width: `${asset.quality}%` }}
-                    />
+          {assets.map((asset, index) => {
+            const qualityBadge = getQualityBadge(asset.quality);
+            return (
+              <TableRow 
+                key={asset.id} 
+                className="cursor-pointer hover:bg-muted/50 transition-colors animate-fade-in"
+                style={{ animationDelay: `${index * 0.02}s` }}
+                onClick={() => handleViewAsset(asset.id)}
+              >
+                <TableCell className="font-mono text-muted-foreground">
+                  {asset.sku}
+                </TableCell>
+                <TableCell>
+                  <Badge variant="default" className="gap-1">
+                    <CheckCircle2 className="w-3 h-3" />
+                    Enhanced
+                  </Badge>
+                </TableCell>
+                <TableCell className="font-medium">
+                  {asset.name}
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {asset.category} • {asset.brand}
+                </TableCell>
+                <TableCell className="font-medium">
+                  {asset.price}
+                </TableCell>
+                <TableCell>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Badge variant={qualityBadge.variant} className="text-xs">
+                        {qualityBadge.label}
+                      </Badge>
+                      <span className="text-sm font-medium">{asset.quality}%</span>
+                    </div>
+                    <Progress value={asset.quality} className="h-1.5" />
                   </div>
-                  <span className="text-sm font-medium">{asset.quality}%</span>
-                </div>
-              </TableCell>
-              <TableCell>
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Add edit functionality here
-                  }}
-                >
-                  <Edit className="w-4 h-4" />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </div>
