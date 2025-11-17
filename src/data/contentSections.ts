@@ -38,7 +38,7 @@ export const contentSections: ContentSection[] = [
         label: "Hero Introduction (Ladder of Benefits)",
         content: "Never worry about battery life again. The CD1234 delivers 24 hours of uninterrupted listening — making you feel confident in back-to-back meetings and look professional to colleagues. Perfect for the modern professional who values reliability and portability.",
         metadata: {
-          frameworks: ["Ladder of Benefits"],
+          frameworks: ["Ladder of Benefits: Feature → Feature Benefit → Consumer Benefit → Emotional/Social"],
           enrichmentSources: ["Customer sentiment: Battery life = Top feature (4.8/5)", "Search trends: 'long battery headphones'"],
           behavioralTriggers: ["Loss Aversion: 'Never worry'"]
         }
@@ -47,7 +47,7 @@ export const contentSections: ContentSection[] = [
         label: "Feature Bullets (Benefit Ladder Applied)",
         content: "• 24 hours battery life — Never miss a beat in your workday\n• Bluetooth 5.0 connectivity — Stay seamlessly connected without technical frustration\n• Foldable design — Feel organized and prepared for any journey\n• Built-in microphone — Sound professional and confident in every call\n• Premium comfort — Focus on your work, not your headphones",
         metadata: {
-          frameworks: ["Ladder of Benefits"],
+          frameworks: ["Ladder of Benefits: 4 discrete ladders for battery, Bluetooth, foldable, audio features"],
           enrichmentSources: ["Customer reviews: Comfort rated 4.6/5", "Top features mentioned: Battery, Foldability"]
         }
       },
