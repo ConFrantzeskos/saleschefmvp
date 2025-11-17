@@ -27,9 +27,9 @@ export const enhancementTasks: EnhancementTask[] = [
   {
     id: 'ladder-of-benefits',
     title: 'Ladder of Benefits',
-    description: 'Transforming features into emotional and social identity value',
+    description: 'Climbing from features through benefits to emotional and social outcomes',
     icon: TrendingUp,
-    details: ['Feature → Functional → Emotional → Social', 'Value hierarchy mapping', 'Identity signals', 'Psychological rewards'],
+    details: ['Feature → Feature Benefit → Consumer Benefit → Emotional/Social', 'Discrete ladders per feature', 'Value progression', 'Outcome-based positioning'],
     statusMessage: 'Climbing benefit ladder for 3 products...',
     duration: 0.9
   },

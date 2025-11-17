@@ -276,12 +276,12 @@ RETAIL_PRICE,USD_79.99`;
                       <Badge className="bg-primary/10 text-primary border-primary/40">Ladder of Benefits</Badge>
                     </h4>
                     <div className="text-sm space-y-1">
-                      <p className="font-medium">Climbing from features to emotional value:</p>
+                      <p className="font-medium">4-level ladder (Battery Feature example):</p>
                       <ul className="space-y-1 text-muted-foreground ml-4">
-                        <li>🔧 Feature: 24-hour battery, Bluetooth 5.0, Foldable</li>
-                        <li>⚙️ Functional: Never runs out during workday, stays connected</li>
-                        <li>💚 Emotional: Feel confident, stress-free, in control</li>
-                        <li>👥 Social: Signal professionalism, appear prepared</li>
+                        <li>🔧 Feature: 24-hour continuous battery life</li>
+                        <li>⚡ Feature Benefit: Never need to charge mid-day</li>
+                        <li>🎯 Consumer Benefit: Perfect for all-day work, long flights, gaming</li>
+                        <li>❤️ Emotional/Social: Your home becomes the reliable hub where you're always powered up</li>
                       </ul>
                     </div>
                   </div>

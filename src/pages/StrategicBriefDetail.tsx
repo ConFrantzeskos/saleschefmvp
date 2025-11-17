@@ -106,57 +106,117 @@ const StrategicBriefDetail = () => {
           <Section title="1. Ladder of Benefits" icon={TrendingUp} defaultOpen={true}>
             <div className="mb-4 p-4 bg-muted/30 rounded-lg">
               <p className="text-sm text-muted-foreground">
-                Transforms product features into increasingly powerful consumer motivations, climbing from functional to social identity.
+                Climbs from product features through benefits to emotional and social outcomes. Each major feature gets its own discrete ladder.
               </p>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-6">
+              {/* Ladder 1: Battery */}
               <div className="relative pl-6 pb-4 border-l-2 border-primary/30">
                 <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
+                <div className="mb-2">
+                  <Badge variant="outline" className="text-xs">Ladder 1: Battery Feature</Badge>
+                </div>
                 <div className="space-y-2">
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground">Feature (What it has):</span>
-                    <p className="text-sm font-medium">24-hour battery life, Bluetooth 5.0, foldable design</p>
+                    <span className="text-xs font-medium text-muted-foreground">Feature:</span>
+                    <p className="text-sm font-medium">24-hour continuous battery life</p>
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground">→ Functional Benefit (What it does):</span>
-                    <p className="text-sm">Listen all day without charging, seamless device switching, portable for travel</p>
+                    <span className="text-xs font-medium text-muted-foreground">→ Feature Benefit:</span>
+                    <p className="text-sm">Never need to charge mid-day</p>
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground">→ Emotional Benefit (How it makes you feel):</span>
-                    <p className="text-sm">Feel liberated, stress-free, immersed in your world</p>
+                    <span className="text-xs font-medium text-muted-foreground">→ Consumer Benefit:</span>
+                    <p className="text-sm">Perfect for all-day work, long flights, marathon gaming sessions</p>
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground">→ Social Benefit (What it says about you):</span>
-                    <p className="text-sm font-medium text-primary">"I'm productive and prepared" / "I value quality experiences"</p>
+                    <span className="text-xs font-medium text-muted-foreground">→ Emotional/Social Benefit:</span>
+                    <p className="text-sm font-medium text-primary">Your home becomes the reliable hub where work, entertainment, and family know you're always powered up</p>
                   </div>
                 </div>
               </div>
 
+              {/* Ladder 2: Foldable Design */}
               <div className="relative pl-6 pb-4 border-l-2 border-primary/30">
                 <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
+                <div className="mb-2">
+                  <Badge variant="outline" className="text-xs">Ladder 2: Foldable Design</Badge>
+                </div>
                 <div className="space-y-2">
                   <div>
                     <span className="text-xs font-medium text-muted-foreground">Feature:</span>
-                    <p className="text-sm font-medium">Premium sound drivers, noise isolation</p>
+                    <p className="text-sm font-medium">Patented fold mechanism (reduces to 50% size)</p>
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground">→ Functional Benefit:</span>
-                    <p className="text-sm">Crystal clear audio, blocks distractions</p>
+                    <span className="text-xs font-medium text-muted-foreground">→ Feature Benefit:</span>
+                    <p className="text-sm">Compact portability without compromising structure</p>
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground">→ Emotional Benefit:</span>
-                    <p className="text-sm">Feel focused, energized, in control</p>
+                    <span className="text-xs font-medium text-muted-foreground">→ Consumer Benefit:</span>
+                    <p className="text-sm">Perfect for business travel, gym bags, daily commuting</p>
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground">→ Social Benefit:</span>
-                    <p className="text-sm font-medium text-primary">"I'm a professional who invests in quality"</p>
+                    <span className="text-xs font-medium text-muted-foreground">→ Emotional/Social Benefit:</span>
+                    <p className="text-sm font-medium text-primary">You'll be known as the smart traveler who never sacrifices quality for convenience</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ladder 3: Premium Audio */}
+              <div className="relative pl-6 pb-4 border-l-2 border-primary/30">
+                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
+                <div className="mb-2">
+                  <Badge variant="outline" className="text-xs">Ladder 3: Audio Quality</Badge>
+                </div>
+                <div className="space-y-2">
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">Feature:</span>
+                    <p className="text-sm font-medium">40mm neodymium drivers with active noise isolation</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Feature Benefit:</span>
+                    <p className="text-sm">Studio-quality sound with zero distractions</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Consumer Benefit:</span>
+                    <p className="text-sm">Perfect for critical listening, professional calls, immersive content</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Emotional/Social Benefit:</span>
+                    <p className="text-sm font-medium text-primary">Your workspace transforms into a professional studio that commands respect</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ladder 4: Bluetooth 5.0 */}
+              <div className="relative pl-6 pb-4 border-l-2 border-primary/30">
+                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
+                <div className="mb-2">
+                  <Badge variant="outline" className="text-xs">Ladder 4: Bluetooth Connectivity</Badge>
+                </div>
+                <div className="space-y-2">
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">Feature:</span>
+                    <p className="text-sm font-medium">Bluetooth 5.0 with 30m range</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Feature Benefit:</span>
+                    <p className="text-sm">Stable, instant connection across rooms</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Consumer Benefit:</span>
+                    <p className="text-sm">Perfect for presentations, office mobility, multi-device switching</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">→ Emotional/Social Benefit:</span>
+                    <p className="text-sm font-medium text-primary">You'll feel confident and tech-savvy, never fumbling with connections</p>
                   </div>
                 </div>
               </div>
 
               <div className="p-4 bg-primary/10 rounded-lg border border-primary/20 mt-4">
                 <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
-                <p className="text-sm">Humans don't buy features; they buy better versions of themselves. Emotional benefits drive 70% of purchasing decisions, social benefits drive word-of-mouth.</p>
+                <p className="text-sm">Each feature climbs through 4 distinct levels of value. Customers make purchase decisions based on the top rungs — the emotional and social outcomes that matter most. By building discrete ladders, we precisely articulate how each feature transforms into meaningful life improvements.</p>
               </div>
             </div>
           </Section>

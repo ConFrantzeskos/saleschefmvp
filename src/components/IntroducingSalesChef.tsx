@@ -232,8 +232,9 @@ const IntroducingSalesChef = () => {
             <div className="font-medium mb-1">Ladder of Benefits:</div>
             <div className="text-xs space-y-1">
               <div>• Feature: 24hr battery</div>
-              <div>• Benefit: Uninterrupted work</div>
-              <div>• Emotional: Peace of mind</div>
+              <div>• Feature Benefit: Never charge mid-day</div>
+              <div>• Consumer Benefit: Perfect for all-day work</div>
+              <div>• Emotional/Social: Always powered up</div>
             </div>
           </div>
           
