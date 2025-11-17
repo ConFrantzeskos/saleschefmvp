@@ -4,12 +4,16 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
 import AssetHeader from '@/components/AssetHeader';
 import FactoryDataSection from '@/components/FactoryDataSection';
 import EnhancedContentSection from '@/components/EnhancedContentSection';
 import GeneratedVisualContent from '@/components/GeneratedVisualContent';
 import IntelligenceSummaryPanel from '@/components/IntelligenceSummaryPanel';
+import TransformationFlow from '@/components/TransformationFlow';
+import EnrichmentTraceability from '@/components/EnrichmentTraceability';
+import FrameworkApplications from '@/components/FrameworkApplications';
 import { contentSections } from '@/data/contentSections';
 import { Asset } from '@/types/asset';
 import { ArrowRight, Database, TrendingUp, Brain, FileText } from 'lucide-react';
@@ -146,23 +150,35 @@ RETAIL_PRICE,USD_79.99`;
           <TabsList className="grid w-full grid-cols-4 mb-6">
             <TabsTrigger value="raw" className="flex items-center gap-2">
               <Database className="w-4 h-4" />
-              <span className="hidden sm:inline">1. Raw Data</span>
-              <span className="sm:hidden">Raw</span>
+              <div className="flex flex-col items-start">
+                <span className="hidden sm:inline">1. Raw Data</span>
+                <span className="sm:hidden">Raw</span>
+                <span className="text-xs text-muted-foreground font-normal hidden lg:inline">Starting Point</span>
+              </div>
             </TabsTrigger>
             <TabsTrigger value="enrichment" className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
-              <span className="hidden sm:inline">2. Intelligence</span>
-              <span className="sm:hidden">Intel</span>
+              <div className="flex flex-col items-start">
+                <span className="hidden sm:inline">2. Intelligence</span>
+                <span className="sm:hidden">Intel</span>
+                <span className="text-xs text-muted-foreground font-normal hidden lg:inline">Market Intelligence Added</span>
+              </div>
             </TabsTrigger>
             <TabsTrigger value="frameworks" className="flex items-center gap-2">
               <Brain className="w-4 h-4" />
-              <span className="hidden sm:inline">3. Frameworks</span>
-              <span className="sm:hidden">Strat</span>
+              <div className="flex flex-col items-start">
+                <span className="hidden sm:inline">3. Frameworks</span>
+                <span className="sm:hidden">Strat</span>
+                <span className="text-xs text-muted-foreground font-normal hidden lg:inline">Strategic Frameworks Applied</span>
+              </div>
             </TabsTrigger>
             <TabsTrigger value="content" className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
-              <span className="hidden sm:inline">4. Content</span>
-              <span className="sm:hidden">Output</span>
+              <div className="flex flex-col items-start">
+                <span className="hidden sm:inline">4. Content</span>
+                <span className="sm:hidden">Output</span>
+                <span className="text-xs text-muted-foreground font-normal hidden lg:inline">Production-Ready Content</span>
+              </div>
             </TabsTrigger>
           </TabsList>
 
@@ -185,7 +201,34 @@ RETAIL_PRICE,USD_79.99`;
                   <Badge variant="outline">Chinglish Detected</Badge>
                   <ArrowRight className="w-4 h-4" />
                   <Badge variant="outline" className="bg-green-500/10 text-green-700 border-green-500/40">Cleaned</Badge>
+                  <ArrowRight className="w-4 h-4" />
+                  <Badge variant="outline" className="bg-blue-500/10 text-blue-700 border-blue-500/40">Used in 24 content pieces</Badge>
                 </div>
+
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold mb-3">Key Fields → Content Usage</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="border rounded-lg p-3 bg-background">
+                      <p className="text-xs font-semibold text-muted-foreground mb-1">BATTERY_LIFE</p>
+                      <Badge variant="secondary" className="text-xs">Used in 9 pieces</Badge>
+                    </div>
+                    <div className="border rounded-lg p-3 bg-background">
+                      <p className="text-xs font-semibold text-muted-foreground mb-1">BLUETOOTH_VERSION</p>
+                      <Badge variant="secondary" className="text-xs">Used in 6 pieces</Badge>
+                    </div>
+                    <div className="border rounded-lg p-3 bg-background">
+                      <p className="text-xs font-semibold text-muted-foreground mb-1">FOLDABLE</p>
+                      <Badge variant="secondary" className="text-xs">Used in 6 pieces</Badge>
+                    </div>
+                    <div className="border rounded-lg p-3 bg-background">
+                      <p className="text-xs font-semibold text-muted-foreground mb-1">MIC_TYPE</p>
+                      <Badge variant="secondary" className="text-xs">Used in 5 pieces</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <TransformationFlow />
+                
                 <FactoryDataSection consolidatedRawData={consolidatedRawData} />
               </CardContent>
             </Card>
@@ -253,6 +296,10 @@ RETAIL_PRICE,USD_79.99`;
                     </ul>
                   </div>
                 </div>
+
+                <Separator className="my-6" />
+
+                <EnrichmentTraceability />
               </CardContent>
             </Card>
           </TabsContent>
@@ -332,6 +379,10 @@ RETAIL_PRICE,USD_79.99`;
                     </div>
                   </div>
                 </div>
+
+                <Separator className="my-6" />
+
+                <FrameworkApplications />
               </CardContent>
             </Card>
           </TabsContent>
@@ -354,8 +405,13 @@ RETAIL_PRICE,USD_79.99`;
                 />
               </div>
 
-              {/* Right Column - Enhanced Content */}
+              {/* Right Column - Production-Ready Content */}
               <div className="lg:col-span-8 flex flex-col">
+                <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-sm text-green-800">
+                    <span className="font-semibold">📋 Final Deliverables:</span> Production-ready content, polished and ready to deploy. All strategic annotations removed.
+                  </p>
+                </div>
                 <EnhancedContentSection
                   contentSections={contentSections}
                   editingField={editingField}
@@ -364,6 +420,7 @@ RETAIL_PRICE,USD_79.99`;
                   onSave={handleSave}
                   onCancel={handleCancel}
                   onEditValueChange={handleEditValueChange}
+                  showMetadata={false}
                 />
               </div>
             </div>
