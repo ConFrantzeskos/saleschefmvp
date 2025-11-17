@@ -27,36 +27,36 @@ const localEvents: LocalEvent[] = [
     location: 'Greater Sydney',
     radius: '50km radius',
     icon: '☀️',
-    contentRecommendation: 'Highlight cooling products, hydration, sun protection. Add "beat the heat" messaging to product titles and descriptions.',
-    strategicInsight: '5-day heatwave forecast 38-42°C. Historical data shows +145% spike in cooling product searches during extreme heat. Update content 48 hours before heatwave starts.',
-    expectedImpact: '+145% cooling products',
-    targetAudience: 'All demographics'
+    contentRecommendation: 'Promote air conditioners, portable cooling units, smart fans, and energy-efficient cooling solutions. Highlight "beat the heat with smart cooling" and energy savings messaging. Feature solar-powered devices and backup power solutions.',
+    strategicInsight: '5-day heatwave forecast 38-42°C. Electronics retailers see +165% surge in cooling appliance sales during extreme heat. Smart home cooling systems and portable AC units sell out within 24 hours. Update content 48 hours before heatwave starts.',
+    expectedImpact: '+165% cooling electronics',
+    targetAudience: 'Homeowners, renters, families'
   },
   {
-    id: 'bondi-farmers-market',
-    name: 'Bondi Farmers Market',
+    id: 'bondi-tech-meetup',
+    name: 'Eastern Suburbs Tech Community Meetup',
     date: '2025-11-24',
     category: 'Local Event',
     location: 'Bondi, Sydney',
     radius: '10km radius (Eastern Suburbs)',
-    icon: '🎪',
-    contentRecommendation: 'Promote reusable shopping bags, food storage, picnic gear. Target eco-conscious shoppers with sustainability messaging.',
-    strategicInsight: 'Weekly event attracts 5,000+ visitors. Premium demographic with high spending power. Eastern Suburbs shoppers prioritize quality and sustainability.',
-    expectedImpact: '+80% reusable products',
-    targetAudience: 'Eco-conscious, families'
+    icon: '💻',
+    contentRecommendation: 'Showcase latest laptops, tablets, accessories, and smart devices. Target tech-savvy Eastern Suburbs professionals with premium positioning. "Tech that powers innovation" messaging.',
+    strategicInsight: 'Eastern Suburbs has highest tech adoption rate in Sydney. Premium demographic with $150K+ average household income. Strong appetite for latest gadgets and smart home devices. Tech community events drive store foot traffic +90%.',
+    expectedImpact: '+125% premium electronics',
+    targetAudience: 'Tech professionals, early adopters'
   },
   {
-    id: 'sydney-swans-finals',
-    name: 'Sydney Swans Finals at SCG',
-    date: '2025-11-23',
+    id: 'ashes-test-scg',
+    name: 'The Ashes: 4th Test at SCG',
+    date: '2026-01-03',
     category: 'Sports',
     location: 'Sydney Cricket Ground, Moore Park',
-    radius: '15km radius',
-    icon: '⚽',
-    contentRecommendation: 'Push team merchandise, entertainment supplies, transportation products. "Game day ready" messaging resonates strongly.',
-    strategicInsight: '45,000+ attendees expected. Surge in pre-game purchases 48 hours prior. Post-game celebration purchases spike if team wins.',
-    expectedImpact: '+120% team merchandise',
-    targetAudience: 'Sports fans, families'
+    radius: '25km radius',
+    icon: '🏏',
+    contentRecommendation: 'Promote premium TVs and home theater systems for ultimate viewing experience. Highlight portable chargers, wireless speakers, and camera equipment for attendees. "Experience every ball in stunning clarity" messaging drives home entertainment upgrades.',
+    strategicInsight: 'The Ashes is cricket\'s biggest rivalry. 5-day test attracts 40,000+ daily attendees plus millions watching at home. TV and home entertainment sales spike 200% during major cricket events. Attendees need portable tech (power banks, bluetooth speakers, headphones). Home viewers upgrade TVs and sound systems.',
+    expectedImpact: '+220% home entertainment',
+    targetAudience: 'Sports fans, home entertainment enthusiasts, cricket lovers'
   },
   {
     id: 'melbourne-cold-snap',
@@ -66,10 +66,10 @@ const localEvents: LocalEvent[] = [
     location: 'Greater Melbourne',
     radius: '80km radius',
     icon: '❄️',
-    contentRecommendation: 'Feature heating products, warm clothing, indoor entertainment. "Stay cozy" and "unexpected cold" messaging.',
-    strategicInsight: 'Unexpected late-spring cold snap (8-12°C). Weather surprises drive impulse heating purchases. Emergency heater sales spike 300% during cold snaps.',
-    expectedImpact: '+95% heating',
-    targetAudience: 'All demographics'
+    contentRecommendation: 'Feature portable heaters, electric blankets, smart thermostats, and energy-efficient heating solutions. "Stay warm and save energy" positioning. Highlight smart home heating automation.',
+    strategicInsight: 'Unexpected late-spring cold snap (8-12°C) drives emergency heating electronics purchases. Portable heater sales spike 320% during cold snaps. Smart thermostats and energy monitoring devices see sustained demand as customers seek cost-effective heating.',
+    expectedImpact: '+320% heating electronics',
+    targetAudience: 'Homeowners, renters, energy-conscious buyers'
   },
   {
     id: 'westfield-parramatta',
@@ -79,10 +79,10 @@ const localEvents: LocalEvent[] = [
     location: 'Parramatta, Sydney',
     radius: '20km radius (Western Sydney)',
     icon: '🏗️',
-    contentRecommendation: 'Leverage grand opening foot traffic. Premium product positioning for new shoppers discovering your brand.',
-    strategicInsight: 'Major retail expansion bringing 10,000+ visitors daily. New demographic access to previously underserved Western Sydney market.',
-    expectedImpact: '+200% local traffic',
-    targetAudience: 'Western Sydney residents'
+    contentRecommendation: 'Major in-store electronics demonstrations and exclusive launch deals. Showcase smart home setups, gaming stations, and home theater experiences. "Experience before you buy" interactive displays drive traffic.',
+    strategicInsight: 'Major retail expansion bringing 10,000+ visitors daily. Western Sydney electronics market is underserved - huge opportunity for market share. Experiential retail drives +250% conversion rates. Grand opening shoppers have high intent and spending power.',
+    expectedImpact: '+250% store traffic & demos',
+    targetAudience: 'Western Sydney families, tech buyers'
   },
   {
     id: 'nsw-school-holidays',
@@ -91,10 +91,10 @@ const localEvents: LocalEvent[] = [
     category: 'School/University',
     location: 'NSW (Statewide)',
     icon: '🎓',
-    contentRecommendation: 'Holiday entertainment, travel supplies, family activity products. "Keep kids entertained" angle drives parent purchases.',
-    strategicInsight: 'NSW holidays start earlier than VIC. Pre-holiday shopping peaks 10 days prior. Parents seek entertainment and travel solutions.',
-    expectedImpact: '+110% family products',
-    targetAudience: 'Parents, families'
+    contentRecommendation: 'Gaming consoles, tablets, educational tech, headphones, and portable entertainment devices. "Keep kids entertained and learning" positioning. Bundle deals on family tech packages drive basket size.',
+    strategicInsight: 'NSW holidays start earlier than VIC - first-mover advantage. Parents purchase entertainment electronics 10-14 days before holidays. Gaming console sales +180%, tablets +140%, educational tech +95%. Travel-friendly electronics (portable chargers, tablets, Switch) peak demand.',
+    expectedImpact: '+180% gaming & tablets',
+    targetAudience: 'Parents, families with children'
   },
   {
     id: 'newtown-festival',
@@ -104,10 +104,10 @@ const localEvents: LocalEvent[] = [
     location: 'Newtown, Sydney',
     radius: '5km radius (Inner West)',
     icon: '🏘️',
-    contentRecommendation: 'Street festival supplies, portable seating, sun protection, hydration. "Festival ready" messaging for young, hip demographic.',
-    strategicInsight: 'Annual festival attracts 80,000+ visitors. Hip, young demographic with high purchasing intent. Inner West shoppers value local, unique products.',
-    expectedImpact: '+160% outdoor products',
-    targetAudience: 'Young adults, families'
+    contentRecommendation: 'Portable Bluetooth speakers, wireless headphones, power banks, action cameras, and mobile photography accessories. "Capture and share every moment" positioning for social-media-savvy demographic.',
+    strategicInsight: 'Annual festival attracts 80,000+ visitors. Young, tech-savvy Inner West demographic (25-35 years) prioritizes portable audio, smartphone accessories, and content creation tools. Bluetooth speaker sales +180% during festival season.',
+    expectedImpact: '+180% portable audio/tech',
+    targetAudience: 'Young adults, content creators, music lovers'
   },
   {
     id: 'brisbane-storm-season',
@@ -117,10 +117,10 @@ const localEvents: LocalEvent[] = [
     location: 'Brisbane & SE Queensland',
     radius: '100km radius',
     icon: '⛈️',
-    contentRecommendation: 'Emergency preparedness, waterproof products, indoor entertainment, power backup solutions. Safety-first messaging.',
-    strategicInsight: 'Summer storm season = insurance claims and preventive purchases spike. Queenslanders proactively prepare for storm season.',
-    expectedImpact: '+70% emergency supplies',
-    targetAudience: 'Homeowners, families'
+    contentRecommendation: 'UPS systems, surge protectors, backup power solutions, waterproof electronics, and battery backup systems. "Protect your tech investment" safety-first messaging resonates.',
+    strategicInsight: 'Summer storm season = surge in power protection electronics. Queensland storms cause $200M+ in electronics damage annually. Smart homeowners invest in surge protection (+240%), UPS systems (+180%), and backup batteries. Insurance claim spike drives replacement purchases.',
+    expectedImpact: '+240% power protection',
+    targetAudience: 'Homeowners, home office workers'
   },
   {
     id: 'usyd-exams',
@@ -130,23 +130,23 @@ const localEvents: LocalEvent[] = [
     location: 'Sydney inner suburbs (Camperdown, Newtown, Redfern)',
     radius: '8km radius',
     icon: '📚',
-    contentRecommendation: 'Study supplies, focus aids, energy drinks, comfort food. "Exam survival" and "you got this" motivational messaging.',
-    strategicInsight: '50,000+ students in exam mode. Stress purchases and late-night studying supplies spike. Students seek productivity and comfort.',
-    expectedImpact: '+85% study supplies',
-    targetAudience: 'University students'
+    contentRecommendation: 'Noise-cancelling headphones, laptops, tablet accessories, desk lamps, ergonomic peripherals, and productivity tech. "Peak performance tech for peak performance" messaging targets stressed students seeking competitive advantage.',
+    strategicInsight: '50,000+ students in exam mode. Last-minute tech purchases spike 72 hours before exams. Noise-cancelling headphones +195%, laptop accessories +120%, blue light glasses +85%. Students justify premium purchases as "study investment." Target inner-city study cafes and libraries for local advertising.',
+    expectedImpact: '+195% study tech',
+    targetAudience: 'University students, postgrads'
   },
   {
-    id: 'bondi-lifeguard-season',
-    name: 'Bondi Beach Lifeguard Season Opens',
+    id: 'bondi-beach-summer',
+    name: 'Bondi Beach Summer Season Peak',
     date: '2025-12-01',
     category: 'Seasonal Regional',
     location: 'Bondi Beach, Eastern Suburbs',
     radius: '12km radius',
-    icon: '🌱',
-    contentRecommendation: 'Beach safety equipment, sun protection, surf gear. "Safe summer" and "official season" messaging builds trust.',
-    strategicInsight: 'Official patrol season opening = summer beach season kickoff. Safety-conscious purchases surge. Iconic beach location drives tourism.',
-    expectedImpact: '+110% beach gear',
-    targetAudience: 'Beach-goers, tourists, families'
+    icon: '🏖️',
+    contentRecommendation: 'Waterproof action cameras (GoPro), portable Bluetooth speakers, power banks, waterproof phone cases, underwater photography equipment. "Capture every wave, protect every device" messaging for beach lifestyle.',
+    strategicInsight: 'Official summer season = massive spike in beach electronics. Waterproof speakers +210%, action cameras +175%, waterproof accessories +190%. Eastern Suburbs demographic has high disposable income for premium beach tech. Tourist purchases add 40% volume. Bondi = content creation hub - influencers drive trends.',
+    expectedImpact: '+210% beach electronics',
+    targetAudience: 'Beach-goers, tourists, content creators, water sports enthusiasts'
   },
   {
     id: 'adelaide-fringe',
@@ -156,10 +156,10 @@ const localEvents: LocalEvent[] = [
     location: 'Adelaide CBD & surrounding',
     radius: '30km radius',
     icon: '🎭',
-    contentRecommendation: 'Entertainment, hospitality, accommodation-related products. Target festival-goers and out-of-state visitors.',
-    strategicInsight: "Australia's biggest arts festival. 1 million+ attendees over 4 weeks. Major tourism event with high-spending interstate visitors.",
-    expectedImpact: '+190% arts/entertainment',
-    targetAudience: 'Arts lovers, tourists'
+    contentRecommendation: 'Content creation gear: cameras, microphones, portable lighting, mobile recording studios, livestream equipment. Target performers, content creators, and amateur photographers documenting festival experiences.',
+    strategicInsight: "Australia's biggest arts festival. 1 million+ attendees over 4 weeks = massive content creation opportunity. Performers need audio equipment, content creators need cameras/lighting (+165%), tourists upgrade phones for photography. Major tourism event = high-value tech purchases from interstate visitors.",
+    expectedImpact: '+165% content creation tech',
+    targetAudience: 'Content creators, performers, photographers, tourists'
   },
   {
     id: 'sydney-mardi-gras',
@@ -168,11 +168,11 @@ const localEvents: LocalEvent[] = [
     category: 'Cultural',
     location: 'Oxford St, Darlinghurst, Sydney',
     radius: '10km radius',
-    icon: '🎭',
-    contentRecommendation: 'Celebration supplies, fashion, pride merchandise. Inclusive, celebratory messaging. Authentic LGBTQ+ brand values resonate.',
-    strategicInsight: '300,000+ attendees. Major international tourism event with high spending visitors. Month-long festival leading up to parade.',
-    expectedImpact: '+205% celebration products',
-    targetAudience: 'LGBTQ+ community, allies, tourists'
+    icon: '🌈',
+    contentRecommendation: 'LED lighting, portable speakers, smartphone gimbals, action cameras, and professional photography equipment. Target parade participants and spectators creating content. "Light up the night" and "capture pride" messaging.',
+    strategicInsight: '300,000+ attendees = huge content capture moment. Parade participants need LED wearables, portable audio (+190%). Spectators upgrade cameras and phones for once-a-year shots. Month-long festival = sustained tech purchasing window. High-spending LGBTQ+ community + international tourists.',
+    expectedImpact: '+190% lighting/audio/cameras',
+    targetAudience: 'LGBTQ+ community, content creators, photographers, tourists'
   },
   {
     id: 'barossa-vintage',
@@ -195,23 +195,23 @@ const localEvents: LocalEvent[] = [
     location: 'Thredbo, NSW Snowy Mountains',
     radius: '40km radius',
     icon: '⛷️',
-    contentRecommendation: 'Ski equipment, winter sports gear, accommodation booking tools. "First tracks" and "opening weekend" urgency messaging.',
-    strategicInsight: "First major ski weekend. Equipment purchases peak 2 weeks prior. Queen's Birthday long weekend drives bookings.",
-    expectedImpact: '+180% winter sports',
-    targetAudience: 'Snow sports enthusiasts, families'
+    contentRecommendation: 'Action cameras (GoPro), heated electronics, GPS devices, portable chargers, waterproof cases, drone photography equipment. "Capture every run" messaging for snow sports enthusiasts seeking to document alpine adventures.',
+    strategicInsight: "First major ski weekend = gear-up moment. Action cameras +285% (essential for snow content), heated gloves/socks +140%, GPS tracking +95%. Queen's Birthday long weekend = premium tech buyers. Drone photography boom in alpine regions. Power banks critical for cold weather battery drain.",
+    expectedImpact: '+285% action cameras/GPS',
+    targetAudience: 'Snow sports enthusiasts, adventure seekers, families'
   },
   {
-    id: 'darwin-mango-season',
-    name: 'Darwin Mango Season Peak',
+    id: 'darwin-wet-season',
+    name: 'Darwin Wet Season Peak',
     date: '2025-12-01',
-    category: 'Seasonal Regional',
+    category: 'Weather',
     location: 'Darwin & NT',
     radius: 'Territory-wide',
-    icon: '🥭',
-    contentRecommendation: 'Tropical fruit equipment, preservation supplies, cooling products. Highlight Northern Territory premium quality produce.',
-    strategicInsight: 'Peak tropical fruit season drives regional purchasing patterns. NT mangoes are premium export product. Local pride strong.',
-    expectedImpact: '+60% food preservation',
-    targetAudience: 'Local residents, food enthusiasts'
+    icon: '🌧️',
+    contentRecommendation: 'Waterproof electronics, dehumidifiers, weather stations, outdoor cameras with weatherproofing, sealed power banks. "Built for the tropics" and humidity-resistance messaging critical for NT market.',
+    strategicInsight: 'Wet season = extreme humidity damages electronics. NT residents proactively invest in waterproofing (+170%), dehumidifiers (+140%), weather monitoring (+85%). Outdoor security cameras with tropical weatherproofing essential. Premium market willing to pay for durability.',
+    expectedImpact: '+170% weatherproof tech',
+    targetAudience: 'NT residents, homeowners, outdoor enthusiasts'
   },
   {
     id: 'melbourne-comedy-festival',
@@ -221,10 +221,10 @@ const localEvents: LocalEvent[] = [
     location: 'Melbourne CBD',
     radius: '25km radius',
     icon: '🎭',
-    contentRecommendation: 'Entertainment, hospitality, accommodation products. Target comedy fans and interstate visitors with fun, upbeat messaging.',
-    strategicInsight: 'Major international event. 700,000+ tickets sold annually. Month-long event drives sustained hospitality and entertainment spending.',
-    expectedImpact: '+125% entertainment',
-    targetAudience: 'Comedy fans, tourists'
+    contentRecommendation: 'Streaming devices, home entertainment systems, smart TVs, soundbars for venue quality at home. Position premium home theater as "bring the festival home." Target interstate visitors upgrading hotel room entertainment tech.',
+    strategicInsight: 'Major international event with 700,000+ tickets = sold-out shows drive home streaming alternatives. Comedy fans invest in quality audio (soundbars +115%) for standup streaming. Month-long event = sustained tech purchasing. Visitors from interstate = electronics tourism (tax-free shopping for some states).',
+    expectedImpact: '+115% home entertainment',
+    targetAudience: 'Comedy fans, home entertainment enthusiasts, tourists'
   },
   {
     id: 'ekka-brisbane',
@@ -234,10 +234,10 @@ const localEvents: LocalEvent[] = [
     location: 'Brisbane Showgrounds, Bowen Hills',
     radius: '30km radius',
     icon: '🎡',
-    contentRecommendation: 'Family entertainment, agricultural products, show bags, outdoor gear. "Ekka excitement" and Queensland tradition messaging.',
-    strategicInsight: "Queensland's biggest event. 400,000+ attendees. QLD public holiday Aug 14 = long weekend planning. Show bags nostalgia strong.",
-    expectedImpact: '+150% family entertainment',
-    targetAudience: 'Families, Queensland residents'
+    contentRecommendation: 'Cameras, memory cards, portable chargers, family mobile plans, kids tablets, and smartphone accessories. "Capture family memories" messaging. Position as essential gear for full-day event with heavy camera/phone usage.',
+    strategicInsight: "Queensland's biggest event with 400,000+ attendees. Families shoot hundreds of photos = memory cards sell out (+230%), portable chargers essential (+195%). Kids demand tablet entertainment during event. QLD public holiday = long weekend tech shopping. Show bags = impulse tech accessory purchases.",
+    expectedImpact: '+230% photography accessories',
+    targetAudience: 'Families, Queensland residents, photographers'
   },
   {
     id: 'perth-uv-alert',
@@ -247,36 +247,36 @@ const localEvents: LocalEvent[] = [
     location: 'Perth & surrounding',
     radius: '60km radius',
     icon: '☀️',
-    contentRecommendation: 'Sunscreen, hats, protective clothing, shade solutions. "Extreme UV" and skin safety messaging. Medical authority tone.',
-    strategicInsight: 'Perth has highest UV levels in Australia. Sun safety compliance high. Weekend outdoor activities drive protection product purchases.',
-    expectedImpact: '+130% sun protection',
-    targetAudience: 'Outdoor enthusiasts, families, parents'
+    contentRecommendation: 'UV monitoring wearables, smart watches with sun exposure tracking, outdoor security cameras with anti-UV coating, car dash cams with heat resistance. "Protect what matters" tech positioning.',
+    strategicInsight: 'Perth has highest UV levels in Australia = electronics damage risk. UV wearables (+145%) track safe sun exposure. Heat-resistant dash cams essential (car interiors reach 70°C+). Outdoor security cameras need UV-resistant coating. Health-conscious Perth market invests in monitoring tech.',
+    expectedImpact: '+145% UV-monitoring tech',
+    targetAudience: 'Health-conscious buyers, outdoor enthusiasts, families, drivers'
   },
   {
-    id: 'manly-sea-eagles',
-    name: 'Manly Sea Eagles Junior Finals',
-    date: '2025-12-08',
+    id: 'northern-beaches-boxing-day-test',
+    name: 'Boxing Day Test at SCG - Northern Beaches Gathering',
+    date: '2025-12-26',
     category: 'Sports',
     location: 'Manly, Northern Beaches',
-    radius: '15km radius',
-    icon: '⚽',
-    contentRecommendation: 'Community pride merchandise, team colors, family celebration products. Local pride and grassroots support messaging.',
-    strategicInsight: 'Junior sport creates intense community pride. Parents and families rally around local teams. Merchandise sales strongest in tight-knit suburbs.',
-    expectedImpact: '+95% community merchandise',
-    targetAudience: 'Local families, sports community'
+    radius: '20km radius',
+    icon: '🏏',
+    contentRecommendation: 'Large-screen TVs for viewing parties, outdoor projectors, portable speakers, esky coolers with USB charging, outdoor entertainment packages. "Ultimate Boxing Day setup" for the biggest cricket day of the year.',
+    strategicInsight: 'Boxing Day Test = Australia\'s most-watched cricket match. Northern Beaches communities gather for viewing parties. Large TV sales spike 3 weeks before (+175%). Outdoor projectors for backyard cricket parties (+140%). Portable audio for beach gatherings (+120%). Premium demographic with high spending power.',
+    expectedImpact: '+175% large-screen TVs',
+    targetAudience: 'Cricket fans, Northern Beaches families, entertainment hosts'
   },
   {
-    id: 'randwick-cleanup',
-    name: 'Randwick Council Cleanup Weekend',
+    id: 'eastern-suburbs-home-refresh',
+    name: 'Randwick Home & Tech Expo',
     date: '2025-12-07',
     category: 'Hyper-Local',
     location: 'Randwick, Eastern Suburbs',
-    radius: '5km radius',
+    radius: '8km radius',
     icon: '🏘️',
-    contentRecommendation: 'Cleaning supplies, outdoor gear, waste disposal products. Community participation and environmental responsibility messaging.',
-    strategicInsight: 'Council cleanup events drive local participation. Residents seek to dispose of items and also purchase organization/storage solutions.',
-    expectedImpact: '+50% cleaning/storage',
-    targetAudience: 'Local residents, homeowners'
+    contentRecommendation: 'Smart home devices, security systems, robotic vacuums, smart lighting, home automation packages. "Upgrade your lifestyle" premium positioning for affluent Eastern Suburbs market.',
+    strategicInsight: 'Eastern Suburbs = highest smart home adoption in Sydney. Home expo attracts 3,000+ affluent homeowners actively seeking upgrades. Smart security (+210%), robot vacuums (+180%), whole-home automation (+145%). Local expo = high-intent buyers ready to purchase. Premium suburb = budget not a barrier.',
+    expectedImpact: '+210% smart home tech',
+    targetAudience: 'Affluent homeowners, tech early adopters, Eastern Suburbs residents'
   }
 ];
 

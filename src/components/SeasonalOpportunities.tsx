@@ -22,82 +22,82 @@ const seasonalEvents: SeasonalEvent[] = [
     name: 'Black Friday',
     date: '2025-11-28',
     category: 'Shopping Event',
-    contentRecommendation: 'Update product descriptions with deal-focused language. Emphasize "limited time" and "biggest savings" messaging.',
-    strategicInsight: 'Australian Black Friday has grown 287% since 2020. Early prep beats the noise.',
-    expectedImpact: '+180% traffic'
+    contentRecommendation: 'Feature doorbusters on TVs, laptops, gaming consoles, smart home devices. Emphasize "biggest tech savings of the year" and "doorbuster deals" messaging. Stack offers and bundles.',
+    strategicInsight: 'Australian Black Friday has grown 287% since 2020. Electronics dominate sales: TVs (+290%), laptops (+245%), gaming (+310%). Early prep beats the noise. Bundles drive basket size.',
+    expectedImpact: '+290% electronics traffic'
   },
   {
     id: 'cyber-monday-2025',
     name: 'Cyber Monday',
     date: '2025-12-01',
     category: 'Shopping Event',
-    contentRecommendation: 'Optimize for online-only deals. Add "digital exclusive" and "online savings" to titles.',
-    strategicInsight: 'Online-first Australians spending peaks Monday-Tuesday after Black Friday weekend.',
-    expectedImpact: '+140% conversion'
+    contentRecommendation: 'Online-exclusive tech deals on laptops, tablets, smart home packages, accessories. "Digital doorbusters" and "online-only pricing" drive urgency. Free shipping sweetens deal.',
+    strategicInsight: 'Online-first Australians spending peaks Monday-Tuesday after Black Friday. Electronics buyers comparison shop over weekend, purchase Monday. Online convenience + better selection beats in-store.',
+    expectedImpact: '+240% online electronics'
   },
   {
     id: 'summer-kickoff-2025',
     name: 'Summer Season Kickoff',
     date: '2025-12-01',
     category: 'Seasonal',
-    contentRecommendation: 'Transition to summer lifestyle imagery and copy. Highlight outdoor, beach, and holiday themes.',
-    strategicInsight: 'Australian summer = peak leisure spending. Position products for gifting, holidays, outdoor activities.',
-    expectedImpact: '+65% engagement'
+    contentRecommendation: 'Promote portable speakers, action cameras, waterproof electronics, outdoor projectors, solar chargers. "Summer adventure tech" positioning for outdoor Australian lifestyle.',
+    strategicInsight: 'Australian summer = peak outdoor tech spending. Portable audio (+185%), action cameras (+155%), solar power banks (+140%). Position for beach, camping, BBQs, holidays.',
+    expectedImpact: '+185% portable electronics'
   },
   {
     id: 'christmas-peak-2025',
     name: 'Christmas Shopping Peak',
     date: '2025-12-10',
     category: 'Holiday Shopping',
-    contentRecommendation: 'Add "perfect gift" and "arrives before Christmas" messaging. Update for gift-giving contexts.',
-    strategicInsight: 'Peak Australian online shopping period. Last-minute shoppers dominate Dec 15-23.',
-    expectedImpact: '+220% revenue'
+    contentRecommendation: 'Gift tech bundles: headphones, smart watches, tablets, gaming consoles, smart home devices. "Perfect tech gift" + "arrives before Christmas" urgency messaging critical.',
+    strategicInsight: 'Peak Australian online shopping period. Electronics = #1 gift category. Last-minute shoppers dominate Dec 15-23. Gift guides drive 40% of sales. Bundle positioning increases basket size 65%.',
+    expectedImpact: '+320% gift electronics'
   },
   {
     id: 'boxing-day-2025',
     name: 'Boxing Day Sales',
     date: '2025-12-26',
     category: 'Shopping Event',
-    contentRecommendation: 'Prepare clearance and "new year refresh" content. Emphasize value and fresh-start positioning.',
-    strategicInsight: "Australia's biggest retail event. Bigger than Black Friday for local retailers.",
-    expectedImpact: '+250% traffic'
+    contentRecommendation: 'Clearance pricing on TVs, laptops, last-gen devices. "New year upgrade" and "biggest clearance" messaging. Make room for new models arriving February.',
+    strategicInsight: "Australia's biggest retail event. Bigger than Black Friday for local retailers. Electronics clearance drives foot traffic. TVs (+350%), computing (+280%), home appliances (+240%). Bargain hunters expect aggressive pricing.",
+    expectedImpact: '+350% electronics clearance'
   },
   {
     id: 'nye-resolutions-2026',
     name: 'New Year Resolutions Period',
     date: '2026-01-01',
     category: 'Cultural Event',
-    contentRecommendation: 'Position products for self-improvement, health, organization, and fresh-start goals.',
-    strategicInsight: 'Resolution-driven purchases peak first two weeks of January. Wellness, fitness, home organization surge.',
-    expectedImpact: '+95% fitness category'
+    contentRecommendation: 'Fitness tech (smartwatches, fitness trackers), smart home organization devices, productivity laptops/tablets. "New year, better tech" and self-improvement positioning.',
+    strategicInsight: 'Resolution-driven purchases peak first two weeks of January. Fitness wearables (+210%), smart home (+165%), productivity tech (+145%). Self-improvement mindset = premium willingness.',
+    expectedImpact: '+210% fitness tech'
   },
   {
     id: 'australia-day-2026',
     name: 'Australia Day',
     date: '2026-01-26',
     category: 'National Holiday',
-    contentRecommendation: 'Add patriotic and "Australian-made" positioning where applicable. BBQ, outdoor, and celebration themes.',
-    strategicInsight: 'Long weekend = increased leisure and outdoor product sales. National pride messaging resonates strongly.',
+    contentRecommendation: 'Outdoor entertainment packages: portable projectors, Bluetooth speakers, outdoor TVs, BBQ entertainment systems. "Aussie entertaining" and "long weekend setup" messaging.',
+    strategicInsight: 'Long weekend = increased outdoor entertainment electronics. Portable audio (+140%), outdoor projectors (+120%), TV upgrades for cricket/Triple J Hottest 100 (+95%). National pride = "Australian-made tech" resonates.',
     region: 'National',
-    expectedImpact: '+75% outdoor'
+    expectedImpact: '+140% outdoor entertainment'
   },
   {
     id: 'back-to-school-2026',
     name: 'Back to School',
     date: '2026-01-28',
     category: 'Shopping Period',
-    contentRecommendation: 'Highlight organization, productivity, and educational value. Target parents and students.',
-    strategicInsight: 'Major Australian shopping event. Office supplies, tech, clothing, and home organization categories peak.',
-    expectedImpact: '+160% stationery'
+    contentRecommendation: 'Student laptops, tablets, Chromebooks, study headphones, ergonomic accessories. "Student tech essentials" and educational productivity positioning. Bundle deals on laptop + accessories.',
+    strategicInsight: 'Major Australian shopping event. Student tech dominates: laptops (+280%), tablets (+195%), headphones (+165%). Parents invest in quality tech for educational success. Educational pricing drives premium purchases.',
+    expectedImpact: '+280% student tech'
   },
   {
     id: 'valentines-2026',
     name: "Valentine's Day",
     date: '2026-02-14',
     category: 'Holiday Shopping',
-    contentRecommendation: 'Add romantic gift positioning. Emphasize "thoughtful gift" and "show you care" messaging.',
-    strategicInsight: 'Growing Australian commercial holiday. Jewelry, tech, experiences, and beauty categories spike.',
-    expectedImpact: '+120% gift items'
+    contentRecommendation: 'Tech gift ideas: smartwatches, wireless earbuds, digital photo frames, couples\' tech accessories. "Gifts they\'ll actually use" practical romance positioning.',
+    strategicInsight: 'Growing Australian commercial holiday. Tech now beats traditional gifts - smartwatches (+175%), wireless earbuds (+145%), streaming devices (+95%). Men = primary tech gift buyers. Practical > sentimental.',
+    expectedImpact: '+175% gift tech'
   },
   {
     id: 'easter-2026',
