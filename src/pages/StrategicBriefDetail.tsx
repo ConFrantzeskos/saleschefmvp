@@ -230,19 +230,91 @@ const StrategicBriefDetail = () => {
             </div>
             <div className="space-y-4">
               <Card className="p-4 border-primary/20">
-                <h4 className="font-medium text-foreground mb-3">Primary Job</h4>
+                <h4 className="font-medium text-foreground mb-3">Job #1: Sleeping on Long Flights</h4>
                 <div className="space-y-3">
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground block mb-1">FUNCTIONAL JOB</label>
-                    <p className="text-sm">Enable uninterrupted audio throughout the workday without worrying about battery life</p>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">SITUATION</label>
+                    <p className="text-sm">8-hour red-eye flight, cramped middle seat, crying baby two rows back</p>
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground block mb-1">EMOTIONAL JOB</label>
-                    <p className="text-sm">Make long work sessions more enjoyable and maintain focus in distracting environments</p>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">JOB TO BE DONE</label>
+                    <p className="text-sm">Create a peaceful audio cocoon that blocks disruptions and lasts the entire journey without needing to charge</p>
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground block mb-1">SOCIAL JOB</label>
-                    <p className="text-sm">Project professionalism and tech-savviness in video calls and co-working spaces</p>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">DESIRED OUTCOME</label>
+                    <p className="text-sm">Arrive refreshed and ready for business, not exhausted from noise and interruptions</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 border-primary/20">
+                <h4 className="font-medium text-foreground mb-3">Job #2: Staying Motivated During Workouts</h4>
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">SITUATION</label>
+                    <p className="text-sm">6am gym session, low energy, need to push through a tough cardio session</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">JOB TO BE DONE</label>
+                    <p className="text-sm">Deliver powerful, energizing music that stays secure during movement and never cuts out mid-set</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">DESIRED OUTCOME</label>
+                    <p className="text-sm">Complete the workout feeling accomplished, energized, and proud of pushing through</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 border-primary/20">
+                <h4 className="font-medium text-foreground mb-3">Job #3: Sounding Professional on Client Calls</h4>
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">SITUATION</label>
+                    <p className="text-sm">High-stakes client presentation from home office, kids playing in next room, dog might bark</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">JOB TO BE DONE</label>
+                    <p className="text-sm">Ensure crystal-clear audio quality that makes me sound credible, prepared, and professional despite home chaos</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">DESIRED OUTCOME</label>
+                    <p className="text-sm">Win client confidence and respect, be remembered as polished and competent</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 border-primary/20">
+                <h4 className="font-medium text-foreground mb-3">Job #4: Deep Focus in Open Office</h4>
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">SITUATION</label>
+                    <p className="text-sm">Deadline approaching, open-plan office chaos, colleagues chatting and phones ringing constantly</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">JOB TO BE DONE</label>
+                    <p className="text-sm">Create an invisible "do not disturb" bubble that signals focus while blocking all distractions for 4+ hours</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">DESIRED OUTCOME</label>
+                    <p className="text-sm">Enter flow state, hit the deadline, feel productive and in control of my environment</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-4 border-primary/20">
+                <h4 className="font-medium text-foreground mb-3">Job #5: Making Commute Time Productive</h4>
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">SITUATION</label>
+                    <p className="text-sm">90-minute daily commute on crowded trains, want to learn something instead of scrolling mindlessly</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">JOB TO BE DONE</label>
+                    <p className="text-sm">Transform dead time into learning opportunity by delivering clear podcast/audiobook audio that never runs out of battery</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground block mb-1">DESIRED OUTCOME</label>
+                    <p className="text-sm">Arrive feeling accomplished, educated, and like I'm investing in personal growth daily</p>
                   </div>
                 </div>
               </Card>
@@ -267,7 +339,7 @@ const StrategicBriefDetail = () => {
 
               <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
                 <label className="text-xs font-medium text-muted-foreground block mb-1">WHY IT'S VITAL</label>
-                <p className="text-sm">Products win by solving jobs better, not by having better features. JTBD reveals why customers switch and where disruption opportunities hide.</p>
+                <p className="text-sm">Products win by solving multiple discrete jobs better than competitors. Each job represents a different buying occasion and usage context. By identifying 4-5 core jobs, we maximize market penetration and resonate with diverse customer needs.</p>
               </div>
             </div>
           </Section>

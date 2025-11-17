@@ -53,10 +53,10 @@ export const contentSections: ContentSection[] = [
       },
       {
         label: "Lifestyle Section (Jobs to Be Done)",
-        content: "Designed for professionals who hire headphones to:\n• Transform boring commutes into productive time\n• Stay reliably connected during back-to-back video calls\n• Signal 'focused professional' in open office environments\n• Travel light without sacrificing audio quality",
+        content: "Hire CD1234 headphones for the job of:\n\n✈️ Sleeping on Long Flights\nCreate your peaceful sanctuary on crowded red-eyes. 24-hour battery means no mid-flight charging panic.\n\n💪 Powering Through Workouts\nStay motivated from warm-up to cool-down. Secure fit and sweat-resistant design that never quits on you.\n\n💼 Sounding Professional on Calls\nCrystal-clear microphone makes you the most credible voice in every meeting, whether home or office.\n\n🎯 Achieving Deep Focus\nBlock out open office chaos and enter flow state. Your invisible 'do not disturb' sign.\n\n📚 Transforming Commute Time\nTurn dead travel time into personal growth. Perfect for podcasts, audiobooks, and language learning.",
         metadata: {
-          frameworks: ["Jobs to Be Done"],
-          enrichmentSources: ["Target audience: Remote workers & frequent travelers", "Use cases: Commuting, video calls, travel"]
+          frameworks: ["Jobs to Be Done: 5 discrete jobs"],
+          enrichmentSources: ["Target audience: Remote workers & frequent travelers", "Use cases: Sleep, fitness, calls, focus, learning"]
         }
       },
       {
