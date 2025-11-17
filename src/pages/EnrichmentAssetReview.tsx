@@ -477,14 +477,10 @@ const EnrichmentAssetReview = () => {
             <div className="space-x-3">
               <Button variant="outline" onClick={handleExportBrief}>
                 <Download className="w-4 h-4 mr-2" />
-                Export Brief
-              </Button>
-              <Button onClick={handleSendToContentAgents}>
-                <Send className="w-4 h-4 mr-2" />
-                Send to Content Agents
+                Export Enrichment Research
               </Button>
               <Button onClick={handleApprove}>
-                Approve & Continue
+                Approve & Continue to Enhancement
               </Button>
             </div>
           </div>
