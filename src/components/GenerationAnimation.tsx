@@ -6,22 +6,35 @@ import { Badge } from '@/components/ui/badge';
 
 interface GenerationAnimationProps {
   onComplete: () => void;
+  selectedContentTypes: string[];
 }
 
-const GenerationAnimation = ({ onComplete }: GenerationAnimationProps) => {
+const GenerationAnimation = ({ onComplete, selectedContentTypes }: GenerationAnimationProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [dots, setDots] = useState('');
 
-  const steps = [
-    { text: "Analyzing cleaned factory data...", badge: "Data Processing" },
-    { text: "Integrating market intelligence...", badge: "Enrichment" },
-    { text: "Applying Ladder of Benefits...", badge: "Strategic Framework" },
-    { text: "Activating Jobs to Be Done...", badge: "Strategic Framework" },
-    { text: "Implementing Category Entry Points...", badge: "Strategic Framework" },
-    { text: "Triggering behavioral economics...", badge: "Psychological Triggers" },
-    { text: "Generating optimized content...", badge: "Content Creation" },
-    { text: "Finalizing strategic copy...", badge: "Polish" }
-  ];
+  // Generate dynamic steps based on selected content
+  const generateSteps = () => {
+    const baseSteps = [
+      { text: "Analyzing cleaned factory data...", badge: "Data Processing" },
+      { text: "Integrating market intelligence...", badge: "Enrichment" },
+      { text: "Applying strategic frameworks...", badge: "Strategic Enhancement" }
+    ];
+
+    const contentSteps = selectedContentTypes.map(type => ({
+      text: `Generating ${type}...`,
+      badge: "Content Creation"
+    }));
+
+    const finalSteps = [
+      { text: "Optimizing and polishing...", badge: "Finalization" },
+      { text: "Ready for review!", badge: "Complete" }
+    ];
+
+    return [...baseSteps, ...contentSteps, ...finalSteps];
+  };
+
+  const steps = generateSteps();
 
   useEffect(() => {
     const stepInterval = setInterval(() => {
