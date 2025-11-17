@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, TrendingUp, Store, BarChart3, Globe, Smartphone, Monitor, Mail, Radio, Users, Target, Eye, Zap } from 'lucide-react';
+import SeasonalOpportunities from '@/components/SeasonalOpportunities';
 
 const Optimization = () => {
   const navigate = useNavigate();
@@ -250,6 +251,11 @@ const Optimization = () => {
               <div className="text-sm text-muted-foreground">Est. Conversion</div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Seasonal Opportunities Section */}
+        <div className="mb-12">
+          <SeasonalOpportunities />
         </div>
 
         {/* Optimization Section */}
