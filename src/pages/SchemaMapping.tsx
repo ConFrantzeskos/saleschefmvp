@@ -46,7 +46,7 @@ const SchemaMapping = () => {
     { key: 'dimensions', label: 'Dimensions' },
   ];
 
-  // Auto-generate suggestions on mount
+  // Auto-generate AI-powered suggestions with clear confidence thresholds
   useEffect(() => {
     const newMappings: Record<string, string> = {};
     const newSuggestions: Record<string, FieldMatch | null> = {};
@@ -55,8 +55,8 @@ const SchemaMapping = () => {
       const suggestion = generateFieldSuggestions(field.label, detectedFields, sampleData);
       newSuggestions[field.key] = suggestion;
       
-      // Auto-map high confidence matches (>80%)
-      if (suggestion && suggestion.confidence >= 0.8) {
+      // Auto-map ONLY high confidence matches (≥85%)
+      if (suggestion && suggestion.confidence >= 0.85) {
         newMappings[field.key] = suggestion.sourceField;
       } else {
         newMappings[field.key] = '';
@@ -81,10 +81,12 @@ const SchemaMapping = () => {
     const mapping = mappings[fieldKey];
     const suggestion = suggestions[fieldKey];
     
-    if (!mapping || mapping === 'not-mapped') {
-      return suggestion && suggestion.confidence >= 0.5 ? 'warning' : 'missing';
-    }
-    return suggestion && suggestion.confidence >= 0.8 ? 'good' : 'warning';
+    // Good: Field is mapped
+    if (mapping && mapping !== 'not-mapped' && mapping !== '') return 'good';
+    // Warning: Medium-High confidence suggestion available (≥70%)
+    if (suggestion && suggestion.confidence >= 0.70) return 'warning';
+    // Missing: No mapping and low/no confidence suggestion
+    return 'missing';
   };
 
   const fieldsWithStatus = requiredFields.map(field => ({
