@@ -8,7 +8,7 @@ import ContentCategoriesGrid from '@/components/ContentCategoriesGrid';
 import SpecificContentUnits from '@/components/SpecificContentUnits';
 import GenerateButton from '@/components/GenerateButton';
 import { Sparkles } from 'lucide-react';
-import { generationCategories } from '@/constants/contentCategories';
+import { generationCategories, specificContentUnits } from '@/constants/contentCategories';
 
 const ContentGeneration = () => {
   const navigate = useNavigate();
@@ -67,6 +67,15 @@ const ContentGeneration = () => {
     });
   };
 
+  const getSelectedContentTypes = () => {
+    const taskTitles = selectedTasks.map(i => allTasks[i].title);
+    const unitTitles = selectedUnits.map(id => {
+      const unit = specificContentUnits.find(u => u.id === id);
+      return unit?.title || '';
+    }).filter(Boolean);
+    return [...unitTitles, ...taskTitles];
+  };
+
   const handleGenerateContent = () => {
     console.log('Starting content generation with:', {
       template: selectedTemplate?.name,
@@ -83,7 +92,10 @@ const ContentGeneration = () => {
   return (
     <div className="min-h-screen bg-background p-6">
       {isGenerating && (
-        <GenerationAnimation onComplete={handleAnimationComplete} />
+        <GenerationAnimation 
+          onComplete={handleAnimationComplete}
+          selectedContentTypes={getSelectedContentTypes()}
+        />
       )}
       
       <ProgressIndicator steps={steps} />
