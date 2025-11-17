@@ -6,6 +6,7 @@ import AssetHeader from '@/components/AssetHeader';
 import FactoryDataSection from '@/components/FactoryDataSection';
 import EnhancedContentSection from '@/components/EnhancedContentSection';
 import GeneratedVisualContent from '@/components/GeneratedVisualContent';
+import IntelligenceSummaryPanel from '@/components/IntelligenceSummaryPanel';
 import { contentSections } from '@/data/contentSections';
 import { Asset } from '@/types/asset';
 
@@ -136,11 +137,19 @@ RETAIL_PRICE,USD_79.99`;
       <div className="max-w-7xl mx-auto p-6 flex-1 flex flex-col">
         <AssetHeader asset={asset} onApprove={handleApprove} />
 
-        {/* Improved two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1 min-h-0">
+        {/* Improved three-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
           
           {/* Left Column - Source Data and Visual Content */}
-          <div className="space-y-6">
+          <div className="lg:col-span-4 space-y-6">
+            {/* Intelligence Summary */}
+            <IntelligenceSummaryPanel 
+              cleanedFields={47}
+              enrichmentInsights={12}
+              frameworksApplied={8}
+              contentPieces={24}
+            />
+            
             {/* Original Factory Data */}
             <FactoryDataSection consolidatedRawData={consolidatedRawData} />
             
@@ -153,7 +162,7 @@ RETAIL_PRICE,USD_79.99`;
           </div>
 
           {/* Right Column - Enhanced Content */}
-          <div className="flex flex-col">
+          <div className="lg:col-span-8 flex flex-col">
             <EnhancedContentSection
               contentSections={contentSections}
               editingField={editingField}

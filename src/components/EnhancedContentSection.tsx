@@ -6,14 +6,23 @@ import { Separator } from '@/components/ui/separator';
 import { LucideIcon } from 'lucide-react';
 import ContentItem from './ContentItem';
 
+interface ContentItemMetadata {
+  frameworks?: string[];
+  enrichmentSources?: string[];
+  behavioralTriggers?: string[];
+}
+
+interface ContentItem {
+  label: string;
+  content: string;
+  metadata?: ContentItemMetadata;
+}
+
 interface ContentSection {
   icon: LucideIcon;
   title: string;
   description: string;
-  items: {
-    label: string;
-    content: string;
-  }[];
+  items: ContentItem[];
 }
 
 interface EnhancedContentSectionProps {

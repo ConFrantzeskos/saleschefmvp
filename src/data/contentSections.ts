@@ -1,47 +1,104 @@
 
 import { Globe, FileText, Image, Mail, Printer, GraduationCap, HelpCircle, Search } from 'lucide-react';
 
-export const contentSections = [
+export interface ContentItemMetadata {
+  frameworks?: string[];
+  enrichmentSources?: string[];
+  behavioralTriggers?: string[];
+}
+
+export interface ContentItem {
+  label: string;
+  content: string;
+  metadata?: ContentItemMetadata;
+}
+
+export interface ContentSection {
+  icon: any;
+  title: string;
+  description: string;
+  items: ContentItem[];
+}
+
+export const contentSections: ContentSection[] = [
   {
     icon: Globe,
     title: "PDP Content",
     description: "Comprehensive product detail page content",
     items: [
       {
-        label: "Meta Title H1",
-        content: "CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic"
+        label: "Meta Title H1 (SEO Optimized)",
+        content: "CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic",
+        metadata: {
+          enrichmentSources: ["High search volume: '24 hour wireless headphones'", "Top keyword: 'Bluetooth 5.0'"],
+          frameworks: ["SEO Opportunities"]
+        }
       },
       {
-        label: "Hero Introduction",
-        content: "Stay connected, wire-free. The CD1234 Wireless Headphones combine 24-hour battery life, advanced Bluetooth 5.0 connectivity, and a foldable design for life on the go — whether commuting, working from home, or travelling the world."
+        label: "Hero Introduction (Ladder of Benefits)",
+        content: "Never worry about battery life again. The CD1234 delivers 24 hours of uninterrupted listening — making you feel confident in back-to-back meetings and look professional to colleagues. Perfect for the modern professional who values reliability and portability.",
+        metadata: {
+          frameworks: ["Ladder of Benefits"],
+          enrichmentSources: ["Customer sentiment: Battery life = Top feature (4.8/5)", "Search trends: 'long battery headphones'"],
+          behavioralTriggers: ["Loss Aversion: 'Never worry'"]
+        }
       },
       {
-        label: "Feature Bullets",
-        content: "• 24 hours of wireless battery life — all-day listening\n• Seamless Bluetooth 5.0 connection — no dropouts\n• Built-in microphone for crystal-clear calls\n• Foldable design — easy to pack and carry\n• Lightweight and comfortable for all-day wear"
+        label: "Feature Bullets (Benefit Ladder Applied)",
+        content: "• 24 hours battery life — Never miss a beat in your workday (Functional → Emotional)\n• Bluetooth 5.0 connectivity — Stay seamlessly connected without technical frustration (Functional → Emotional)\n• Foldable design — Feel organized and prepared for any journey (Functional → Emotional)\n• Built-in microphone — Sound professional and confident in every call (Functional → Social)\n• Premium comfort — Focus on your work, not your headphones (Functional → Emotional)",
+        metadata: {
+          frameworks: ["Ladder of Benefits"],
+          enrichmentSources: ["Customer reviews: Comfort rated 4.6/5", "Top features mentioned: Battery, Foldability"]
+        }
       },
       {
-        label: "Lifestyle Section",
-        content: "Designed for your life on the move\nPerfect for the modern professional who needs audio that keeps up. Whether you're catching up on podcasts during your morning commute, taking back-to-back Zoom calls, or unwinding with music on a long flight, the CD1234 adapts to every moment of your day."
+        label: "Lifestyle Section (Jobs to Be Done)",
+        content: "Designed for professionals who hire headphones to:\n• Transform boring commutes into productive time (Emotional job)\n• Stay reliably connected during back-to-back video calls (Functional job)\n• Signal 'focused professional' in open office environments (Social job)\n• Travel light without sacrificing audio quality (Circumstantial job)",
+        metadata: {
+          frameworks: ["Jobs to Be Done"],
+          enrichmentSources: ["Target audience: Remote workers & frequent travelers", "Use cases: Commuting, video calls, travel"]
+        }
       },
       {
-        label: "Performance Section",
-        content: "Uninterrupted sound, anywhere\n• Advanced Bluetooth 5.0 ensures stable connection up to 33 feet\n• 24-hour battery life eliminates charging anxiety\n• Quick 15-minute charge provides 3 hours of playback\n• Premium 40mm drivers deliver crisp, balanced audio"
+        label: "When to Use (Category Entry Points)",
+        content: "Perfect for every moment:\n• Morning commute — Start your day with focus music (CEP: 'need motivation')\n• 2:30pm energy slump — Power through with energizing podcasts (CEP: 'afternoon focus')\n• Long flights — Create your own peaceful space (CEP: 'travel entertainment')\n• Back-to-back Zoom calls — Sound professional every time (CEP: 'professional meetings')\n• Gym sessions — Stay motivated with your favorite playlists (CEP: 'workout energy')",
+        metadata: {
+          frameworks: ["Category Entry Points"],
+          enrichmentSources: ["Category use cases: Commuting, meetings, travel, fitness"]
+        }
       },
       {
-        label: "Calls & Work Section",
-        content: "Perfect for Zoom calls, meetings & more\n• Built-in microphone with noise reduction for crystal-clear voice\n• Compatible with all devices — PC, Mac, smartphones, tablets\n• Seamless switching between music and calls\n• Optimized for video conferencing platforms"
+        label: "Performance Section (Reasons to Believe)",
+        content: "Proven performance you can trust:\n• 24-hour battery verified by independent testing (Demonstration)\n• Bluetooth 5.0 certified — 99.9% connection stability (Statistics)\n• 40mm drivers deliver studio-quality sound (Technical specs)\n• 10,000+ fold cycle durability testing (Demonstration)\n• 2-year warranty — We stand behind our quality (Guarantee)",
+        metadata: {
+          frameworks: ["Reasons to Believe"],
+          enrichmentSources: ["Technical specs: 40mm drivers, BT 5.0", "Performance benchmarks: 24hr battery tested"]
+        }
       },
       {
-        label: "Portability Section",
-        content: "Fold-and-go convenience\n• Innovative folding design reduces size by 50%\n• Dimensions: 180mm x 160mm (unfolded) → 90mm x 160mm (folded)\n• Fits easily in carry-on luggage, backpacks, or laptop bags\n• Durable hinges tested for 10,000+ fold cycles"
+        label: "Purchase CTA (Behavioral Economics)",
+        content: "🔥 Only 3 left in stock at this price (Scarcity)\n👥 12 people viewing right now (Social Proof)\n✅ Free returns — Risk-free 30-day trial (Loss Aversion)\n🎁 2-year warranty included — Premium protection at no extra cost (Reciprocity)\n⚡ Order within 2 hours for next-day delivery (Urgency)",
+        metadata: {
+          frameworks: ["Behavioral Economics Arsenal"],
+          behavioralTriggers: ["Scarcity", "Social Proof", "Loss Aversion", "Reciprocity", "Urgency"]
+        }
       },
       {
-        label: "Customer Reviews",
-        content: "★★★★★ \"Perfect for remote work! Battery lasts my entire workday plus evening music.\"\n★★★★★ \"Best value for battery life. Folding design is genius for travel.\"\n★★★★★ \"Crystal clear Zoom calls. Colleagues say I sound professional.\"\n★★★★★ \"Folds small for my carry-on. Essential for business travel.\""
+        label: "Customer Reviews (Social Proof + Distinctive Memory)",
+        content: "★★★★★ \"Battery life is incredible — lasted my entire 8-hour workday plus evening run. Game changer!\"\n★★★★★ \"Best investment for remote work. My colleagues actually compliment how clear I sound on Zoom.\"\n★★★★★ \"Folds so small for travel. Fits in my laptop bag perfectly. Professional quality audio.\"\n★★★★★ \"Switched from Beats Studio — same quality, better battery, half the price. No regrets.\"",
+        metadata: {
+          frameworks: ["Social Proof", "Competitive Positioning"],
+          enrichmentSources: ["Customer sentiment: 4.6/5 average rating", "Competitor analysis: vs Beats Studio3"],
+          behavioralTriggers: ["Social Proof", "Authority (testimonials)"]
+        }
       },
       {
-        label: "FAQ Section",
-        content: "Q: How long does the battery last?\nA: Up to 24 hours on a full charge — perfect for all-day listening.\n\nQ: Are they good for Zoom calls?\nA: Yes — built-in microphone optimised for clear voice on video calls.\n\nQ: Can I use while commuting?\nA: Absolutely. Foldable design and long battery make them ideal for travel.\n\nQ: Do they have noise cancelling?\nA: Passive noise isolation, but no active noise cancelling.\n\nQ: What devices are compatible?\nA: Any Bluetooth 5.0 device — smartphones, laptops, tablets, PCs."
+        label: "FAQ Section (Barrier Removal)",
+        content: "Q: How long does the battery really last? (Risk barrier)\nA: Verified 24 hours — tested with continuous playback at 50% volume.\n\nQ: Will they work for professional Zoom calls? (Quality barrier)\nA: Yes — optimised microphone for crystal-clear voice. Rated 4.8/5 by remote workers.\n\nQ: Are they comfortable for all-day wear? (Physical barrier)\nA: Lightweight 250g design with premium protein leather cushions. Tested for 8+ hour comfort.\n\nQ: How do they compare to expensive brands? (Value barrier)\nA: Same manufacturers as luxury brands. Professional quality without the markup.\n\nQ: What if I'm not satisfied? (Trust barrier)\nA: 30-day risk-free returns + 2-year warranty. We've got you covered.",
+        metadata: {
+          frameworks: ["Purchase Barriers + Solutions"],
+          enrichmentSources: ["Common customer questions from reviews", "Competitor pricing data"]
+        }
       }
     ]
   },
@@ -51,130 +108,152 @@ export const contentSections = [
     description: "Technical specifications and compatibility details",
     items: [
       {
-        label: "Technical Specifications",
-        content: "• Driver Size: 40mm dynamic drivers with neodymium magnets\n• Frequency Response: 20Hz - 20kHz (Hi-Res Audio certified)\n• Bluetooth Version: 5.0 with A2DP, AVRCP, HFP profiles\n• Battery Life: 24 hours continuous playback\n• Charging Time: 2 hours (USB-C fast charging)\n• Weight: 250g (ultra-lightweight design)\n• Impedance: 32Ω\n• Sensitivity: 102dB SPL"
+        label: "Technical Specifications (Reasons to Believe)",
+        content: "• Driver Size: 40mm dynamic drivers with neodymium magnets — Studio-grade audio\n• Frequency Response: 20Hz - 20kHz (Hi-Res Audio certified)\n• Bluetooth Version: 5.0 with A2DP, AVRCP, HFP profiles — Latest standard\n• Battery Life: 24 hours continuous playback (independently verified)\n• Charging Time: 2 hours full charge | 15 min = 3 hours playback (Quick charge)\n• Weight: 250g ultra-lightweight — Comfortable for all-day wear\n• Impedance: 32Ω | Sensitivity: 102dB SPL",
+        metadata: {
+          frameworks: ["Reasons to Believe"],
+          enrichmentSources: ["Technical specs from factory data", "Performance benchmarks"]
+        }
       },
       {
         label: "Compatibility Information",
-        content: "Universal Bluetooth 5.0 Compatibility:\n• iOS devices (iPhone 6 and newer, iPad, Apple Watch)\n• Android smartphones and tablets (Android 5.0+)\n• Windows computers (Windows 10/11)\n• Mac computers (macOS 10.12+)\n• Gaming consoles (PS5, Xbox Series X/S, Nintendo Switch)\n• Smart TVs and streaming devices\n• Voice assistants (Siri, Google Assistant)"
+        content: "Works seamlessly with:\n• All Bluetooth 5.0 devices (backward compatible with 4.2+)\n• Video conferencing: Zoom, Teams, Google Meet, Skype\n• Operating systems: Windows, macOS, iOS, Android, Linux\n• Audio platforms: Spotify, Apple Music, YouTube, podcasts\n• Gaming consoles: PS5, Xbox Series X/S (with adapter)",
+        metadata: {
+          frameworks: ["Purchase Barriers + Solutions"],
+          enrichmentSources: ["Compatibility data from technical specs"]
+        }
       },
       {
-        label: "Performance Metrics",
-        content: "Connectivity & Performance:\n• Bluetooth Range: Up to 33 feet (10 meters) in open space\n• Audio Latency: <40ms for perfect video sync\n• Charging Port: USB-C with fast charging support\n• Codec Support: SBC, AAC, aptX for high-quality audio\n• Microphone: Omnidirectional with noise reduction\n• Fold Mechanism: 180° rotation with locking hinges\n• Operating Temperature: -10°C to 45°C"
+        label: "What's in the Box",
+        content: "• CD1234 Wireless Headphones\n• USB-C fast charging cable\n• 3.5mm backup audio cable (for wired use)\n• Premium carrying pouch\n• Quick start guide\n• 2-year warranty card",
+        metadata: {
+          behavioralTriggers: ["Reciprocity: 'Premium included accessories'"]
+        }
       }
     ]
   },
   {
     icon: Image,
-    title: "Sales Sheet",
-    description: "Sales-focused content and competitive positioning",
+    title: "Social Media",
+    description: "Engaging social media content",
     items: [
       {
-        label: "Key Selling Points",
-        content: "Revolutionary 24-Hour Performance:\n✓ Longest battery life in price category — 50% more than competitors\n✓ Innovative foldable design — reduces storage size by 50%\n✓ Professional-grade call quality — perfect for remote work\n✓ Universal compatibility — works with every Bluetooth device\n✓ Travel-optimized design — ideal for business and leisure travel\n✓ Quick charge technology — 15 minutes = 3 hours playback"
+        label: "Instagram Caption (Context Triggers)",
+        content: "📱 Remote workers, this one's for you.\n\nNever worry about your headphones dying mid-Zoom call again. 24 hours of battery = Freedom to focus on what matters. 🎧\n\n✨ Fold. Pack. Go. Travel-ready design that fits your lifestyle.\n\n💼 Sound professional. Feel confident. Look the part.\n\n#RemoteWork #TechEssentials #ProductivityTools #DigitalNomad #WorkFromAnywhere #ProfessionalAudio",
+        metadata: {
+          frameworks: ["Context Triggers", "Ladder of Benefits"],
+          enrichmentSources: ["Target audience: Remote workers", "Social mentions: Productivity tools trending"]
+        }
       },
       {
-        label: "Competitive Advantages",
-        content: "Market Leadership Positioning:\n• 24-hour battery vs Sony WH-CH720N (20 hours) — 20% longer\n• Foldable design vs Bose QuietComfort 45 (non-foldable) — unique advantage\n• $79.99 vs Apple AirPods Max ($549) — 85% cost savings\n• Professional call quality vs Beats Solo3 (music-focused) — work advantage\n• Travel portability vs Sennheiser HD 450BT (bulky) — 50% more compact"
+        label: "LinkedIn Post (Jobs to Be Done)",
+        content: "The reality of remote work: Your audio setup matters more than you think.\n\nYour colleagues judge call quality. Clients notice poor audio. Your productivity suffers when tech fails.\n\nCD1234 headphones solve the job of sounding professional:\n✓ 24-hour battery — Never lose connection mid-presentation\n✓ Crystal-clear mic — Your voice, your credibility\n✓ Foldable design — Professional at home, on the road, anywhere\n\nWhat job are you hiring your headphones to do?\n\n#RemoteWork #ProfessionalDevelopment #ProductivityHacks #WorkTech",
+        metadata: {
+          frameworks: ["Jobs to Be Done", "Social Benefit"],
+          enrichmentSources: ["Target audience: Professionals", "Category entry point: Professional meetings"]
+        }
       },
       {
-        label: "Value Proposition & Pricing Strategy",
-        content: "Premium Features, Accessible Price:\n• Target Price: $79.99 (positioned between $60-100 segment)\n• Value Benchmark: Delivers $200+ features at mid-tier pricing\n• ROI for Customers: Replaces need for separate work/travel headphones\n• Market Position: Premium performance without premium pricing\n• Bundle Opportunities: Travel case, charging cable, airline adapter\n• Warranty: 2-year comprehensive coverage included"
-      }
-    ]
-  },
-  {
-    icon: Search,
-    title: "SEO Content",
-    description: "Search-optimized content for maximum visibility",
-    items: [
-      {
-        label: "Meta Title & Description",
-        content: "Meta Title: CD1234 24 Hour Wireless Headphones | Bluetooth 5.0 | Foldable Design\n\nMeta Description: Experience all-day wireless freedom with CD1234 headphones. 24-hour battery, Bluetooth 5.0, foldable design perfect for work, travel & commuting. Free shipping Australia-wide."
-      },
-      {
-        label: "Primary & Secondary Keywords",
-        content: "Primary Keywords:\n• wireless headphones 24 hour battery\n• foldable bluetooth headphones\n• headphones for work from home\n• travel headphones bluetooth\n\nSecondary Keywords:\n• long battery life headphones\n• portable wireless headphones\n• headphones with microphone\n• business travel headphones\n\nLong-tail Keywords:\n• best wireless headphones for zoom calls\n• foldable headphones for travel\n• 24 hour battery bluetooth headphones australia"
-      },
-      {
-        label: "SEO Content & Schema",
-        content: "Supporting SEO Content:\n• Related Categories: Bluetooth headphones, wireless headphones, travel accessories\n• Internal Links: Best headphones for remote work, Travel tech essentials, Wireless audio guide\n• Schema Markup: Product, Review, FAQ structured data\n• Local SEO: 'wireless headphones Australia', 'bluetooth headphones Sydney'\n• Featured Snippet Targets: 'How long do wireless headphones battery last?', 'Best foldable headphones 2024'"
+        label: "Twitter/X Post (Behavioral Economics)",
+        content: "Hot take: Spending £150 on headphones that die by 2pm costs you more than £80 headphones that last 24 hours.\n\nCD1234: 24hr battery | BT 5.0 | Foldable | £79.99\n\nOnly 3 left at launch price 🔥\n\n[Product image]\n\n#TechDeals #RemoteWork",
+        metadata: {
+          frameworks: ["Behavioral Economics Arsenal", "Value Positioning"],
+          behavioralTriggers: ["Scarcity", "Loss Aversion", "Price Anchoring"],
+          enrichmentSources: ["Price history: Launch promotion", "Competitor pricing: Beats £150"]
+        }
       }
     ]
   },
   {
     icon: Mail,
     title: "Email Marketing",
-    description: "Campaign-ready email content",
+    description: "Persuasive email campaigns",
     items: [
       {
-        label: "Subject Lines & Campaign Headers",
-        content: "Subject Line Options:\n• 🎧 24 hours of wireless freedom — introducing CD1234\n• Finally: headphones that last as long as your workday\n• Fold, pack, go: Your new travel companion is here\n• [Limited Time] Professional wireless audio for $79.99\n• Work from anywhere with 24-hour wireless headphones\n\nPreview Text:\n'Foldable design + all-day battery = perfect for modern life'"
+        label: "Launch Email (Persuasion Stack - Product Aware)",
+        content: "Subject: Your next Zoom call sounds better already ✨\n\nHi [Name],\n\nRemember that awkward moment when your headphones die mid-presentation?\n\nNever again.\n\nIntroducing CD1234: 24 hours of wireless freedom.\n\n• Battery anxiety? Gone. (24-hour verified battery)\n• Unprofessional audio? Fixed. (Studio-quality mic)\n• Bulky travel gear? Solved. (Folds to half size)\n\nEarly bird special: £79.99 (Regular £99.99)\nOnly 48 hours. Limited stock.\n\n[Shop Now Button]\n\nP.S. 30-day returns. 2-year warranty. Zero risk.\n\n- The TechSound Team",
+        metadata: {
+          frameworks: ["Persuasion Stack", "Behavioral Economics Arsenal", "Purchase Barriers + Solutions"],
+          behavioralTriggers: ["Scarcity", "Urgency", "Loss Aversion", "Reciprocity"],
+          enrichmentSources: ["Customer pain points: Battery anxiety", "Price positioning: Value segment"]
+        }
       },
       {
-        label: "Product Announcement Email",
-        content: "Email Body:\n\nSubject: 🎧 Meet your new all-day audio companion\n\nHi [Name],\n\nTired of headphones that die halfway through your workday? \n\nIntroducing the CD1234 Wireless Headphones — engineered for the way you actually live and work.\n\n✓ 24-hour battery life (seriously!)\n✓ Folds to half the size for easy travel\n✓ Crystal-clear calls for Zoom meetings\n✓ Works with every device you own\n\nWhether you're powering through back-to-back meetings, catching up on podcasts during your morning commute, or unwinding with music on a long flight — the CD1234 keeps up.\n\n[Shop Now — $79.99] [Learn More]\n\nBest,\nThe TechSound Team"
-      },
-      {
-        label: "Promotional Campaign Copy",
-        content: "Limited-Time Launch Offer:\n\nSubject: ⚡ Launch Week: Save 25% on CD1234 Headphones\n\nHi [Name],\n\nLast chance to get CD1234 Wireless Headphones at our exclusive launch price.\n\n🔥 Was $79.99 → Now $59.99 (Save $20)\n✓ 24-hour battery life\n✓ Foldable travel design  \n✓ Perfect for work & play\n✓ FREE shipping Australia-wide\n✓ 30-day money-back guarantee\n\nOffer ends midnight Sunday. Over 500 customers already upgraded their audio experience.\n\n[Claim Your 25% Discount]\n\n*Use code LAUNCH25 at checkout\n\nUpgrade your workday,\nTechSound Team"
+        label: "Cart Abandonment (Conversion Mechanics)",
+        content: "Subject: Still thinking about CD1234? Here's why others bought...\n\nHi [Name],\n\nYou left CD1234 headphones in your cart. We get it — big decisions take time.\n\nHere's what convinced 127 people to buy this week:\n\n✓ \"Battery actually lasts 24 hours\" - Sarah M.\n✓ \"Folds small for my laptop bag\" - James K.\n✓ \"Best Zoom audio I've had\" - Priya S.\n\n🎁 Here's £10 off your order: CODE: COMEBACK10\n\n⏰ Expires in 24 hours | Only 2 left in stock\n\n[Complete Purchase Button]\n\nQuestions? Reply to this email — real human here.\n\nRisk-free returns | 2-year warranty",
+        metadata: {
+          frameworks: ["Conversion Mechanics", "Behavioral Economics Arsenal"],
+          behavioralTriggers: ["Social Proof", "Scarcity", "Loss Aversion", "Reciprocity"],
+          enrichmentSources: ["Customer testimonials", "Conversion data: Cart abandonment triggers"]
+        }
       }
     ]
   },
   {
     icon: Printer,
-    title: "Print Collateral",
-    description: "Print-ready marketing materials",
+    title: "Print Materials",
+    description: "Physical marketing collateral",
     items: [
       {
-        label: "Product Brochure Content",
-        content: "CD1234 WIRELESS HEADPHONES\nAll-Day Audio. Anywhere.\n\n24-HOUR BATTERY LIFE\nMore listening. Less charging.\nPowered by advanced lithium technology for all-day performance.\n\nFOLDABLE DESIGN\nHalf the size. Double the convenience.\nInnovative hinges fold flat for ultimate portability.\n\nPROFESSIONAL CALLS\nCrystal-clear communication.\nBuilt-in noise-reducing microphone optimized for video calls.\n\nUNIVERSAL COMPATIBILITY\nWorks with everything.\nBluetooth 5.0 connects to phones, laptops, tablets, and more.\n\nTechSound.com | $79.99 | 2-Year Warranty"
+        label: "Retail Packaging Copy (Distinctive Memory Structures)",
+        content: "FRONT PANEL:\n24 HOURS OF FREEDOM\nCD1234 Wireless Headphones\n\nBACK PANEL:\n✓ Never Charge Mid-Day\n✓ Folds for Easy Travel  \n✓ Professional Audio Quality\n✓ Bluetooth 5.0\n✓ 2-Year Warranty\n\nSIDE PANEL:\n\"Best battery life in class\"\n\"Perfect for remote work\"\n\nMade for professionals who demand reliability.",
+        metadata: {
+          frameworks: ["Distinctive Memory Structures", "Ladder of Benefits"],
+          enrichmentSources: ["Packaging requirements from factory", "Brand positioning: Professional reliability"]
+        }
       },
       {
-        label: "Technical Data Sheet",
-        content: "TECHNICAL SPECIFICATIONS\nModel: CD1234 Wireless Headphones\n\nAUDIO\n• Drivers: 40mm dynamic, neodymium magnets\n• Frequency Response: 20Hz - 20kHz\n• Impedance: 32Ω\n• Sensitivity: 102dB SPL\n\nCONNECTIVITY\n• Bluetooth: Version 5.0\n• Range: 10 meters (33 feet)\n• Codecs: SBC, AAC, aptX\n• Latency: <40ms\n\nPOWER & CHARGING\n• Battery Life: 24 hours continuous\n• Charging: USB-C, 2 hours full charge\n• Quick Charge: 15 min = 3 hours playback\n\nDESIGN\n• Weight: 250g\n• Folded: 90mm x 160mm x 80mm\n• Unfolded: 180mm x 160mm x 80mm\n• Colors: Matte Black, Navy Blue\n\nWARRANTY\n• Coverage: 2 years comprehensive\n• Support: Australian customer service\n\nSKU: CD1234 | RRP: $79.99"
-      },
-      {
-        label: "Retail Catalog Entry",
-        content: "CATALOG ENTRY\n\nCD1234 Wireless Headphones — TechSound\nSKU: CD1234-BLK (Black), CD1234-NVY (Navy)\n\nPRODUCT SUMMARY\nPremium wireless headphones engineered for modern professionals. Features industry-leading 24-hour battery life and innovative foldable design that reduces storage size by 50%. Perfect for business travel, remote work, and daily commuting.\n\nKEY FEATURES\n• 24-hour wireless battery life\n• Foldable design for portability\n• Bluetooth 5.0 connectivity\n• Built-in microphone for calls\n• Universal device compatibility\n\nTARGET MARKETS\n• Business & professional audio\n• Travel & commuter accessories\n• Remote work technology\n• Student & education tech\n\nPRICING & MARGIN\n• RRP: $79.99\n• Trade Price: $48.00\n• Margin: 40%\n• MOQ: 50 units\n\nCATEGORY: Audio > Headphones > Wireless\nBRAND: TechSound | WARRANTY: 2 Years"
+        label: "Retail Display Sign (Category Entry Points)",
+        content: "PERFECT FOR:\n\n🏃 Morning Commutes\n💼 All-Day Office Wear\n✈️ Long Flights\n🎮 Gaming Sessions\n🏋️ Gym Workouts\n\n24-HOUR BATTERY | FOLDS SMALL | £79.99\n\nTry them on →",
+        metadata: {
+          frameworks: ["Category Entry Points", "Context Triggers"],
+          enrichmentSources: ["Category use cases from enrichment data"]
+        }
       }
     ]
   },
   {
     icon: GraduationCap,
-    title: "Internal Training",
-    description: "Sales team enablement materials",
+    title: "Training Materials",
+    description: "Sales team enablement content",
     items: [
       {
-        label: "Sales Feature Guide",
-        content: "SALES TRAINING: CD1234 Wireless Headphones\n\n1. LEAD WITH BATTERY LIFE\n   Positioning: 'Never worry about charging again'\n   Proof Point: 24 hours = 3x longer than iPhone battery\n   Objection: 'Sounds too good to be true' → 'Advanced lithium tech, tested and certified'\n\n2. EMPHASIZE PORTABILITY\n   Positioning: 'Designed for life on the move'\n   Proof Point: Folds to 50% smaller than competitors\n   Demo: Show fold/unfold mechanism\n\n3. HIGHLIGHT WORK BENEFITS\n   Positioning: 'Professional audio for hybrid work'\n   Proof Point: Optimized microphone for video calls\n   ROI: Replaces need for separate work headset\n\n4. STRESS UNIVERSAL COMPATIBILITY\n   Positioning: 'Works with everything you own'\n   Proof Point: Bluetooth 5.0 = latest standard\n   Benefit: One headphone for all devices"
-      },
-      {
-        label: "Key Selling Points & Benefits",
-        content: "PRIMARY SELLING BENEFITS\n\nPRODUCTIVITY BENEFITS\n• All-day battery eliminates charging interruptions\n• Clear calls enhance professional image\n• Universal compatibility streamlines tech setup\n• Foldable design enables anywhere productivity\n\nLIFESTYLE BENEFITS\n• Travel-friendly size fits any bag\n• 24-hour battery covers longest flights\n• Seamless device switching\n• Comfortable for extended wear\n\nECONOMIC BENEFITS\n• Replaces multiple audio devices\n• 2-year warranty protects investment\n• Premium features at mid-tier price\n• No additional accessories needed\n\nSOCIAL PROOF\n• 500+ customers in first month\n• 4.8/5 average review rating\n• Recommended by remote work blogs\n• Featured in travel gear guides"
-      },
-      {
-        label: "Objection Handlers",
-        content: "COMMON OBJECTIONS & RESPONSES\n\nOBJECTION: 'Too expensive for wireless headphones'\nRESPONSE: 'At $79.99, you're getting 24-hour battery and foldable design — features typically found in $200+ headphones. Plus, it replaces your work headset and travel headphones.'\n\nOBJECTION: 'Will they work with my iPhone/Android?'\nRESPONSE: 'Absolutely. Bluetooth 5.0 works with every smartphone, tablet, laptop, and even gaming consoles. They're more compatible than wired headphones.'\n\nOBJECTION: 'How do I know the battery really lasts 24 hours?'\nRESPONSE: 'We tested them extensively. 24 hours at moderate volume is conservative — many users get even more. Plus, 15-minute quick charge gives you 3 hours backup.'\n\nOBJECTION: 'They look bulky when unfolded'\nRESPONSE: 'That's the genius — they fold to half the size. When packed, they're more compact than most competitors, but when wearing them, you get full-size comfort and audio quality.'\n\nOBJECTION: 'What if they break when I fold them?'\nRESPONSE: 'The hinges are tested for over 10,000 fold cycles — that's folding them 5 times a day for 5+ years. Plus, you're covered by our comprehensive 2-year warranty.'"
+        label: "Sales Script (Objection Handling)",
+        content: "QUALIFYING QUESTIONS:\n\"What frustrates you about your current headphones?\"\n\"How many hours per day do you use them?\"\n\"Do you travel for work or commute?\"\n\nKEY SELLING POINTS:\n1. Battery life eliminates mid-day charging\n2. Foldable design = travel convenience\n3. Professional audio quality = credibility on calls\n\nOBJECTION HANDLING:\n\n\"Too expensive\" → \"At £79.99, you're paying £3.33 per month over 2 years. What's your time worth when headphones die mid-meeting?\"\n\n\"Will battery really last?\" → \"Independently verified 24 hours. Here's the test report. Plus 2-year warranty.\"\n\n\"Not sure about quality\" → \"Same manufacturer as £150 brands. Try them 30 days risk-free.\"\n\nCLOSING:\n\"Want to take them for a test run today? 30-day returns if they're not perfect.\"",
+        metadata: {
+          frameworks: ["Objection Handling", "Purchase Barriers + Solutions", "Value Positioning"],
+          enrichmentSources: ["Common objections from customer feedback", "Competitor pricing data"]
+        }
       }
     ]
   },
   {
     icon: HelpCircle,
-    title: "FAQ Content",
-    description: "Customer support and frequently asked questions",
+    title: "Customer Support",
+    description: "Support documentation and FAQs",
     items: [
       {
-        label: "Product FAQs",
-        content: "FREQUENTLY ASKED QUESTIONS\n\nQ: How long does the battery actually last on the CD1234?\nA: Up to 24 hours of continuous playback at moderate volume. With mixed usage (calls, music, standby), most users get 2-3 days between charges.\n\nQ: Can I use the CD1234 while exercising?\nA: While not specifically designed for sports, they're suitable for light exercise like walking or gym workouts. They're sweat-resistant but not waterproof.\n\nQ: How clear are phone calls with the CD1234?\nA: Excellent. The built-in microphone features noise reduction technology, making your voice clear and professional on calls and video conferences.\n\nQ: Will the folding mechanism break with regular use?\nA: No. The hinges are engineered for durability and tested for over 10,000 fold cycles. They're designed for daily folding and travel.\n\nQ: Do the CD1234 headphones have active noise cancelling?\nA: They provide passive noise isolation through the ear cup design, but do not feature active noise cancelling technology.\n\nQ: How long does it take to charge the CD1234?\nA: Full charge takes 2 hours via USB-C. Quick charge feature: 15 minutes of charging provides 3 hours of playback."
-      },
+        label: "Comprehensive FAQ (Barrier Removal)",
+        content: "SETUP & CONNECTION\n\nQ: How do I pair with my device?\nA: 1) Press power button for 3 seconds. 2) Blue LED flashes. 3) Select 'CD1234' from Bluetooth menu. Connected!\n\nPERFORMANCE\n\nQ: Battery not lasting 24 hours?\nA: 24 hours tested at 50% volume. Higher volume reduces battery life. Also check for firmware updates.\n\nQ: Audio cutting out?\nA: Ensure clear line of sight within 10 meters. Remove obstacles. Update device Bluetooth drivers.\n\nWARRANTY & RETURNS\n\nQ: What does the warranty cover?\nA: Manufacturing defects, battery degradation beyond normal wear, hardware failure. 2 years from purchase.\n\nQ: How do I return them?\nA: 30-day return window. Original packaging required. Full refund, no questions asked. Email support@techsound.com",
+        metadata: {
+          frameworks: ["Purchase Barriers + Solutions"],
+          enrichmentSources: ["Common customer questions from reviews", "Support ticket analysis"]
+        }
+      }
+    ]
+  },
+  {
+    icon: Search,
+    title: "SEO Content",
+    description: "Search-optimized content for organic discovery",
+    items: [
       {
-        label: "Technical Support",
-        content: "TECHNICAL SUPPORT GUIDE\n\nCONNECTION ISSUES\nProblem: Won't pair with device\nSolution: \n1. Hold power button 3 seconds until blue light flashes\n2. Clear Bluetooth cache on device\n3. Ensure headphones are in pairing mode\n4. Select 'CD1234' from available devices\n\nProblem: Audio cuts out during use\nSolution:\n1. Check device is within 10-meter range\n2. Ensure no interference from WiFi routers\n3. Update device Bluetooth drivers\n4. Reset headphones (hold power 10 seconds)\n\nAUDIO QUALITY ISSUES\nProblem: Poor sound quality\nSolution:\n1. Check codec compatibility (AAC for iOS, aptX for Android)\n2. Ensure headphones are fully charged\n3. Adjust EQ settings on source device\n4. Clean headphone drivers gently\n\nBATTERY ISSUES\nProblem: Battery drains quickly\nSolution:\n1. Check volume level (high volume reduces battery)\n2. Disable unused features on source device\n3. Ensure proper charging with included USB-C cable\n4. Contact support if battery life under 20 hours"
-      },
-      {
-        label: "Setup & Usage Guidance",
-        content: "SETUP & USAGE GUIDE\n\nFIRST USE SETUP\n1. Unbox and charge for 2 hours before first use\n2. Download TechSound app (optional) for firmware updates\n3. Unfold headphones and hold power button 3 seconds\n4. Select 'CD1234' from your device's Bluetooth menu\n5. Enjoy 24 hours of wireless audio!\n\nDAILY USAGE TIPS\n• Folding: Press side buttons and rotate ear cups 180°\n• Charging: Use included USB-C cable, any USB port\n• Calls: Double-tap right ear cup to answer/end calls\n• Volume: Use device controls or headphone side buttons\n• Travel: Always fold before packing to save space\n\nCARE & MAINTENANCE\n• Clean ear cups weekly with soft, damp cloth\n• Store in included carry pouch when traveling\n• Avoid extreme temperatures (-10°C to 45°C)\n• Charge monthly even when not in regular use\n• Update firmware via TechSound app quarterly\n\nTROUBLE-FREE TRAVEL\n• Fold before packing in carry-on or checked luggage\n• Charge fully before long flights\n• Pair with in-flight entertainment via Bluetooth\n• Use airline adapter (sold separately) if needed\n• Keep charging cable in easily accessible pocket"
+        label: "Blog Post Title & Intro (SEO Opportunities)",
+        content: "TITLE: Best Long Battery Wireless Headphones for Remote Work 2024 | CD1234 Review\n\nINTRO:\nLooking for wireless headphones that won't die during your workday? The CD1234 delivers 24 hours of battery life — perfect for remote workers, frequent travelers, and anyone tired of charging anxiety.\n\nIn this review, we test battery life, call quality, comfort, and value to answer: Are CD1234 headphones worth it for professional use?\n\n✓ 24-hour verified battery\n✓ Bluetooth 5.0 connectivity  \n✓ Foldable travel design\n✓ Under £80\n\nLet's dive in...",
+        metadata: {
+          frameworks: ["SEO Opportunities", "Jobs to Be Done"],
+          enrichmentSources: ["High volume keywords: 'long battery wireless headphones'", "Search intent: Remote work equipment", "Related searches: 'best headphones for zoom calls'"]
+        }
       }
     ]
   }
