@@ -25,6 +25,7 @@ import {
   RefreshCw,
   Settings
 } from 'lucide-react';
+import SeasonalOpportunities from '@/components/SeasonalOpportunities';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -119,116 +120,7 @@ const Dashboard = () => {
     }
   ];
 
-  const optimizationTasks = [
-    {
-      id: 1,
-      title: 'Update product titles for mobile optimization',
-      category: 'Content',
-      priority: 'high',
-      estimatedImpact: '+15% mobile conversions',
-      timeToComplete: '2 hours',
-      progress: 65
-    },
-    {
-      id: 2,
-      title: 'Add structured data markup',
-      category: 'SEO',
-      priority: 'medium',
-      estimatedImpact: '+28% search visibility',
-      timeToComplete: '4 hours',
-      progress: 30
-    },
-    {
-      id: 3,
-      title: 'Optimize Amazon listing images',
-      category: 'Visual',
-      priority: 'high',
-      estimatedImpact: '+22% click-through rate',
-      timeToComplete: '3 hours',
-      progress: 85
-    },
-    {
-      id: 4,
-      title: 'Refresh seasonal product descriptions',
-      category: 'Content',
-      priority: 'medium',
-      estimatedImpact: '+8% seasonal sales',
-      timeToComplete: '6 hours',
-      progress: 0
-    },
-    {
-      id: 5,
-      title: 'Cold weather promotion optimization',
-      category: 'Seasonal',
-      priority: 'high',
-      estimatedImpact: '+18% winter sales',
-      timeToComplete: '3 hours',
-      progress: 20
-    },
-    {
-      id: 6,
-      title: "Father's Day gift guide content",
-      category: 'Holiday',
-      priority: 'medium',
-      estimatedImpact: '+12% June conversions',
-      timeToComplete: '4 hours',
-      progress: 0
-    },
-    {
-      id: 7,
-      title: 'Back-to-school campaign setup',
-      category: 'Educational',
-      priority: 'high',
-      estimatedImpact: '+25% August sales',
-      timeToComplete: '5 hours',
-      progress: 45
-    },
-    {
-      id: 8,
-      title: 'Weekend flash sale automation',
-      category: 'Promotional',
-      priority: 'medium',
-      estimatedImpact: '+9% weekend revenue',
-      timeToComplete: '2 hours',
-      progress: 70
-    },
-    {
-      id: 9,
-      title: 'Rainy day indoor product highlights',
-      category: 'Weather',
-      priority: 'low',
-      estimatedImpact: '+6% engagement',
-      timeToComplete: '3 hours',
-      progress: 0
-    },
-    {
-      id: 10,
-      title: 'Black Friday early access content',
-      category: 'Holiday',
-      priority: 'high',
-      estimatedImpact: '+35% pre-sales',
-      timeToComplete: '8 hours',
-      progress: 15
-    },
-    {
-      id: 11,
-      title: 'Local event-based promotions',
-      category: 'Geographic',
-      priority: 'medium',
-      estimatedImpact: '+14% local sales',
-      timeToComplete: '4 hours',
-      progress: 30
-    },
-    {
-      id: 12,
-      title: 'Heat wave cooling product push',
-      category: 'Weather',
-      priority: 'medium',
-      estimatedImpact: '+20% summer items',
-      timeToComplete: '2 hours',
-      progress: 0
-    }
-  ];
+  // optimizationTasks removed - replaced with SeasonalOpportunities component in the optimization tab
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -458,47 +350,7 @@ const Dashboard = () => {
           </TabsContent>
 
           <TabsContent value="optimization" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>Active Optimization Tasks</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {optimizationTasks.map((task) => (
-                    <div key={task.id} className="p-4 border rounded-lg space-y-3">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-semibold">{task.title}</h4>
-                        <Badge className={getPriorityColor(task.priority)}>
-                          {task.priority} priority
-                        </Badge>
-                      </div>
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
-                        <span>{task.category}</span>
-                        <span className="flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {task.timeToComplete}
-                        </span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span>Progress: {task.progress}%</span>
-                          <span className="font-medium text-green-600">{task.estimatedImpact}</span>
-                        </div>
-                        <Progress value={task.progress} className="h-2" />
-                      </div>
-                      <div className="flex justify-end">
-                        <Button size="sm" variant={task.progress === 0 ? 'default' : 'outline'}>
-                          {task.progress === 0 ? 'Start Task' : 'Continue'}
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <SeasonalOpportunities />
           </TabsContent>
         </Tabs>
       </div>
