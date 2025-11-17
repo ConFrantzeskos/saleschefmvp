@@ -291,11 +291,13 @@ RETAIL_PRICE,USD_79.99`;
                       <Badge className="bg-primary/10 text-primary border-primary/40">Jobs to Be Done</Badge>
                     </h4>
                     <div className="text-sm space-y-1">
-                      <p className="font-medium">Why customers "hire" this product:</p>
+                      <p className="font-medium">5 Core Jobs Customers Hire This Product For:</p>
                       <ul className="space-y-1 text-muted-foreground ml-4">
-                        <li>💼 Functional Job: Stay connected during meetings and travel</li>
-                        <li>💚 Emotional Job: Feel productive during commute</li>
-                        <li>👥 Social Job: Signal "focused professional" in open offices</li>
+                        <li>✈️ Sleeping on flights - Create peaceful audio cocoon for long journeys</li>
+                        <li>💪 Workout motivation - Deliver energizing music that stays secure during movement</li>
+                        <li>💼 Professional calls - Sound credible and polished despite home office chaos</li>
+                        <li>🎯 Deep focus - Block open office distractions for 4+ hour focus sessions</li>
+                        <li>📚 Productive commute - Transform dead time into learning opportunity</li>
                       </ul>
                     </div>
                   </div>
