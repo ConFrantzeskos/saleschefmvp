@@ -1,22 +1,17 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import FieldStatusSidebar from '@/components/FieldStatusSidebar';
 import FieldMappingPanel from '@/components/FieldMappingPanel';
+import UnitConflictAlert from '@/components/mapping/UnitConflictAlert';
+import { generateFieldSuggestions, detectUnitConflicts, generateSampleData, FieldMatch } from '@/utils/fieldInference';
 
 const SchemaMapping = () => {
   const navigate = useNavigate();
-  const [mappings, setMappings] = useState({
-    productName: 'Product Title',
-    description: 'Description',
-    price: 'Price',
-    sku: 'SKU',
-    category: '',
-    brand: 'Brand Name',
-    weight: '',
-    dimensions: ''
-  });
+  const [mappings, setMappings] = useState<Record<string, string>>({});
+  const [suggestions, setSuggestions] = useState<Record<string, FieldMatch | null>>({});
+  const [sampleData] = useState(generateSampleData());
 
   const steps = [
     { id: 'upload', label: 'Upload', completed: true, current: false },
@@ -29,19 +24,48 @@ const SchemaMapping = () => {
 
   const detectedFields = [
     'Product Title', 'Description', 'Price', 'SKU', 'Brand Name', 
-    'Category Type', 'Weight (lbs)', 'Dimensions', 'Color', 'Material'
+    'Category Type', 
+    'Weight (lbs)',      // Imperial
+    'Weight_KG',         // Metric
+    'Product Weight',    // Ambiguous
+    'Dimensions',        // No unit
+    'Size (inches)',     // Imperial
+    'Height_CM',         // Metric
+    'Package Dimensions (L x W x H)',  // Complex
+    'Color', 'Material'
   ];
 
   const requiredFields = [
-    { key: 'productName', label: 'Product Name', status: 'good' as const },
-    { key: 'description', label: 'Description', status: 'good' as const },
-    { key: 'price', label: 'Price', status: 'good' as const },
-    { key: 'sku', label: 'SKU', status: 'good' as const },
-    { key: 'category', label: 'Category', status: 'warning' as const },
-    { key: 'brand', label: 'Brand', status: 'good' as const },
-    { key: 'weight', label: 'Weight', status: 'missing' as const },
-    { key: 'dimensions', label: 'Dimensions', status: 'missing' as const },
+    { key: 'productName', label: 'Product Name' },
+    { key: 'description', label: 'Description' },
+    { key: 'price', label: 'Price' },
+    { key: 'sku', label: 'SKU' },
+    { key: 'category', label: 'Category' },
+    { key: 'brand', label: 'Brand' },
+    { key: 'weight', label: 'Weight' },
+    { key: 'dimensions', label: 'Dimensions' },
   ];
+
+  // Auto-generate suggestions on mount
+  useEffect(() => {
+    const newMappings: Record<string, string> = {};
+    const newSuggestions: Record<string, FieldMatch | null> = {};
+
+    requiredFields.forEach(field => {
+      const suggestion = generateFieldSuggestions(field.label, detectedFields, sampleData);
+      newSuggestions[field.key] = suggestion;
+      
+      // Auto-map high confidence matches (>80%)
+      if (suggestion && suggestion.confidence >= 0.8) {
+        newMappings[field.key] = suggestion.sourceField;
+      } else {
+        newMappings[field.key] = '';
+      }
+    });
+
+    setMappings(newMappings);
+    setSuggestions(newSuggestions);
+  }, []);
 
   const handleMappingChange = (fieldKey: string, value: string) => {
     setMappings(prev => ({ ...prev, [fieldKey]: value }));
@@ -50,6 +74,23 @@ const SchemaMapping = () => {
   const handleContinue = () => {
     navigate('/cleaning');
   };
+
+  const unitConflicts = detectUnitConflicts(mappings);
+
+  const getFieldStatus = (fieldKey: string) => {
+    const mapping = mappings[fieldKey];
+    const suggestion = suggestions[fieldKey];
+    
+    if (!mapping || mapping === 'not-mapped') {
+      return suggestion && suggestion.confidence >= 0.5 ? 'warning' : 'missing';
+    }
+    return suggestion && suggestion.confidence >= 0.8 ? 'good' : 'warning';
+  };
+
+  const fieldsWithStatus = requiredFields.map(field => ({
+    ...field,
+    status: getFieldStatus(field.key) as 'good' | 'warning' | 'missing'
+  }));
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -65,16 +106,24 @@ const SchemaMapping = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <FieldStatusSidebar 
-            requiredFields={requiredFields}
+            requiredFields={fieldsWithStatus}
             onContinue={handleContinue}
           />
           
-          <FieldMappingPanel
-            requiredFields={requiredFields}
-            mappings={mappings}
-            detectedFields={detectedFields}
-            onMappingChange={handleMappingChange}
-          />
+          <div className="lg:col-span-2 space-y-6">
+            {unitConflicts.hasConflict && (
+              <UnitConflictAlert conflicts={unitConflicts.conflicts} />
+            )}
+            
+            <FieldMappingPanel
+              requiredFields={fieldsWithStatus}
+              mappings={mappings}
+              detectedFields={detectedFields}
+              onMappingChange={handleMappingChange}
+              suggestions={suggestions}
+              sampleData={sampleData}
+            />
+          </div>
         </div>
 
         <div className="mt-8 text-center">
