@@ -68,6 +68,7 @@ const ReviewContent = lazy(() => import("../pages/ReviewContent"));
 const AssetReview = lazy(() => import("../pages/AssetReview"));
 const EnhanceAssets = lazy(() => import("../pages/EnhanceAssets"));
 const Deploy = lazy(() => import("../pages/Deploy"));
+const TransformationShowcase = lazy(() => import("../pages/TransformationShowcase"));
 const Optimization = lazy(() => import("../pages/Optimization"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const NotFound = lazy(() => import("../pages/NotFound"));
@@ -106,6 +107,7 @@ export const pageComponents = {
   AssetReview,
   EnhanceAssets,
   Deploy,
+  TransformationShowcase,
   Optimization,
   Dashboard,
   NotFound,

@@ -37,6 +37,7 @@ const AppRoutes = () => {
       <Route path="/review/:id" element={<pageComponents.AssetReview />} />
       <Route path="/enhance" element={<pageComponents.EnhanceAssets />} />
       <Route path="/deploy" element={<pageComponents.Deploy />} />
+      <Route path="/transformation-showcase" element={<pageComponents.TransformationShowcase />} />
       <Route path="/optimization" element={<pageComponents.Optimization />} />
       <Route path="/dashboard" element={<pageComponents.Dashboard />} />
       <Route path="*" element={<pageComponents.NotFound />} />

@@ -475,6 +475,12 @@ const EnrichmentAssetReview = () => {
               Re-run Enrichment
             </Button>
             <div className="space-x-3">
+              <Button 
+                variant="outline"
+                onClick={() => navigate('/transformation-showcase')}
+              >
+                View Transformation
+              </Button>
               <Button variant="outline" onClick={handleExportBrief}>
                 <Download className="w-4 h-4 mr-2" />
                 Export Enrichment Research

@@ -359,6 +359,13 @@ const Deploy = () => {
             Back to Review
           </Button>
           <Button 
+            onClick={() => navigate('/transformation-showcase')}
+            variant="outline"
+            className="gap-2"
+          >
+            View Transformation
+          </Button>
+          <Button 
             onClick={handleDeploy}
             disabled={selectedTargets.length === 0}
             className="px-8"
