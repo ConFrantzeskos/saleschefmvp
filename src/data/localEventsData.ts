@@ -234,17 +234,17 @@ export const localEvents: LocalEvent[] = [
     targetAudience: 'Health-conscious buyers, outdoor enthusiasts, families, drivers'
   },
   {
-    id: 'northern-beaches-boxing-day-test',
-    name: 'Boxing Day Test at SCG - Northern Beaches Gathering',
+    id: 'boxing-day-test-mcg',
+    name: 'Boxing Day Test at MCG',
     date: '2025-12-26',
     category: 'Sports',
-    location: 'Manly, Northern Beaches',
-    radius: '20km radius',
+    location: 'Melbourne Cricket Ground',
+    radius: 'National viewing event',
     icon: '🏏',
-    contentRecommendation: 'Large-screen TVs for viewing parties, outdoor projectors, portable speakers, esky coolers with USB charging, outdoor entertainment packages. "Ultimate Boxing Day setup" for the biggest cricket day of the year.',
-    strategicInsight: 'Boxing Day Test = Australia\'s most-watched cricket match. Northern Beaches communities gather for viewing parties. Large TV sales spike 3 weeks before (+175%). Outdoor projectors for backyard cricket parties (+140%). Portable audio for beach gatherings (+120%). Premium demographic with high spending power.',
+    contentRecommendation: 'Large-screen TVs for home viewing parties, outdoor projectors for backyard gatherings, soundbars and home audio systems, portable speakers for beach/park watching, multi-room audio setups. "Australia\'s biggest cricket day" entertainment positioning drives TV and audio upgrades nationwide.',
+    strategicInsight: 'Boxing Day Test at MCG = Australia\'s most-watched cricket event. Millions watch from home with friends and family. 100,000+ attend MCG in person (Victoria spike in portable tech). Nationwide: Large TV sales +175% (3 weeks before), soundbars +165%, outdoor projectors +140%. Social viewing = audio upgrade priority. Melbourne: portable chargers, bluetooth speakers, stadium essentials spike.',
     expectedImpact: '+175% large-screen TVs',
-    targetAudience: 'Cricket fans, Northern Beaches families, entertainment hosts'
+    targetAudience: 'Cricket fans nationwide, Melbourne attendees, social entertainment hosts'
   },
   {
     id: 'eastern-suburbs-home-refresh',
