@@ -15,10 +15,10 @@ const EnrichmentReview = () => {
     { id: 'upload', label: 'Upload', completed: true, current: false },
     { id: 'mapping', label: 'Map Fields', completed: true, current: false },
     { id: 'clean', label: 'Clean Data', completed: true, current: false },
-    { id: 'enrich', label: 'Enrich', completed: true, current: false },
-    { id: 'enrichment-review', label: 'Review Enrichment', completed: false, current: true },
+    { id: 'enrich', label: 'Enrich', completed: false, current: true },
     { id: 'enhance', label: 'Enhance', completed: false, current: false },
     { id: 'generate', label: 'Generate', completed: false, current: false },
+    { id: 'review', label: 'Review', completed: false, current: false },
     { id: 'deploy', label: 'Deploy', completed: false, current: false },
   ];
 
@@ -42,10 +42,10 @@ const EnrichmentReview = () => {
           <div className="flex items-start justify-between mb-6">
             <div>
               <h1 className="text-section-title font-display font-bold mb-2 animate-fade-in">
-                Market Intelligence Enrichment Complete
+                Enrichment Complete - Review Market Intelligence
               </h1>
               <p className="text-body-large text-muted-foreground animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                Review enriched market data and customer insights before strategic enhancement
+                Review enriched data for 3 products before strategic enhancement
               </p>
             </div>
           </div>
@@ -102,10 +102,10 @@ const EnrichmentReview = () => {
         <div className="bg-card rounded-xl border shadow-soft animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <div className="p-6 border-b bg-muted/30">
             <h2 className="text-xl font-display font-semibold text-foreground">
-              Enriched Market Intelligence ({sampleAssets.length} Products)
+              Enriched Market Intelligence (3 Products)
             </h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Click any row to view detailed enrichment data and insights
+              Click any product card to view detailed enrichment data and insights
             </p>
           </div>
           
