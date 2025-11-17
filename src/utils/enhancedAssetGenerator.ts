@@ -1109,4 +1109,40 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       status: 'Enhanced'
     }
   ];
+
+  // Generate additional 197 SKUs for table views - matching assetGenerator IDs 4-200
+  const additionalProducts = Array.from({ length: 197 }, (_, i) => {
+    const id = i + 4;
+    const confidenceScore = 85 + Math.floor(Math.random() * 13);
+    
+    return {
+      id,
+      sku: `PRD${id.toString().padStart(3, '0')}`,
+      name: `Consumer Electronics Product ${id}`,
+      category: 'Electronics',
+      brand: ['Samsung', 'Sony', 'Apple', 'LG', 'Dell'][Math.floor(Math.random() * 5)],
+      coreValueProposition: 'Premium quality with advanced features',
+      primaryPersona: 'Tech-savvy Consumer',
+      keyDifferentiator: 'Superior performance and value',
+      contentApproach: 'Feature-benefit focused messaging',
+      benefitLadder: { levels: [{ feature: 'Advanced technology', functionalBenefit: 'Enhanced performance', emotionalBenefit: 'Confidence in quality', value: 'Reliable investment', proof: 'Customer satisfaction' }] },
+      personas: [{ name: 'Primary User', description: 'Target consumer', demographics: 'Broad market', psychographics: 'Quality-focused', buyingMotivations: ['Quality', 'Value'], painPoints: ['Cost concerns'], decisionCriteria: ['Features', 'Price'], messagingPreferences: 'Direct and clear', matchScore: 85 }],
+      messaging: [{ hook: 'Premium quality', bodyPoints: ['Feature 1', 'Feature 2'], callToAction: 'Learn more', targetPersona: 'Primary User', channel: 'Digital', confidence: 85 }],
+      reasonsToBuy: [{ reason: 'Quality construction', category: 'Product', confidence: 85, supportingEvidence: ['Reviews'], objections: [] }],
+      socialProof: [{ type: 'reviews', content: 'Positive feedback', source: 'Customers', credibility: 85 }],
+      positioning: { competitiveSet: 'Market leaders', differentiators: ['Quality'], alternatives: 'Other brands', visualIdentity: 'Modern' },
+      storytelling: { narrative: 'Innovation story', heroJourney: { ordinary: 'Consumer need', callToAdventure: 'Product discovery', transformation: 'Satisfaction' }, emotionalArc: 'Positive', brandVoice: 'Professional' },
+      objectionHandling: [{ objection: 'Price concern', response: 'Value justification', confidence: 80 }],
+      conversionHeuristics: { clarity: 85, relevance: 85, urgency: 80, anxiety: 75, distraction: 70, valueProposition: 'Clear benefits' },
+      psychologyTriggers: [{ trigger: 'Social proof', application: 'Customer reviews', effectiveness: 85 }],
+      contentBriefs: { productPage: { headline: 'Product name', subheadline: 'Key benefit', heroImage: 'Product shot', keyMessages: ['Feature 1'], cta: 'Buy now' }, emailCampaign: { subjectLine: 'New product', preheader: 'Learn more', bodyStructure: ['Intro', 'Features'], cta: 'Shop' }, socialMedia: { platforms: ['Instagram'], postTypes: ['Product'], contentPillars: ['Features'], hashtagStrategy: ['#tech'] }, videoScript: { hook: 'Attention grabber', problemStatement: 'Consumer need', solutionReveal: 'Product intro', demonstration: 'Features', socialProof: 'Reviews', cta: 'Visit site' } },
+      confidenceScore,
+      personaMatchScore: 85,
+      messageStrengthScore: 85,
+      rtbCount: 3,
+      status: 'Enhanced' as const
+    };
+  });
+
+  return [...baseAssets, ...additionalProducts];
 };
