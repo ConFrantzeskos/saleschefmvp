@@ -45,16 +45,16 @@ const EnhancementReview = () => {
           onProceed={handleProceedToGeneration}
         />
 
+        <div className="mb-4">
+          <h2 className="text-xl font-display font-semibold text-foreground mb-2">
+            Strategic Product Briefs ({sampleAssets.length})
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Click on a product to view complete strategic frameworks, personas, and conversion heuristics
+          </p>
+        </div>
+
         <div className="bg-card rounded-xl border shadow-soft animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          <div className="p-6 border-b bg-gradient-to-r from-primary/5 to-secondary/5">
-            <h2 className="text-xl font-display font-semibold text-foreground">
-              Strategic Product Briefs ({sampleAssets.length})
-            </h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Click "View Full Brief" to explore complete strategic frameworks, personas, and conversion heuristics
-            </p>
-          </div>
-          
           <EnhancedAssetsTable assets={sampleAssets} />
         </div>
       </div>
