@@ -4,7 +4,7 @@ import ProgressIndicator from '@/components/ProgressIndicator';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, ArrowRight } from 'lucide-react';
+import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, ArrowRight, Globe2, Shield, Video, FileText, Network, Leaf, Link2, Image, Store, Award, HelpCircle, DollarSign } from 'lucide-react';
 
 const Enrichment = () => {
   const navigate = useNavigate();
@@ -67,6 +67,90 @@ const Enrichment = () => {
       status: "Researching 150+ keywords..."
     },
     {
+      icon: Globe2,
+      title: "Cultural & Regional Intelligence",
+      description: "Analyzing regional preferences and cultural nuances",
+      details: ["Localization opportunities", "Regional terminology", "Cultural buying patterns", "Market-specific features"],
+      status: "Analyzing 47 regional markets..."
+    },
+    {
+      icon: Shield,
+      title: "Regulatory & Compliance Data",
+      description: "Gathering certification and compliance information",
+      details: ["Safety certifications", "Regional regulations", "Energy ratings", "Compliance standards"],
+      status: "Checking 23 certification databases..."
+    },
+    {
+      icon: Video,
+      title: "Influencer & Creator Content",
+      description: "Mining insights from tech reviews and unboxing videos",
+      details: ["YouTube review analysis", "Influencer mentions", "Creator recommendations", "Video sentiment"],
+      status: "Analyzing 156 video reviews..."
+    },
+    {
+      icon: FileText,
+      title: "Technical Specifications Mining",
+      description: "Extracting detailed technical specifications",
+      details: ["Manufacturer data sheets", "Technical manuals", "Specification standards", "Performance metrics"],
+      status: "Mining technical documentation..."
+    },
+    {
+      icon: Network,
+      title: "Nomenclature & Taxonomy Building",
+      description: "Standardizing product names and categorization",
+      details: ["Naming conventions", "Attribute extraction", "Category hierarchies", "Variant mapping"],
+      status: "Building standardized taxonomy..."
+    },
+    {
+      icon: Leaf,
+      title: "Sustainability & Ethics Intelligence",
+      description: "Gathering environmental and ethical data",
+      details: ["Environmental impact", "Manufacturing practices", "Recyclability info", "Sustainability scores"],
+      status: "Analyzing sustainability metrics..."
+    },
+    {
+      icon: Link2,
+      title: "Cross-Category Intelligence",
+      description: "Identifying ecosystem and compatibility insights",
+      details: ["Compatible products", "Ecosystem fit", "Cross-sell opportunities", "Integration capabilities"],
+      status: "Mapping product ecosystems..."
+    },
+    {
+      icon: Image,
+      title: "Visual Intelligence",
+      description: "Analyzing product imagery and visual trends",
+      details: ["Image quality analysis", "Lifestyle context", "Packaging insights", "Visual merchandising trends"],
+      status: "Processing visual content..."
+    },
+    {
+      icon: Store,
+      title: "Retailer Intelligence",
+      description: "Gathering multi-retailer insights",
+      details: ["Stock availability", "Promotional patterns", "Retailer positioning", "Channel performance"],
+      status: "Scanning retail channels..."
+    },
+    {
+      icon: Award,
+      title: "Expert Reviews & Publications",
+      description: "Mining professional tech reviews and awards",
+      details: ["Editorial reviews", "Industry awards", "Expert ratings", "Publication mentions"],
+      status: "Analyzing 89 expert reviews..."
+    },
+    {
+      icon: HelpCircle,
+      title: "Q&A Intelligence",
+      description: "Processing customer questions and support data",
+      details: ["Common questions", "Setup concerns", "Usage queries", "Support patterns"],
+      status: "Mining 2,450 Q&A entries..."
+    },
+    {
+      icon: DollarSign,
+      title: "Pricing Intelligence",
+      description: "Analyzing pricing strategies and value perception",
+      details: ["Price history", "Competitive pricing", "Value positioning", "Promotional patterns"],
+      status: "Analyzing pricing data..."
+    },
+    {
       icon: Brain,
       title: "Intelligence Synthesis",
       description: "Creating enriched product profiles",
@@ -112,7 +196,7 @@ const Enrichment = () => {
             <h1 className="text-3xl font-semibold">Enriching Product Intelligence</h1>
           </div>
           <p className="text-lg text-muted-foreground">
-            Gathering insights from search data, reviews, social sentiment, and competitor analysis
+            Gathering insights from 18 intelligence sources including search data, reviews, social sentiment, competitor analysis, cultural research, technical specifications, sustainability data, and more
           </p>
         </div>
 
