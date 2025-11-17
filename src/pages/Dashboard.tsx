@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import SeasonalOpportunities from '@/components/SeasonalOpportunities';
 import LocalOpportunities from '@/components/LocalOpportunities';
+import OpportunityCalendar from '@/components/OpportunityCalendar';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -245,11 +246,16 @@ const Dashboard = () => {
 
         <Tabs defaultValue="optimization" className="space-y-6">
           <TabsList>
+            <TabsTrigger value="calendar">Opportunity Calendar</TabsTrigger>
             <TabsTrigger value="optimization">Active Optimizations</TabsTrigger>
             <TabsTrigger value="local">Local Opportunities</TabsTrigger>
             <TabsTrigger value="diagnostics">AI Diagnostics</TabsTrigger>
             <TabsTrigger value="channels">Channel Performance</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="calendar" className="space-y-6">
+            <OpportunityCalendar />
+          </TabsContent>
 
           <TabsContent value="diagnostics" className="space-y-6">
             <Card>
