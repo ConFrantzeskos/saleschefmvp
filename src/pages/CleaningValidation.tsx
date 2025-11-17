@@ -32,7 +32,7 @@ const CleaningValidation = () => {
     {
       title: "Data Parsing", 
       description: "Extracting structured data from various sources",
-      issues: "847 product records parsed successfully"
+      issues: "3 product records parsed successfully"
     },
     {
       title: "Deduplication",
@@ -47,7 +47,7 @@ const CleaningValidation = () => {
     {
       title: "Multi-Level Categorization",
       description: "Assigning products to multiple categories and sub-categories",
-      issues: "847 products assigned 1,523 category tags across 24 primary categories with 156 sub-categories"
+      issues: "3 products assigned to primary categories with relevant sub-categories"
     },
     {
       title: "Data Validation",
@@ -56,8 +56,8 @@ const CleaningValidation = () => {
     },
     {
       title: "Final Processing",
-      description: "Preparing clean, validated data for content generation",
-      issues: "847 products ready for enhancement"
+      description: "Preparing clean, validated data for enrichment",
+      issues: "3 products ready for enrichment"
     }
   ];
 

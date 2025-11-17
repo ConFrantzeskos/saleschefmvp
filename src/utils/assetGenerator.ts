@@ -5,31 +5,6 @@ export const generateSampleAssets = (): Asset[] => {
   const assets: Asset[] = [
     // Product 1: CD1234 - TechSound Headphones
     {
-    id: i + 1,
-    sku: `CD${String(i + 1000).padStart(4, '0')}`,
-    name: `Product ${i + 1} - ${brands[i % brands.length]} Item`,
-    category: categories[i % categories.length],
-    brand: brands[i % brands.length],
-    status: statuses[i % statuses.length],
-    quality: Math.floor(Math.random() * 30) + 70,
-    price: `$${(Math.random() * 200 + 20).toFixed(2)}`,
-    description: `High-quality ${brands[i % brands.length]} product with advanced features and premium build quality`,
-    features: `Feature A, Feature B, Feature C, Advanced Technology ${i + 1}`,
-    targetAudience: `Target group ${(i % 5) + 1}, professionals, enthusiasts`,
-    keyBenefits: `Key benefit ${(i % 3) + 1}, improved performance, enhanced user experience`,
-    competitiveAdvantage: `Unique selling point ${(i % 4) + 1}, superior quality vs competitors`,
-    seoKeywords: `keyword${i + 1}, ${brands[i % brands.length].toLowerCase()}, product category`,
-    metaTitle: `${brands[i % brands.length]} Product ${i + 1} - Premium Quality`,
-    metaDescription: `Discover the ${brands[i % brands.length]} Product ${i + 1} with advanced features and premium quality. Perfect for your needs.`,
-    productBullets: `• Premium quality construction\n• Advanced features\n• User-friendly design\n• Reliable performance`,
-    technicalSpecs: `Spec 1: Value A\nSpec 2: Value B\nSpec 3: Value C\nDimensions: ${Math.floor(Math.random() * 50) + 10}cm`,
-    useCases: `Use case 1, Use case 2, Professional applications, Home use`,
-    warranty: `${Math.floor(Math.random() * 3) + 1} year warranty`,
-    certifications: "CE, FCC, RoHS"
-  }));
-
-  // Override the first product with the specific headphones details
-  assets[0] = {
       id: 1,
       sku: 'CD1234',
       name: 'CD1234 24 Hour Charge Wireless Headphones | Bluetooth 5.0 | Foldable | Mic',
