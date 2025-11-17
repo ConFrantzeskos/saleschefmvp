@@ -44,6 +44,22 @@ const SchemaMapping = () => {
     { key: 'brand', label: 'Brand' },
     { key: 'weight', label: 'Weight' },
     { key: 'dimensions', label: 'Dimensions' },
+    { key: 'upc', label: 'UPC/EAN/GTIN' },
+    { key: 'manufacturer', label: 'Manufacturer' },
+    { key: 'stock', label: 'Stock Quantity' },
+    { key: 'cost', label: 'Cost' },
+    { key: 'msrp', label: 'MSRP' },
+    { key: 'color', label: 'Color' },
+    { key: 'size', label: 'Size' },
+    { key: 'material', label: 'Material' },
+    { key: 'warranty', label: 'Warranty Period' },
+    { key: 'imageUrl', label: 'Product Image URL' },
+    { key: 'tags', label: 'Tags' },
+    { key: 'shippingWeight', label: 'Shipping Weight' },
+    { key: 'shippingDimensions', label: 'Shipping Dimensions' },
+    { key: 'minOrderQty', label: 'Min Order Quantity' },
+    { key: 'availability', label: 'Availability Status' },
+    { key: 'countryOfOrigin', label: 'Country of Origin' },
   ];
 
   // Auto-generate AI-powered suggestions with clear confidence thresholds
