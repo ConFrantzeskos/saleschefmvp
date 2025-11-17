@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import AssetHeader from '@/components/AssetHeader';
 import FactoryDataSection from '@/components/FactoryDataSection';
@@ -9,6 +12,7 @@ import GeneratedVisualContent from '@/components/GeneratedVisualContent';
 import IntelligenceSummaryPanel from '@/components/IntelligenceSummaryPanel';
 import { contentSections } from '@/data/contentSections';
 import { Asset } from '@/types/asset';
+import { ArrowRight, Database, TrendingUp, Brain, FileText } from 'lucide-react';
 
 const AssetReview = () => {
   const navigate = useNavigate();
@@ -137,43 +141,232 @@ RETAIL_PRICE,USD_79.99`;
       <div className="max-w-7xl mx-auto p-6 flex-1 flex flex-col">
         <AssetHeader asset={asset} onApprove={handleApprove} />
 
-        {/* Improved three-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
-          
-          {/* Left Column - Source Data and Visual Content */}
-          <div className="lg:col-span-4 space-y-6">
-            {/* Intelligence Summary */}
-            <IntelligenceSummaryPanel 
-              cleanedFields={47}
-              enrichmentInsights={12}
-              frameworksApplied={8}
-              contentPieces={24}
-            />
-            
-            {/* Original Factory Data */}
-            <FactoryDataSection consolidatedRawData={consolidatedRawData} />
-            
-            {/* Generated Visual Content */}
-            <GeneratedVisualContent 
-              keywords={asset.seoKeywords}
-              keyBenefits={asset.keyBenefits}
-              competitiveAdvantage={asset.competitiveAdvantage}
-            />
-          </div>
+        {/* Intelligence Build Tabs */}
+        <Tabs defaultValue="content" className="flex-1 flex flex-col min-h-0">
+          <TabsList className="grid w-full grid-cols-4 mb-6">
+            <TabsTrigger value="raw" className="flex items-center gap-2">
+              <Database className="w-4 h-4" />
+              <span className="hidden sm:inline">1. Raw Data</span>
+              <span className="sm:hidden">Raw</span>
+            </TabsTrigger>
+            <TabsTrigger value="enrichment" className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4" />
+              <span className="hidden sm:inline">2. Intelligence</span>
+              <span className="sm:hidden">Intel</span>
+            </TabsTrigger>
+            <TabsTrigger value="frameworks" className="flex items-center gap-2">
+              <Brain className="w-4 h-4" />
+              <span className="hidden sm:inline">3. Frameworks</span>
+              <span className="sm:hidden">Strat</span>
+            </TabsTrigger>
+            <TabsTrigger value="content" className="flex items-center gap-2">
+              <FileText className="w-4 h-4" />
+              <span className="hidden sm:inline">4. Content</span>
+              <span className="sm:hidden">Output</span>
+            </TabsTrigger>
+          </TabsList>
 
-          {/* Right Column - Enhanced Content */}
-          <div className="lg:col-span-8 flex flex-col">
-            <EnhancedContentSection
-              contentSections={contentSections}
-              editingField={editingField}
-              editValues={editValues}
-              onEdit={handleEdit}
-              onSave={handleSave}
-              onCancel={handleCancel}
-              onEditValueChange={handleEditValueChange}
-            />
-          </div>
-        </div>
+          {/* Tab 1: Raw Factory Data */}
+          <TabsContent value="raw" className="flex-1 min-h-0 overflow-auto">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Database className="w-5 h-5" />
+                  Phase 1: Raw Factory Data
+                </CardTitle>
+                <CardDescription>
+                  Original CSV data from manufacturer - before cleaning and transformation
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center gap-2 p-3 bg-muted rounded-lg">
+                  <Badge variant="outline">47 Fields Extracted</Badge>
+                  <ArrowRight className="w-4 h-4" />
+                  <Badge variant="outline">Chinglish Detected</Badge>
+                  <ArrowRight className="w-4 h-4" />
+                  <Badge variant="outline" className="bg-green-500/10 text-green-700 border-green-500/40">Cleaned</Badge>
+                </div>
+                <FactoryDataSection consolidatedRawData={consolidatedRawData} />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Tab 2: Market Intelligence / Enrichment */}
+          <TabsContent value="enrichment" className="flex-1 min-h-0 overflow-auto">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5" />
+                  Phase 2: Market Intelligence & Enrichment
+                </CardTitle>
+                <CardDescription>
+                  Added competitive intelligence, search trends, and customer insights
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid gap-4">
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge>Search Trends</Badge>
+                    </h4>
+                    <ul className="text-sm space-y-1 text-muted-foreground">
+                      <li>• "wireless headphones long battery" - High search volume (8.2K/mo)</li>
+                      <li>• "24 hour battery headphones" - Growing trend (+34% YoY)</li>
+                      <li>• "professional wireless headphones" - Medium volume (3.1K/mo)</li>
+                      <li>• "foldable travel headphones" - Rising interest (+22% YoY)</li>
+                    </ul>
+                  </div>
+
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge>Customer Sentiment Analysis</Badge>
+                    </h4>
+                    <ul className="text-sm space-y-1 text-muted-foreground">
+                      <li>• Battery Life: ⭐ 4.8/5 - "Best feature, lasts all day"</li>
+                      <li>• Comfort: ⭐ 4.2/5 - "Comfortable for extended wear"</li>
+                      <li>• Sound Quality: ⭐ 4.5/5 - "Clear audio, good bass"</li>
+                      <li>• Portability: ⭐ 4.7/5 - "Love the foldable design"</li>
+                    </ul>
+                  </div>
+
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge>Competitive Analysis</Badge>
+                    </h4>
+                    <ul className="text-sm space-y-1 text-muted-foreground">
+                      <li>• Sony WH-1000XM4: 30hr battery, $349 - Premium positioning</li>
+                      <li>• Beats Studio3: 22hr battery, $349 - Fashion-forward</li>
+                      <li>• Bose QC45: 24hr battery, $329 - Comfort leader</li>
+                      <li>• Our advantage: 24hr battery at $149 - Value leader</li>
+                    </ul>
+                  </div>
+
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge>Key Feature Extraction</Badge>
+                    </h4>
+                    <ul className="text-sm space-y-1 text-muted-foreground">
+                      <li>• Primary differentiator: 24-hour battery life at competitive price</li>
+                      <li>• Secondary strength: Foldable design for travel</li>
+                      <li>• Target audience: Professionals, frequent travelers, students</li>
+                      <li>• Use case priority: Meetings &gt; Commuting &gt; Travel &gt; Entertainment</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Tab 3: Strategic Frameworks */}
+          <TabsContent value="frameworks" className="flex-1 min-h-0 overflow-auto">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Brain className="w-5 h-5" />
+                  Phase 3: Strategic Frameworks Applied
+                </CardTitle>
+                <CardDescription>
+                  Marketing frameworks that shaped the content strategy
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid gap-4">
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge className="bg-primary/10 text-primary border-primary/40">Ladder of Benefits</Badge>
+                    </h4>
+                    <div className="text-sm space-y-1">
+                      <p className="font-medium">Climbing from features to emotional value:</p>
+                      <ul className="space-y-1 text-muted-foreground ml-4">
+                        <li>🔧 Feature: 24-hour battery, Bluetooth 5.0, Foldable</li>
+                        <li>⚙️ Functional: Never runs out during workday, stays connected</li>
+                        <li>💚 Emotional: Feel confident, stress-free, in control</li>
+                        <li>👥 Social: Signal professionalism, appear prepared</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge className="bg-primary/10 text-primary border-primary/40">Jobs to Be Done</Badge>
+                    </h4>
+                    <div className="text-sm space-y-1">
+                      <p className="font-medium">Why customers "hire" this product:</p>
+                      <ul className="space-y-1 text-muted-foreground ml-4">
+                        <li>💼 Functional Job: Stay connected during meetings and travel</li>
+                        <li>💚 Emotional Job: Feel productive during commute</li>
+                        <li>👥 Social Job: Signal "focused professional" in open offices</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge className="bg-primary/10 text-primary border-primary/40">Category Entry Points</Badge>
+                    </h4>
+                    <div className="text-sm space-y-1">
+                      <p className="font-medium">Moments when customers think of this product:</p>
+                      <ul className="space-y-1 text-muted-foreground ml-4">
+                        <li>🌅 Morning commute - "Need focus for the day"</li>
+                        <li>✈️ Booking travel - "Need reliable entertainment"</li>
+                        <li>💻 Back-to-back meetings - "Need professional audio"</li>
+                        <li>😴 Afternoon slump - "Need motivation boost"</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="border rounded-lg p-4 space-y-2">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <Badge className="bg-amber-500/10 text-amber-700 border-amber-500/40">Behavioral Economics</Badge>
+                    </h4>
+                    <div className="text-sm space-y-1">
+                      <p className="font-medium">Psychological triggers in content:</p>
+                      <ul className="space-y-1 text-muted-foreground ml-4">
+                        <li>⏳ Scarcity: "Only 3 left at this price"</li>
+                        <li>👥 Social Proof: "12 people viewing now"</li>
+                        <li>🛡️ Loss Aversion: "Never worry about battery again"</li>
+                        <li>🎁 Reciprocity: "Free returns + 2-year warranty"</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Tab 4: Generated Content */}
+          <TabsContent value="content" className="flex-1 min-h-0 overflow-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              {/* Left Column - Intelligence Summary & Visual Content */}
+              <div className="lg:col-span-4 space-y-6">
+                <IntelligenceSummaryPanel 
+                  cleanedFields={47}
+                  enrichmentInsights={12}
+                  frameworksApplied={8}
+                  contentPieces={24}
+                />
+                <GeneratedVisualContent 
+                  keywords={asset.seoKeywords}
+                  keyBenefits={asset.keyBenefits}
+                  competitiveAdvantage={asset.competitiveAdvantage}
+                />
+              </div>
+
+              {/* Right Column - Enhanced Content */}
+              <div className="lg:col-span-8 flex flex-col">
+                <EnhancedContentSection
+                  contentSections={contentSections}
+                  editingField={editingField}
+                  editValues={editValues}
+                  onEdit={handleEdit}
+                  onSave={handleSave}
+                  onCancel={handleCancel}
+                  onEditValueChange={handleEditValueChange}
+                />
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
 
       {/* Fixed bottom navigation bar */}

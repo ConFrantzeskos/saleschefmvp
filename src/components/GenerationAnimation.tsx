@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChefHat, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 interface GenerationAnimationProps {
   onComplete: () => void;
@@ -12,13 +13,14 @@ const GenerationAnimation = ({ onComplete }: GenerationAnimationProps) => {
   const [dots, setDots] = useState('');
 
   const steps = [
-    "Preheating the content oven...",
-    "Chopping up your data ingredients...",
-    "Seasoning with brand guidelines...",
-    "Mixing in some creative flair...",
-    "Letting it simmer to perfection...",
-    "Plating your content masterpiece...",
-    "Bon appétit! Your content feast is ready!"
+    { text: "Analyzing cleaned factory data...", badge: "Data Processing" },
+    { text: "Integrating market intelligence...", badge: "Enrichment" },
+    { text: "Applying Ladder of Benefits...", badge: "Strategic Framework" },
+    { text: "Activating Jobs to Be Done...", badge: "Strategic Framework" },
+    { text: "Implementing Category Entry Points...", badge: "Strategic Framework" },
+    { text: "Triggering behavioral economics...", badge: "Psychological Triggers" },
+    { text: "Generating optimized content...", badge: "Content Creation" },
+    { text: "Finalizing strategic copy...", badge: "Polish" }
   ];
 
   useEffect(() => {
@@ -28,11 +30,11 @@ const GenerationAnimation = ({ onComplete }: GenerationAnimationProps) => {
           return prev + 1;
         } else {
           clearInterval(stepInterval);
-          setTimeout(onComplete, 1500); // Wait a bit before navigating
+          setTimeout(onComplete, 1500);
           return prev;
         }
       });
-    }, 2000);
+    }, 1500);
 
     return () => clearInterval(stepInterval);
   }, [onComplete]);
@@ -62,9 +64,14 @@ const GenerationAnimation = ({ onComplete }: GenerationAnimationProps) => {
             </h2>
             
             <div className="h-16 flex items-center justify-center">
-              <p className="text-lg text-muted-foreground">
-                {steps[currentStep]}{currentStep < steps.length - 1 ? dots : ''}
-              </p>
+              <div className="flex flex-col items-center gap-2">
+                <Badge variant="outline" className="bg-primary/10 border-primary/40 text-primary">
+                  {steps[currentStep].badge}
+                </Badge>
+                <p className="text-lg text-muted-foreground">
+                  {steps[currentStep].text}{currentStep < steps.length - 1 ? dots : ''}
+                </p>
+              </div>
             </div>
             
             <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
