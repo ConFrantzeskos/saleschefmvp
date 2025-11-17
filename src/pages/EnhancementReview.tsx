@@ -26,7 +26,7 @@ const EnhancementReview = () => {
   };
 
   // Calculate summary stats
-  const frameworkCount = sampleAssets.length * 12; // 12 frameworks per asset
+  const frameworkCount = sampleAssets.length * 11; // 11 core strategic frameworks per asset
   const elementCount = sampleAssets.reduce((sum, asset) => sum + asset.rtbCount, 0) * 5; // RTBs × 5 types
   const avgConfidence = Math.round(
     sampleAssets.reduce((sum, asset) => sum + asset.confidenceScore, 0) / sampleAssets.length
