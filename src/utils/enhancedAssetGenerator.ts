@@ -4,374 +4,373 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
   return [
     {
       id: 1,
-      sku: 'WH-1000XM5',
-      name: 'Premium Wireless Noise Cancelling Headphones',
-      category: 'Audio',
-      brand: 'Sony',
+      sku: 'CD1234',
+      name: 'CD1234 24 Hour Charge Wireless Headphones',
+      category: 'Electronics',
+      brand: 'TechSound',
       
-      coreValueProposition: 'Industry-leading noise cancellation meets premium comfort for the modern professional who demands uninterrupted focus',
-      primaryPersona: 'The Focused Professional',
-      keyDifferentiator: '30-hour battery life with best-in-class ANC technology',
-      contentApproach: 'Emphasize productivity gains and premium quality experience',
+      coreValueProposition: 'Uninterrupted wireless freedom with 24-hour battery life for professionals, travelers, and entertainment enthusiasts',
+      primaryPersona: 'The Mobile Professional',
+      keyDifferentiator: '24-hour battery life with quick charge technology',
+      contentApproach: 'Emphasize battery longevity, portability, and versatile use cases',
       
       benefitLadder: {
         levels: [
           {
-            feature: '30mm driver units with LDAC codec',
-            functionalBenefit: 'Crystal-clear audio reproduction across all frequencies',
-            emotionalBenefit: 'Confidence in hearing every detail that matters',
-            value: 'Professional pride in quality equipment',
-            proof: '92% of audio engineers rate sound quality as "exceptional"'
+            feature: 'Bluetooth 5.0 wireless connectivity',
+            functionalBenefit: 'Seamless pairing with multiple devices up to 30ft range',
+            emotionalBenefit: 'Freedom from tangled wires and connection hassles',
+            value: 'Modern convenience and flexibility',
+            proof: '95% report easy setup and stable connections'
           },
           {
-            feature: 'Industry-leading noise cancellation',
-            functionalBenefit: 'Complete isolation from distracting environments',
-            emotionalBenefit: 'Peace of mind and mental clarity',
-            value: 'Respect for focused, uninterrupted work',
-            proof: 'Users report 78% increase in productive hours'
+            feature: '24-hour continuous playback battery',
+            functionalBenefit: 'Full day of listening without recharging',
+            emotionalBenefit: 'Peace of mind during long trips and workdays',
+            value: 'Reliability when you need it most',
+            proof: '91% never run out of battery during daily use'
           },
           {
-            feature: '30-hour battery life',
-            functionalBenefit: 'Week-long usage without charging',
-            emotionalBenefit: 'Freedom from battery anxiety',
-            value: 'Reliability you can trust',
-            proof: '89% never worry about charging during workweek'
+            feature: 'Foldable, compact design',
+            functionalBenefit: 'Easy storage and portability in bags and luggage',
+            emotionalBenefit: 'Confidence in travel readiness',
+            value: 'Smart space optimization',
+            proof: '88% say portability exceeds expectations'
           }
         ]
       },
       
       personas: [
         {
-          name: 'The Focused Professional',
-          description: '35-45 year old executive or knowledge worker in open office environment',
-          demographics: 'Age 35-45, $80K+ income, urban/suburban, professional career',
-          psychographics: 'Values productivity, quality, and work-life balance. Tech-savvy early adopter.',
+          name: 'The Mobile Professional',
+          description: '30-45 year old remote worker or business traveler who needs reliable audio on the go',
+          demographics: 'Age 30-45, $60K+ income, mobile lifestyle, works remotely or travels frequently',
+          psychographics: 'Values reliability, battery life, and portability. Balances quality with practicality.',
           buyingMotivations: [
-            'Need to block out office distractions',
-            'Want premium quality that reflects professional status',
-            'Seeking long-term investment in productivity tools'
+            'Need all-day battery for long workdays',
+            'Want wireless freedom without charging anxiety',
+            'Seeking portable solution for travel and commutes'
           ],
           painPoints: [
-            'Open office noise reduces focus',
-            'Cheap headphones break or sound poor',
-            'Frequent charging interrupts workflow'
+            'Headphones die mid-call or during travel',
+            'Bulky headphones difficult to pack',
+            'Constant recharging interrupts workflow'
           ],
           decisionCriteria: [
-            'Noise cancellation effectiveness',
-            'Audio quality and comfort',
-            'Battery life and durability',
-            'Brand reputation'
+            'Battery life (24+ hours essential)',
+            'Portability and foldable design',
+            'Audio quality for calls and music',
+            'Price-to-value ratio'
           ],
-          messagingPreferences: 'Professional, evidence-based, focusing on ROI and productivity benefits',
-          matchScore: 94
+          messagingPreferences: 'Practical, benefit-focused, emphasizing reliability and convenience',
+          matchScore: 93
         },
         {
-          name: 'The Frequent Traveler',
-          description: 'Business traveler or digital nomad who spends significant time in transit',
-          demographics: 'Age 28-50, frequent flyer status, globally mobile',
-          psychographics: 'Values portability, comfort, and premium experiences. Efficiency-focused.',
+          name: 'The Commuter',
+          description: 'Daily commuter who spends 1-2 hours traveling to/from work',
+          demographics: 'Age 25-40, urban/suburban, relies on public transit or drives',
+          psychographics: 'Values comfort and entertainment during commute. Seeks escape from transit noise.',
           buyingMotivations: [
-            'Need reliable noise cancellation for flights',
-            'Want comfort for long-duration wear',
-            'Seeking hassle-free travel companion'
+            'Make commute time more enjoyable',
+            'Block out transit noise',
+            'Never worry about battery dying'
           ],
           painPoints: [
-            'Airplane noise causes fatigue',
-            'Poor battery life requires mid-flight charging',
-            'Bulky headphones difficult to pack'
+            'Commute feels wasted and stressful',
+            'Cheap headphones uncomfortable for long wear',
+            'Battery dies mid-commute'
           ],
           decisionCriteria: [
-            'Portability and fold-ability',
-            'Battery life for long flights',
             'Comfort for extended wear',
-            'Quick charge capability'
+            'Long battery life',
+            'Good sound quality',
+            'Affordable pricing'
           ],
-          messagingPreferences: 'Travel-focused, emphasizing comfort and reliability in transit',
-          matchScore: 88
+          messagingPreferences: 'Lifestyle-focused, emphasizing comfort and daily reliability',
+          matchScore: 87
         },
         {
-          name: 'The Audiophile',
-          description: 'Music enthusiast who prioritizes sound quality above all',
-          demographics: 'Age 25-55, disposable income for premium audio, music-focused lifestyle',
-          psychographics: 'Passionate about audio quality, researches extensively, values craftsmanship',
+          name: 'The Entertainment Enthusiast',
+          description: 'Content consumer who enjoys music, podcasts, and videos',
+          demographics: 'Age 20-35, active lifestyle, values entertainment and leisure time',
+          psychographics: 'Passionate about media consumption, values good audio, budget-conscious',
           buyingMotivations: [
-            'Uncompromising sound quality',
-            'Hi-res audio codec support',
-            'Premium build and materials'
+            'Better audio experience for music and shows',
+            'Wireless freedom during workouts or chores',
+            'Multi-day battery life'
           ],
           painPoints: [
-            'Bluetooth headphones often compromise on quality',
-            'Need both wireless convenience and wired fidelity',
-            'Poor frequency response in consumer headphones'
+            'Wired headphones restrict movement',
+            'Short battery life interrupts enjoyment',
+            'Poor sound quality diminishes experience'
           ],
           decisionCriteria: [
-            'Audio codec support (LDAC, aptX HD)',
-            'Frequency response and driver quality',
-            'Professional reviews and measurements',
-            'Wired option availability'
+            'Sound quality for music',
+            'Wireless range and stability',
+            'Battery longevity',
+            'Comfortable fit'
           ],
-          messagingPreferences: 'Technical, detailed specifications, emphasizing audio engineering excellence',
-          matchScore: 91
+          messagingPreferences: 'Lifestyle and enjoyment-focused, emphasizing audio quality and freedom',
+          matchScore: 85
         }
       ],
       
       messageHierarchy: {
-        primaryMessage: 'Silence the world. Amplify your focus. Experience industry-leading noise cancellation.',
+        primaryMessage: 'Never stop listening. 24 hours of wireless freedom on a single charge.',
         supportingMessages: [
           {
-            content: '30 hours of uninterrupted listening on a single charge',
+            content: 'Full day battery life eliminates charging anxiety',
             priority: 1,
             type: 'supporting',
-            score: 92
+            score: 94
           },
           {
-            content: 'Premium comfort designed for all-day wear',
+            content: 'Foldable design fits anywhere you go',
             priority: 2,
             type: 'supporting',
-            score: 88
+            score: 89
           },
           {
-            content: 'Hi-Res Audio with LDAC codec support',
+            content: 'Bluetooth 5.0 for seamless connectivity',
             priority: 3,
             type: 'supporting',
-            score: 85
+            score: 86
           }
         ],
         proofPoints: [
-          '4.7/5 stars from 12,450+ verified purchases',
-          'Winner of 15 industry awards including CES Innovation Award',
-          '92% recommend to colleagues and friends',
-          'Best noise cancellation rating by Consumer Reports'
+          '4.5/5 stars from 8,200+ verified purchases',
+          '91% say battery life exceeds expectations',
+          'Top-rated for travel and commuting',
+          'Over 500,000 units sold worldwide'
         ]
       },
       
       reasonsToBuy: [
         {
           category: 'rational',
-          reason: 'Best-in-class noise cancellation technology saves up to 2 hours of productive time daily',
-          supportingEvidence: 'Independent study shows 78% productivity increase in focus-intensive tasks',
-          confidenceScore: 95
-        },
-        {
-          category: 'rational',
-          reason: '30-hour battery eliminates charging anxiety for entire work week',
-          supportingEvidence: '89% of users report never charging during business days',
-          confidenceScore: 93
-        },
-        {
-          category: 'emotional',
-          reason: 'Premium design and build quality reflects professional status',
-          supportingEvidence: 'Featured in Fortune 500 executive gift guides',
-          confidenceScore: 87
-        },
-        {
-          category: 'emotional',
-          reason: 'Instant sanctuary from chaos with one-touch noise cancellation',
-          supportingEvidence: 'Users describe feeling "immediately calm" when ANC activates',
-          confidenceScore: 91
-        },
-        {
-          category: 'social',
-          reason: '#1 choice of audio professionals and content creators worldwide',
-          supportingEvidence: 'Used by Grammy-winning artists and top podcasters',
-          confidenceScore: 89
-        },
-        {
-          category: 'social',
-          reason: 'Over 12,000 five-star reviews validate exceptional quality',
-          supportingEvidence: '4.7/5 average with 94% recommend rate',
+          reason: '24-hour battery life means full day of use without recharging',
+          supportingEvidence: '91% of users report never running out of battery during daily use',
           confidenceScore: 96
         },
         {
+          category: 'rational',
+          reason: 'Foldable design makes travel and storage effortless',
+          supportingEvidence: '88% say portability exceeds expectations',
+          confidenceScore: 92
+        },
+        {
+          category: 'rational',
+          reason: 'Quick charge technology provides 3 hours of playback from 10-minute charge',
+          supportingEvidence: 'Verified by independent testing',
+          confidenceScore: 90
+        },
+        {
+          category: 'emotional',
+          reason: 'Freedom from battery anxiety and charging interruptions',
+          supportingEvidence: 'Users describe feeling "liberated" from constant charging',
+          confidenceScore: 89
+        },
+        {
+          category: 'emotional',
+          reason: 'Reliable companion for travel, work, and leisure',
+          supportingEvidence: 'Featured in "Best Travel Tech" by multiple publications',
+          confidenceScore: 87
+        },
+        {
+          category: 'social',
+          reason: 'Over 500,000 satisfied customers worldwide',
+          supportingEvidence: '4.5/5 rating with 8,200+ verified reviews',
+          confidenceScore: 94
+        },
+        {
           category: 'urgency',
-          reason: 'Limited-time bundle includes premium carrying case ($99 value)',
-          supportingEvidence: 'Offer ends in 7 days',
-          confidenceScore: 82
+          reason: 'Limited stock at current price point',
+          supportingEvidence: 'Price increases $20 next month',
+          confidenceScore: 81
         }
       ],
       
       socialProof: {
         awards: [
-          'CES 2023 Innovation Award Winner',
-          'EISA Best Product Award 2023',
-          'What Hi-Fi? Product of the Year',
-          "T3 Editor's Choice Award",
-          'iF Design Award 2023'
+          'Tech Gear Excellence Award 2024',
+          'Best Battery Life - Audio Tech Awards',
+          'Consumer Choice Award for Wireless Headphones',
+          'Top Travel Tech Product 2024'
         ],
         certifications: [
-          'Hi-Res Audio Certified',
-          '360 Reality Audio Compatible',
-          'Bluetooth 5.2 Certified',
-          'USB-C Power Delivery Compliant'
+          'Bluetooth 5.0 Certified',
+          'FCC Approved',
+          'CE Certified',
+          'RoHS Compliant'
         ],
         expertEndorsements: [
-          '"The gold standard in noise cancellation" - TechRadar',
-          '"Unmatched audio quality in wireless headphones" - CNET',
-          '"Best headphones for professionals" - Forbes',
-          '"Audio engineering masterpiece" - Sound & Vision Magazine'
+          '"Outstanding battery life for the price point" - TechReview',
+          '"Best value in wireless headphones" - AudioGear Magazine',
+          '"Perfect for travelers and commuters" - Travel Tech Today',
+          '"Impressive portability and performance" - Gadget Guide'
         ],
         customerTestimonials: [
-          '"Game-changer for my productivity. Worth every penny." - Sarah M., Software Engineer',
-          '"Best investment I\'ve made for my mental health. Complete silence on demand." - James K., Consultant',
-          '"Flew 14 hours and never charged once. Battery life is incredible." - Lisa R., Sales Director',
-          '"Audio quality rivals my $800 wired studio headphones." - Marcus T., Music Producer'
+          '"Battery lasts forever! I charge it once a week." - Michael T., Business Traveler',
+          '"Folds perfectly in my bag. Game-changer for my commute." - Jennifer L., Consultant',
+          '"Great sound and never dies on long flights." - David K., Sales Manager',
+          '"Best $189 I\'ve spent on tech this year." - Amanda R., Remote Worker'
         ],
         statisticalProof: [
-          '4.7/5 stars from 12,450+ verified buyers',
-          '94% recommend to friends and colleagues',
-          'Over 2 million units sold globally',
-          '89% report improved work satisfaction',
-          '#1 bestseller in premium headphones for 18 consecutive months'
+          '4.5/5 stars from 8,200+ verified buyers',
+          '91% say battery life exceeds expectations',
+          'Over 500,000 units sold worldwide',
+          '87% recommend to friends and family',
+          'Top 3 bestseller in wireless headphones category'
         ],
         mediaMentions: [
-          'Featured in Wall Street Journal "Best Tech for Professionals"',
-          'New York Times Wirecutter Top Pick',
-          'Bloomberg "Executive Gift Guide"',
-          'Vogue "Tech Worth Investing In"'
+          'Featured in "Best Travel Tech 2024"',
+          'TechCrunch "Top Products for Remote Workers"',
+          'Business Insider "Best Wireless Headphones Under $200"',
+          'CNET "Editor\'s Pick for Battery Life"'
         ]
       },
       
       positioning: {
-        positioningStatement: 'For professionals who demand both exceptional audio quality and complete focus, our headphones deliver industry-leading noise cancellation and 30-hour battery life—unlike other premium brands that compromise on either performance or comfort.',
+        positioningStatement: 'For mobile professionals and travelers who refuse to compromise on battery life, CD1234 delivers 24 hours of wireless freedom with foldable portability—unlike other wireless headphones that die mid-journey or sacrifice portability for battery.',
         competitiveAdvantages: [
-          { competitor: 'Bose QuietComfort', advantage: '8 hours longer battery life and superior codec support' },
-          { competitor: 'Apple AirPods Max', advantage: '$200 less expensive with longer battery and lighter weight' },
-          { competitor: 'Sennheiser Momentum', advantage: 'Better noise cancellation and 10 hours additional battery' }
+          { competitor: 'Generic Wireless Headphones', advantage: '2x battery life (24hrs vs 12hrs average)' },
+          { competitor: 'Premium Brand Headphones', advantage: '$100-200 less expensive with comparable battery' },
+          { competitor: 'Budget Headphones', advantage: 'Superior build quality and 3x battery life' }
         ],
-        differentiationStrategy: 'Lead with battery life and noise cancellation technology while emphasizing professional credibility',
-        marketPosition: 'Premium performance leader for productivity-focused professionals'
+        differentiationStrategy: 'Lead with exceptional 24-hour battery life and portability while maintaining quality and affordability',
+        marketPosition: 'Value leader in long-battery wireless headphones for mobile lifestyles'
       },
       
       storytelling: {
-        hero: 'Busy professionals drowning in distractions, struggling to find focus in chaotic environments',
-        problem: 'Open offices, noisy commutes, and constant interruptions destroy productivity and mental clarity',
-        solution: 'Industry-leading noise cancellation creates an instant sanctuary, while 30-hour battery ensures reliability',
-        transformation: 'From scattered and stressed to focused and in control—productivity increases, stress decreases',
-        callToAction: 'Reclaim your focus. Experience the difference today with 60-day money-back guarantee.',
-        emotionalArc: 'Frustration → Relief → Confidence → Pride in professional setup'
+        hero: 'Mobile professionals, commuters, and travelers tired of dead headphones at the worst moments',
+        problem: 'Headphones dying mid-call, during flights, or on long commutes creates frustration and lost productivity',
+        solution: '24-hour battery provides full-day reliability with foldable design that goes anywhere',
+        transformation: 'From battery anxiety and charging hassles to confident, uninterrupted audio freedom all day long',
+        callToAction: 'Experience 24 hours of wireless freedom. Order now with 30-day money-back guarantee.',
+        emotionalArc: 'Frustration → Relief → Confidence → Freedom'
       },
       
       objections: [
         {
-          objection: 'Too expensive compared to other headphones',
-          counterArgument: 'Investment in productivity pays for itself in saved time and mental energy within 2 months',
-          supportingEvidence: 'Users report average 2 hours/day productivity gain = $8,000+ annual value for typical professional',
-          toneRecommendation: 'Consultative, ROI-focused, empathetic to budget concerns'
+          objection: 'Battery life claims seem exaggerated',
+          counterArgument: '24-hour rating is based on standard testing at 50% volume—many users get even more',
+          supportingEvidence: '91% of verified buyers confirm battery life meets or exceeds 24 hours',
+          toneRecommendation: 'Confident, evidence-based, backed by real user data'
         },
         {
-          objection: 'Worried about Bluetooth audio quality',
-          counterArgument: 'LDAC codec delivers hi-res audio quality indistinguishable from wired in blind tests',
-          supportingEvidence: '92% of audiophiles cannot identify difference in A/B testing',
-          toneRecommendation: 'Technical but accessible, backed by testing data'
+          objection: 'Concerned about audio quality at this price point',
+          counterArgument: 'Bluetooth 5.0 with quality drivers delivers clear audio that rivals $300+ headphones',
+          supportingEvidence: 'Independent testing shows comparable audio performance to premium brands',
+          toneRecommendation: 'Reassuring, focus on value proposition'
         },
         {
-          objection: 'Concerned about comfort for all-day wear',
-          counterArgument: 'Pressure-relieving earpads and optimized weight distribution designed for 8+ hour sessions',
-          supportingEvidence: '87% wear comfortably for full workday without adjustment',
-          toneRecommendation: 'Reassuring, invite to try 60-day guarantee'
+          objection: 'Worried about durability with foldable design',
+          counterArgument: 'Reinforced hinges tested for 10,000+ fold cycles—built to last years of daily use',
+          supportingEvidence: '95% report no durability issues after 12+ months of regular use',
+          toneRecommendation: 'Reassuring, emphasize quality construction and warranty'
         }
       ],
       
       conversionHeuristics: {
         highImpactElements: [
-          'Limited-time bundle offer (creates urgency)',
-          '60-day money-back guarantee (removes risk)',
-          '4.7/5 rating with 12,450+ reviews (social proof)',
-          'Free 2-day shipping (reduces friction)',
-          '2-year warranty included (builds trust)'
+          '24-hour battery claim in headline (key differentiator)',
+          '30-day money-back guarantee (removes risk)',
+          '4.5/5 rating with 8,200+ reviews (social proof)',
+          'Free shipping over $150 (reduces friction)',
+          '1-year warranty included (builds trust)'
         ],
         messageVariants: [
-          { variant: 'Headline: "30 Hours of Pure Focus"', predictedLift: '+18%' },
-          { variant: 'CTA: "Start Your 60-Day Trial"', predictedLift: '+22%' },
-          { variant: 'Hero: "Silence the World. Amplify Your Potential"', predictedLift: '+15%' }
+          { variant: 'Headline: "24 Hours. One Charge. Zero Anxiety."', predictedLift: '+24%' },
+          { variant: 'CTA: "Never Run Out - Order Now"', predictedLift: '+19%' },
+          { variant: 'Hero: "Go All Day Without Recharging"', predictedLift: '+17%' }
         ],
         abTestRecommendations: [
-          'Test "productivity gains" messaging vs "audio quality" messaging for different personas',
-          'A/B test bundle offer prominence in hero section',
-          'Test video vs static image in product showcase'
+          'Test "24-hour battery" messaging vs "wireless freedom" messaging',
+          'A/B test battery life proof (user testimonials vs technical specs)',
+          'Test portable/travel lifestyle imagery vs close-up product shots'
         ],
-        estimatedLift: '+35-42% conversion rate vs baseline product page'
+        estimatedLift: '+28-35% conversion rate vs baseline product page'
       },
       
       psychologyTriggers: [
         {
-          principle: 'Scarcity',
-          application: 'Limited-time bundle offer creates urgency',
-          implementation: 'Countdown timer on bundle offer, "Only 47 bundles remaining at this price"'
-        },
-        {
-          principle: 'Authority',
-          application: 'Expert endorsements and awards establish credibility',
-          implementation: 'Display award badges prominently, quote industry experts in key sections'
+          principle: 'Loss Aversion',
+          application: 'Frame as avoiding dead battery frustration',
+          implementation: '"Never miss another call or song due to dead battery" vs "Get 24 hours of playback"'
         },
         {
           principle: 'Social Proof',
-          application: 'Massive review volume and high ratings reduce purchase risk',
-          implementation: 'Show live review count, "Join 2M+ satisfied customers", user photos'
+          application: 'Large user base and high ratings reduce purchase risk',
+          implementation: 'Show "500,000+ sold", "4.5/5 from 8,200+ reviews", user photos in travel contexts'
+        },
+        {
+          principle: 'Scarcity',
+          application: 'Limited stock at current price creates urgency',
+          implementation: '"Price increases $20 next month", "Limited inventory at this price"'
+        },
+        {
+          principle: 'Authority',
+          application: 'Expert recommendations and awards establish credibility',
+          implementation: 'Display award badges, quote tech publications: "Best Battery Life - Audio Tech Awards"'
         },
         {
           principle: 'Reciprocity',
-          application: 'Free premium case and extended warranty create obligation',
-          implementation: 'Emphasize "$99 value FREE" and "2-year warranty included at no cost"'
-        },
-        {
-          principle: 'Loss Aversion',
-          application: 'Frame as avoiding productivity loss rather than gaining time',
-          implementation: '"Stop losing 2 hours daily to distractions" vs "Gain 2 hours of focus"'
+          application: 'Free shipping and included warranty create goodwill',
+          implementation: 'Emphasize "FREE shipping" and "1-year warranty included at no extra cost"'
         }
       ],
       
       contentBrief: {
-        toneOfVoice: 'Professional yet approachable. Confident but not arrogant. Evidence-based and premium.',
+        toneOfVoice: 'Practical and reassuring. Confident and value-focused. Relatable and benefit-driven.',
         keyMessages: [
-          'Industry-leading noise cancellation delivers unmatched focus',
-          '30-hour battery life ensures week-long reliability',
-          'Premium audio quality rivals studio-grade wired headphones',
-          'Proven productivity gains backed by real user data'
+          '24-hour battery life eliminates charging anxiety',
+          'Foldable design makes travel and storage effortless',
+          'Quality audio at an accessible price point',
+          'Reliable companion for work, travel, and leisure'
         ],
-        personaTargeting: 'Primary: Focused Professional (35-45, office worker). Secondary: Frequent Traveler',
+        personaTargeting: 'Primary: Mobile Professional (30-45, remote/traveling). Secondary: Daily Commuter',
         requiredElements: [
-          'Battery life USP in headline or subheadline',
-          'Productivity/ROI angle for professional audience',
+          '24-hour battery life in headline—this is THE differentiator',
+          'Portability/foldable feature highlighted prominently',
           'Social proof (ratings, review count) above fold',
-          'Award badges and expert quotes for credibility',
-          '60-day guarantee to remove purchase risk',
-          'Bundle offer with urgency messaging'
+          'Price-value positioning clear',
+          '30-day guarantee to remove purchase risk',
+          'Lifestyle imagery showing travel/commute contexts'
         ],
-        contentStructure: 'Hero: Problem + Solution. Benefits: Feature-benefit ladder. Social proof: Reviews + Awards. CTA: Risk reversal',
+        contentStructure: 'Hero: Battery anxiety problem + 24hr solution. Benefits: Battery → Portability → Quality. Social proof: User testimonials. CTA: Risk-free trial',
         dos: [
-          'Lead with business/productivity benefits',
-          'Use specific numbers and data points',
-          'Show product in professional contexts',
-          'Emphasize long-term value and ROI',
-          'Include user testimonials from professionals'
+          'Lead with 24-hour battery benefit',
+          'Show product in travel, commute, and work scenarios',
+          'Use specific battery life numbers and proof',
+          'Emphasize portability and convenience',
+          'Include testimonials about battery lasting all day',
+          'Highlight value proposition (quality at $189)'
         ],
         donts: [
-          "Don't lead with technical specs (save for audiophile section)",
-          "Don't use lifestyle imagery alone—show product in work contexts",
-          "Don't emphasize music/entertainment over productivity",
-          "Don't create urgency without substantive offer",
-          "Don't ignore battery life—it's a key differentiator"
+          "Don't bury the battery life claim—it's the #1 feature",
+          "Don't use generic office imagery—show real mobile use cases",
+          "Don't compare to premium $400+ headphones—wrong segment",
+          "Don't oversell audio quality—position as 'great for the price'",
+          "Don't ignore portability—foldable design is key differentiator"
         ]
       },
       
-      confidenceScore: 94,
-      personaMatchScore: 91,
-      messageStrengthScore: 88,
+      confidenceScore: 92,
+      personaMatchScore: 93,
+      messageStrengthScore: 90,
       rtbCount: 7,
       status: 'Enhanced'
     },
-    // Add 2 more sample products
     {
       id: 2,
-      sku: 'KB-PRO-2024',
-      name: 'Mechanical Keyboard Pro',
-      category: 'Peripherals',
-      brand: 'Keychron',
-      coreValueProposition: 'Premium typing experience with hot-swappable switches for the discerning professional',
-      primaryPersona: 'The Power User',
-      keyDifferentiator: 'Hot-swappable switches with 80-hour battery life',
-      contentApproach: 'Emphasize customization and typing comfort',
+      sku: 'SPK789',
+      name: 'Smart Speaker with Voice Assistant',
+      category: 'Electronics',
+      brand: 'SmartHome',
+      coreValueProposition: 'Seamless smart home control with premium audio quality in one elegant device',
+      primaryPersona: 'The Smart Home Enthusiast',
+      keyDifferentiator: 'Multi-room audio with comprehensive smart home integration',
+      contentApproach: 'Emphasize convenience, integration, and lifestyle enhancement',
       benefitLadder: { levels: [] },
       personas: [],
       messageHierarchy: { primaryMessage: '', supportingMessages: [], proofPoints: [] },
@@ -383,22 +382,22 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       conversionHeuristics: { highImpactElements: [], messageVariants: [], abTestRecommendations: [], estimatedLift: '' },
       psychologyTriggers: [],
       contentBrief: { toneOfVoice: '', keyMessages: [], personaTargeting: '', requiredElements: [], contentStructure: '', dos: [], donts: [] },
-      confidenceScore: 87,
-      personaMatchScore: 84,
-      messageStrengthScore: 82,
-      rtbCount: 5,
+      confidenceScore: 88,
+      personaMatchScore: 85,
+      messageStrengthScore: 84,
+      rtbCount: 6,
       status: 'Enhanced'
     },
     {
       id: 3,
-      sku: 'MON-4K-32',
-      name: '4K Professional Monitor 32"',
-      category: 'Displays',
-      brand: 'Dell',
-      coreValueProposition: 'Color-accurate 4K display for creative professionals who demand precision',
+      sku: 'MON999',
+      name: '4K Ultra HD Monitor',
+      category: 'Electronics',
+      brand: 'ViewTech',
+      coreValueProposition: 'Professional-grade 4K clarity for content creators and designers who demand precision',
       primaryPersona: 'The Creative Professional',
-      keyDifferentiator: '99% sRGB coverage with hardware calibration',
-      contentApproach: 'Focus on color accuracy and professional credibility',
+      keyDifferentiator: '4K resolution with wide color gamut and ergonomic adjustability',
+      contentApproach: 'Focus on visual precision, productivity, and professional credibility',
       benefitLadder: { levels: [] },
       personas: [],
       messageHierarchy: { primaryMessage: '', supportingMessages: [], proofPoints: [] },
@@ -410,9 +409,9 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       conversionHeuristics: { highImpactElements: [], messageVariants: [], abTestRecommendations: [], estimatedLift: '' },
       psychologyTriggers: [],
       contentBrief: { toneOfVoice: '', keyMessages: [], personaTargeting: '', requiredElements: [], contentStructure: '', dos: [], donts: [] },
-      confidenceScore: 90,
-      personaMatchScore: 88,
-      messageStrengthScore: 85,
+      confidenceScore: 89,
+      personaMatchScore: 87,
+      messageStrengthScore: 86,
       rtbCount: 6,
       status: 'Enhanced'
     }
