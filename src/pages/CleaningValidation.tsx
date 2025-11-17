@@ -62,11 +62,21 @@ const CleaningValidation = () => {
   ];
 
   const correctedItems = [
-    { id: 1, type: 'Multi-Category Assignment', item: 'Professional Blender BL-3000', change: 'Added: Kitchen Appliances → Small Appliances → Blenders + Home & Garden → Kitchen Tools', status: 'corrected' },
-    { id: 2, type: 'Category Hierarchy', item: 'Smart Watch Series 8', change: 'Electronics → Wearables → Smart Watches + Health & Fitness → Activity Trackers', status: 'corrected' },
-    { id: 3, type: 'Duplicate Merge', item: 'iPhone 15 Pro (Duplicate SKUs)', change: 'SKU-001 + SKU-001A → SKU-001', status: 'merged' },
-    { id: 4, type: 'Format Fix', item: 'Gaming Laptop RTX4080', change: 'Description formatting corrected', status: 'corrected' },
-    { id: 5, type: 'Extended Categorization', item: 'Wireless Coffee Maker Pro', change: 'Primary: Kitchen → Coffee Makers | Secondary: Smart Home → Connected Appliances', status: 'completed' }
+    { id: 1, type: 'Multi-Category Assignment', item: 'Sony 65" 4K OLED Smart TV', change: 'Electronics → Televisions → OLED TVs + Home Entertainment → Smart TVs + Gaming → Gaming Displays', status: 'corrected' },
+    { id: 2, type: 'Category Hierarchy', item: 'Apple AirPods Pro (2nd Gen)', change: 'Electronics → Audio → Wireless Earbuds + Mobile Accessories → iPhone Accessories + Health & Fitness → Workout Audio', status: 'corrected' },
+    { id: 3, type: 'Extended Categorization', item: 'Samsung Galaxy Tab S9 Ultra', change: 'Primary: Electronics → Tablets → Android Tablets | Secondary: Computers → Mobile Computing + Office → Business Tablets', status: 'corrected' },
+    { id: 4, type: 'Multi-Category Assignment', item: 'Logitech MX Master 3S Mouse', change: 'Computers → Accessories → Mice + Office → Ergonomic Equipment + Gaming → PC Gaming Peripherals', status: 'corrected' },
+    { id: 5, type: 'Category Hierarchy', item: 'Bose QuietComfort Ultra Headphones', change: 'Electronics → Audio → Over-Ear Headphones + Travel → Travel Accessories + Lifestyle → Premium Audio', status: 'corrected' },
+    { id: 6, type: 'Extended Categorization', item: 'DJI Mini 3 Pro Drone', change: 'Primary: Electronics → Drones & Cameras → Consumer Drones | Secondary: Photography → Aerial Photography + Hobbies → RC Aircraft', status: 'corrected' },
+    { id: 7, type: 'Multi-Category Assignment', item: 'Anker PowerCore 20000mAh', change: 'Mobile Accessories → Power Banks + Travel → Travel Tech + Outdoor → Camping Electronics', status: 'corrected' },
+    { id: 8, type: 'Duplicate Merge', item: 'iPhone 15 Pro Max 256GB (Duplicate SKUs)', change: 'SKU-APL-15PM-256-BLK + SKU-APL15PROMAX256 → SKU-APL-15PM-256', status: 'merged' },
+    { id: 9, type: 'Category Hierarchy', item: 'Sony WH-1000XM5 Noise Cancelling', change: 'Electronics → Audio → Headphones → Noise Cancelling + Business → Office Equipment + Travel → Travel Comfort', status: 'corrected' },
+    { id: 10, type: 'Format Fix', item: 'ASUS ROG Strix RTX 4090', change: 'Product title standardized, specifications formatted', status: 'corrected' },
+    { id: 11, type: 'Extended Categorization', item: 'GoPro HERO12 Black', change: 'Primary: Electronics → Cameras → Action Cameras | Secondary: Sports → Action Sports + Outdoor → Outdoor Recording + Travel → Travel Photography', status: 'corrected' },
+    { id: 12, type: 'Multi-Category Assignment', item: 'Kindle Paperwhite Signature', change: 'Electronics → E-Readers + Books → Digital Reading + Travel → Travel Entertainment', status: 'corrected' },
+    { id: 13, type: 'Category Hierarchy', item: 'PlayStation 5 Digital Edition', change: 'Electronics → Gaming → Consoles → PlayStation + Entertainment → Home Entertainment + Gifts → Tech Gifts', status: 'corrected' },
+    { id: 14, type: 'Duplicate Merge', item: 'MacBook Pro 16" M3 (Duplicate entries)', change: 'SKU-MBP-16-M3-512 + SKU-MBPM3-16 → SKU-MBP-16-M3-512', status: 'merged' },
+    { id: 15, type: 'Extended Categorization', item: 'Ring Video Doorbell Pro 2', change: 'Primary: Smart Home → Security → Video Doorbells | Secondary: Electronics → Home Security + Home Improvement → Door Hardware', status: 'corrected' }
   ];
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
