@@ -154,5 +154,69 @@ export const generateSampleEnrichmentAssets = (): EnrichmentAsset[] => {
     }
   ];
 
-  return baseAssets;
+  // Generate additional 197 SKUs for table views - matching assetGenerator IDs 4-200
+  const additionalProducts = Array.from({ length: 197 }, (_, i) => {
+    const id = i + 4;
+    const skuMap: Record<number, string> = {
+      4: 'TV5543', 5: 'TV6543', 6: 'TV4332', 7: 'TV7585', 8: 'TV3243', 9: 'MON2724', 10: 'MON3227',
+      34: 'AUD456', 35: 'AUD789', 36: 'AUD234', 69: 'LAP892', 99: 'PHN123', 124: 'SMT123',
+      149: 'GAM567', 169: 'WAT123', 184: 'CAM123', 194: 'NET678', 199: 'STO901'
+    };
+    
+    const baseQuality = 75 + Math.floor(Math.random() * 23);
+    const status = baseQuality >= 90 ? 'Enriched' as const : 'Needs Review' as const;
+    
+    return {
+      id,
+      sku: skuMap[id] || `PRD${id.toString().padStart(3, '0')}`,
+      name: `Consumer Electronics Product ${id}`,
+      category: 'Electronics > Various',
+      brand: ['Samsung', 'Sony', 'Apple', 'LG', 'Dell'][Math.floor(Math.random() * 5)],
+      status,
+      quality: baseQuality,
+      searchTrends: 'Growing demand in consumer electronics segment',
+      customerSentiment: 'Positive (4.0+/5) - Strong customer satisfaction',
+      socialMentions: `${100 + Math.floor(Math.random() * 300)} mentions/month`,
+      competitorAnalysis: 'Competitive positioning in market segment',
+      seoOpportunities: 'Strong keyword opportunities identified',
+      targetAudience: 'Tech enthusiasts, professionals, consumers',
+      keyFeatures: 'Premium features, Quality build, Advanced technology',
+      seoKeywordVolume: `${Math.floor(Math.random() * 10000)} searches/month`,
+      reasonsToBuy: 'Quality, Performance, Value proposition',
+      categoryEntryPoints: 'Product research and comparison phase',
+      favouriteFeatures: 'Key feature highlights',
+      missingFeatures: 'Potential enhancement opportunities',
+      keyCompetitors: 'Major brand competitors in segment',
+      relativeStrengths: 'Competitive advantages identified',
+      verbatimQuotes: 'Positive customer feedback',
+      relatedSearchTerms: 'Related product searches',
+      searchOpportunities: 'Market positioning opportunities',
+      culturalInsights: 'Regional market insights',
+      regionalPreferences: 'Geographic preferences analyzed',
+      complianceData: 'CE, FCC, RoHS certified',
+      forumDiscussions: 'Positive community discussions',
+      communityInsights: 'Strong community sentiment',
+      influencerReviews: 'Favorable influencer coverage',
+      creatorContent: 'Active creator engagement',
+      videoSentiment: '85%+ positive sentiment',
+      technicalSpecs: 'Premium specifications',
+      performanceBenchmarks: 'Strong performance metrics',
+      sustainabilityScore: 'B+ environmental rating',
+      environmentalImpact: 'Sustainable manufacturing',
+      compatibleProducts: 'Ecosystem compatibility',
+      ecosystemFit: 'Product ecosystem integration',
+      priceHistory: 'Stable pricing trends',
+      valuePositioning: 'Strong value proposition',
+      criticalReviews: 'Constructive feedback addressed',
+      featureRequests: 'Customer enhancement requests',
+      qaInsights: 'Common questions addressed',
+      categoryUseCases: 'Multiple use cases supported',
+      retailerIntelligence: 'Strong retailer performance',
+      visualPerformance: 'High visual engagement',
+      expertReviewComparisons: 'Favorable expert reviews',
+      innovationGaps: 'Innovation opportunities identified'
+    };
+  });
+
+  return [...baseAssets, ...additionalProducts];
 };
