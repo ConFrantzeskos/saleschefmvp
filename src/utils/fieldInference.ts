@@ -188,7 +188,7 @@ export function generateSampleData(): Record<string, string[]> {
     'Price': ['$89.99', '$24.50', '$34.99'],
     'SKU': ['WH-2024-001', 'TS-ORG-M-BLU', 'WB-SS-750ML'],
     'Brand Name': ['AudioPro', 'EcoWear', 'HydroLife'],
-    'Category Type': ['Electronics', 'Clothing', 'Kitchen'],
+    'Category Type': ['Electronics', 'Homewares', 'Kitchen & Dining'],
     'Weight (lbs)': ['0.85 lbs', '0.25 lbs', '1.2 lbs'],
     'Weight_KG': ['0.39 kg', '0.11 kg', '0.54 kg'],
     'Product Weight': ['12 oz', '4 oz', '19 oz'],
