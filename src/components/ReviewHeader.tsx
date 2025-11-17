@@ -12,9 +12,9 @@ const ReviewHeader = React.memo(({ assetCount, onApproveAll }: ReviewHeaderProps
   return (
     <div className="flex justify-between items-center mb-8">
       <div>
-        <h1 className="text-3xl font-semibold mb-2">Review Enhanced Content</h1>
+        <h1 className="text-3xl font-semibold mb-2">Review Generated Content</h1>
         <p className="text-lg text-muted-foreground">
-          Review and approve enhanced content for all your assets
+          Review and approve generated content for all your assets
         </p>
       </div>
       <Button onClick={onApproveAll} className="px-8">
