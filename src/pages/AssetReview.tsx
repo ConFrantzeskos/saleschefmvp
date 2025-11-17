@@ -401,6 +401,12 @@ RETAIL_PRICE,USD_79.99`;
             Back to Assets
           </Button>
           <div className="space-x-3">
+            <Button 
+              variant="outline"
+              onClick={() => navigate('/transformation-showcase')}
+            >
+              View Transformation
+            </Button>
             <Button variant="outline">
               Request Changes
             </Button>
