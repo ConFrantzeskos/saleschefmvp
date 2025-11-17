@@ -42,12 +42,11 @@ export function calculateSimilarity(str1: string, str2: string): number {
 
 // Detect unit information from field name
 export function detectUnits(fieldName: string): UnitInfo {
-  // Exclude Category fields from unit detection
-  if (fieldName.toLowerCase().includes('category')) {
+  // Exclude Category and Brand fields from unit detection
+  const lower = fieldName.toLowerCase();
+  if (lower.includes('category') || lower.includes('brand')) {
     return { unit: '', system: 'none', field: fieldName };
   }
-  
-  const lower = fieldName.toLowerCase();
   
   // Check weight units
   for (const unit of WEIGHT_UNITS.imperial) {
