@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import FieldStatusSidebar from '@/components/FieldStatusSidebar';
 import FieldMappingPanel from '@/components/FieldMappingPanel';
-import UnitConflictAlert from '@/components/mapping/UnitConflictAlert';
-import { generateFieldSuggestions, detectUnitConflicts, generateSampleData, FieldMatch } from '@/utils/fieldInference';
+import { generateFieldSuggestions, generateSampleData, FieldMatch } from '@/utils/fieldInference';
 
 const SchemaMapping = () => {
   const navigate = useNavigate();
@@ -123,8 +122,6 @@ const SchemaMapping = () => {
     navigate('/cleaning');
   };
 
-  const unitConflicts = detectUnitConflicts(mappings);
-
   const getFieldStatus = (fieldKey: string) => {
     const mapping = mappings[fieldKey];
     const suggestion = suggestions[fieldKey];
@@ -161,10 +158,6 @@ const SchemaMapping = () => {
           />
           
           <div className="lg:col-span-2 space-y-6">
-            {unitConflicts.hasConflict && (
-              <UnitConflictAlert conflicts={unitConflicts.conflicts} />
-            )}
-            
             <FieldMappingPanel
               requiredFields={fieldsWithStatus}
               mappings={mappings}
