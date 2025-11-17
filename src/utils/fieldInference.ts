@@ -88,13 +88,36 @@ export function generateFieldSuggestions(
     let reason = `Field name similarity: ${Math.round(similarity * 100)}%`;
     
     // Boost confidence for exact keyword matches
-    const targetKeywords = targetField.toLowerCase().split(/[^a-z0-9]/);
-    const sourceKeywords = sourceField.toLowerCase().split(/[^a-z0-9]/);
+    const targetKeywords = targetField.toLowerCase().split(/[^a-z0-9]/).filter(k => k.length > 2);
+    const sourceKeywords = sourceField.toLowerCase().split(/[^a-z0-9]/).filter(k => k.length > 2);
     const matchingKeywords = targetKeywords.filter(k => sourceKeywords.includes(k));
     
     if (matchingKeywords.length > 0) {
-      confidence = Math.min(confidence + 0.15, 1.0);
+      // Give higher boost for more matching keywords
+      const boost = Math.min(0.2 * matchingKeywords.length, 0.4);
+      confidence = Math.min(confidence + boost, 1.0);
       reason = `Matched keywords: ${matchingKeywords.join(', ')}`;
+    }
+    
+    // Special boost for common field pairs
+    const commonPairs: Record<string, string[]> = {
+      'product name': ['product title', 'product_name', 'name', 'title', 'product'],
+      'description': ['description', 'desc', 'product description', 'product_description'],
+      'price': ['price', 'cost', 'amount', 'product price'],
+      'sku': ['sku', 'product sku', 'item code', 'product_code'],
+      'brand': ['brand', 'brand name', 'manufacturer', 'brand_name'],
+      'category': ['category', 'category type', 'product category', 'type'],
+      'weight': ['weight', 'product weight', 'item weight'],
+      'dimensions': ['dimensions', 'size', 'measurements', 'package dimensions']
+    };
+    
+    const targetLower = targetField.toLowerCase();
+    for (const [key, values] of Object.entries(commonPairs)) {
+      if (targetLower.includes(key) && values.some(v => sourceField.toLowerCase().includes(v))) {
+        confidence = Math.min(confidence + 0.25, 1.0);
+        reason = `Common field pairing detected`;
+        break;
+      }
     }
     
     if (confidence > highestScore) {
