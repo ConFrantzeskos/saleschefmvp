@@ -94,22 +94,13 @@ const EnrichmentReview = () => {
           </div>
         </div>
 
-        <EnrichmentReviewHeader 
-          assetCount={sampleAssets.length}
-          onApproveAll={handleApproveAll}
-        />
+        <EnrichmentAssetsTable assets={sampleAssets} />
 
-        <div className="bg-card rounded-xl border shadow-soft animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <div className="p-6 border-b bg-muted/30">
-            <h2 className="text-xl font-display font-semibold text-foreground">
-              Enriched Market Intelligence (3 Products)
-            </h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Click any product card to view detailed enrichment data and insights
-            </p>
-          </div>
-          
-          <EnrichmentAssetsTable assets={sampleAssets} />
+        <div className="mt-6">
+          <EnrichmentReviewHeader 
+            assetCount={sampleAssets.length}
+            onApproveAll={handleApproveAll}
+          />
         </div>
       </div>
     </div>
