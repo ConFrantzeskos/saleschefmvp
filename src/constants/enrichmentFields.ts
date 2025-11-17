@@ -1,5 +1,5 @@
 
-import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, BarChart3, ShoppingCart, MapPin, Heart, AlertTriangle, Zap, Target, Quote } from 'lucide-react';
+import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, BarChart3, ShoppingCart, MapPin, Heart, AlertTriangle, Zap, Target, Quote, Globe2, MessageCircle, Video, FileText, Leaf, Link2, DollarSign, AlertCircle, HelpCircle, Store, Image, Sparkles } from 'lucide-react';
 
 export const enrichmentFields = [
   {
@@ -91,5 +91,149 @@ export const enrichmentFields = [
     title: 'Feature Priority Intelligence',
     icon: Brain,
     description: 'Intelligence-driven feature importance ranking',
+  },
+  {
+    key: 'culturalInsights',
+    title: 'Cultural Insights',
+    icon: Globe2,
+    description: 'Regional preferences and cultural buying patterns',
+  },
+  {
+    key: 'regionalPreferences',
+    title: 'Regional Preferences',
+    icon: MapPin,
+    description: 'Market-specific preferences and terminology',
+  },
+  {
+    key: 'complianceData',
+    title: 'Compliance & Certifications',
+    icon: AlertCircle,
+    description: 'Regional compliance requirements and certifications',
+  },
+  {
+    key: 'forumDiscussions',
+    title: 'Forum Discussions',
+    icon: MessageCircle,
+    description: 'Insights from Reddit and specialized forums',
+  },
+  {
+    key: 'communityInsights',
+    title: 'Community Insights',
+    icon: Users,
+    description: 'Community sentiment and problem-solving patterns',
+  },
+  {
+    key: 'influencerReviews',
+    title: 'Influencer Reviews',
+    icon: Video,
+    description: 'YouTube and creator content analysis',
+  },
+  {
+    key: 'creatorContent',
+    title: 'Creator Content',
+    icon: Video,
+    description: 'Unboxing videos and first impressions',
+  },
+  {
+    key: 'videoSentiment',
+    title: 'Video Sentiment',
+    icon: Heart,
+    description: 'Aggregated video content sentiment',
+  },
+  {
+    key: 'technicalSpecs',
+    title: 'Technical Specifications',
+    icon: FileText,
+    description: 'Detailed technical specifications and data sheets',
+  },
+  {
+    key: 'performanceBenchmarks',
+    title: 'Performance Benchmarks',
+    icon: BarChart3,
+    description: 'Performance metrics and standards compliance',
+  },
+  {
+    key: 'sustainabilityScore',
+    title: 'Sustainability Score',
+    icon: Leaf,
+    description: 'Environmental impact assessment',
+  },
+  {
+    key: 'environmentalImpact',
+    title: 'Environmental Impact',
+    icon: Leaf,
+    description: 'Manufacturing practices and materials analysis',
+  },
+  {
+    key: 'compatibleProducts',
+    title: 'Compatible Products',
+    icon: Link2,
+    description: 'Ecosystem integration and accessories',
+  },
+  {
+    key: 'ecosystemFit',
+    title: 'Ecosystem Fit',
+    icon: Link2,
+    description: 'Cross-sell opportunities and bundle potential',
+  },
+  {
+    key: 'priceHistory',
+    title: 'Price History',
+    icon: DollarSign,
+    description: 'Historical pricing trends and patterns',
+  },
+  {
+    key: 'valuePositioning',
+    title: 'Value Positioning',
+    icon: DollarSign,
+    description: 'Competitive price positioning and value perception',
+  },
+  {
+    key: 'criticalReviews',
+    title: 'Critical Reviews',
+    icon: AlertTriangle,
+    description: 'Common complaints and product weaknesses',
+  },
+  {
+    key: 'featureRequests',
+    title: 'Feature Requests',
+    icon: Sparkles,
+    description: 'Customer-requested features and improvements',
+  },
+  {
+    key: 'qaInsights',
+    title: 'Q&A Insights',
+    icon: HelpCircle,
+    description: 'Customer questions and concerns',
+  },
+  {
+    key: 'categoryUseCases',
+    title: 'Category Use Cases',
+    icon: Target,
+    description: 'Real-world product applications and scenarios',
+  },
+  {
+    key: 'retailerIntelligence',
+    title: 'Retailer Intelligence',
+    icon: Store,
+    description: 'Retailer-specific data and merchandising insights',
+  },
+  {
+    key: 'visualPerformance',
+    title: 'Visual Performance',
+    icon: Image,
+    description: 'Product imagery and visual content effectiveness',
+  },
+  {
+    key: 'expertReviewComparisons',
+    title: 'Expert Review Comparisons',
+    icon: BarChart3,
+    description: 'Professional review comparisons and ratings',
+  },
+  {
+    key: 'innovationGaps',
+    title: 'Innovation Gaps',
+    icon: Sparkles,
+    description: 'Feature gaps and innovation opportunities',
   },
 ] as const;
