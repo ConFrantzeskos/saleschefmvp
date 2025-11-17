@@ -194,41 +194,7 @@ RETAIL_PRICE,USD_79.99`;
                   Original CSV data from manufacturer - before cleaning and transformation
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-2 p-3 bg-muted rounded-lg">
-                  <Badge variant="outline">47 Fields Extracted</Badge>
-                  <ArrowRight className="w-4 h-4" />
-                  <Badge variant="outline">Chinglish Detected</Badge>
-                  <ArrowRight className="w-4 h-4" />
-                  <Badge variant="outline" className="bg-green-500/10 text-green-700 border-green-500/40">Cleaned</Badge>
-                  <ArrowRight className="w-4 h-4" />
-                  <Badge variant="outline" className="bg-blue-500/10 text-blue-700 border-blue-500/40">Used in 24 content pieces</Badge>
-                </div>
-
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold mb-3">Key Fields → Content Usage</h4>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="border rounded-lg p-3 bg-background">
-                      <p className="text-xs font-semibold text-muted-foreground mb-1">BATTERY_LIFE</p>
-                      <Badge variant="secondary" className="text-xs">Used in 9 pieces</Badge>
-                    </div>
-                    <div className="border rounded-lg p-3 bg-background">
-                      <p className="text-xs font-semibold text-muted-foreground mb-1">BLUETOOTH_VERSION</p>
-                      <Badge variant="secondary" className="text-xs">Used in 6 pieces</Badge>
-                    </div>
-                    <div className="border rounded-lg p-3 bg-background">
-                      <p className="text-xs font-semibold text-muted-foreground mb-1">FOLDABLE</p>
-                      <Badge variant="secondary" className="text-xs">Used in 6 pieces</Badge>
-                    </div>
-                    <div className="border rounded-lg p-3 bg-background">
-                      <p className="text-xs font-semibold text-muted-foreground mb-1">MIC_TYPE</p>
-                      <Badge variant="secondary" className="text-xs">Used in 5 pieces</Badge>
-                    </div>
-                  </div>
-                </div>
-
-                <TransformationFlow />
-                
+              <CardContent>
                 <FactoryDataSection consolidatedRawData={consolidatedRawData} />
               </CardContent>
             </Card>
