@@ -4,12 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ArrowLeft, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
 import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
 import { extractPropositionsFromAsset } from '@/utils/propositionExtractor';
+import { generateFeatureGuidance } from '@/utils/intelligenceGenerator';
 import LadderVisualization from '@/components/LadderVisualization';
 import { TopMessagingSummary } from '@/components/TopMessagingSummary';
 import { ladderFrameworks } from '@/constants/ladderFrameworks';
@@ -17,6 +19,8 @@ import { toast } from 'sonner';
 import MarketOpportunityPanel from '@/components/strategic-brief/MarketOpportunityPanel';
 import CompetitiveContextPanel from '@/components/strategic-brief/CompetitiveContextPanel';
 import MissingFeaturesPanel from '@/components/strategic-brief/MissingFeaturesPanel';
+import AudienceInsightsPanel from '@/components/strategic-brief/AudienceInsightsPanel';
+import ContentGuidanceTab from '@/components/strategic-brief/ContentGuidanceTab';
 
 const StrategicBriefDetail = () => {
   const navigate = useNavigate();
@@ -43,7 +47,7 @@ const StrategicBriefDetail = () => {
     );
   }
 
-  const allPropositions = extractPropositionsFromAsset(asset);
+  const allPropositions = extractPropositionsFromAsset(asset, enrichmentData);
   const [selectedPropositions, setSelectedPropositions] = useState<string[]>(
     allPropositions.map(p => p.id)
   );
@@ -159,34 +163,46 @@ const StrategicBriefDetail = () => {
 
         {/* Intelligence Panels */}
         {enrichmentData && (
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <MarketOpportunityPanel 
-              searchTrends={enrichmentData.searchTrends}
-              seoOpportunities={enrichmentData.seoOpportunities}
-              socialMentions={enrichmentData.socialMentions}
-              customerSentiment={enrichmentData.customerSentiment}
-            />
-            <CompetitiveContextPanel 
-              keyCompetitors={enrichmentData.keyCompetitors}
-              relativeStrengths={enrichmentData.relativeStrengths}
-              competitorAnalysis={enrichmentData.competitorAnalysis}
-              priceHistory={enrichmentData.priceHistory}
-              valuePositioning={enrichmentData.valuePositioning}
-            />
-          </div>
+          <>
+            <div className="grid md:grid-cols-3 gap-6 mb-6">
+              <MarketOpportunityPanel 
+                searchTrends={enrichmentData.searchTrends}
+                seoOpportunities={enrichmentData.seoOpportunities}
+                socialMentions={enrichmentData.socialMentions}
+                customerSentiment={enrichmentData.customerSentiment}
+              />
+              <CompetitiveContextPanel 
+                keyCompetitors={enrichmentData.keyCompetitors}
+                relativeStrengths={enrichmentData.relativeStrengths}
+                competitorAnalysis={enrichmentData.competitorAnalysis}
+                priceHistory={enrichmentData.priceHistory}
+                valuePositioning={enrichmentData.valuePositioning}
+              />
+              <AudienceInsightsPanel 
+                targetAudience={enrichmentData.targetAudience}
+                categoryEntryPoints={enrichmentData.categoryEntryPoints}
+                reasonsToBuy={enrichmentData.reasonsToBuy}
+              />
+            </div>
+
+            <div className="mb-6">
+              <MissingFeaturesPanel 
+                missingFeatures={enrichmentData.missingFeatures}
+                featureRequests={enrichmentData.featureRequests}
+                innovationGaps={enrichmentData.innovationGaps}
+              />
+            </div>
+          </>
         )}
 
-        {enrichmentData && (
-          <div className="mb-6">
-            <MissingFeaturesPanel 
-              missingFeatures={enrichmentData.missingFeatures}
-              featureRequests={enrichmentData.featureRequests}
-              innovationGaps={enrichmentData.innovationGaps}
-            />
-          </div>
-        )}
+        <Tabs defaultValue="messaging" className="mb-6">
+          <TabsList className="mb-6">
+            <TabsTrigger value="messaging">Strategic Messaging</TabsTrigger>
+            <TabsTrigger value="guidance">Content Guidance</TabsTrigger>
+          </TabsList>
 
-        <Card className="p-8 mb-6">
+          <TabsContent value="messaging">
+            <Card className="p-8 mb-6">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-2xl font-display font-bold text-foreground mb-2">Strategic Messaging</h2>
@@ -298,6 +314,24 @@ const StrategicBriefDetail = () => {
             ))}
           </div>
         </Card>
+
+        </TabsContent>
+
+        <TabsContent value="guidance">
+          {enrichmentData && asset.featureAnalysis && (
+            <ContentGuidanceTab 
+              featureGuidance={generateFeatureGuidance(
+                asset.featureAnalysis.map(f => ({ 
+                  feature: f.feature, 
+                  confidence: f.confidence 
+                })),
+                enrichmentData
+              )}
+            />
+          )}
+        </TabsContent>
+
+        </Tabs>
 
         <Collapsible>
           <Card className="overflow-hidden">
