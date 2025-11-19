@@ -89,12 +89,13 @@ const EnhancementReview = () => {
         {/* Top Action Panel */}
         <ReviewActionPanel
           icon={<Sparkles className="w-6 h-6 text-primary" />}
-          title="Strategic Enhancement Complete"
-          description={`${sampleAssets.length} products enhanced with ${frameworkCount} frameworks • Ready for content generation`}
-          buttonText="Proceed to Content Generation"
+          title="Review Strategic Briefs"
+          description={`${sampleAssets.length} products enhanced with strategic frameworks • Click any asset to review and customize its brief`}
+          buttonText="View All Assets"
           buttonIcon={<ArrowRight className="w-4 h-4" />}
-          onAction={handleProceedToGeneration}
+          onAction={() => {}}
           variant="top"
+          hideAction
         />
 
         {/* Table Section */}

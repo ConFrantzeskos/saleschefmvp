@@ -32,6 +32,7 @@ const EnrichmentReview = () => {
   const totalInsights = sampleAssets.length * 8; // 8 insights per product
 
   const handleApproveAll = () => {
+    sessionStorage.setItem('enrichmentAssets', JSON.stringify(assets));
     navigate('/strategic-brief');
   };
 
