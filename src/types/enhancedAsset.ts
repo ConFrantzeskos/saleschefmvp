@@ -154,4 +154,8 @@ export interface EnhancedAsset {
   messageStrengthScore: number;
   rtbCount: number;
   status: 'Enhanced' | 'Needs Review';
+  
+  // Strategic Propositions
+  selectedPropositions?: string[]; // Array of selected proposition IDs
+  allPropositions?: import('@/types/proposition').Proposition[]; // All generated propositions
 }

@@ -9,7 +9,8 @@ import SpecificContentUnits from '@/components/SpecificContentUnits';
 import GenerateButton from '@/components/GenerateButton';
 import SelectionSummaryPanel, { SelectedItem } from '@/components/SelectionSummaryPanel';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { Sparkles, Target, CheckCircle } from 'lucide-react';
 import { generationCategories, specificContentUnits } from '@/constants/contentCategories';
 
 const ContentGeneration = () => {
@@ -79,14 +80,16 @@ const ContentGeneration = () => {
   };
 
   const handleGenerateContent = () => {
-    // Get applied ladders from enhanced assets (from sessionStorage or use default)
+    // Get applied ladders and propositions from sessionStorage
     const selectedLadders = JSON.parse(sessionStorage.getItem('selectedLadders') || '["functional-emotional"]');
+    const selectedPropositions = JSON.parse(sessionStorage.getItem('selectedPropositions') || '[]');
     
     console.log('Starting content generation with:', {
       template: selectedTemplate?.name,
       selectedTasks: selectedTasks.map(i => allTasks[i].title),
       selectedUnits: selectedUnits,
-      appliedLadders: selectedLadders
+      appliedLadders: selectedLadders,
+      selectedPropositions: selectedPropositions.length
     });
     setIsGenerating(true);
   };
@@ -157,6 +160,35 @@ const ContentGeneration = () => {
         </div>
 
         <div className="space-y-8">
+          {/* Strategic Propositions Reference */}
+          {(() => {
+            const selectedPropositions = JSON.parse(sessionStorage.getItem('selectedPropositions') || '[]');
+            return selectedPropositions.length > 0 ? (
+              <Card className="p-6 bg-primary/5 border-primary/20">
+                <h3 className="font-semibold mb-3 flex items-center gap-2 text-foreground">
+                  <Target className="w-5 h-5 text-primary" />
+                  Your Strategic Focus
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Content will emphasize these {selectedPropositions.length} propositions:
+                </p>
+                <div className="grid gap-2">
+                  {selectedPropositions.slice(0, 5).map((prop: any) => (
+                    <div key={prop.id} className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-foreground">{prop.text}</span>
+                    </div>
+                  ))}
+                  {selectedPropositions.length > 5 && (
+                    <p className="text-sm text-muted-foreground">
+                      +{selectedPropositions.length - 5} more propositions selected
+                    </p>
+                  )}
+                </div>
+              </Card>
+            ) : null;
+          })()}
+
           <TemplateUpload
             onTemplateSelect={handleTemplateSelect}
             selectedTemplate={selectedTemplate}
