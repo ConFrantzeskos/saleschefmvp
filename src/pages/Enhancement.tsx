@@ -11,6 +11,9 @@ const Enhancement = () => {
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [completedTasks, setCompletedTasks] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
+  
+  // Get selected ladders from sessionStorage
+  const selectedLadders = JSON.parse(sessionStorage.getItem('selectedLadders') || '[]');
 
   const steps = [
     { id: 'upload', label: 'Upload', completed: true, current: false },
@@ -55,8 +58,13 @@ const Enhancement = () => {
             Strategic Enhancement in Progress
           </h1>
           <p className="text-body-large text-muted-foreground">
-            Transforming intelligence into persuasion frameworks
+            Applying {selectedLadders.length > 0 ? selectedLadders.length : 'strategic'} persuasion framework{selectedLadders.length !== 1 ? 's' : ''}
           </p>
+          {selectedLadders.length > 0 && (
+            <p className="text-sm text-muted-foreground mt-2">
+              {selectedLadders.join(', ')}
+            </p>
+          )}
         </div>
 
         <div className="mb-8">

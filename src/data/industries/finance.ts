@@ -67,6 +67,34 @@ export const financeData: DetailedIndustryData = {
     'Accessibility compliance (WCAG tagging, reading level tuning)'
   ],
   
+  // Recommended Persuasion Ladders for Financial Services
+  recommendedLadders: [
+    {
+      id: 'asset-trust-ladder',
+      name: 'Asset Trust Ladder',
+      reason: 'Financial products require building confidence through accuracy → reliability → predictability → trust',
+      example: 'Like Coinbase: "98% cold storage (accuracy) → Protected from hacks (reliability) → Predictable security (predictability) → Confidence to invest (trust)"'
+    },
+    {
+      id: 'risk-mitigation',
+      name: 'Risk-Mitigation-Confidence',
+      reason: 'Address financial anxiety by showing how risks are identified, mitigated, and eliminated',
+      example: 'Insurance products: "Risk identified → Coverage provided → Claims paid reliably → Peace of mind achieved"'
+    },
+    {
+      id: 'price-value-roi',
+      name: 'Price-Value-ROI Ladder',
+      reason: 'Financial decisions demand clear cost justification and return demonstration',
+      example: 'Wealth management: "Annual fee $X → Portfolio optimization → Tax efficiency → Net wealth growth of Y%"'
+    },
+    {
+      id: 'ogilvy-rtb',
+      name: 'Ogilvy Reason-to-Believe',
+      reason: 'Credibility is paramount in finance - every claim needs proof',
+      example: 'Banking: "FDIC insured (RTB) → Your money is protected (promise) → Sleep soundly (payoff)"'
+    }
+  ],
+
   enrichmentFeatures: [
     'Competitor benchmark data (rate comparisons, feature comparisons)',
     'Market trend signals (eg. trending search terms for mortgage products)',

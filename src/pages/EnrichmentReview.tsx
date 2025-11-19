@@ -32,7 +32,7 @@ const EnrichmentReview = () => {
   const totalInsights = sampleAssets.length * 8; // 8 insights per product
 
   const handleApproveAll = () => {
-    navigate('/enhancement');
+    navigate('/enhancement-selection');
   };
 
   return (

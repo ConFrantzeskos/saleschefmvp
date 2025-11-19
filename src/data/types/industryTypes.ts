@@ -19,6 +19,14 @@ export interface DetailedIndustryData {
   realityTitle?: string;
   realityDescription?: string;
   
+  // Recommended Persuasion Ladders
+  recommendedLadders?: Array<{
+    id: string;
+    name: string;
+    reason: string;
+    example: string;
+  }>;
+  
   // Process steps
   ingestSources: string[];
   cleaningFeatures: string[];

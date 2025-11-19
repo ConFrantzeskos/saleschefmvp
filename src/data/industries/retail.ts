@@ -52,6 +52,40 @@ export const retailData: DetailedIndustryData = {
     'Customer review and rating platforms'
   ],
   
+  // Recommended Persuasion Ladders for Retail
+  recommendedLadders: [
+    {
+      id: 'experience-ladder',
+      name: 'Experience Ladder',
+      reason: 'Retail success comes from transforming products into memorable experiences',
+      example: 'Like Apple Stores: "Product → Try it hands-on → Discover capabilities → Create memories → Become brand advocate"'
+    },
+    {
+      id: 'value-stack',
+      name: 'Value Stack Ladder',
+      reason: 'Show how product utility multiplies through ecosystems and complementary features',
+      example: 'Like Amazon Prime: "Fast shipping (utility) → Video & music (multiplier) → Whole Foods discount (ecosystem) → Switching cost (moat)"'
+    },
+    {
+      id: 'micro-feature-compounding',
+      name: 'Micro-Feature Compounding',
+      reason: 'Demonstrate how multiple small features create exponential value',
+      example: 'Like Swiss Army Knife: "20 tools in one → Replaces separate items → Always prepared → Ultimate convenience"'
+    },
+    {
+      id: 'functional-emotional',
+      name: 'Functional-Emotional Ladder',
+      reason: 'Convert product features into lifestyle benefits and emotional rewards',
+      example: 'Athleisure: "Moisture-wicking fabric → Stay dry during workout → Feel confident → Express active lifestyle"'
+    },
+    {
+      id: 'temporal-ladder',
+      name: 'Before-During-After Impact',
+      reason: 'Show the complete customer journey and transformation',
+      example: 'Home organization: "Cluttered space (before) → Easy storage (during) → Peaceful home (after) → Reduced stress (impact)"'
+    }
+  ],
+
   cleaningFeatures: [
     'Product taxonomy standardization across categories',
     'Size, color, and variant normalization',

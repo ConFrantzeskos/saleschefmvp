@@ -79,10 +79,14 @@ const ContentGeneration = () => {
   };
 
   const handleGenerateContent = () => {
+    // Get applied ladders from enhanced assets (from sessionStorage or use default)
+    const selectedLadders = JSON.parse(sessionStorage.getItem('selectedLadders') || '["functional-emotional"]');
+    
     console.log('Starting content generation with:', {
       template: selectedTemplate?.name,
       selectedTasks: selectedTasks.map(i => allTasks[i].title),
-      selectedUnits: selectedUnits
+      selectedUnits: selectedUnits,
+      appliedLadders: selectedLadders
     });
     setIsGenerating(true);
   };
