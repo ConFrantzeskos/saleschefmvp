@@ -9,13 +9,15 @@ interface ContentCategoriesGridProps {
   onTaskToggle: (taskIndex: number) => void;
   onSelectAll: () => void;
   allTasksLength: number;
+  onConfigureTemplate: (taskIndex: number, taskTitle: string) => void;
 }
 
 const ContentCategoriesGrid = ({ 
   selectedTasks, 
   onTaskToggle, 
   onSelectAll, 
-  allTasksLength 
+  allTasksLength,
+  onConfigureTemplate
 }: ContentCategoriesGridProps) => {
   return (
     <div>
@@ -49,6 +51,7 @@ const ContentCategoriesGrid = ({
                     task={task}
                     isSelected={isSelected}
                     onToggle={() => onTaskToggle(globalIndex)}
+                    onConfigureTemplate={() => onConfigureTemplate(globalIndex, task.title)}
                   />
                 );
               })}

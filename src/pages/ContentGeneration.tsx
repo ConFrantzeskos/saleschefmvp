@@ -8,9 +8,10 @@ import ContentCategoriesGrid from '@/components/ContentCategoriesGrid';
 import SpecificContentUnits from '@/components/SpecificContentUnits';
 import GenerateButton from '@/components/GenerateButton';
 import SelectionSummaryPanel, { SelectedItem } from '@/components/SelectionSummaryPanel';
+import TemplateConfigModal from '@/components/TemplateConfigModal';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { Sparkles, Target, CheckCircle } from 'lucide-react';
+import { Sparkles, Target, CheckCircle, Package } from 'lucide-react';
 import { generationCategories, specificContentUnits } from '@/constants/contentCategories';
 
 const ContentGeneration = () => {
@@ -19,6 +20,9 @@ const ContentGeneration = () => {
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
   const [selectedUnits, setSelectedUnits] = useState<string[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [templateModalOpen, setTemplateModalOpen] = useState(false);
+  const [currentConfigTask, setCurrentConfigTask] = useState<{ index: number; title: string } | null>(null);
+  const [taskTemplates, setTaskTemplates] = useState<Map<number, File[]>>(new Map());
 
   const steps = [
     { id: 'upload', label: 'Upload', completed: true, current: false },
@@ -129,7 +133,19 @@ const ContentGeneration = () => {
     }
   };
 
+  const handleConfigureTemplate = (taskIndex: number, taskTitle: string) => {
+    setCurrentConfigTask({ index: taskIndex, title: taskTitle });
+    setTemplateModalOpen(true);
+  };
+
+  const handleSaveTemplate = (files: File[]) => {
+    if (currentConfigTask) {
+      setTaskTemplates(prev => new Map(prev).set(currentConfigTask.index, files));
+    }
+  };
+
   const totalSelected = selectedTasks.length + selectedUnits.length;
+  const templatesConfigured = Array.from(taskTemplates.keys()).length;
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -151,12 +167,23 @@ const ContentGeneration = () => {
           <p className="text-lg text-muted-foreground mb-4">
             Upload your brand template and select the content you'd like to generate
           </p>
-          <Badge 
-            variant={totalSelected > 0 ? "default" : "outline"} 
-            className="text-base px-4 py-2"
-          >
-            {totalSelected} {totalSelected === 1 ? 'item' : 'items'} selected
-          </Badge>
+          <div className="flex items-center justify-center space-x-3">
+            <Badge 
+              variant={totalSelected > 0 ? "default" : "outline"} 
+              className="text-base px-4 py-2"
+            >
+              {totalSelected} {totalSelected === 1 ? 'item' : 'items'} selected
+            </Badge>
+            {templatesConfigured > 0 && (
+              <Badge 
+                variant="secondary"
+                className="text-base px-4 py-2 bg-success/10 text-success border-success/20"
+              >
+                <Package className="w-4 h-4 mr-1" />
+                {templatesConfigured} template{templatesConfigured > 1 ? 's' : ''} configured
+              </Badge>
+            )}
+          </div>
         </div>
 
         <div className="space-y-8">
@@ -205,6 +232,7 @@ const ContentGeneration = () => {
             onTaskToggle={handleTaskToggle}
             onSelectAll={handleSelectAll}
             allTasksLength={allTasks.length}
+            onConfigureTemplate={handleConfigureTemplate}
           />
 
           <SelectionSummaryPanel
