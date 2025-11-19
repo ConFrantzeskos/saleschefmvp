@@ -383,9 +383,11 @@ const CleaningValidation = () => {
                         </div>
                       </div>
                     )}
-                    <p className="text-xs text-foreground">
-                      {step.issues}
-                    </p>
+                    {isCompleted && (
+                      <p className="text-xs text-foreground">
+                        {step.issues}
+                      </p>
+                    )}
                   </CardContent>
                 </Card>
               );
