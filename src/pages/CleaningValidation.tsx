@@ -34,7 +34,8 @@ const CleaningValidation = () => {
       issues: "12 duplicate SKUs merged, 3 near-duplicates flagged",
       estimatedTime: 1.5,
       icon: "🔗",
-      group: 0
+      group: 0,
+      speedVariation: 0.85 // Runs faster
     },
     {
       title: "Fix Formatting Issues",
@@ -42,7 +43,8 @@ const CleaningValidation = () => {
       issues: "15 formatting errors corrected, 8 price inconsistencies fixed",
       estimatedTime: 1.5,
       icon: "✨",
-      group: 0
+      group: 0,
+      speedVariation: 1.15 // Runs slower
     },
     {
       title: "Validate Data Types",
@@ -50,7 +52,8 @@ const CleaningValidation = () => {
       issues: "18 price values converted to standard format, 5 date formats standardized",
       estimatedTime: 1.5,
       icon: "🔢",
-      group: 0
+      group: 0,
+      speedVariation: 1.0 // Normal speed
     },
     {
       title: "Standardize Units & Measurements",
@@ -58,7 +61,8 @@ const CleaningValidation = () => {
       issues: "Mixed imperial/metric detected: 8 weights converted to kg, 12 dimensions to cm",
       estimatedTime: 1.8,
       icon: "📏",
-      group: 1
+      group: 1,
+      speedVariation: 1.2 // Runs slower
     },
     {
       title: "Perfect Spelling & Text",
@@ -66,7 +70,8 @@ const CleaningValidation = () => {
       issues: "23 typos corrected, 7 product names standardized",
       estimatedTime: 1.8,
       icon: "✍️",
-      group: 1
+      group: 1,
+      speedVariation: 0.9 // Runs faster
     },
     {
       title: "Normalize Brand Names",
@@ -74,7 +79,8 @@ const CleaningValidation = () => {
       issues: "4 brand variations unified (e.g., 'Sony Corp' → 'Sony'), 2 manufacturer names corrected",
       estimatedTime: 1.8,
       icon: "🏢",
-      group: 1
+      group: 1,
+      speedVariation: 1.05 // Slightly slower
     },
     {
       title: "Validate & Extract Images",
@@ -82,7 +88,8 @@ const CleaningValidation = () => {
       issues: "15 product images verified, 3 broken URLs flagged, 2 low-resolution images detected",
       estimatedTime: 2.2,
       icon: "🖼️",
-      group: 2
+      group: 2,
+      speedVariation: 0.8 // Runs much faster
     },
     {
       title: "Extract Product Attributes",
@@ -90,7 +97,8 @@ const CleaningValidation = () => {
       issues: "12 color variants extracted, 8 size specifications parsed, 5 material tags added",
       estimatedTime: 2.2,
       icon: "🎨",
-      group: 2
+      group: 2,
+      speedVariation: 1.25 // Runs slower
     },
     {
       title: "Link Related Products",
@@ -98,7 +106,8 @@ const CleaningValidation = () => {
       issues: "6 product variants linked, 4 accessory bundles detected, 2 cross-sell opportunities identified",
       estimatedTime: 2.2,
       icon: "🔄",
-      group: 2
+      group: 2,
+      speedVariation: 0.95 // Slightly faster
     },
     {
       title: "Organize Into Categories",
@@ -106,7 +115,8 @@ const CleaningValidation = () => {
       issues: "3 products assigned to primary categories with relevant sub-categories",
       estimatedTime: 2,
       icon: "📂",
-      group: 3
+      group: 3,
+      speedVariation: 1.1 // Slightly slower
     },
     {
       title: "Check Data Quality",
@@ -114,7 +124,8 @@ const CleaningValidation = () => {
       issues: "Quality score: 92/100 - 5 incomplete entries flagged",
       estimatedTime: 2,
       icon: "✅",
-      group: 3
+      group: 3,
+      speedVariation: 0.85 // Runs faster
     },
     {
       title: "Validate Against Standards",
@@ -122,7 +133,8 @@ const CleaningValidation = () => {
       issues: "All products meet category standards, 2 missing optional fields noted",
       estimatedTime: 2,
       icon: "🛡️",
-      group: 3
+      group: 3,
+      speedVariation: 1.15 // Runs slower
     },
     {
       title: "Prepare for Enrichment",
@@ -130,7 +142,8 @@ const CleaningValidation = () => {
       issues: "3 products formatted with 24 fields ready for AI enrichment",
       estimatedTime: 1.5,
       icon: "🚀",
-      group: 4
+      group: 4,
+      speedVariation: 1.0 // Normal speed
     }
   ];
 
@@ -220,14 +233,15 @@ const CleaningValidation = () => {
   useEffect(() => {
     if (currentGroup < totalGroups) {
       const currentGroupSteps = groupedSteps[currentGroup];
-      const groupTime = Math.max(...currentGroupSteps.map(s => s.estimatedTime)) * 1000;
+      const groupTime = Math.max(...currentGroupSteps.map(s => s.estimatedTime * (s.speedVariation || 1))) * 1000;
       const progressInterval = 50;
       
-      // Start all steps in the current group concurrently
+      // Start all steps in the current group concurrently with varied speeds
       const timers: NodeJS.Timeout[] = [];
       
       currentGroupSteps.forEach(step => {
-        const stepTime = step.estimatedTime * 1000;
+        // Apply speed variation to create independent computing feel
+        const stepTime = step.estimatedTime * (step.speedVariation || 1) * 1000;
         const progressIncrement = 100 / (stepTime / progressInterval);
         
         // Update progress for this step
@@ -243,7 +257,7 @@ const CleaningValidation = () => {
         }, progressInterval);
         timers.push(progressTimer);
         
-        // Complete this individual step
+        // Complete this individual step at its own varied pace
         const stepTimer = setTimeout(() => {
           setCompletedSteps(prev => [...prev, step.index]);
           setStepProgress(prev => ({ ...prev, [step.index]: 100 }));
@@ -259,7 +273,7 @@ const CleaningValidation = () => {
         
         const totalRemaining = remainingGroups.reduce((sum, groupNum) => {
           const groupSteps = groupedSteps[groupNum];
-          const maxTime = Math.max(...groupSteps.map(s => s.estimatedTime));
+          const maxTime = Math.max(...groupSteps.map(s => s.estimatedTime * (s.speedVariation || 1)));
           
           if (groupNum === currentGroup) {
             const currentProgress = Math.max(
