@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DeploymentChannel } from "@/constants/deploymentChannels";
+import LogoImage from "@/components/LogoImage";
 
 interface JourneyStageCardProps {
   icon: string;
@@ -56,16 +57,13 @@ export const JourneyStageCard = ({
           </span>
           <div className="flex gap-1">
             {topChannels.slice(0, 5).map((channel, i) => (
-              channel.logoUrl ? (
-                <img 
-                  key={i}
-                  src={channel.logoUrl} 
-                  alt={`${channel.name} logo`}
-                  className="w-6 h-6 object-contain"
-                />
-              ) : (
-                <span key={i} className="text-2xl">{channel.logo}</span>
-              )
+              <LogoImage
+                key={i}
+                src={channel.logoUrl}
+                alt={`${channel.name} logo`}
+                fallbackEmoji={channel.logo}
+                className="w-6 h-6"
+              />
             ))}
           </div>
         </div>

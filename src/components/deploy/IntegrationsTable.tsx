@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Settings } from "lucide-react";
 import { DeploymentChannel, getCategoryDisplayName } from "@/constants/deploymentChannels";
+import LogoImage from "@/components/LogoImage";
 
 interface IntegrationsTableProps {
   channels: DeploymentChannel[];
@@ -74,15 +75,12 @@ export const IntegrationsTable = ({
                 />
               </TableCell>
               <TableCell>
-                {channel.logoUrl ? (
-                  <img
-                    src={channel.logoUrl}
-                    alt={`${channel.name} logo`}
-                    className="w-6 h-6 object-contain"
-                  />
-                ) : (
-                  <span className="text-xl">{channel.logo}</span>
-                )}
+                <LogoImage
+                  src={channel.logoUrl}
+                  alt={`${channel.name} logo`}
+                  fallbackEmoji={channel.logo}
+                  className="w-6 h-6"
+                />
               </TableCell>
               <TableCell className="font-medium">
                 <div className="flex items-center gap-2">
