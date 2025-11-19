@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowUp, CheckCircle } from 'lucide-react';
 import { 
   FunctionalEmotionalLadder, 
-  OgilvyRTBLadder, 
+  RTBLadder, 
   JTBDOutcomeLadder,
   FAAILadder,
   ExperienceLadder,
@@ -25,8 +25,8 @@ const LadderVisualization = ({ ladderId, asset, isPrimary = false }: LadderVisua
     switch(ladderId) {
       case 'functional-emotional':
         return { type: 'functional-emotional' as const, data: asset.functionalEmotionalLadder };
-      case 'ogilvy-rtb':
-        return { type: 'ogilvy-rtb' as const, data: asset.ogilvyRTBLadder };
+      case 'rtb':
+        return { type: 'rtb' as const, data: asset.rtbLadder };
       case 'jtbd-outcome':
         return { type: 'jtbd-outcome' as const, data: asset.jtbdOutcomeLadder };
       case 'faai':
@@ -74,7 +74,7 @@ const LadderVisualization = ({ ladderId, asset, isPrimary = false }: LadderVisua
     </div>
   );
 
-  const renderOgilvyRTB = (ladder: OgilvyRTBLadder) => (
+  const renderRTB = (ladder: RTBLadder) => (
     <div className="space-y-4">
       <LadderStep 
         level="Reason to Believe (Proof)" 
@@ -227,7 +227,7 @@ const LadderVisualization = ({ ladderId, asset, isPrimary = false }: LadderVisua
   return (
     <Card className={`p-6 ${isPrimary ? 'border-2 border-primary' : 'border-muted'}`}>
       {type === 'functional-emotional' && renderFunctionalEmotional(data as FunctionalEmotionalLadder)}
-      {type === 'ogilvy-rtb' && renderOgilvyRTB(data as OgilvyRTBLadder)}
+      {type === 'rtb' && renderRTB(data as RTBLadder)}
       {type === 'jtbd-outcome' && renderJTBD(data as JTBDOutcomeLadder)}
       {type === 'faai' && renderFAAI(data as FAAILadder)}
       {type === 'experience' && renderExperience(data as ExperienceLadder)}

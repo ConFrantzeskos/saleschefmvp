@@ -134,7 +134,7 @@ export interface EnhancedAsset {
   
   // Ladder-Specific Data
   functionalEmotionalLadder?: import('@/types/ladderTypes').FunctionalEmotionalLadder;
-  ogilvyRTBLadder?: import('@/types/ladderTypes').OgilvyRTBLadder;
+  rtbLadder?: import('@/types/ladderTypes').RTBLadder;
   jtbdOutcomeLadder?: import('@/types/ladderTypes').JTBDOutcomeLadder;
   faaiLadder?: import('@/types/ladderTypes').FAAILadder;
   caboLadder?: import('@/types/ladderTypes').CABOLadder;

@@ -45,9 +45,9 @@ export const extractPropositionsFromAsset = (asset: EnhancedAsset): Proposition[
       });
     }
 
-    // Ogilvy RTB Ladder
-    if (ladderId === 'ogilvy-rtb' && asset.ogilvyRTBLadder) {
-      const ladder = asset.ogilvyRTBLadder;
+    // RTB Ladder
+    if (ladderId === 'rtb' && asset.rtbLadder) {
+      const ladder = asset.rtbLadder;
       propositions.push({
         id: `${asset.id}-rtb-promise`,
         text: ladder.promise,

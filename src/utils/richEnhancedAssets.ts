@@ -10,7 +10,7 @@ export const richEnhancedAssets: EnhancedAsset[] = [
     category: 'Automotive',
     brand: 'SafetyFirst Motors',
     
-    appliedLadders: ['functional-emotional', 'ogilvy-rtb', 'component-performance'],
+    appliedLadders: ['functional-emotional', 'rtb', 'component-performance'],
     primaryLadder: 'functional-emotional',
     
     coreValueProposition: 'Industry-leading collision avoidance technology that protects families and delivers peace of mind for every journey',
@@ -27,7 +27,7 @@ export const richEnhancedAssets: EnhancedAsset[] = [
       realWorldExample: 'Like Volvo\'s pioneering safety features that transformed "Swedish engineering" into "family protector," our system makes safety the invisible guardian on every journey'
     },
     
-    ogilvyRTBLadder: {
+    rtbLadder: {
       reasonToBelieve: 'Independent IIHS testing verified 41% collision reduction; 500,000+ vehicles with zero system-failure accidents; Developed with aerospace-grade radar technology used in commercial aviation',
       promise: 'The only SUV that makes collision avoidance automatic, comprehensive, and foolproof for families',
       payoff: 'Join 500,000+ parents who stopped worrying about "what if" and started driving with confidence',
@@ -225,7 +225,7 @@ export const richEnhancedAssets: EnhancedAsset[] = [
     category: 'Financial Services',
     brand: 'SecureVault',
     
-    appliedLadders: ['asset-trust', 'risk-mitigation', 'ogilvy-rtb'],
+    appliedLadders: ['asset-trust', 'risk-mitigation', 'rtb'],
     primaryLadder: 'asset-trust',
     
     coreValueProposition: 'Institutional-grade cryptocurrency platform with 98% cold storage that eliminates hack risk and enables confident digital asset investing',
