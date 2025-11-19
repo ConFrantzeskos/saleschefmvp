@@ -371,6 +371,9 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       category: 'Electronics',
       brand: 'SmartHome',
       
+      appliedLadders: ['functional-emotional', 'experience-ladder'],
+      primaryLadder: 'experience-ladder',
+      
       coreValueProposition: 'Seamless smart home control with premium audio quality in one elegant device',
       primaryPersona: 'The Smart Home Enthusiast',
       keyDifferentiator: 'Multi-room audio with comprehensive smart home integration',
@@ -739,6 +742,9 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       name: '4K Ultra HD Monitor 27"',
       category: 'Electronics',
       brand: 'ViewTech',
+      
+      appliedLadders: ['functional-emotional', 'component-performance'],
+      primaryLadder: 'component-performance',
       
       coreValueProposition: 'Professional-grade 4K clarity for content creators and designers who demand precision',
       primaryPersona: 'The Creative Professional',
@@ -1328,6 +1334,9 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       id: product.id,
       sku: product.sku,
       name: product.name,
+      
+      appliedLadders: ['functional-emotional'],
+      primaryLadder: 'functional-emotional',
       category: product.category,
       brand: product.brand,
       coreValueProposition: `Premium ${product.name} with advanced features`,
