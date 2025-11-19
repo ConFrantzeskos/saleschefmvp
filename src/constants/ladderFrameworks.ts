@@ -32,7 +32,7 @@ export const ladderFrameworks: LadderFramework[] = [
   },
   {
     id: 'ogilvy-rtb',
-    name: 'Ogilvy Reason-to-Believe',
+    name: 'Reason-to-Believe',
     description: 'Build credibility through proof, then make a promise that delivers a payoff',
     explainer: 'Reason to Believe → Promise → Payoff',
     bestUse: 'Premium brands, skeptical audiences, credibility-focused positioning',
@@ -45,7 +45,7 @@ export const ladderFrameworks: LadderFramework[] = [
   },
   {
     id: 'jtbd-outcome',
-    name: 'Jobs-to-Be-Done Outcome',
+    name: 'Job Outcome Ladder',
     description: 'Focus on the progress customers try to make and constraints they need removed',
     explainer: 'Job to Be Done → Outcome → Constraint Removed → Progress Made',
     bestUse: 'Product innovation, market disruption, understanding true competition',
