@@ -32,7 +32,7 @@ export const ladderFrameworks: LadderFramework[] = [
   },
   {
     id: 'ogilvy-rtb',
-    name: 'Ogilvy Reason-to-Believe',
+    name: 'Reason-to-Believe',
     description: 'Build credibility through proof, then make a promise that delivers a payoff',
     explainer: 'Reason to Believe → Promise → Payoff',
     bestUse: 'Premium brands, skeptical audiences, credibility-focused positioning',
