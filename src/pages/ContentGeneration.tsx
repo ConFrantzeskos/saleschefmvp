@@ -243,7 +243,7 @@ const ContentGeneration = () => {
             onProceed={handleGenerateContent}
             proceedButtonText="Generate Content"
             disabled={isGenerating}
-            additionalInfo={`${totalSelected} content ${totalSelected === 1 ? 'type' : 'types'} selected`}
+            additionalInfo={templatesConfigured > 0 ? `${templatesConfigured} template${templatesConfigured > 1 ? 's' : ''} configured` : undefined}
             className="max-w-6xl mx-auto"
           />
 

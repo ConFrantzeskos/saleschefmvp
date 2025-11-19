@@ -55,14 +55,10 @@ const ContentSelectionCard = ({
             </div>
           </div>
           
-          {hasTemplate ? (
+          {hasTemplate && (
             <Badge variant="default" className="bg-success/10 text-success border-success/20 hover:bg-success/20">
               <CheckCircle2 className="w-3 h-3 mr-1" />
               Template
-            </Badge>
-          ) : (
-            <Badge variant="outline" className="text-muted-foreground">
-              No Template
             </Badge>
           )}
         </div>
