@@ -79,14 +79,6 @@ const LadderSelectionCard = ({ ladder, isSelected, onToggle, recommendation }: L
       <div className="text-xs text-muted-foreground mb-2">
         <strong>Best for:</strong> {ladder.bestUse}
       </div>
-
-      <div className="flex flex-wrap gap-1">
-        {ladder.exampleBrands.slice(0, 3).map((brand, index) => (
-          <Badge key={index} variant="secondary" className="text-xs">
-            {brand}
-          </Badge>
-        ))}
-      </div>
     </Card>
   );
 };
