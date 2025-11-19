@@ -1,12 +1,17 @@
 import { Proposition } from '@/types/proposition';
 import { EnhancedAsset } from '@/types/enhancedAsset';
+import { EnrichmentAsset } from '@/types/enrichmentAsset';
 import { ladderFrameworks } from '@/constants/ladderFrameworks';
+import { enrichPropositionsWithIntelligence } from './intelligenceGenerator';
 
 /**
  * Extracts strategic propositions from enhanced assets based on applied ladder frameworks
  * NEW: Prioritizes multi-feature ladder applications for diverse propositions
  */
-export const extractPropositionsFromAsset = (asset: EnhancedAsset): Proposition[] => {
+export const extractPropositionsFromAsset = (
+  asset: EnhancedAsset, 
+  enrichmentData?: EnrichmentAsset
+): Proposition[] => {
   const propositions: Proposition[] = [];
   
   // NEW PATH: Extract from multi-feature ladder applications
@@ -200,11 +205,13 @@ export const extractPropositionsFromAsset = (asset: EnhancedAsset): Proposition[
       }
     });
     
-    return propositions;
+    // Enrich with intelligence metadata
+    return enrichPropositionsWithIntelligence(propositions, enrichmentData);
   }
   
   // FALLBACK: Legacy single-ladder extraction for backward compatibility
-  return extractLegacyPropositions(asset);
+  const legacyProps = extractLegacyPropositions(asset);
+  return enrichPropositionsWithIntelligence(legacyProps, enrichmentData);
 };
 
 // Legacy extraction (existing code path)
