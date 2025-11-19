@@ -24,8 +24,8 @@ const ReviewActionPanel = React.memo(({
   return (
     <div 
       className={cn(
-        "flex justify-between items-center p-6 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl border border-primary/20 animate-fade-in",
-        variant === 'bottom' && "sticky bottom-4 shadow-lg"
+        "flex justify-between items-center p-6 bg-card rounded-xl border border-primary/20 animate-fade-in shadow-lg",
+        variant === 'bottom' && "sticky bottom-4"
       )}
       style={{ animationDelay: variant === 'top' ? '0.3s' : '0s' }}
     >
