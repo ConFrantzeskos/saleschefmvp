@@ -11,11 +11,13 @@ interface PropositionCardProps {
 }
 
 const PropositionCard = ({ proposition, isSelected, onToggle }: PropositionCardProps) => {
+  const isHighStrength = proposition.strength === 'high';
+  
   return (
     <Card 
       className={`p-4 hover:shadow-md transition-all cursor-pointer ${
         isSelected ? 'border-primary border-2 bg-primary/5' : ''
-      }`}
+      } ${isHighStrength ? 'border-l-4 border-l-primary/40' : ''}`}
       onClick={() => onToggle(proposition.id)}
     >
       <div className="flex items-start gap-3">
@@ -25,7 +27,9 @@ const PropositionCard = ({ proposition, isSelected, onToggle }: PropositionCardP
           className="mt-1"
         />
         <div className="flex-1 space-y-2">
-          <p className="text-foreground font-medium leading-relaxed">{proposition.text}</p>
+          <p className={`text-foreground leading-relaxed ${isHighStrength ? 'font-semibold' : 'font-medium'}`}>
+            {proposition.text}
+          </p>
           <div className="flex items-center gap-2 flex-wrap">
             <Badge variant="outline" className="text-xs">
               {proposition.frameworkName}
