@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, Target, CheckCircle, Lightbulb, ArrowRight } from 'lucide-react';
+import { Target, CheckCircle, Lightbulb, ArrowRight } from 'lucide-react';
 import StrategicLoadingSequence from '@/components/StrategicLoadingSequence';
 import FrameworkDetailsCollapsible from '@/components/FrameworkDetailsCollapsible';
 import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
@@ -78,6 +78,9 @@ const StrategicBrief = () => {
       const grouped = groupPropositionsByCategory(extractedProps);
       setCategorizedPropositions(grouped);
 
+      // Default to ALL propositions selected
+      setSelectedPropositions(extractedProps.map(p => p.id));
+
       setIsGenerating(false);
     };
 
@@ -94,14 +97,6 @@ const StrategicBrief = () => {
     });
   };
 
-  const handleSelectRecommended = () => {
-    // Auto-select high-strength propositions up to 10
-    const highStrength = propositions
-      .filter(p => p.strength === 'high')
-      .slice(0, 10)
-      .map(p => p.id);
-    setSelectedPropositions(highStrength);
-  };
 
   const handleContinue = () => {
     // Store selected propositions in sessionStorage
@@ -111,7 +106,7 @@ const StrategicBrief = () => {
     navigate('/enhancement-review');
   };
 
-  const isValidSelection = selectedPropositions.length >= 8 && selectedPropositions.length <= 12;
+  const isValidSelection = selectedPropositions.length >= 1;
 
   // Show loading sequence while generating
   if (isGenerating) {
@@ -149,24 +144,14 @@ const StrategicBrief = () => {
         {/* Strategic Context Card */}
         <Card className="border-primary/20">
           <CardHeader>
-            <div className="flex items-start justify-between">
-              <div>
-                <CardTitle className="flex items-center gap-2 text-section-title">
-                  <Target className="w-6 h-6 text-primary" />
-                  Strategic Proposition Selection
-                </CardTitle>
-                <p className="text-muted-foreground mt-2">
-                  {propositions.length} strategic propositions generated from {generatedLadders.length} frameworks
-                </p>
-              </div>
-              <Button 
-                variant="outline" 
-                onClick={handleSelectRecommended}
-                className="gap-2"
-              >
-                <Sparkles className="w-4 h-4" />
-                Select Top 10
-              </Button>
+            <div>
+              <CardTitle className="flex items-center gap-2 text-section-title">
+                <Target className="w-6 h-6 text-primary" />
+                Strategic Proposition Selection
+              </CardTitle>
+              <p className="text-muted-foreground mt-2">
+                {propositions.length} strategic propositions generated from {generatedLadders.length} frameworks
+              </p>
             </div>
           </CardHeader>
           <CardContent>
@@ -190,12 +175,8 @@ const StrategicBrief = () => {
             <div className="flex items-start gap-4">
               <Lightbulb className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-foreground mb-1">
-                  Select 8-12 propositions to emphasize in your content
-                </h3>
                 <p className="text-sm text-muted-foreground">
-                  Choose the strategic selling points that resonate most with your brand messaging and target audience. 
-                  These will guide all content generation.
+                  These propositions will guide your content generation based on market intelligence and product positioning. All propositions are selected by default—deselect any that don't align with your brand message or target audience.
                 </p>
               </div>
             </div>
@@ -270,17 +251,12 @@ const StrategicBrief = () => {
                   <div className="flex items-center gap-2 mb-1">
                     <CheckCircle className="w-5 h-5 text-primary" />
                     <span className="font-semibold text-foreground">
-                      {selectedPropositions.length} of 8-12 selected
+                      {selectedPropositions.length} of {propositions.length} propositions selected
                     </span>
                   </div>
-                  {selectedPropositions.length < 8 && (
-                    <p className="text-sm text-muted-foreground">
-                      Select at least {8 - selectedPropositions.length} more
-                    </p>
-                  )}
-                  {selectedPropositions.length > 12 && (
+                  {selectedPropositions.length === 0 && (
                     <p className="text-sm text-destructive">
-                      Remove {selectedPropositions.length - 12} selections
+                      Select at least 1 proposition to continue
                     </p>
                   )}
                 </div>
