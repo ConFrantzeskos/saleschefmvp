@@ -110,7 +110,16 @@ export interface EnhancedAsset {
   keyDifferentiator: string;
   contentApproach: string;
   
-  // Strategic Components
+  // Multi-Ladder System
+  appliedLadders: string[]; // Array of ladder IDs applied to this asset
+  primaryLadder: string; // The main ladder driving strategy
+  ladderInsights?: {
+    mostEffectiveLadder: string;
+    complementaryLadders: string[];
+    confidenceByLadder: Record<string, number>;
+  };
+  
+  // Strategic Components (Legacy)
   benefitLadder: BenefitLadder;
   personas: TargetPersona[];
   messageHierarchy: MessageHierarchy;
@@ -122,6 +131,22 @@ export interface EnhancedAsset {
   conversionHeuristics: ConversionHeuristics;
   psychologyTriggers: PsychologyTrigger[];
   contentBrief: ContentBrief;
+  
+  // Ladder-Specific Data
+  functionalEmotionalLadder?: import('@/types/ladderTypes').FunctionalEmotionalLadder;
+  ogilvyRTBLadder?: import('@/types/ladderTypes').OgilvyRTBLadder;
+  jtbdOutcomeLadder?: import('@/types/ladderTypes').JTBDOutcomeLadder;
+  faaiLadder?: import('@/types/ladderTypes').FAAILadder;
+  caboLadder?: import('@/types/ladderTypes').CABOLadder;
+  priceValueROILadder?: import('@/types/ladderTypes').PriceValueROILadder;
+  riskMitigationLadder?: import('@/types/ladderTypes').RiskMitigationLadder;
+  componentPerformanceLadder?: import('@/types/ladderTypes').ComponentPerformanceLadder;
+  experienceLadder?: import('@/types/ladderTypes').ExperienceLadder;
+  valueStackLadder?: import('@/types/ladderTypes').ValueStackLadder;
+  funnelLadder?: import('@/types/ladderTypes').FunnelLadder;
+  temporalLadder?: import('@/types/ladderTypes').TemporalLadder;
+  compoundingLadder?: import('@/types/ladderTypes').CompoundingLadder;
+  assetTrustLadder?: import('@/types/ladderTypes').AssetTrustLadder;
   
   // Metrics
   confidenceScore: number;
