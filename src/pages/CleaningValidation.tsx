@@ -25,38 +25,43 @@ const CleaningValidation = () => {
 
   const cleaningSteps = [
     {
-      title: "Data Ingestion",
-      description: "Processing multiple file formats (CSV, PDF, URLs, ERP, CMS)",
+      title: "Accept Any File Format",
+      description: "Data ingestion from CSV, PDF, URLs, ERP, CMS",
       issues: "3 different formats detected and ingested"
     },
     {
-      title: "Data Parsing", 
-      description: "Extracting structured data from various sources",
+      title: "Extract Product Information", 
+      description: "Data parsing from various sources",
       issues: "3 product records parsed successfully"
     },
     {
-      title: "Deduplication",
-      description: "Identifying and merging duplicate entries",
+      title: "Remove Duplicates",
+      description: "Deduplication and merging",
       issues: "12 duplicate SKUs merged, 3 near-duplicates flagged"
     },
     {
-      title: "Data Correction",
-      description: "Fixing formatting issues and data inconsistencies",
+      title: "Fix Formatting Issues",
+      description: "Data correction and consistency checks",
       issues: "15 formatting errors corrected, 8 price inconsistencies fixed"
     },
     {
-      title: "Multi-Level Categorization",
-      description: "Assigning products to multiple categories and sub-categories",
+      title: "Perfect Spelling & Text",
+      description: "Automated spelling and typo correction",
+      issues: "23 typos corrected, 7 product names standardized"
+    },
+    {
+      title: "Organize Into Categories",
+      description: "Multi-level categorization",
       issues: "3 products assigned to primary categories with relevant sub-categories"
     },
     {
-      title: "Data Validation",
-      description: "Checking data completeness and quality standards",
+      title: "Check Data Quality",
+      description: "Data validation and completeness standards",
       issues: "Quality score: 92/100 - 5 incomplete entries flagged"
     },
     {
-      title: "Final Processing",
-      description: "Preparing clean, validated data for enrichment",
+      title: "Prepare for Enhancement",
+      description: "Final processing and preparation",
       issues: "3 products ready for enrichment"
     }
   ];
