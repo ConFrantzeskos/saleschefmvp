@@ -7,6 +7,8 @@ import GenerationAnimation from '@/components/GenerationAnimation';
 import ContentCategoriesGrid from '@/components/ContentCategoriesGrid';
 import SpecificContentUnits from '@/components/SpecificContentUnits';
 import GenerateButton from '@/components/GenerateButton';
+import SelectionSummaryPanel, { SelectedItem } from '@/components/SelectionSummaryPanel';
+import { Badge } from '@/components/ui/badge';
 import { Sparkles } from 'lucide-react';
 import { generationCategories, specificContentUnits } from '@/constants/contentCategories';
 
@@ -89,6 +91,39 @@ const ContentGeneration = () => {
     navigate('/review');
   };
 
+  const getSelectedItemsForSummary = (): SelectedItem[] => {
+    const unitItems = selectedUnits.map(unitId => {
+      const unit = specificContentUnits.find(u => u.id === unitId);
+      return {
+        id: unitId,
+        name: unit?.title || unitId,
+        icon: unit ? <unit.icon className="h-4 w-4" /> : undefined
+      };
+    });
+
+    const taskItems = selectedTasks.map(taskIndex => {
+      const task = allTasks[taskIndex];
+      return {
+        id: `task-${taskIndex}`,
+        name: task.title,
+        icon: <task.icon className="h-4 w-4" />
+      };
+    });
+
+    return [...unitItems, ...taskItems];
+  };
+
+  const handleRemoveSelection = (id: string) => {
+    if (id.startsWith('task-')) {
+      const taskIndex = parseInt(id.replace('task-', ''));
+      setSelectedTasks(prev => prev.filter(i => i !== taskIndex));
+    } else {
+      setSelectedUnits(prev => prev.filter(unitId => unitId !== id));
+    }
+  };
+
+  const totalSelected = selectedTasks.length + selectedUnits.length;
+
   return (
     <div className="min-h-screen bg-background p-6">
       {isGenerating && (
@@ -106,9 +141,15 @@ const ContentGeneration = () => {
             <Sparkles className="w-8 h-8 text-primary" />
             <h1 className="text-3xl font-semibold">Ready to cook up your content</h1>
           </div>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground mb-4">
             Upload your brand template and select the content you'd like to generate
           </p>
+          <Badge 
+            variant={totalSelected > 0 ? "default" : "outline"} 
+            className="text-base px-4 py-2"
+          >
+            {totalSelected} {totalSelected === 1 ? 'item' : 'items'} selected
+          </Badge>
         </div>
 
         <div className="space-y-8">
@@ -130,11 +171,25 @@ const ContentGeneration = () => {
             allTasksLength={allTasks.length}
           />
 
-          <GenerateButton
-            selectedTasksCount={selectedTasks.length + selectedUnits.length}
-            isGenerating={isGenerating}
-            onGenerate={handleGenerateContent}
+          <SelectionSummaryPanel
+            icon={<Sparkles className="h-6 w-6" />}
+            title="Ready to Generate"
+            selectedItems={getSelectedItemsForSummary()}
+            onRemove={handleRemoveSelection}
+            onProceed={handleGenerateContent}
+            proceedButtonText="Generate Content"
+            disabled={isGenerating}
+            additionalInfo={`${totalSelected} content ${totalSelected === 1 ? 'type' : 'types'} selected`}
+            className="max-w-6xl mx-auto"
           />
+
+          {totalSelected === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">
+                👆 Select content types above to get started
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

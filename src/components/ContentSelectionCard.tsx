@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ContentTask } from '@/constants/contentCategories';
+import { cn } from '@/lib/utils';
 
 interface ContentSelectionCardProps {
   task: ContentTask;
@@ -15,11 +16,12 @@ const ContentSelectionCard = ({ task, isSelected, onToggle }: ContentSelectionCa
   
   return (
     <Card 
-      className={`transition-all duration-200 cursor-pointer hover:shadow-md ${
+      className={cn(
+        "relative p-4 transition-all duration-200 cursor-pointer hover:shadow-md group",
         isSelected 
-          ? 'border-primary shadow-lg bg-primary/5' 
-          : 'border-muted hover:border-primary/50'
-      }`}
+          ? "border-2 border-primary bg-primary/5 shadow-lg" 
+          : "border-2 border-muted hover:border-primary/50"
+      )}
       onClick={onToggle}
     >
       <CardContent className="p-4">

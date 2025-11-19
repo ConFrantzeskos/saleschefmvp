@@ -28,7 +28,7 @@ export const DeploymentSummary = ({
   );
 
   return (
-    <Card className="border-2 border-primary bg-card sticky bottom-4">
+    <Card className="border-2 border-primary bg-card sticky bottom-4 shadow-xl">
       <CardContent className="p-6">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
@@ -73,14 +73,14 @@ export const DeploymentSummary = ({
             )}
           </div>
 
-          <Button
-            size="lg"
-            onClick={onDeploy}
-            className="whitespace-nowrap"
-          >
-            <Rocket className="mr-2 h-4 w-4" />
-            Deploy Now
-          </Button>
+            <Button
+              size="lg"
+              onClick={onDeploy}
+              className="shrink-0 px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all whitespace-nowrap"
+            >
+              <Rocket className="mr-2 h-5 w-5" />
+              Deploy Now
+            </Button>
         </div>
       </CardContent>
     </Card>

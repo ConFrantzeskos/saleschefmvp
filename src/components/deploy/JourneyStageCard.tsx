@@ -27,9 +27,9 @@ export const JourneyStageCard = ({
   return (
     <Card 
       className={cn(
-        "group cursor-pointer transition-all duration-300 hover:shadow-lg",
+        "group cursor-pointer transition-all duration-200 hover:shadow-lg",
         "border-2 hover:border-primary/50",
-        selectedCount > 0 && "border-primary bg-primary/5"
+        selectedCount > 0 && "border-primary bg-primary/5 shadow-lg"
       )}
       onClick={onClick}
     >
