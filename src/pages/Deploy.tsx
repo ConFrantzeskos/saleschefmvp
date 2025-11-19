@@ -7,6 +7,8 @@ import { QuickDeployTemplates } from "@/components/deploy/QuickDeployTemplates";
 import { JourneyStageCard } from "@/components/deploy/JourneyStageCard";
 import { StageDetailView } from "@/components/deploy/StageDetailView";
 import { DeploymentSummary } from "@/components/deploy/DeploymentSummary";
+import { ViewToggle } from "@/components/deploy/ViewToggle";
+import { IntegrationsListView } from "@/components/deploy/IntegrationsListView";
 import { 
   JourneyStage, 
   deploymentChannels, 
@@ -19,6 +21,7 @@ const Deploy = () => {
   const [selectedChannels, setSelectedChannels] = useState<string[]>(['shopify']);
   const [currentStage, setCurrentStage] = useState<JourneyStage | null>(null);
   const [isDeploying, setIsDeploying] = useState(false);
+  const [viewMode, setViewMode] = useState<'journey' | 'integrations'>('journey');
 
   const steps = [
     { id: 'upload', label: 'Data Source', completed: true, current: false },
@@ -159,6 +162,40 @@ const Deploy = () => {
     );
   }
 
+  // All Integrations View
+  if (viewMode === 'integrations') {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+        <div className="container-responsive py-section-md">
+          <ProgressIndicator steps={steps} className="mb-section-sm" />
+          
+          {/* View Toggle */}
+          <div className="mb-8">
+            <ViewToggle value={viewMode} onChange={setViewMode} />
+          </div>
+
+          {/* Integrations List */}
+          <IntegrationsListView
+            channels={deploymentChannels}
+            selectedChannels={selectedChannels}
+            onToggle={handleToggleChannel}
+            onConfigure={(id) => console.log('Configure:', id)}
+          />
+
+          {/* Deployment Summary */}
+          <div className="mt-8">
+            <DeploymentSummary
+              selectedChannelIds={selectedChannels}
+              onRemove={handleToggleChannel}
+              onDeploy={handleDeploy}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Stage detail view
   if (currentStage) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -184,11 +221,17 @@ const Deploy = () => {
     );
   }
 
+  // Main deploy view (Journey View)
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <div className="container-responsive py-section-md">
         <ProgressIndicator steps={steps} className="mb-section-sm" />
         
+        {/* View Toggle */}
+        <div className="mb-8">
+          <ViewToggle value={viewMode} onChange={setViewMode} />
+        </div>
+
         <SectionHeader
           title="Deploy Your Content"
           subtitle="Choose where to publish your optimized product content across the customer journey"
