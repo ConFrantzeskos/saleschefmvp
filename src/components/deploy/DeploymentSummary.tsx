@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Rocket, X } from "lucide-react";
 import { deploymentChannels } from "@/constants/deploymentChannels";
+import LogoImage from "@/components/LogoImage";
 
 interface DeploymentSummaryProps {
   selectedChannelIds: string[];
@@ -48,15 +49,12 @@ export const DeploymentSummary = ({
                   variant="secondary"
                   className="pl-2 pr-1 py-1 flex items-center gap-1"
                 >
-                  {channel.logoUrl ? (
-                    <img 
-                      src={channel.logoUrl} 
-                      alt={`${channel.name} logo`}
-                      className="w-4 h-4 object-contain"
-                    />
-                  ) : (
-                    <span className="mr-1">{channel.logo}</span>
-                  )}
+                  <LogoImage
+                    src={channel.logoUrl}
+                    alt={`${channel.name} logo`}
+                    fallbackEmoji={channel.logo}
+                    className="w-4 h-4"
+                  />
                   <span>{channel.name}</span>
                   <button
                     onClick={() => onRemove(channel.id)}

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DeploymentChannel } from "@/constants/deploymentChannels";
+import LogoImage from "@/components/LogoImage";
 
 interface ChannelCardProps {
   channel: DeploymentChannel;
@@ -50,15 +51,12 @@ export const ChannelCard = ({
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2 mb-2">
               <div className="flex items-center gap-2">
-                {channel.logoUrl ? (
-                  <img 
-                    src={channel.logoUrl} 
-                    alt={`${channel.name} logo`}
-                    className="w-6 h-6 object-contain"
-                  />
-                ) : (
-                  <span className="text-2xl">{channel.logo}</span>
-                )}
+                <LogoImage
+                  src={channel.logoUrl}
+                  alt={`${channel.name} logo`}
+                  fallbackEmoji={channel.logo}
+                  className="w-6 h-6"
+                />
                 <div>
                   <h4 className="font-semibold text-sm leading-tight">
                     {channel.name}
