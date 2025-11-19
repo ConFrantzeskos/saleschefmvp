@@ -5,8 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, Target, CheckCircle, Lightbulb, ArrowRight } from 'lucide-react';
-import ProgressIndicator from '@/components/ProgressIndicator';
-
+import StrategicLoadingSequence from '@/components/StrategicLoadingSequence';
 import FrameworkDetailsCollapsible from '@/components/FrameworkDetailsCollapsible';
 import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
@@ -114,34 +113,27 @@ const StrategicBrief = () => {
 
   const isValidSelection = selectedPropositions.length >= 8 && selectedPropositions.length <= 12;
 
+  // Show loading sequence while generating
   if (isGenerating) {
+    // Create product context from enrichment data
+    const enrichmentAssets = generateSampleEnrichmentAssets();
+    const sampleAsset = enrichmentAssets[0];
+    const productContext = {
+      industry: 'Technology', // Derive from category or default
+      category: sampleAsset.category || 'Consumer Electronics',
+      targetPersona: sampleAsset.targetAudience || 'Mobile Professional',
+      hasComplexSpecs: true,
+      requiresTrust: false,
+      isHighValue: true,
+      requiresEducation: true,
+      emotionallyDriven: false,
+    };
+
     return (
-      <div className="min-h-screen bg-background p-6">
-        <ProgressIndicator steps={steps} />
-        <div className="max-w-5xl mx-auto mt-16">
-          <Card className="p-12">
-            <div className="flex flex-col items-center justify-center space-y-6">
-              <div className="relative">
-                <Sparkles className="w-16 h-16 text-primary animate-pulse" />
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
-              </div>
-              <div className="text-center space-y-2">
-                <h2 className="text-section-title font-display font-bold">
-                  Analyzing Your Product Strategy
-                </h2>
-                <p className="text-muted-foreground">
-                  Generating strategic propositions from 6-8 persuasion frameworks...
-                </p>
-              </div>
-              <div className="w-full max-w-md">
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full bg-primary animate-loading-bar" />
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </div>
+      <StrategicLoadingSequence
+        productContext={productContext}
+        onComplete={() => setIsGenerating(false)}
+      />
     );
   }
 
@@ -153,8 +145,6 @@ const StrategicBrief = () => {
 
   return (
     <div className="min-h-screen bg-background p-6">
-      <ProgressIndicator steps={steps} />
-      
       <div className="max-w-7xl mx-auto mt-8 space-y-6">
         {/* Strategic Context Card */}
         <Card className="border-primary/20">
