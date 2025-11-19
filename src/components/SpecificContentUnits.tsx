@@ -4,6 +4,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { specificContentUnits, SpecificContentUnit } from '@/constants/contentCategories';
 import { Sparkles } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface SpecificContentUnitsProps {
   selectedUnits: string[];
@@ -24,9 +25,12 @@ const SpecificContentUnits = ({ selectedUnits, onUnitToggle }: SpecificContentUn
     return (
       <Card
         key={unit.id}
-        className={`cursor-pointer transition-all hover:shadow-md ${
-          isSelected ? 'border-primary bg-primary/5' : ''
-        }`}
+        className={cn(
+          "p-4 cursor-pointer transition-all duration-200 hover:shadow-md",
+          isSelected 
+            ? "border-2 border-primary bg-primary/5 shadow-lg" 
+            : "border-2 border-muted hover:border-primary/50"
+        )}
         onClick={() => onUnitToggle(unit.id)}
       >
         <CardContent className="p-4">

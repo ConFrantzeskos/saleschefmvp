@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import ProgressIndicator from "@/components/ProgressIndicator";
 import { QuickDeployTemplates } from "@/components/deploy/QuickDeployTemplates";
@@ -90,6 +91,20 @@ const Deploy = () => {
       const newSet = new Set([...prev, ...channelIds]);
       return Array.from(newSet);
     });
+  };
+
+  const handleSelectAllInStage = (stage: JourneyStage) => {
+    const stageChannels = deploymentChannels
+      .filter(c => c.journeyStage === stage && c.status === 'available')
+      .map(c => c.id);
+    
+    const allSelected = stageChannels.every(id => selectedChannels.includes(id));
+    
+    if (allSelected) {
+      setSelectedChannels(prev => prev.filter(id => !stageChannels.includes(id)));
+    } else {
+      setSelectedChannels(prev => [...new Set([...prev, ...stageChannels])]);
+    }
   };
 
   const handleDeploy = () => {
@@ -239,6 +254,15 @@ const Deploy = () => {
             subtitle="Choose where to publish your optimized product content across the customer journey"
             size="lg"
           />
+
+          <div className="flex justify-center mb-4">
+            <Badge 
+              variant={selectedChannels.length > 0 ? "default" : "outline"} 
+              className="text-base px-4 py-2"
+            >
+              {selectedChannels.length} {selectedChannels.length === 1 ? 'channel' : 'channels'} selected
+            </Badge>
+          </div>
 
           {/* View Toggle */}
           <div className="flex justify-center">
