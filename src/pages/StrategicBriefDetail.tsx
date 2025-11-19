@@ -163,73 +163,102 @@ const StrategicBriefDetail = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
-            {propositionsByFramework.map((group) => {
-              const framework = ladderFrameworks.find(f => f.id === group.frameworkId);
-              const selectedInGroup = group.propositions.filter(p => 
-                selectedPropositions.includes(p.id)
-              ).length;
-
-              return (
-                <div key={group.frameworkId} className="border rounded-lg overflow-hidden">
-                  <div className="p-4 bg-muted/30 border-b">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <Badge variant="outline" className="text-xs">
-                          {framework?.category || 'Framework'}
-                        </Badge>
-                        <h3 className="font-semibold text-foreground">{group.frameworkName}</h3>
-                      </div>
-                      <span className="text-sm text-muted-foreground">
-                        {selectedInGroup} of {group.propositions.length} selected
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-4 space-y-3">
-                    {group.propositions.map(prop => {
-                      const isSelected = selectedPropositions.includes(prop.id);
-                      const isHero = prop.strength === 'high';
-
-                      return (
-                        <div
-                          key={prop.id}
-                          className={`p-4 rounded-lg border transition-all cursor-pointer ${
-                            isSelected 
-                              ? 'border-primary bg-primary/5' 
-                              : 'border-border hover:border-primary/50 hover:bg-muted/30'
-                          } ${isHero ? 'border-l-4 border-l-primary' : ''}`}
-                          onClick={() => handleToggleProposition(prop.id)}
-                        >
-                          <div className="flex items-start gap-3">
-                            <Checkbox 
-                              checked={isSelected}
-                              onCheckedChange={() => handleToggleProposition(prop.id)}
-                              className="mt-1"
-                            />
-                            <div className="flex-1 space-y-2">
-                              <p className={`text-foreground leading-relaxed ${isHero ? 'font-semibold' : 'font-medium'}`}>
-                                {prop.text}
-                              </p>
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <Badge variant="outline" className="text-xs">
-                                  {prop.ladderStep}
-                                </Badge>
-                                {isHero && (
-                                  <Badge className="text-xs bg-primary/10 text-primary border-primary/30">
-                                    Hero Feature
-                                  </Badge>
-                                )}
-                              </div>
+          <div className="space-y-8">
+            {propositionsByFeature.map((featureGroup) => (
+              <div key={featureGroup.feature} className="pb-8 border-b last:border-b-0">
+                {/* Feature Header */}
+                <div className="flex items-center gap-3 mb-4">
+                  {featureGroup.priority === 1 && (
+                    <Badge className="text-base px-3 py-1 bg-primary">
+                      ⭐ HERO FEATURE
+                    </Badge>
+                  )}
+                  {featureGroup.priority > 1 && featureGroup.priority < 10 && (
+                    <Badge variant="secondary" className="text-sm">
+                      Feature #{featureGroup.priority}
+                    </Badge>
+                  )}
+                  <h3 className="text-xl font-bold text-foreground">{featureGroup.feature}</h3>
+                  {featureGroup.confidence > 0 && (
+                    <Badge variant="outline">{featureGroup.confidence}% confidence</Badge>
+                  )}
+                </div>
+                
+                {featureGroup.description && (
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {featureGroup.description}
+                  </p>
+                )}
+                
+                {/* Propositions grouped by framework */}
+                <div className="space-y-4">
+                  {Object.entries(
+                    featureGroup.propositions.reduce((acc, prop) => {
+                      if (!acc[prop.frameworkId]) acc[prop.frameworkId] = [];
+                      acc[prop.frameworkId].push(prop);
+                      return acc;
+                    }, {} as Record<string, typeof featureGroup.propositions>)
+                  ).map(([frameworkId, props]) => {
+                    const framework = ladderFrameworks.find(f => f.id === frameworkId);
+                    const selectedCount = props.filter(p => selectedPropositions.includes(p.id)).length;
+                    
+                    return (
+                      <div key={frameworkId} className="border rounded-lg overflow-hidden">
+                        <div className="p-4 bg-muted/30 border-b">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <Badge variant="outline" className="text-xs">
+                                {framework?.category || 'Framework'}
+                              </Badge>
+                              <h4 className="font-semibold text-foreground">{props[0].frameworkName}</h4>
                             </div>
+                            <span className="text-xs text-muted-foreground">
+                              {selectedCount} of {props.length} selected
+                            </span>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                        <div className="p-4 space-y-3">
+                          {props.map(prop => (
+                            <div 
+                              key={prop.id}
+                              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
+                            >
+                              <Checkbox
+                                id={prop.id}
+                                checked={selectedPropositions.includes(prop.id)}
+                                onCheckedChange={() => handleToggleProposition(prop.id)}
+                                className="mt-1"
+                              />
+                              <div className="flex-1">
+                                <label 
+                                  htmlFor={prop.id}
+                                  className="text-sm text-foreground font-medium cursor-pointer block mb-1"
+                                >
+                                  {prop.text}
+                                </label>
+                                <div className="flex items-center gap-2">
+                                  <Badge 
+                                    variant={prop.strength === 'high' ? 'default' : 'outline'}
+                                    className="text-xs"
+                                  >
+                                    {prop.ladderStep}
+                                  </Badge>
+                                  {prop.featurePriority === 1 && (
+                                    <Badge variant="outline" className="text-xs">
+                                      Hero Feature
+                                    </Badge>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </Card>
 
