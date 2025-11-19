@@ -2,13 +2,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DeploymentChannel } from "@/constants/deploymentChannels";
 
 interface JourneyStageCardProps {
   icon: string;
   title: string;
   subtitle: string;
   channelCount: number;
-  topLogos: string[];
+  topChannels: DeploymentChannel[];
   onClick: () => void;
   selectedCount?: number;
 }
@@ -18,7 +19,7 @@ export const JourneyStageCard = ({
   title,
   subtitle,
   channelCount,
-  topLogos,
+  topChannels,
   onClick,
   selectedCount = 0,
 }: JourneyStageCardProps) => {
@@ -54,8 +55,17 @@ export const JourneyStageCard = ({
             {channelCount} channels
           </span>
           <div className="flex gap-1">
-            {topLogos.slice(0, 5).map((logo, i) => (
-              <span key={i} className="text-2xl">{logo}</span>
+            {topChannels.slice(0, 5).map((channel, i) => (
+              channel.logoUrl ? (
+                <img 
+                  key={i}
+                  src={channel.logoUrl} 
+                  alt={`${channel.name} logo`}
+                  className="w-6 h-6 object-contain"
+                />
+              ) : (
+                <span key={i} className="text-2xl">{channel.logo}</span>
+              )
             ))}
           </div>
         </div>
