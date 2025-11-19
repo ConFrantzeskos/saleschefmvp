@@ -20,6 +20,8 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
+import LadderVisualization from '@/components/LadderVisualization';
+import { ladderFrameworks } from '@/constants/ladderFrameworks';
 
 const StrategicBriefDetail = () => {
   const navigate = useNavigate();
@@ -99,11 +101,49 @@ const StrategicBriefDetail = () => {
             <label className="text-xs font-medium text-muted-foreground block mb-2">CORE VALUE PROPOSITION</label>
             <p className="text-foreground text-lg font-medium">{asset.coreValueProposition}</p>
           </div>
+          
+          {/* Applied Ladders Summary */}
+          {asset.appliedLadders && asset.appliedLadders.length > 0 && (
+            <div className="mt-6 p-4 rounded-lg bg-muted/30 border border-border">
+              <label className="text-xs font-medium text-muted-foreground block mb-3">APPLIED PERSUASION FRAMEWORKS</label>
+              <div className="flex flex-wrap gap-2">
+                {asset.appliedLadders.map(ladderId => {
+                  const ladder = ladderFrameworks.find(l => l.id === ladderId);
+                  return ladder ? (
+                    <Badge key={ladderId} variant="secondary" className="gap-1">
+                      {React.createElement(ladder.icon, { className: "w-3 h-3" })}
+                      {ladder.name}
+                      {ladderId === asset.primaryLadder && <span className="text-xs ml-1">(Primary)</span>}
+                    </Badge>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          )}
         </Card>
 
         <div className="space-y-4">
-          {/* 1. Ladder of Benefits */}
-          <Section title="1. Ladder of Benefits" icon={TrendingUp} defaultOpen={true}>
+          {/* Ladder Visualizations */}
+          {asset.appliedLadders && asset.appliedLadders.length > 0 && (
+            <Section title="Applied Persuasion Ladders" icon={TrendingUp} defaultOpen={true}>
+              <div className="space-y-6">
+                {asset.appliedLadders.map(ladderId => {
+                  const isPrimary = ladderId === asset.primaryLadder;
+                  return (
+                    <LadderVisualization
+                      key={ladderId}
+                      ladderId={ladderId}
+                      asset={asset}
+                      isPrimary={isPrimary}
+                    />
+                  );
+                })}
+              </div>
+            </Section>
+          )}
+          
+          {/* 1. Ladder of Benefits (Legacy) */}
+          <Section title="1. Ladder of Benefits (Classic)" icon={TrendingUp} defaultOpen={false}>
             <div className="mb-4 p-4 bg-muted/30 rounded-lg">
               <p className="text-sm text-muted-foreground">
                 Climbs from product features through benefits to emotional and social outcomes. Each major feature gets its own discrete ladder.

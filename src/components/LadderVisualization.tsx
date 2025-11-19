@@ -11,13 +11,39 @@ import {
   AssetTrustLadder
 } from '@/types/ladderTypes';
 
+import { EnhancedAsset } from '@/types/enhancedAsset';
+
 interface LadderVisualizationProps {
-  type: 'functional-emotional' | 'ogilvy-rtb' | 'jtbd-outcome' | 'faai' | 'experience' | 'asset-trust';
-  data: FunctionalEmotionalLadder | OgilvyRTBLadder | JTBDOutcomeLadder | FAAILadder | ExperienceLadder | AssetTrustLadder;
+  ladderId: string;
+  asset: EnhancedAsset;
   isPrimary?: boolean;
 }
 
-const LadderVisualization = ({ type, data, isPrimary = false }: LadderVisualizationProps) => {
+const LadderVisualization = ({ ladderId, asset, isPrimary = false }: LadderVisualizationProps) => {
+  // Get the appropriate ladder data based on ladderId
+  const getLadderData = () => {
+    switch(ladderId) {
+      case 'functional-emotional':
+        return { type: 'functional-emotional' as const, data: asset.functionalEmotionalLadder };
+      case 'ogilvy-rtb':
+        return { type: 'ogilvy-rtb' as const, data: asset.ogilvyRTBLadder };
+      case 'jtbd-outcome':
+        return { type: 'jtbd-outcome' as const, data: asset.jtbdOutcomeLadder };
+      case 'faai':
+        return { type: 'faai' as const, data: asset.faaiLadder };
+      case 'experience-ladder':
+        return { type: 'experience' as const, data: asset.experienceLadder };
+      case 'asset-trust-ladder':
+        return { type: 'asset-trust' as const, data: asset.assetTrustLadder };
+      default:
+        return null;
+    }
+  };
+
+  const ladderInfo = getLadderData();
+  if (!ladderInfo || !ladderInfo.data) return null;
+
+  const { type, data } = ladderInfo;
   const renderFunctionalEmotional = (ladder: FunctionalEmotionalLadder) => (
     <div className="space-y-4">
       <LadderStep 

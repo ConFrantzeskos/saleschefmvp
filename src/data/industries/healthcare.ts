@@ -57,6 +57,40 @@ export const healthcareData: DetailedIndustryData = {
     'Video, imagery, patient leaflets'
   ],
   
+  // Recommended Persuasion Ladders for Healthcare
+  recommendedLadders: [
+    {
+      id: 'asset-trust-ladder',
+      name: 'Reliability & Trust Ladder',
+      reason: 'Medical products must demonstrate clinical accuracy and consistent performance',
+      example: 'Medical devices: "Clinical validation → 99.7% accuracy → FDA cleared → Trusted by 5,000+ hospitals"'
+    },
+    {
+      id: 'risk-mitigation',
+      name: 'Risk-Mitigation Ladder',
+      reason: 'Healthcare decisions involve patient safety - showing risk reduction builds confidence',
+      example: 'Surgical equipment: "Safety mechanisms → Reduced complication rate → Faster recovery → Better patient outcomes"'
+    },
+    {
+      id: 'functional-emotional',
+      name: 'Functional-Emotional Ladder',
+      reason: 'Healthcare combines clinical efficacy with emotional reassurance',
+      example: 'Diagnostic equipment: "Faster scan time → Earlier detection → Peace of mind → Confidence in diagnosis"'
+    },
+    {
+      id: 'ogilvy-rtb',
+      name: 'Reason-to-Believe with Clinical Proof',
+      reason: 'Every healthcare claim needs clinical evidence backing',
+      example: 'Pharmaceuticals: "Phase III trials (RTB) → Proven efficacy (promise) → Improved quality of life (payoff)"'
+    },
+    {
+      id: 'component-performance',
+      name: 'Component-Performance-Capability',
+      reason: 'Technical medical products benefit from showing how components deliver superior clinical outcomes',
+      example: 'Like advanced imaging: "Sensor resolution → Image clarity → Diagnostic accuracy → Treatment precision"'
+    }
+  ],
+
   cleaningFeatures: [
     'Alignment to GS1 GDSN, UDI, HL7 FHIR, EUDAMED data models',
     'Country-specific regulatory tagging → US, EU, AU, UK, China, Japan',
