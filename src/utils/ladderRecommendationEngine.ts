@@ -156,8 +156,10 @@ export class LadderRecommendationEngine {
     if (context.industry) {
       const industryAffinities = industryLadderAffinities[context.industry.toLowerCase()] || {};
       Object.entries(industryAffinities).forEach(([ladderId, affinity]) => {
-        scores[ladderId] += affinity * 0.3;
-        reasonings[ladderId].push(`Strong fit for ${context.industry} industry`);
+        if (reasonings[ladderId]) {
+          scores[ladderId] += affinity * 0.3;
+          reasonings[ladderId].push(`Strong fit for ${context.industry} industry`);
+        }
       });
     }
 
@@ -165,8 +167,10 @@ export class LadderRecommendationEngine {
     if (context.category) {
       const categoryAffinities = categoryLadderAffinities[context.category.toLowerCase()] || {};
       Object.entries(categoryAffinities).forEach(([ladderId, affinity]) => {
-        scores[ladderId] += affinity * 0.25;
-        reasonings[ladderId].push(`Optimized for ${context.category} products`);
+        if (reasonings[ladderId]) {
+          scores[ladderId] += affinity * 0.25;
+          reasonings[ladderId].push(`Optimized for ${context.category} products`);
+        }
       });
     }
 
@@ -175,8 +179,10 @@ export class LadderRecommendationEngine {
       const personaKey = this.extractPersonaKey(context.targetPersona);
       const personaAffinities = personaLadderAffinities[personaKey] || {};
       Object.entries(personaAffinities).forEach(([ladderId, affinity]) => {
-        scores[ladderId] += affinity * 0.25;
-        reasonings[ladderId].push(`Resonates with ${context.targetPersona} mindset`);
+        if (reasonings[ladderId]) {
+          scores[ladderId] += affinity * 0.25;
+          reasonings[ladderId].push(`Resonates with ${context.targetPersona} mindset`);
+        }
       });
     }
 
@@ -240,51 +246,77 @@ export class LadderRecommendationEngine {
 
     // Complex specs → component-performance, FAAI
     if (context.hasComplexSpecs) {
-      scores['component-performance'] += boost;
-      scores['faai'] += boost;
-      reasonings['component-performance'].push('Product has complex technical specifications');
-      reasonings['faai'].push('Technical features benefit from structured breakdown');
+      if (reasonings['component-performance']) {
+        scores['component-performance'] += boost;
+        reasonings['component-performance'].push('Product has complex technical specifications');
+      }
+      if (reasonings['faai']) {
+        scores['faai'] += boost;
+        reasonings['faai'].push('Technical features benefit from structured breakdown');
+      }
     }
 
     // Requires trust → asset-trust-ladder, risk-mitigation, ogilvy-rtb
     if (context.requiresTrust) {
-      scores['asset-trust-ladder'] += boost;
-      scores['risk-mitigation'] += boost;
-      scores['ogilvy-rtb'] += boost;
-      reasonings['asset-trust-ladder'].push('Trust is critical for this product');
-      reasonings['risk-mitigation'].push('Addressing concerns builds confidence');
-      reasonings['ogilvy-rtb'].push('Credibility through proof points');
+      if (reasonings['asset-trust-ladder']) {
+        scores['asset-trust-ladder'] += boost;
+        reasonings['asset-trust-ladder'].push('Trust is critical for this product');
+      }
+      if (reasonings['risk-mitigation']) {
+        scores['risk-mitigation'] += boost;
+        reasonings['risk-mitigation'].push('Addressing concerns builds confidence');
+      }
+      if (reasonings['ogilvy-rtb']) {
+        scores['ogilvy-rtb'] += boost;
+        reasonings['ogilvy-rtb'].push('Credibility through proof points');
+      }
     }
 
     // Emotional purchase → functional-emotional, experience-ladder
     if (context.isEmotionalPurchase) {
-      scores['functional-emotional'] += boost;
-      scores['experience-ladder'] += boost;
-      reasonings['functional-emotional'].push('Purchase driven by emotional benefits');
-      reasonings['experience-ladder'].push('Experience and memory creation matter');
+      if (reasonings['functional-emotional']) {
+        scores['functional-emotional'] += boost;
+        reasonings['functional-emotional'].push('Purchase driven by emotional benefits');
+      }
+      if (reasonings['experience-ladder']) {
+        scores['experience-ladder'] += boost;
+        reasonings['experience-ladder'].push('Experience and memory creation matter');
+      }
     }
 
     // Multiple variants → CABO, value-stack
     if (context.hasMultipleVariants) {
-      scores['cabo'] += boost;
-      scores['value-stack'] += boost;
-      reasonings['cabo'].push('Helps compare and position variants');
-      reasonings['value-stack'].push('Shows escalating value across tiers');
+      if (reasonings['cabo']) {
+        scores['cabo'] += boost;
+        reasonings['cabo'].push('Helps compare and position variants');
+      }
+      if (reasonings['value-stack']) {
+        scores['value-stack'] += boost;
+        reasonings['value-stack'].push('Shows escalating value across tiers');
+      }
     }
 
     // Price point considerations
     if (context.pricePoint === 'premium' || context.pricePoint === 'luxury') {
-      scores['experience-ladder'] += boost;
-      scores['functional-emotional'] += boost;
-      reasonings['experience-ladder'].push('Premium positioning requires experiential narrative');
-      reasonings['functional-emotional'].push('Justify premium price with emotional value');
+      if (reasonings['experience-ladder']) {
+        scores['experience-ladder'] += boost;
+        reasonings['experience-ladder'].push('Premium positioning requires experiential narrative');
+      }
+      if (reasonings['functional-emotional']) {
+        scores['functional-emotional'] += boost;
+        reasonings['functional-emotional'].push('Justify premium price with emotional value');
+      }
     }
 
     if (context.pricePoint === 'budget') {
-      scores['price-value-roi'] += boost;
-      scores['value-stack'] += boost;
-      reasonings['price-value-roi'].push('Value demonstration is crucial at this price point');
-      reasonings['value-stack'].push('Show how features compound for exceptional value');
+      if (reasonings['price-value-roi']) {
+        scores['price-value-roi'] += boost;
+        reasonings['price-value-roi'].push('Value demonstration is crucial at this price point');
+      }
+      if (reasonings['value-stack']) {
+        scores['value-stack'] += boost;
+        reasonings['value-stack'].push('Show how features compound for exceptional value');
+      }
     }
   }
 
