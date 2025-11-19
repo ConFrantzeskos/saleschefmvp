@@ -131,7 +131,15 @@ const Deploy = () => {
                     className="flex items-center gap-3 p-3 bg-card rounded-lg animate-in fade-in-50"
                     style={{ animationDelay: `${i * 200}ms` }}
                   >
-                    <span className="text-2xl">{channel.logo}</span>
+                    {channel.logoUrl ? (
+                      <img 
+                        src={channel.logoUrl} 
+                        alt={`${channel.name} logo`}
+                        className="w-8 h-8 object-contain"
+                      />
+                    ) : (
+                      <span className="text-2xl">{channel.logo}</span>
+                    )}
                     <div className="flex-1">
                       <p className="font-medium text-sm">{channel.name}</p>
                       <p className="text-xs text-muted-foreground">Publishing...</p>
@@ -208,7 +216,7 @@ const Deploy = () => {
                   title={title}
                   subtitle={subtitle}
                   channelCount={stageChannels.length}
-                  topLogos={stageChannels.slice(0, 5).map(ch => ch.logo)}
+                  topChannels={stageChannels.slice(0, 5)}
                   selectedCount={selectedCount}
                   onClick={() => setCurrentStage(stage)}
                 />

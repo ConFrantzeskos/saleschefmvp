@@ -46,10 +46,18 @@ export const DeploymentSummary = ({
                 <Badge
                   key={channel.id}
                   variant="secondary"
-                  className="pl-2 pr-1 py-1"
+                  className="pl-2 pr-1 py-1 flex items-center gap-1"
                 >
-                  <span className="mr-1">{channel.logo}</span>
-                  {channel.name}
+                  {channel.logoUrl ? (
+                    <img 
+                      src={channel.logoUrl} 
+                      alt={`${channel.name} logo`}
+                      className="w-4 h-4 object-contain"
+                    />
+                  ) : (
+                    <span className="mr-1">{channel.logo}</span>
+                  )}
+                  <span>{channel.name}</span>
                   <button
                     onClick={() => onRemove(channel.id)}
                     className="ml-2 hover:bg-background/50 rounded p-0.5"
