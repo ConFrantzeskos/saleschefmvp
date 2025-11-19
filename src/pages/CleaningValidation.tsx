@@ -26,124 +26,115 @@ const CleaningValidation = () => {
     { id: 'deploy', label: 'Deploy', completed: false, current: false },
   ];
 
+  // Group tasks into concurrent batches for parallel processing
   const cleaningSteps = [
-    {
-      title: "Accept Any File Format",
-      description: "Data ingestion from CSV, PDF, URLs, ERP, CMS",
-      issues: "3 different formats detected and ingested",
-      estimatedTime: 2,
-      icon: "📁"
-    },
-    {
-      title: "Extract Product Information", 
-      description: "Data parsing from various sources",
-      issues: "3 product records parsed successfully",
-      estimatedTime: 3,
-      icon: "🔍"
-    },
     {
       title: "Remove Duplicates",
       description: "Deduplication and merging",
       issues: "12 duplicate SKUs merged, 3 near-duplicates flagged",
-      estimatedTime: 4,
-      icon: "🔗"
+      estimatedTime: 1.5,
+      icon: "🔗",
+      group: 0
     },
     {
       title: "Fix Formatting Issues",
       description: "Data correction and consistency checks",
       issues: "15 formatting errors corrected, 8 price inconsistencies fixed",
-      estimatedTime: 3,
-      icon: "✨"
+      estimatedTime: 1.5,
+      icon: "✨",
+      group: 0
     },
     {
       title: "Validate Data Types",
       description: "Ensure numbers, dates, and currencies are properly formatted",
       issues: "18 price values converted to standard format, 5 date formats standardized",
-      estimatedTime: 2,
-      icon: "🔢"
+      estimatedTime: 1.5,
+      icon: "🔢",
+      group: 0
     },
     {
       title: "Standardize Units & Measurements",
       description: "Convert dimensions, weights, and volumes to consistent units",
       issues: "Mixed imperial/metric detected: 8 weights converted to kg, 12 dimensions to cm",
-      estimatedTime: 3,
-      icon: "📏"
+      estimatedTime: 1.8,
+      icon: "📏",
+      group: 1
     },
     {
       title: "Perfect Spelling & Text",
       description: "Automated spelling and typo correction",
       issues: "23 typos corrected, 7 product names standardized",
-      estimatedTime: 2,
-      icon: "✍️"
+      estimatedTime: 1.8,
+      icon: "✍️",
+      group: 1
     },
     {
       title: "Normalize Brand Names",
       description: "Standardize manufacturer and brand naming",
       issues: "4 brand variations unified (e.g., 'Sony Corp' → 'Sony'), 2 manufacturer names corrected",
-      estimatedTime: 2,
-      icon: "🏢"
+      estimatedTime: 1.8,
+      icon: "🏢",
+      group: 1
     },
     {
       title: "Validate & Extract Images",
       description: "Check image URLs, file formats, and dimensions",
       issues: "15 product images verified, 3 broken URLs flagged, 2 low-resolution images detected",
-      estimatedTime: 5,
-      icon: "🖼️"
+      estimatedTime: 2.2,
+      icon: "🖼️",
+      group: 2
     },
     {
       title: "Extract Product Attributes",
       description: "Identify color, size, material from text",
       issues: "12 color variants extracted, 8 size specifications parsed, 5 material tags added",
-      estimatedTime: 4,
-      icon: "🎨"
+      estimatedTime: 2.2,
+      icon: "🎨",
+      group: 2
     },
     {
       title: "Link Related Products",
       description: "Find variants, bundles, and accessories",
       issues: "6 product variants linked, 4 accessory bundles detected, 2 cross-sell opportunities identified",
-      estimatedTime: 3,
-      icon: "🔄"
+      estimatedTime: 2.2,
+      icon: "🔄",
+      group: 2
     },
     {
       title: "Organize Into Categories",
       description: "Multi-level categorization",
       issues: "3 products assigned to primary categories with relevant sub-categories",
-      estimatedTime: 3,
-      icon: "📂"
+      estimatedTime: 2,
+      icon: "📂",
+      group: 3
     },
     {
       title: "Check Data Quality",
       description: "Data validation and completeness standards",
       issues: "Quality score: 92/100 - 5 incomplete entries flagged",
       estimatedTime: 2,
-      icon: "✅"
+      icon: "✅",
+      group: 3
     },
     {
       title: "Validate Against Standards",
       description: "Verify compliance with category requirements",
       issues: "All products meet category standards, 2 missing optional fields noted",
       estimatedTime: 2,
-      icon: "🛡️"
+      icon: "🛡️",
+      group: 3
     },
     {
       title: "Prepare for Enrichment",
       description: "Setting up data fields and structure for enrichment pipeline",
       issues: "3 products formatted with 24 fields ready for AI enrichment",
-      estimatedTime: 1,
-      icon: "🚀"
+      estimatedTime: 1.5,
+      icon: "🚀",
+      group: 4
     }
   ];
 
   const correctedItems = [
-    // File Format Detection
-    { id: 1, type: 'File Format Detection', step: 'Accept Any File Format', item: 'Product_Catalog_2024.csv', change: 'CSV format detected with UTF-8 encoding, 3 products extracted', status: 'ingested' },
-    { id: 2, type: 'File Format Detection', step: 'Accept Any File Format', item: 'Supplier_Data.xlsx', change: 'Excel format detected, parsed 2 sheets, extracted 8 additional products', status: 'ingested' },
-    
-    // Product Information Extraction
-    { id: 3, type: 'Data Parsing', step: 'Extract Product Information', item: 'Sony WH-1000XM5 Headphones', change: 'Extracted: SKU, Name, Price ($399.99), Category, Brand, Specifications (30hr battery, ANC)', status: 'parsed' },
-    { id: 4, type: 'Data Parsing', step: 'Extract Product Information', item: 'Samsung 65" QLED 4K TV', change: 'Extracted: Model Number (QN65QN90C), Price, Dimensions, Weight, Features array', status: 'parsed' },
-    { id: 5, type: 'Data Parsing', step: 'Extract Product Information', item: 'Apple MacBook Pro 16" M3', change: 'Extracted: Complete specs including chip type, RAM (36GB), Storage (1TB SSD)', status: 'parsed' },
-    
     // Duplicate Removal
     { id: 6, type: 'Duplicate Merge', step: 'Remove Duplicates', item: 'iPhone 15 Pro Max 256GB', change: 'SKU-APL-15PM-256-BLK + SKU-APL15PROMAX256 + iPhone15ProMax_256 → SKU-APL-15PM-256', status: 'merged' },
     { id: 7, type: 'Duplicate Merge', step: 'Remove Duplicates', item: 'Sony WH1000XM5', change: 'Found 2 identical entries with different SKUs, merged inventory counts', status: 'merged' },
@@ -215,55 +206,87 @@ const CleaningValidation = () => {
   ];
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  const [currentGroup, setCurrentGroup] = useState(0);
+
+  // Group steps by their group property for concurrent execution
+  const groupedSteps = cleaningSteps.reduce((acc, step, index) => {
+    if (!acc[step.group]) acc[step.group] = [];
+    acc[step.group].push({ ...step, index });
+    return acc;
+  }, {} as Record<number, Array<typeof cleaningSteps[0] & { index: number }>>);
+
+  const totalGroups = Object.keys(groupedSteps).length;
 
   useEffect(() => {
-    if (currentStep < cleaningSteps.length) {
-      const stepTime = cleaningSteps[currentStep].estimatedTime * 1000;
+    if (currentGroup < totalGroups) {
+      const currentGroupSteps = groupedSteps[currentGroup];
+      const groupTime = Math.max(...currentGroupSteps.map(s => s.estimatedTime)) * 1000;
       const progressInterval = 50;
-      const progressIncrement = 100 / (stepTime / progressInterval);
       
-      // Update progress for current step
-      const progressTimer = setInterval(() => {
-        setStepProgress(prev => {
-          const currentProgress = prev[currentStep] || 0;
-          if (currentProgress >= 100) {
-            clearInterval(progressTimer);
-            return prev;
-          }
-          return { ...prev, [currentStep]: Math.min(currentProgress + progressIncrement, 100) };
-        });
-      }, progressInterval);
+      // Start all steps in the current group concurrently
+      const timers: NodeJS.Timeout[] = [];
+      
+      currentGroupSteps.forEach(step => {
+        const stepTime = step.estimatedTime * 1000;
+        const progressIncrement = 100 / (stepTime / progressInterval);
+        
+        // Update progress for this step
+        const progressTimer = setInterval(() => {
+          setStepProgress(prev => {
+            const currentProgress = prev[step.index] || 0;
+            if (currentProgress >= 100) {
+              clearInterval(progressTimer);
+              return prev;
+            }
+            return { ...prev, [step.index]: Math.min(currentProgress + progressIncrement, 100) };
+          });
+        }, progressInterval);
+        timers.push(progressTimer);
+        
+        // Complete this individual step
+        const stepTimer = setTimeout(() => {
+          setCompletedSteps(prev => [...prev, step.index]);
+          setStepProgress(prev => ({ ...prev, [step.index]: 100 }));
+        }, stepTime);
+        timers.push(stepTimer);
+      });
 
       // Calculate remaining time
       const timeTimer = setInterval(() => {
-        const remainingSteps = cleaningSteps.slice(currentStep);
-        const totalRemaining = remainingSteps.reduce((sum, step, idx) => {
-          if (idx === 0) {
-            const currentProgress = stepProgress[currentStep] || 0;
-            return sum + (step.estimatedTime * (100 - currentProgress) / 100);
+        const remainingGroups = Object.keys(groupedSteps)
+          .map(Number)
+          .filter(g => g >= currentGroup);
+        
+        const totalRemaining = remainingGroups.reduce((sum, groupNum) => {
+          const groupSteps = groupedSteps[groupNum];
+          const maxTime = Math.max(...groupSteps.map(s => s.estimatedTime));
+          
+          if (groupNum === currentGroup) {
+            const currentProgress = Math.max(
+              ...groupSteps.map(s => stepProgress[s.index] || 0)
+            );
+            return sum + (maxTime * (100 - currentProgress) / 100);
           }
-          return sum + step.estimatedTime;
+          return sum + maxTime;
         }, 0);
         setEstimatedTimeRemaining(Math.ceil(totalRemaining));
       }, 500);
+      timers.push(timeTimer);
 
-      // Complete the step
-      const stepTimer = setTimeout(() => {
-        setCompletedSteps(prev => [...prev, currentStep]);
-        setStepProgress(prev => ({ ...prev, [currentStep]: 100 }));
-        setCurrentStep(prev => prev + 1);
-      }, stepTime);
+      // Move to next group when the longest step in current group completes
+      const groupTimer = setTimeout(() => {
+        setCurrentGroup(prev => prev + 1);
+      }, groupTime);
+      timers.push(groupTimer);
 
       return () => {
-        clearTimeout(stepTimer);
-        clearInterval(progressTimer);
-        clearInterval(timeTimer);
+        timers.forEach(timer => clearTimeout(timer));
       };
     } else {
       setProcessingComplete(true);
       setEstimatedTimeRemaining(0);
     }
-  }, [currentStep, stepProgress]);
+  }, [currentGroup, stepProgress, groupedSteps, totalGroups]);
 
   const handleItemCheck = (itemId: number, checked: boolean) => {
     if (checked) {
@@ -309,12 +332,12 @@ const CleaningValidation = () => {
                   <div className="flex-1">
                     <p className="text-sm font-medium">Overall Progress</p>
                     <p className="text-xs text-muted-foreground mt-0.5">
-                      Step {currentStep + 1} of {cleaningSteps.length} • Estimated time remaining: {estimatedTimeRemaining}s
+                      Group {currentGroup + 1} of {totalGroups} • Estimated time remaining: {estimatedTimeRemaining}s
                     </p>
                   </div>
                 </div>
                 <Progress 
-                  value={(currentStep / cleaningSteps.length) * 100} 
+                  value={(completedSteps.length / cleaningSteps.length) * 100} 
                   className="h-2"
                 />
               </CardContent>
@@ -324,8 +347,8 @@ const CleaningValidation = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {cleaningSteps.map((step, index) => {
               const isCompleted = completedSteps.includes(index);
-              const isCurrent = index === currentStep;
-              const isPending = index > currentStep;
+              const isCurrent = step.group === currentGroup && !isCompleted;
+              const isPending = step.group > currentGroup;
               const progress = stepProgress[index] || 0;
 
               return (
