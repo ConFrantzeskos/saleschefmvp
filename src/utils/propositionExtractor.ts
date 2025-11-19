@@ -4,8 +4,211 @@ import { ladderFrameworks } from '@/constants/ladderFrameworks';
 
 /**
  * Extracts strategic propositions from enhanced assets based on applied ladder frameworks
+ * NEW: Prioritizes multi-feature ladder applications for diverse propositions
  */
 export const extractPropositionsFromAsset = (asset: EnhancedAsset): Proposition[] => {
+  const propositions: Proposition[] = [];
+  
+  // NEW PATH: Extract from multi-feature ladder applications
+  if (asset.ladderApplications && asset.ladderApplications.length > 0) {
+    asset.ladderApplications.forEach(app => {
+      const framework = ladderFrameworks.find(f => f.id === app.frameworkId);
+      if (!framework) return;
+      
+      const featurePriority = asset.featureAnalysis?.find(f => f.feature === app.feature)?.priority || 99;
+      
+      // Extract propositions based on framework type
+      if (app.frameworkId === 'functional-emotional' && app.content) {
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-fe-func`,
+          text: app.content.functionalBenefit,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'functional',
+          ladderStep: 'Functional Benefit',
+          strength: app.featureConfidence > 90 ? 'high' : app.featureConfidence > 80 ? 'medium' : 'low',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+        
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-fe-emo`,
+          text: app.content.emotionalBenefit,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'emotional',
+          ladderStep: 'Emotional Benefit',
+          strength: app.featureConfidence > 90 ? 'high' : app.featureConfidence > 80 ? 'medium' : 'low',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+        
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-fe-life`,
+          text: app.content.lifeOutcome,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'emotional',
+          ladderStep: 'Life Outcome',
+          strength: app.featureConfidence > 85 ? 'medium' : 'low',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+      }
+      
+      if (app.frameworkId === 'rtb' && app.content) {
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-rtb-promise`,
+          text: app.content.promise,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'trust',
+          ladderStep: 'Promise',
+          strength: app.featureConfidence > 90 ? 'high' : 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+        
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-rtb-payoff`,
+          text: app.content.payoff,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'trust',
+          ladderStep: 'Payoff',
+          strength: app.featureConfidence > 90 ? 'high' : 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+      }
+      
+      if (app.frameworkId === 'jtbd-outcome' && app.content) {
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-jtbd-outcome`,
+          text: app.content.desiredOutcome,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'functional',
+          ladderStep: 'Desired Outcome',
+          strength: app.featureConfidence > 85 ? 'high' : 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+        
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-jtbd-progress`,
+          text: app.content.progressMade,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'functional',
+          ladderStep: 'Progress Made',
+          strength: 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+      }
+      
+      if (app.frameworkId === 'faai' && app.content) {
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-faai-app`,
+          text: app.content.application,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'functional',
+          ladderStep: 'Application',
+          strength: app.featureConfidence > 85 ? 'high' : 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+        
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-faai-impact`,
+          text: app.content.businessImpact,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'functional',
+          ladderStep: 'Business Impact',
+          strength: app.featureConfidence > 90 ? 'high' : 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+      }
+      
+      if (app.frameworkId === 'price-value-roi' && app.content) {
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-price-value`,
+          text: app.content.value,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'value',
+          ladderStep: 'Value',
+          strength: app.featureConfidence > 90 ? 'high' : 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+        
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-price-roi`,
+          text: app.content.roi,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'value',
+          ladderStep: 'ROI',
+          strength: 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+      }
+      
+      if (app.frameworkId === 'risk-mitigation' && app.content) {
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-risk-conf`,
+          text: app.content.confidence,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'trust',
+          ladderStep: 'Confidence',
+          strength: app.featureConfidence > 85 ? 'high' : 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+        
+        propositions.push({
+          id: `${asset.id}-${normalizeId(app.feature)}-risk-action`,
+          text: app.content.action,
+          frameworkId: app.frameworkId,
+          frameworkName: app.frameworkName,
+          category: 'trust',
+          ladderStep: 'Action',
+          strength: 'medium',
+          feature: app.feature,
+          featureConfidence: app.featureConfidence,
+          featurePriority
+        });
+      }
+    });
+    
+    return propositions;
+  }
+  
+  // FALLBACK: Legacy single-ladder extraction for backward compatibility
+  return extractLegacyPropositions(asset);
+};
+
+// Legacy extraction (existing code path)
+const extractLegacyPropositions = (asset: EnhancedAsset): Proposition[] => {
   const propositions: Proposition[] = [];
   
   // Extract from each applied ladder
@@ -208,6 +411,10 @@ export const extractPropositionsFromAsset = (asset: EnhancedAsset): Proposition[
   });
 
   return propositions;
+};
+
+const normalizeId = (text: string): string => {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 };
 
 /**

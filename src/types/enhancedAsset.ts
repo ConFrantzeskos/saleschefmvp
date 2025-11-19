@@ -158,4 +158,21 @@ export interface EnhancedAsset {
   // Strategic Propositions
   selectedPropositions?: string[]; // Array of selected proposition IDs
   allPropositions?: import('@/types/proposition').Proposition[]; // All generated propositions
+  
+  // NEW: Multi-Feature Analysis
+  featureAnalysis?: Array<{
+    feature: string;
+    description: string;
+    confidence: number;
+    priority: number; // 1 = hero, 2-7 = supporting
+    source: string;
+  }>;
+  
+  ladderApplications?: Array<{
+    feature: string;
+    featureConfidence: number;
+    frameworkId: string;
+    frameworkName: string;
+    content: Record<string, any>;
+  }>;
 }

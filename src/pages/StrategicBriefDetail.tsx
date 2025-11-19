@@ -10,6 +10,7 @@ import { ChevronDown } from 'lucide-react';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
 import { extractPropositionsFromAsset } from '@/utils/propositionExtractor';
 import LadderVisualization from '@/components/LadderVisualization';
+import { TopMessagingSummary } from '@/components/TopMessagingSummary';
 import { ladderFrameworks } from '@/constants/ladderFrameworks';
 import { toast } from 'sonner';
 
@@ -39,15 +40,21 @@ const StrategicBriefDetail = () => {
     allPropositions.map(p => p.id)
   );
 
-  const propositionsByFramework = asset.appliedLadders?.map(ladderId => {
-    const framework = ladderFrameworks.find(f => f.id === ladderId);
-    const frameworkProps = allPropositions.filter(p => p.frameworkId === ladderId);
-    return {
-      frameworkId: ladderId,
-      frameworkName: framework?.name || 'Unknown Framework',
-      propositions: frameworkProps
-    };
-  }).filter(group => group.propositions.length > 0) || [];
+  // Group by feature priority for better organization
+  const features = asset.featureAnalysis || [];
+  const propositionsByFeature = features.length > 0
+    ? features.map(feature => ({
+        ...feature,
+        propositions: allPropositions.filter(p => p.feature === feature.feature)
+      }))
+    : [{ 
+        feature: 'All Features', 
+        confidence: 90, 
+        priority: 1, 
+        description: '',
+        source: '',
+        propositions: allPropositions 
+      }];
 
   const handleToggleProposition = (propId: string) => {
     setSelectedPropositions(prev => 
@@ -71,7 +78,7 @@ const StrategicBriefDetail = () => {
   };
 
   const heroPropositions = allPropositions.filter(p => 
-    p.strength === 'high' && p.frameworkId === asset.primaryLadder
+    p.strength === 'high' && p.featurePriority === 1
   );
 
   return (
