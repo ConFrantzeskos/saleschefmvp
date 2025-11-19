@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, Target, CheckCircle, Lightbulb, ArrowRight } from 'lucide-react';
 import ProgressIndicator from '@/components/ProgressIndicator';
-import PropositionCard from '@/components/PropositionCard';
+import PropositionStrengthIndicator from '@/components/PropositionStrengthIndicator';
 import FrameworkDetailsCollapsible from '@/components/FrameworkDetailsCollapsible';
 import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
@@ -212,41 +212,97 @@ const StrategicBrief = () => {
           </CardContent>
         </Card>
 
-        {/* Propositions Grid with Tabs */}
-        <Tabs defaultValue="all" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-7">
-            <TabsTrigger value="all">All ({propositions.length})</TabsTrigger>
-            {categorizedPropositions.map(cat => (
-              <TabsTrigger key={cat.category} value={cat.category}>
-                {cat.name.split(' ')[0]} ({cat.propositions.length})
-              </TabsTrigger>
-            ))}
-          </TabsList>
+        {/* Propositions by Category - Scannable List */}
+        <div className="space-y-8">
+          {/* Category Stats Overview */}
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-sm font-semibold text-muted-foreground mb-4">Proposition Distribution</h3>
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+                {categorizedPropositions.map(cat => (
+                  <div key={cat.category} className="text-center">
+                    <div className="text-2xl font-bold text-primary">{cat.propositions.length}</div>
+                    <div className="text-xs text-muted-foreground">{cat.name}</div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
-          <TabsContent value="all" className="space-y-3">
-            {propositions.map(prop => (
-              <PropositionCard
-                key={prop.id}
-                proposition={prop}
-                isSelected={selectedPropositions.includes(prop.id)}
-                onToggle={handleToggleProposition}
-              />
-            ))}
-          </TabsContent>
+          {/* Category Sections */}
+          {categorizedPropositions.map((category, categoryIndex) => (
+            <div key={category.category} className="space-y-4">
+              {/* Category Header */}
+              <div className="flex items-center gap-3 pb-2 border-b-2 border-primary/20">
+                <div className="flex items-center gap-2">
+                  <div className={`w-2 h-8 rounded-full ${
+                    category.category === 'functional' ? 'bg-blue-500' :
+                    category.category === 'emotional' ? 'bg-purple-500' :
+                    category.category === 'trust' ? 'bg-green-500' :
+                    category.category === 'value' ? 'bg-orange-500' :
+                    category.category === 'experience' ? 'bg-pink-500' :
+                    'bg-cyan-500'
+                  }`} />
+                  <div>
+                    <h3 className="text-xl font-display font-bold text-foreground">{category.name}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {category.propositions.length} proposition{category.propositions.length !== 1 ? 's' : ''}
+                      {' • '}
+                      {category.propositions.filter(p => selectedPropositions.includes(p.id)).length} selected
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-          {categorizedPropositions.map(category => (
-            <TabsContent key={category.category} value={category.category} className="space-y-3">
-              {category.propositions.map(prop => (
-                <PropositionCard
-                  key={prop.id}
-                  proposition={prop}
-                  isSelected={selectedPropositions.includes(prop.id)}
-                  onToggle={handleToggleProposition}
-                />
-              ))}
-            </TabsContent>
+              {/* Propositions List */}
+              <div className="space-y-2">
+                {category.propositions.map((prop, propIndex) => (
+                  <Card 
+                    key={prop.id}
+                    className={`transition-all hover:shadow-md cursor-pointer ${
+                      selectedPropositions.includes(prop.id) ? 'border-primary border-2 bg-primary/5 shadow-sm' : 'hover:border-primary/50'
+                    }`}
+                    onClick={() => handleToggleProposition(prop.id)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-start gap-4">
+                        {/* Checkbox */}
+                        <div className="pt-0.5">
+                          <Checkbox 
+                            checked={selectedPropositions.includes(prop.id)}
+                            onCheckedChange={() => handleToggleProposition(prop.id)}
+                            className="h-5 w-5"
+                          />
+                        </div>
+
+                        {/* Number Badge */}
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground">
+                          {categoryIndex * 10 + propIndex + 1}
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 space-y-2">
+                          <p className="text-base text-foreground leading-relaxed font-medium">
+                            {prop.text}
+                          </p>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <Badge variant="outline" className="text-xs gap-1">
+                              {prop.frameworkName}
+                            </Badge>
+                            <span className="text-xs text-muted-foreground">
+                              {prop.ladderStep}
+                            </span>
+                            <PropositionStrengthIndicator strength={prop.strength} />
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           ))}
-        </Tabs>
+        </div>
 
         {/* Selection Summary Panel */}
         <Card className="sticky bottom-6 border-2 border-primary/20 shadow-xl">
