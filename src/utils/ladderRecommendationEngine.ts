@@ -29,6 +29,7 @@ const industryLadderAffinities: Record<string, Record<string, number>> = {
     'risk-mitigation': 90,
     'price-value-roi': 85,
     'ogilvy-rtb': 80,
+    'competitive-moats': 75,
     'functional-emotional': 70
   },
   'healthcare': {
@@ -36,26 +37,48 @@ const industryLadderAffinities: Record<string, Record<string, number>> = {
     'risk-mitigation': 90,
     'ogilvy-rtb': 85,
     'functional-emotional': 80,
-    'component-performance': 75
+    'component-performance': 75,
+    'purchase-barriers': 70
   },
   'retail': {
     'experience-ladder': 90,
+    'conversion-mechanics': 88,
     'value-stack': 85,
+    'behavioral-economics': 82,
     'functional-emotional': 80,
     'micro-feature-compounding': 75,
+    'context-triggers': 72,
     'temporal-ladder': 70
   },
   'b2b': {
     'faai': 95,
     'price-value-roi': 90,
     'component-performance': 85,
-    'ogilvy-rtb': 80
+    'ogilvy-rtb': 80,
+    'competitive-moats': 75,
+    'purchase-barriers': 70
   },
   'technology': {
     'value-stack': 90,
     'component-performance': 85,
     'experience-ladder': 80,
-    'functional-emotional': 75
+    'competitive-moats': 78,
+    'functional-emotional': 75,
+    'behavioral-economics': 70
+  },
+  'consumer-goods': {
+    'memory-structures': 92,
+    'category-entry-points': 88,
+    'functional-emotional': 85,
+    'context-triggers': 80,
+    'persuasion-stack': 75
+  },
+  'ecommerce': {
+    'conversion-mechanics': 95,
+    'behavioral-economics': 90,
+    'purchase-barriers': 85,
+    'persuasion-stack': 80,
+    'funnel-ladder': 75
   }
 };
 
@@ -64,27 +87,40 @@ const categoryLadderAffinities: Record<string, Record<string, number>> = {
   'electronics': {
     'component-performance': 90,
     'functional-emotional': 85,
-    'value-stack': 80
+    'value-stack': 80,
+    'competitive-moats': 75
   },
   'software': {
     'value-stack': 95,
     'experience-ladder': 85,
-    'price-value-roi': 80
+    'price-value-roi': 80,
+    'conversion-mechanics': 75,
+    'competitive-moats': 72
   },
   'financial-services': {
     'asset-trust-ladder': 95,
     'risk-mitigation': 90,
-    'price-value-roi': 85
+    'price-value-roi': 85,
+    'purchase-barriers': 80
   },
   'medical-devices': {
     'asset-trust-ladder': 95,
     'component-performance': 90,
-    'ogilvy-rtb': 85
+    'ogilvy-rtb': 85,
+    'purchase-barriers': 80
   },
   'luxury': {
     'experience-ladder': 95,
     'functional-emotional': 90,
-    'ogilvy-rtb': 85
+    'ogilvy-rtb': 85,
+    'memory-structures': 82,
+    'persuasion-stack': 78
+  },
+  'consumer-packaged-goods': {
+    'memory-structures': 95,
+    'category-entry-points': 90,
+    'context-triggers': 85,
+    'behavioral-economics': 80
   }
 };
 
@@ -93,48 +129,75 @@ const personaLadderAffinities: Record<string, Record<string, number>> = {
   'professional': {
     'price-value-roi': 90,
     'component-performance': 85,
-    'faai': 80
+    'faai': 80,
+    'competitive-moats': 75
   },
   'consumer': {
     'functional-emotional': 90,
     'experience-ladder': 85,
-    'value-stack': 75
+    'value-stack': 75,
+    'context-triggers': 72,
+    'conversion-mechanics': 70
   },
   'enterprise': {
     'faai': 95,
     'price-value-roi': 90,
     'risk-mitigation': 85,
-    'ogilvy-rtb': 80
+    'ogilvy-rtb': 80,
+    'purchase-barriers': 75
   },
   'safety-conscious': {
     'risk-mitigation': 95,
     'asset-trust-ladder': 90,
-    'functional-emotional': 75
+    'functional-emotional': 75,
+    'purchase-barriers': 72
   },
   'value-seeker': {
     'price-value-roi': 95,
     'value-stack': 90,
-    'micro-feature-compounding': 80
+    'micro-feature-compounding': 80,
+    'behavioral-economics': 75,
+    'conversion-mechanics': 72
+  },
+  'brand-conscious': {
+    'memory-structures': 95,
+    'category-entry-points': 88,
+    'experience-ladder': 85,
+    'persuasion-stack': 80
+  },
+  'impulse-buyer': {
+    'behavioral-economics': 95,
+    'conversion-mechanics': 90,
+    'persuasion-stack': 85,
+    'context-triggers': 80
   }
 };
 
 // Ladder synergy matrix - which ladders work well together
 const ladderSynergies: Record<string, string[]> = {
-  'functional-emotional': ['ogilvy-rtb', 'experience-ladder', 'jtbd-outcome'],
-  'ogilvy-rtb': ['functional-emotional', 'asset-trust-ladder', 'component-performance'],
-  'jtbd-outcome': ['functional-emotional', 'experience-ladder', 'temporal-ladder'],
-  'faai': ['component-performance', 'price-value-roi', 'ogilvy-rtb'],
-  'price-value-roi': ['faai', 'value-stack', 'compounding-ladder'],
-  'risk-mitigation': ['asset-trust-ladder', 'ogilvy-rtb', 'functional-emotional'],
-  'component-performance': ['faai', 'ogilvy-rtb', 'functional-emotional'],
-  'experience-ladder': ['functional-emotional', 'jtbd-outcome', 'temporal-ladder'],
-  'value-stack': ['price-value-roi', 'micro-feature-compounding', 'experience-ladder'],
-  'asset-trust-ladder': ['risk-mitigation', 'ogilvy-rtb', 'component-performance'],
-  'funnel-ladder': ['functional-emotional', 'jtbd-outcome', 'experience-ladder'],
-  'temporal-ladder': ['experience-ladder', 'jtbd-outcome', 'functional-emotional'],
-  'micro-feature-compounding': ['value-stack', 'component-performance', 'functional-emotional'],
+  'functional-emotional': ['ogilvy-rtb', 'experience-ladder', 'jtbd-outcome', 'persuasion-stack'],
+  'ogilvy-rtb': ['functional-emotional', 'asset-trust-ladder', 'component-performance', 'purchase-barriers'],
+  'jtbd-outcome': ['functional-emotional', 'experience-ladder', 'temporal-ladder', 'context-triggers'],
+  'faai': ['component-performance', 'price-value-roi', 'ogilvy-rtb', 'competitive-moats'],
+  'price-value-roi': ['faai', 'value-stack', 'compounding-ladder', 'behavioral-economics'],
+  'risk-mitigation': ['asset-trust-ladder', 'ogilvy-rtb', 'functional-emotional', 'purchase-barriers'],
+  'component-performance': ['faai', 'ogilvy-rtb', 'functional-emotional', 'competitive-moats'],
+  'experience-ladder': ['functional-emotional', 'jtbd-outcome', 'temporal-ladder', 'memory-structures'],
+  'value-stack': ['price-value-roi', 'micro-feature-compounding', 'experience-ladder', 'competitive-moats'],
+  'asset-trust-ladder': ['risk-mitigation', 'ogilvy-rtb', 'component-performance', 'purchase-barriers'],
+  'funnel-ladder': ['functional-emotional', 'jtbd-outcome', 'experience-ladder', 'conversion-mechanics'],
+  'temporal-ladder': ['experience-ladder', 'jtbd-outcome', 'functional-emotional', 'context-triggers'],
+  'micro-feature-compounding': ['value-stack', 'component-performance', 'functional-emotional', 'behavioral-economics'],
   'compounding-ladder': ['price-value-roi', 'value-stack', 'micro-feature-compounding'],
-  'cabo': ['faai', 'component-performance', 'ogilvy-rtb']
+  'cabo': ['faai', 'component-performance', 'ogilvy-rtb', 'competitive-moats'],
+  'category-entry-points': ['context-triggers', 'memory-structures', 'jtbd-outcome', 'behavioral-economics'],
+  'purchase-barriers': ['risk-mitigation', 'asset-trust-ladder', 'ogilvy-rtb', 'conversion-mechanics'],
+  'memory-structures': ['category-entry-points', 'experience-ladder', 'functional-emotional', 'persuasion-stack'],
+  'behavioral-economics': ['conversion-mechanics', 'persuasion-stack', 'purchase-barriers', 'price-value-roi'],
+  'competitive-moats': ['value-stack', 'component-performance', 'faai', 'cabo'],
+  'conversion-mechanics': ['behavioral-economics', 'purchase-barriers', 'funnel-ladder', 'persuasion-stack'],
+  'context-triggers': ['category-entry-points', 'jtbd-outcome', 'temporal-ladder', 'memory-structures'],
+  'persuasion-stack': ['behavioral-economics', 'functional-emotional', 'conversion-mechanics', 'memory-structures']
 };
 
 export class LadderRecommendationEngine {
