@@ -25,13 +25,22 @@ export interface EnhancementTask {
 
 export const enhancementTasks: EnhancementTask[] = [
   {
-    id: 'ladder-of-benefits',
-    title: 'Ladder of Benefits',
-    description: 'Climbing from features through benefits to emotional and social outcomes',
+    id: 'functional-emotional',
+    title: 'Functional-Emotional Ladder',
+    description: 'Feature → Functional → Emotional → Life Outcome',
     icon: TrendingUp,
-    details: ['Feature → Feature Benefit → Consumer Benefit → Emotional/Social', 'Discrete ladders per feature', 'Value progression', 'Outcome-based positioning'],
-    statusMessage: 'Climbing benefit ladder for 3 products...',
+    details: ['Feature attributes', 'Functional benefits', 'Emotional rewards', 'Life transformation'],
+    statusMessage: 'Building functional-emotional progression...',
     duration: 1.8
+  },
+  {
+    id: 'ogilvy-rtb',
+    title: 'Ogilvy Reason-to-Believe',
+    description: 'Proof → Promise → Payoff',
+    icon: Award,
+    details: ['Credibility signals', 'Brand promise', 'Customer payoff', 'Trust building'],
+    statusMessage: 'Establishing reasons to believe...',
+    duration: 1.6
   },
   {
     id: 'jobs-to-be-done',

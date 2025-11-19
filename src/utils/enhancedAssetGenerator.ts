@@ -9,6 +9,9 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       category: 'Electronics',
       brand: 'TechSound',
       
+      appliedLadders: ['functional-emotional', 'ogilvy-rtb'],
+      primaryLadder: 'functional-emotional',
+      
       coreValueProposition: 'Uninterrupted wireless freedom with 24-hour battery life for professionals, travelers, and entertainment enthusiasts',
       primaryPersona: 'The Mobile Professional',
       keyDifferentiator: '24-hour battery life with quick charge technology',
