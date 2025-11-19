@@ -6,7 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, Target, CheckCircle, Lightbulb, ArrowRight } from 'lucide-react';
 import ProgressIndicator from '@/components/ProgressIndicator';
-import PropositionStrengthIndicator from '@/components/PropositionStrengthIndicator';
+
 import FrameworkDetailsCollapsible from '@/components/FrameworkDetailsCollapsible';
 import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
@@ -214,21 +214,6 @@ const StrategicBrief = () => {
 
         {/* Propositions by Category - Scannable List */}
         <div className="space-y-8">
-          {/* Category Stats Overview */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-sm font-semibold text-muted-foreground mb-4">Proposition Distribution</h3>
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-                {categorizedPropositions.map(cat => (
-                  <div key={cat.category} className="text-center">
-                    <div className="text-2xl font-bold text-primary">{cat.propositions.length}</div>
-                    <div className="text-xs text-muted-foreground">{cat.name}</div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Category Sections */}
           {categorizedPropositions.map((category, categoryIndex) => (
             <div key={category.category} className="space-y-4">
@@ -243,14 +228,7 @@ const StrategicBrief = () => {
                     category.category === 'experience' ? 'bg-pink-500' :
                     'bg-cyan-500'
                   }`} />
-                  <div>
-                    <h3 className="text-xl font-display font-bold text-foreground">{category.name}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {category.propositions.length} proposition{category.propositions.length !== 1 ? 's' : ''}
-                      {' • '}
-                      {category.propositions.filter(p => selectedPropositions.includes(p.id)).length} selected
-                    </p>
-                  </div>
+                  <h3 className="text-xl font-display font-bold text-foreground">{category.name}</h3>
                 </div>
               </div>
 
@@ -275,25 +253,14 @@ const StrategicBrief = () => {
                           />
                         </div>
 
-                        {/* Number Badge */}
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground">
-                          {categoryIndex * 10 + propIndex + 1}
-                        </div>
-
                         {/* Content */}
                         <div className="flex-1 space-y-2">
                           <p className="text-base text-foreground leading-relaxed font-medium">
                             {prop.text}
                           </p>
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <Badge variant="outline" className="text-xs gap-1">
-                              {prop.frameworkName}
-                            </Badge>
-                            <span className="text-xs text-muted-foreground">
-                              {prop.ladderStep}
-                            </span>
-                            <PropositionStrengthIndicator strength={prop.strength} />
-                          </div>
+                          <span className="text-xs text-muted-foreground">
+                            {prop.ladderStep}
+                          </span>
                         </div>
                       </div>
                     </CardContent>
