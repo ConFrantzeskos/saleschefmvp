@@ -45,9 +45,39 @@ const CleaningValidation = () => {
       issues: "15 formatting errors corrected, 8 price inconsistencies fixed"
     },
     {
+      title: "Validate Data Types",
+      description: "Ensure numbers, dates, and currencies are properly formatted",
+      issues: "18 price values converted to standard format, 5 date formats standardized"
+    },
+    {
+      title: "Standardize Units & Measurements",
+      description: "Convert dimensions, weights, and volumes to consistent units",
+      issues: "Mixed imperial/metric detected: 8 weights converted to kg, 12 dimensions to cm"
+    },
+    {
       title: "Perfect Spelling & Text",
       description: "Automated spelling and typo correction",
       issues: "23 typos corrected, 7 product names standardized"
+    },
+    {
+      title: "Normalize Brand Names",
+      description: "Standardize manufacturer and brand naming",
+      issues: "4 brand variations unified (e.g., 'Sony Corp' → 'Sony'), 2 manufacturer names corrected"
+    },
+    {
+      title: "Validate & Extract Images",
+      description: "Check image URLs, file formats, and dimensions",
+      issues: "15 product images verified, 3 broken URLs flagged, 2 low-resolution images detected"
+    },
+    {
+      title: "Extract Product Attributes",
+      description: "Identify color, size, material from text",
+      issues: "12 color variants extracted, 8 size specifications parsed, 5 material tags added"
+    },
+    {
+      title: "Link Related Products",
+      description: "Find variants, bundles, and accessories",
+      issues: "6 product variants linked, 4 accessory bundles detected, 2 cross-sell opportunities identified"
     },
     {
       title: "Organize Into Categories",
@@ -58,6 +88,11 @@ const CleaningValidation = () => {
       title: "Check Data Quality",
       description: "Data validation and completeness standards",
       issues: "Quality score: 92/100 - 5 incomplete entries flagged"
+    },
+    {
+      title: "Validate Against Standards",
+      description: "Verify compliance with category requirements",
+      issues: "All products meet category standards, 2 missing optional fields noted"
     },
     {
       title: "Prepare for Enhancement",
