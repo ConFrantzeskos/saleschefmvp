@@ -10,6 +10,7 @@ interface ReviewActionPanelProps {
   buttonIcon: React.ReactNode;
   onAction: () => void;
   variant?: 'top' | 'bottom';
+  hideAction?: boolean;
 }
 
 const ReviewActionPanel = React.memo(({ 
@@ -19,7 +20,8 @@ const ReviewActionPanel = React.memo(({
   buttonText, 
   buttonIcon, 
   onAction,
-  variant = 'top'
+  variant = 'top',
+  hideAction = false
 }: ReviewActionPanelProps) => {
   return (
     <div 
@@ -38,10 +40,12 @@ const ReviewActionPanel = React.memo(({
           <p className="text-muted-foreground">{description}</p>
         </div>
       </div>
-      <Button onClick={onAction} size="lg" className="gap-2 shadow-lg hover-scale">
-        {buttonText}
-        {buttonIcon}
-      </Button>
+      {!hideAction && (
+        <Button onClick={onAction} size="lg" className="gap-2 shadow-lg hover-scale">
+          {buttonText}
+          {buttonIcon}
+        </Button>
+      )}
     </div>
   );
 });
