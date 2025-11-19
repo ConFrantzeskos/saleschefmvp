@@ -38,7 +38,7 @@ export const ladderFrameworks: LadderFramework[] = [
     realWorldExample: 'Volvo\'s safety features → Protects family from accidents → Peace of mind for parents → Confidence to drive anywhere'
   },
   {
-    id: 'ogilvy-rtb',
+    id: 'rtb',
     name: 'Reason-to-Believe',
     description: 'Build credibility through proof, then make a promise that delivers a payoff',
     explainer: 'Reason to Believe → Promise → Payoff',

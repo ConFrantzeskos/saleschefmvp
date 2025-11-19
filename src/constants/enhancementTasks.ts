@@ -34,8 +34,8 @@ export const enhancementTasks: EnhancementTask[] = [
     duration: 1.8
   },
   {
-    id: 'ogilvy-rtb',
-    title: 'Ogilvy Reason-to-Believe',
+    id: 'rtb',
+    title: 'Reasons-to-Believe',
     description: 'Proof → Promise → Payoff',
     icon: Award,
     details: ['Credibility signals', 'Brand promise', 'Customer payoff', 'Trust building'],

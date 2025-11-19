@@ -9,7 +9,7 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       category: 'Electronics',
       brand: 'TechSound',
       
-      appliedLadders: ['functional-emotional', 'ogilvy-rtb', 'jtbd-outcome', 'experience', 'risk-mitigation', 'faai', 'price-value-roi'],
+      appliedLadders: ['functional-emotional', 'rtb', 'jtbd-outcome', 'experience', 'risk-mitigation', 'faai', 'price-value-roi'],
       primaryLadder: 'functional-emotional',
       
       coreValueProposition: 'Uninterrupted wireless freedom with 24-hour battery life for professionals, travelers, and entertainment enthusiasts',
@@ -367,7 +367,7 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
         realWorldExample: 'Business travelers report "forgetting to charge for 3+ days" without issues'
       },
       
-      ogilvyRTBLadder: {
+      rtbLadder: {
         reasonToBelieve: 'Lab-tested 24-hour battery with quick charge (10 min = 3 hours)',
         promise: 'All-day wireless freedom without charging breaks or battery anxiety',
         payoff: 'Stay focused on what matters—work, entertainment, calls—without tech interruptions',

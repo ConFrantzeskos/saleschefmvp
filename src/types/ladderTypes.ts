@@ -40,8 +40,8 @@ export interface FunctionalEmotionalLadder {
   realWorldExample: string;
 }
 
-// Ogilvy Reason-to-Believe → Promise → Payoff
-export interface OgilvyRTBLadder {
+// Reasons-to-Believe → Promise → Payoff
+export interface RTBLadder {
   reasonToBelieve: string;
   promise: string;
   payoff: string;

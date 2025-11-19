@@ -88,8 +88,8 @@ export const financeData: DetailedIndustryData = {
       example: 'Wealth management: "Annual fee $X → Portfolio optimization → Tax efficiency → Net wealth growth of Y%"'
     },
     {
-      id: 'ogilvy-rtb',
-      name: 'Ogilvy Reason-to-Believe',
+      id: 'rtb',
+      name: 'Reasons-to-Believe',
       reason: 'Credibility is paramount in finance - every claim needs proof',
       example: 'Banking: "FDIC insured (RTB) → Your money is protected (promise) → Sleep soundly (payoff)"'
     }

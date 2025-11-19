@@ -78,7 +78,7 @@ export const healthcareData: DetailedIndustryData = {
       example: 'Diagnostic equipment: "Faster scan time → Earlier detection → Peace of mind → Confidence in diagnosis"'
     },
     {
-      id: 'ogilvy-rtb',
+      id: 'rtb',
       name: 'Reason-to-Believe with Clinical Proof',
       reason: 'Every healthcare claim needs clinical evidence backing',
       example: 'Pharmaceuticals: "Phase III trials (RTB) → Proven efficacy (promise) → Improved quality of life (payoff)"'
