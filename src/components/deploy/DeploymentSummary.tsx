@@ -28,7 +28,7 @@ export const DeploymentSummary = ({
   );
 
   return (
-    <Card className="border-2 border-primary bg-primary/5 sticky bottom-4">
+    <Card className="border-2 border-primary bg-card sticky bottom-4">
       <CardContent className="p-6">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">

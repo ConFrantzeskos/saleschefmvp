@@ -228,16 +228,16 @@ const Deploy = () => {
         <ProgressIndicator steps={steps} />
         
         <div className="mt-8 space-y-8">
-          {/* View Toggle */}
-          <div>
-            <ViewToggle value={viewMode} onChange={setViewMode} />
-          </div>
-
           <SectionHeader
             title="Deploy Your Content"
             subtitle="Choose where to publish your optimized product content across the customer journey"
             size="lg"
           />
+
+          {/* View Toggle */}
+          <div className="flex justify-center">
+            <ViewToggle value={viewMode} onChange={setViewMode} />
+          </div>
 
           <QuickDeployTemplates onSelectTemplate={handleSelectTemplate} />
 
