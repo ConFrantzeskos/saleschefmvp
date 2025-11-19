@@ -968,3 +968,93 @@ export const getCategoryDisplayName = (category: ChannelCategory): string => {
   };
   return names[category];
 };
+
+// Filter, search, and sort utilities
+export const searchChannels = (
+  channels: DeploymentChannel[],
+  query: string
+): DeploymentChannel[] => {
+  if (!query.trim()) return channels;
+  
+  const lowerQuery = query.toLowerCase();
+  return channels.filter(channel => 
+    channel.name.toLowerCase().includes(lowerQuery) ||
+    channel.description.toLowerCase().includes(lowerQuery) ||
+    channel.category.toLowerCase().includes(lowerQuery)
+  );
+};
+
+export const filterChannels = (
+  channels: DeploymentChannel[],
+  filters: {
+    status?: ChannelStatus[];
+    category?: ChannelCategory[];
+    journeyStage?: JourneyStage[];
+  }
+): DeploymentChannel[] => {
+  let filtered = channels;
+  
+  if (filters.status && filters.status.length > 0) {
+    filtered = filtered.filter(ch => filters.status!.includes(ch.status));
+  }
+  
+  if (filters.category && filters.category.length > 0) {
+    filtered = filtered.filter(ch => filters.category!.includes(ch.category));
+  }
+  
+  if (filters.journeyStage && filters.journeyStage.length > 0) {
+    filtered = filtered.filter(ch => filters.journeyStage!.includes(ch.journeyStage));
+  }
+  
+  return filtered;
+};
+
+export type SortOption = 'alphabetical' | 'status' | 'category' | 'stage';
+
+export const sortChannels = (
+  channels: DeploymentChannel[],
+  sortBy: SortOption
+): DeploymentChannel[] => {
+  const sorted = [...channels];
+  
+  switch (sortBy) {
+    case 'alphabetical':
+      return sorted.sort((a, b) => a.name.localeCompare(b.name));
+    
+    case 'status':
+      const statusOrder: Record<ChannelStatus, number> = {
+        'connected': 1,
+        'available': 2,
+        'coming-soon': 3,
+      };
+      return sorted.sort((a, b) => 
+        statusOrder[a.status] - statusOrder[b.status] ||
+        a.name.localeCompare(b.name)
+      );
+    
+    case 'category':
+      return sorted.sort((a, b) => 
+        a.category.localeCompare(b.category) ||
+        a.name.localeCompare(b.name)
+      );
+    
+    case 'stage':
+      return sorted.sort((a, b) => 
+        a.journeyStage.localeCompare(b.journeyStage) ||
+        a.name.localeCompare(b.name)
+      );
+    
+    default:
+      return sorted;
+  }
+};
+
+export const getAllCategories = (): ChannelCategory[] => {
+  const categories = new Set<ChannelCategory>();
+  deploymentChannels.forEach(ch => categories.add(ch.category));
+  return Array.from(categories).sort();
+};
+
+export const getAllJourneyStages = (): JourneyStage[] => {
+  return ['discover', 'research', 'shop', 'nurture', 'operations', 'export'];
+};
