@@ -3,6 +3,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Proposition } from '@/types/proposition';
 import PropositionStrengthIndicator from './PropositionStrengthIndicator';
+import PropositionIntelligence from './strategic-brief/PropositionIntelligence';
 
 interface PropositionCardProps {
   proposition: Proposition;
@@ -39,6 +40,12 @@ const PropositionCard = ({ proposition, isSelected, onToggle }: PropositionCardP
             </span>
             <PropositionStrengthIndicator strength={proposition.strength} />
           </div>
+          <PropositionIntelligence 
+            proofPoints={proposition.proofPoints}
+            seoKeywords={proposition.seoKeywords}
+            competitiveAngle={proposition.competitiveAngle}
+            objections={proposition.objections}
+          />
         </div>
       </div>
     </Card>

@@ -8,11 +8,15 @@ import { ArrowLeft, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
+import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
 import { extractPropositionsFromAsset } from '@/utils/propositionExtractor';
 import LadderVisualization from '@/components/LadderVisualization';
 import { TopMessagingSummary } from '@/components/TopMessagingSummary';
 import { ladderFrameworks } from '@/constants/ladderFrameworks';
 import { toast } from 'sonner';
+import MarketOpportunityPanel from '@/components/strategic-brief/MarketOpportunityPanel';
+import CompetitiveContextPanel from '@/components/strategic-brief/CompetitiveContextPanel';
+import MissingFeaturesPanel from '@/components/strategic-brief/MissingFeaturesPanel';
 
 const StrategicBriefDetail = () => {
   const navigate = useNavigate();
@@ -20,6 +24,10 @@ const StrategicBriefDetail = () => {
   
   const assets = generateSampleEnhancedAssets();
   const asset = assets.find(a => a.id === Number(id));
+  
+  // Get enrichment data for intelligence panels
+  const enrichmentAssets = generateSampleEnrichmentAssets();
+  const enrichmentData = enrichmentAssets.find(e => e.sku === asset?.sku);
 
   if (!asset) {
     return (
@@ -148,6 +156,35 @@ const StrategicBriefDetail = () => {
             </div>
           </div>
         </Card>
+
+        {/* Intelligence Panels */}
+        {enrichmentData && (
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <MarketOpportunityPanel 
+              searchTrends={enrichmentData.searchTrends}
+              seoOpportunities={enrichmentData.seoOpportunities}
+              socialMentions={enrichmentData.socialMentions}
+              customerSentiment={enrichmentData.customerSentiment}
+            />
+            <CompetitiveContextPanel 
+              keyCompetitors={enrichmentData.keyCompetitors}
+              relativeStrengths={enrichmentData.relativeStrengths}
+              competitorAnalysis={enrichmentData.competitorAnalysis}
+              priceHistory={enrichmentData.priceHistory}
+              valuePositioning={enrichmentData.valuePositioning}
+            />
+          </div>
+        )}
+
+        {enrichmentData && (
+          <div className="mb-6">
+            <MissingFeaturesPanel 
+              missingFeatures={enrichmentData.missingFeatures}
+              featureRequests={enrichmentData.featureRequests}
+              innovationGaps={enrichmentData.innovationGaps}
+            />
+          </div>
+        )}
 
         <Card className="p-8 mb-6">
           <div className="flex items-center justify-between mb-6">

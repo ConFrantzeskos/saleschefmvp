@@ -9,6 +9,12 @@ export interface Proposition {
   feature?: string; // Which feature this proposition is about
   featureConfidence?: number; // Confidence score for this feature
   featurePriority?: number; // 1 = hero, 2-7 = supporting
+  
+  // Intelligence metadata
+  proofPoints?: string[];
+  seoKeywords?: string[];
+  competitiveAngle?: string;
+  objections?: string[];
 }
 
 export interface PropositionsByCategory {
