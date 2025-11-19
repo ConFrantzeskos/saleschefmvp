@@ -189,7 +189,7 @@ SELL_POINT_4,Comfortable wear all day no pressure feeling`;
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Header */}
-      <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50">
+      <div className="border-b bg-background/98 backdrop-blur-md supports-[backdrop-filter]:bg-background/98 sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">

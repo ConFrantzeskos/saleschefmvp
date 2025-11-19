@@ -61,7 +61,7 @@ const GenerationAnimation = ({ onComplete, selectedContentTypes }: GenerationAni
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-background/90 backdrop-blur-md flex items-center justify-center z-50">
       <Card className="w-96 shadow-lg">
         <CardContent className="p-8 text-center">
           <div className="mb-6 relative">
