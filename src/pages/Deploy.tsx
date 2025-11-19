@@ -101,11 +101,11 @@ const Deploy = () => {
 
   if (isDeploying) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-        <div className="container-responsive py-section-md">
-          <ProgressIndicator steps={steps} className="mb-section-sm" />
+      <div className="min-h-screen bg-background p-6">
+        <div className="max-w-7xl mx-auto">
+          <ProgressIndicator steps={steps} />
           
-          <div className="max-w-2xl mx-auto text-center space-y-8">
+          <div className="mt-8 max-w-2xl mx-auto text-center space-y-8">
             <div className="relative">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="h-32 w-32 rounded-full bg-primary/20 animate-pulse" />
@@ -165,25 +165,25 @@ const Deploy = () => {
   // All Integrations View
   if (viewMode === 'integrations') {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-        <div className="container-responsive py-section-md">
-          <ProgressIndicator steps={steps} className="mb-section-sm" />
+      <div className="min-h-screen bg-background p-6">
+        <div className="max-w-7xl mx-auto">
+          <ProgressIndicator steps={steps} />
           
-          {/* View Toggle */}
-          <div className="mb-8">
-            <ViewToggle value={viewMode} onChange={setViewMode} />
-          </div>
+          <div className="mt-8 space-y-8">
+            {/* View Toggle */}
+            <div>
+              <ViewToggle value={viewMode} onChange={setViewMode} />
+            </div>
 
-          {/* Integrations List */}
-          <IntegrationsListView
-            channels={deploymentChannels}
-            selectedChannels={selectedChannels}
-            onToggle={handleToggleChannel}
-            onConfigure={(id) => console.log('Configure:', id)}
-          />
+            {/* Integrations List */}
+            <IntegrationsListView
+              channels={deploymentChannels}
+              selectedChannels={selectedChannels}
+              onToggle={handleToggleChannel}
+              onConfigure={(id) => console.log('Configure:', id)}
+            />
 
-          {/* Deployment Summary */}
-          <div className="mt-8">
+            {/* Deployment Summary */}
             <DeploymentSummary
               selectedChannelIds={selectedChannels}
               onRemove={handleToggleChannel}
@@ -198,18 +198,18 @@ const Deploy = () => {
   // Stage detail view
   if (currentStage) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-        <div className="container-responsive py-section-md">
-          <ProgressIndicator steps={steps} className="mb-section-sm" />
+      <div className="min-h-screen bg-background p-6">
+        <div className="max-w-7xl mx-auto">
+          <ProgressIndicator steps={steps} />
           
-          <StageDetailView
-            stage={currentStage}
-            onBack={() => setCurrentStage(null)}
-            selectedChannels={selectedChannels}
-            onToggleChannel={handleToggleChannel}
-          />
-          
-          <div className="mt-8">
+          <div className="mt-8 space-y-8">
+            <StageDetailView
+              stage={currentStage}
+              onBack={() => setCurrentStage(null)}
+              selectedChannels={selectedChannels}
+              onToggleChannel={handleToggleChannel}
+            />
+            
             <DeploymentSummary
               selectedChannelIds={selectedChannels}
               onRemove={handleToggleChannel}
@@ -223,82 +223,83 @@ const Deploy = () => {
 
   // Main deploy view (Journey View)
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      <div className="container-responsive py-section-md">
-        <ProgressIndicator steps={steps} className="mb-section-sm" />
+    <div className="min-h-screen bg-background p-6">
+      <div className="max-w-7xl mx-auto">
+        <ProgressIndicator steps={steps} />
         
-        {/* View Toggle */}
-        <div className="mb-8">
-          <ViewToggle value={viewMode} onChange={setViewMode} />
-        </div>
-
-        <SectionHeader
-          title="Deploy Your Content"
-          subtitle="Choose where to publish your optimized product content across the customer journey"
-          size="lg"
-          className="mb-section-sm"
-        />
-
-        <QuickDeployTemplates onSelectTemplate={handleSelectTemplate} />
-
-        <div className="mb-8">
-          <h3 className="text-subsection-title font-display font-bold mb-6">
-            Deploy by Customer Journey Stage
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {journeyStages.map(({ stage, title, subtitle, icon }) => {
-              const stageChannels = getChannelsByStage(stage);
-              const selectedCount = stageChannels.filter(ch =>
-                selectedChannels.includes(ch.id)
-              ).length;
-              
-              return (
-                <JourneyStageCard
-                  key={stage}
-                  icon={icon}
-                  title={title}
-                  subtitle={subtitle}
-                  channelCount={stageChannels.length}
-                  topChannels={stageChannels.slice(0, 5)}
-                  selectedCount={selectedCount}
-                  onClick={() => setCurrentStage(stage)}
-                />
-              );
-            })}
+        <div className="mt-8 space-y-8">
+          {/* View Toggle */}
+          <div>
+            <ViewToggle value={viewMode} onChange={setViewMode} />
           </div>
-        </div>
 
-        <DeploymentSummary
-          selectedChannelIds={selectedChannels}
-          onRemove={handleToggleChannel}
-          onDeploy={handleDeploy}
-        />
+          <SectionHeader
+            title="Deploy Your Content"
+            subtitle="Choose where to publish your optimized product content across the customer journey"
+            size="lg"
+          />
 
-        <div className="flex gap-4 justify-between mt-8">
-          <Button
-            variant="outline"
-            onClick={() => navigate("/review-content")}
-            className="gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Review
-          </Button>
-          
-          <div className="flex gap-3">
+          <QuickDeployTemplates onSelectTemplate={handleSelectTemplate} />
+
+          <div>
+            <h3 className="text-subsection-title font-display font-bold mb-6">
+              Deploy by Customer Journey Stage
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {journeyStages.map(({ stage, title, subtitle, icon }) => {
+                const stageChannels = getChannelsByStage(stage);
+                const selectedCount = stageChannels.filter(ch =>
+                  selectedChannels.includes(ch.id)
+                ).length;
+                
+                return (
+                  <JourneyStageCard
+                    key={stage}
+                    icon={icon}
+                    title={title}
+                    subtitle={subtitle}
+                    channelCount={stageChannels.length}
+                    topChannels={stageChannels.slice(0, 5)}
+                    selectedCount={selectedCount}
+                    onClick={() => setCurrentStage(stage)}
+                  />
+                );
+              })}
+            </div>
+          </div>
+
+          <DeploymentSummary
+            selectedChannelIds={selectedChannels}
+            onRemove={handleToggleChannel}
+            onDeploy={handleDeploy}
+          />
+
+          <div className="flex gap-4 justify-between">
             <Button
               variant="outline"
-              onClick={() => navigate("/transformation-showcase")}
-            >
-              View Transformation
-            </Button>
-            <Button
-              onClick={handleDeploy}
-              disabled={selectedChannels.length === 0}
+              onClick={() => navigate("/review-content")}
               className="gap-2"
             >
-              Deploy to {selectedChannels.length} Channels
-              <ArrowRight className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" />
+              Back to Review
             </Button>
+            
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={() => navigate("/transformation-showcase")}
+              >
+                View Transformation
+              </Button>
+              <Button
+                onClick={handleDeploy}
+                disabled={selectedChannels.length === 0}
+                className="gap-2"
+              >
+                Deploy to {selectedChannels.length} Channels
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
