@@ -420,6 +420,258 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
         realWorldExample: 'Frequent travelers report payback after just 3 flights without airport charging hunts'
       },
       
+      // NEW: Multi-Feature Analysis
+      featureAnalysis: [
+        {
+          feature: "24-hour battery life",
+          description: "Continuous playback for full day without recharging",
+          confidence: 96,
+          priority: 1,
+          source: "benefitLadder, reasonsToBuy, keyDifferentiator"
+        },
+        {
+          feature: "Foldable design",
+          description: "Compact, portable form factor for easy storage and travel",
+          confidence: 92,
+          priority: 2,
+          source: "benefitLadder, messageHierarchy"
+        },
+        {
+          feature: "Quick charge technology",
+          description: "10 minutes of charging provides 3 hours of playback",
+          confidence: 90,
+          priority: 3,
+          source: "reasonsToBuy, objections"
+        },
+        {
+          feature: "Bluetooth 5.0 connectivity",
+          description: "Seamless pairing with 30ft range and multi-device support",
+          confidence: 86,
+          priority: 4,
+          source: "benefitLadder"
+        },
+        {
+          feature: "Premium audio quality",
+          description: "Clear, balanced sound for music, podcasts, and calls",
+          confidence: 85,
+          priority: 5,
+          source: "messageHierarchy, objections"
+        }
+      ],
+      
+      // NEW: Multi-Feature Ladder Applications
+      ladderApplications: [
+        // Battery Life - Multiple Frameworks
+        {
+          feature: "24-hour battery life",
+          featureConfidence: 96,
+          frameworkId: "functional-emotional",
+          frameworkName: "Functional-Emotional Ladder",
+          content: {
+            feature: "24-hour continuous playback battery",
+            functionalBenefit: "Use wireless headphones all day without worrying about charging",
+            emotionalBenefit: "Feel confident and prepared for long days, never experience battery anxiety",
+            lifeOutcome: "One less thing to manage in your already busy life—technology that just works",
+            proof: "91% of users report never running out of battery during daily use",
+            realWorldExample: "Business travelers report 'forgetting to charge for 3+ days' without issues"
+          }
+        },
+        {
+          feature: "24-hour battery life",
+          featureConfidence: 96,
+          frameworkId: "rtb",
+          frameworkName: "Reason-to-Believe",
+          content: {
+            reasonToBelieve: "Lab-tested 24-hour battery with quick charge (10 min = 3 hours)",
+            promise: "All-day wireless freedom without charging breaks or battery anxiety",
+            payoff: "Stay focused on what matters—work, entertainment, calls—without tech interruptions",
+            credibilitySource: "50,000+ verified users, 4.6/5 stars, featured in TechRadar 'Best Battery Life' roundup"
+          }
+        },
+        {
+          feature: "24-hour battery life",
+          featureConfidence: 96,
+          frameworkId: "jtbd-outcome",
+          frameworkName: "Jobs-to-Be-Done Outcome",
+          content: {
+            jobToBeDone: "Keep me entertained and connected throughout long, busy days",
+            desiredOutcome: "Listen to music, take calls, and stay entertained throughout full workdays and travel without charging interruptions",
+            constraintRemoved: "No more planning your day around charging stations",
+            progressMade: "From constant battery monitoring to carefree all-day use"
+          }
+        },
+        {
+          feature: "24-hour battery life",
+          featureConfidence: 96,
+          frameworkId: "faai",
+          frameworkName: "Feature-Advantage-Application-Impact",
+          content: {
+            feature: "24-hour lithium-ion battery with intelligent power management",
+            advantage: "Lasts 3x longer than average wireless headphones in same price range",
+            application: "Use continuously from morning commute through workday and evening entertainment",
+            businessImpact: "Eliminates productivity interruptions from dead batteries and reduces daily charging routines"
+          }
+        },
+        {
+          feature: "24-hour battery life",
+          featureConfidence: 96,
+          frameworkId: "price-value-roi",
+          frameworkName: "Price-Cost-Value-ROI Ladder",
+          content: {
+            price: "Same price as 12-hour battery competitors",
+            value: "Premium 24-hour battery technology typically reserved for $250+ models",
+            roi: "Saves 50+ hours annually not managing charging; prevents productivity loss from dead batteries"
+          }
+        },
+        
+        // Foldable Design - Multiple Frameworks
+        {
+          feature: "Foldable design",
+          featureConfidence: 92,
+          frameworkId: "functional-emotional",
+          frameworkName: "Functional-Emotional Ladder",
+          content: {
+            feature: "Compact foldable design with protective case",
+            functionalBenefit: "Fits in any bag or pocket without taking up space",
+            emotionalBenefit: "Travel with confidence knowing your headphones are protected and portable",
+            lifeOutcome: "Simplified, unencumbered lifestyle—take your audio anywhere effortlessly",
+            proof: "88% say portability exceeds expectations",
+            realWorldExample: "Frequent travelers appreciate 'not needing a bulky case' for protection"
+          }
+        },
+        {
+          feature: "Foldable design",
+          featureConfidence: 92,
+          frameworkId: "rtb",
+          frameworkName: "Reason-to-Believe",
+          content: {
+            reasonToBelieve: "Reinforced hinges tested for 10,000+ fold cycles—built for years of use",
+            promise: "Portable power that fits your lifestyle without compromise",
+            payoff: "Pack light, travel smart—premium audio that doesn't weigh you down",
+            credibilitySource: "95% report no durability issues after 12+ months of regular folding"
+          }
+        },
+        {
+          feature: "Foldable design",
+          featureConfidence: 92,
+          frameworkId: "jtbd-outcome",
+          frameworkName: "Jobs-to-Be-Done Outcome",
+          content: {
+            jobToBeDone: "Travel light without sacrificing quality audio",
+            desiredOutcome: "Pack headphones easily without bulk or worry about damage",
+            constraintRemoved: "No more choosing between portability and audio quality",
+            progressMade: "From bulky full-size headphones to pocket-size premium audio"
+          }
+        },
+        
+        // Quick Charge - Multiple Frameworks
+        {
+          feature: "Quick charge technology",
+          featureConfidence: 90,
+          frameworkId: "functional-emotional",
+          frameworkName: "Functional-Emotional Ladder",
+          content: {
+            feature: "10-minute quick charge provides 3 hours of playback",
+            functionalBenefit: "Get emergency power boost when you're in a rush",
+            emotionalBenefit: "Relief knowing you're never truly stranded without audio",
+            lifeOutcome: "Always prepared—the safety net for your on-the-go life",
+            proof: "Verified by independent testing; 3 hours playback from 10-minute charge",
+            realWorldExample: "Users love the 'quick bathroom break charge' before flights"
+          }
+        },
+        {
+          feature: "Quick charge technology",
+          featureConfidence: 90,
+          frameworkId: "rtb",
+          frameworkName: "Reason-to-Believe",
+          content: {
+            reasonToBelieve: "Fast-charge technology verified through independent testing",
+            promise: "Never be stranded—3 hours of audio from just 10 minutes of charging",
+            payoff: "Get back to your music, calls, and focus in minutes, not hours",
+            credibilitySource: "USB-C fast charging standard with verified 10min=3hr performance"
+          }
+        },
+        {
+          feature: "Quick charge technology",
+          featureConfidence: 90,
+          frameworkId: "faai",
+          frameworkName: "Feature-Advantage-Application-Impact",
+          content: {
+            feature: "USB-C fast charging with intelligent power management",
+            advantage: "5x faster charging than standard wireless headphones",
+            application: "Quick charge during coffee breaks, meetings, or short stops",
+            businessImpact: "Eliminates lost productivity from waiting for full charges"
+          }
+        },
+        
+        // Bluetooth 5.0 - Frameworks
+        {
+          feature: "Bluetooth 5.0 connectivity",
+          featureConfidence: 86,
+          frameworkId: "functional-emotional",
+          frameworkName: "Functional-Emotional Ladder",
+          content: {
+            feature: "Bluetooth 5.0 with 30-foot range and multi-device pairing",
+            functionalBenefit: "Seamless connection that never drops, even in crowded spaces",
+            emotionalBenefit: "Freedom to move without staying glued to your device",
+            lifeOutcome: "Truly wireless experience—technology that fades into the background",
+            proof: "95% report easy setup and stable connections",
+            realWorldExample: "Users appreciate 'leaving phone on charger across room' during calls"
+          }
+        },
+        {
+          feature: "Bluetooth 5.0 connectivity",
+          featureConfidence: 86,
+          frameworkId: "jtbd-outcome",
+          frameworkName: "Jobs-to-Be-Done Outcome",
+          content: {
+            jobToBeDone: "Stay connected without being tethered to devices",
+            desiredOutcome: "Move freely around home or office while on calls or listening",
+            constraintRemoved: "No more staying within arm's reach of devices",
+            progressMade: "From wired limitations to true wireless freedom"
+          }
+        },
+        
+        // Audio Quality - Frameworks
+        {
+          feature: "Premium audio quality",
+          featureConfidence: 85,
+          frameworkId: "functional-emotional",
+          frameworkName: "Functional-Emotional Ladder",
+          content: {
+            feature: "High-fidelity drivers with balanced sound profile",
+            functionalBenefit: "Clear, rich audio for music, podcasts, and calls",
+            emotionalBenefit: "Enjoy every note and word—audio that does justice to your content",
+            lifeOutcome: "Elevated daily experience—ordinary moments become more enjoyable",
+            proof: "Comparable audio performance to $300+ headphones in blind tests",
+            realWorldExample: "Audiophiles surprised by 'clarity and depth at this price point'"
+          }
+        },
+        {
+          feature: "Premium audio quality",
+          featureConfidence: 85,
+          frameworkId: "rtb",
+          frameworkName: "Reason-to-Believe",
+          content: {
+            reasonToBelieve: "40mm drivers with balanced sound tuning by audio engineers",
+            promise: "Studio-quality audio without the studio price tag",
+            payoff: "Experience music the way artists intended—at a fraction of premium costs",
+            credibilitySource: "Independent testing shows comparable performance to $300+ models"
+          }
+        },
+        {
+          feature: "Premium audio quality",
+          featureConfidence: 85,
+          frameworkId: "price-value-roi",
+          frameworkName: "Price-Cost-Value-ROI Ladder",
+          content: {
+            price: "$189 vs $300+ for comparable audio",
+            value: "Audio quality typically found in premium $300+ headphones",
+            roi: "Save $110+ while getting 95% of premium sound quality"
+          }
+        }
+      ],
+      
       confidenceScore: 92,
       personaMatchScore: 93,
       messageStrengthScore: 90,
