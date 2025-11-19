@@ -4,7 +4,8 @@ import ProgressIndicator from '@/components/ProgressIndicator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Check, AlertCircle, Info, Eye, ArrowRight } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { Check, AlertCircle, Info, Eye, ArrowRight, Clock } from 'lucide-react';
 
 const CleaningValidation = () => {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ const CleaningValidation = () => {
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [processingComplete, setProcessingComplete] = useState(false);
   const [allItemsChecked, setAllItemsChecked] = useState(false);
+  const [stepProgress, setStepProgress] = useState<Record<number, number>>({});
+  const [estimatedTimeRemaining, setEstimatedTimeRemaining] = useState<number>(0);
 
   const steps = [
     { id: 'upload', label: 'Upload', completed: true, current: false },
@@ -27,77 +30,92 @@ const CleaningValidation = () => {
     {
       title: "Accept Any File Format",
       description: "Data ingestion from CSV, PDF, URLs, ERP, CMS",
-      issues: "3 different formats detected and ingested"
+      issues: "3 different formats detected and ingested",
+      estimatedTime: 2
     },
     {
       title: "Extract Product Information", 
       description: "Data parsing from various sources",
-      issues: "3 product records parsed successfully"
+      issues: "3 product records parsed successfully",
+      estimatedTime: 3
     },
     {
       title: "Remove Duplicates",
       description: "Deduplication and merging",
-      issues: "12 duplicate SKUs merged, 3 near-duplicates flagged"
+      issues: "12 duplicate SKUs merged, 3 near-duplicates flagged",
+      estimatedTime: 4
     },
     {
       title: "Fix Formatting Issues",
       description: "Data correction and consistency checks",
-      issues: "15 formatting errors corrected, 8 price inconsistencies fixed"
+      issues: "15 formatting errors corrected, 8 price inconsistencies fixed",
+      estimatedTime: 3
     },
     {
       title: "Validate Data Types",
       description: "Ensure numbers, dates, and currencies are properly formatted",
-      issues: "18 price values converted to standard format, 5 date formats standardized"
+      issues: "18 price values converted to standard format, 5 date formats standardized",
+      estimatedTime: 2
     },
     {
       title: "Standardize Units & Measurements",
       description: "Convert dimensions, weights, and volumes to consistent units",
-      issues: "Mixed imperial/metric detected: 8 weights converted to kg, 12 dimensions to cm"
+      issues: "Mixed imperial/metric detected: 8 weights converted to kg, 12 dimensions to cm",
+      estimatedTime: 3
     },
     {
       title: "Perfect Spelling & Text",
       description: "Automated spelling and typo correction",
-      issues: "23 typos corrected, 7 product names standardized"
+      issues: "23 typos corrected, 7 product names standardized",
+      estimatedTime: 2
     },
     {
       title: "Normalize Brand Names",
       description: "Standardize manufacturer and brand naming",
-      issues: "4 brand variations unified (e.g., 'Sony Corp' → 'Sony'), 2 manufacturer names corrected"
+      issues: "4 brand variations unified (e.g., 'Sony Corp' → 'Sony'), 2 manufacturer names corrected",
+      estimatedTime: 2
     },
     {
       title: "Validate & Extract Images",
       description: "Check image URLs, file formats, and dimensions",
-      issues: "15 product images verified, 3 broken URLs flagged, 2 low-resolution images detected"
+      issues: "15 product images verified, 3 broken URLs flagged, 2 low-resolution images detected",
+      estimatedTime: 5
     },
     {
       title: "Extract Product Attributes",
       description: "Identify color, size, material from text",
-      issues: "12 color variants extracted, 8 size specifications parsed, 5 material tags added"
+      issues: "12 color variants extracted, 8 size specifications parsed, 5 material tags added",
+      estimatedTime: 4
     },
     {
       title: "Link Related Products",
       description: "Find variants, bundles, and accessories",
-      issues: "6 product variants linked, 4 accessory bundles detected, 2 cross-sell opportunities identified"
+      issues: "6 product variants linked, 4 accessory bundles detected, 2 cross-sell opportunities identified",
+      estimatedTime: 3
     },
     {
       title: "Organize Into Categories",
       description: "Multi-level categorization",
-      issues: "3 products assigned to primary categories with relevant sub-categories"
+      issues: "3 products assigned to primary categories with relevant sub-categories",
+      estimatedTime: 3
     },
     {
       title: "Check Data Quality",
       description: "Data validation and completeness standards",
-      issues: "Quality score: 92/100 - 5 incomplete entries flagged"
+      issues: "Quality score: 92/100 - 5 incomplete entries flagged",
+      estimatedTime: 2
     },
     {
       title: "Validate Against Standards",
       description: "Verify compliance with category requirements",
-      issues: "All products meet category standards, 2 missing optional fields noted"
+      issues: "All products meet category standards, 2 missing optional fields noted",
+      estimatedTime: 2
     },
     {
       title: "Prepare for Enhancement",
       description: "Final processing and preparation",
-      issues: "3 products ready for enrichment"
+      issues: "3 products ready for enrichment",
+      estimatedTime: 1
     }
   ];
 
@@ -122,21 +140,53 @@ const CleaningValidation = () => {
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentStep(prev => {
-        if (prev < cleaningSteps.length - 1) {
-          setCompletedSteps(prevCompleted => [...prevCompleted, prev]);
-          return prev + 1;
-        } else {
-          setCompletedSteps(prevCompleted => [...prevCompleted, prev]);
-          setProcessingComplete(true);
-          return prev;
-        }
-      });
-    }, 1200);
+    if (currentStep < cleaningSteps.length) {
+      const stepTime = cleaningSteps[currentStep].estimatedTime * 1000;
+      const progressInterval = 50;
+      const progressIncrement = 100 / (stepTime / progressInterval);
+      
+      // Update progress for current step
+      const progressTimer = setInterval(() => {
+        setStepProgress(prev => {
+          const currentProgress = prev[currentStep] || 0;
+          if (currentProgress >= 100) {
+            clearInterval(progressTimer);
+            return prev;
+          }
+          return { ...prev, [currentStep]: Math.min(currentProgress + progressIncrement, 100) };
+        });
+      }, progressInterval);
 
-    return () => clearInterval(timer);
-  }, []);
+      // Calculate remaining time
+      const timeTimer = setInterval(() => {
+        const remainingSteps = cleaningSteps.slice(currentStep);
+        const totalRemaining = remainingSteps.reduce((sum, step, idx) => {
+          if (idx === 0) {
+            const currentProgress = stepProgress[currentStep] || 0;
+            return sum + (step.estimatedTime * (100 - currentProgress) / 100);
+          }
+          return sum + step.estimatedTime;
+        }, 0);
+        setEstimatedTimeRemaining(Math.ceil(totalRemaining));
+      }, 500);
+
+      // Complete the step
+      const stepTimer = setTimeout(() => {
+        setCompletedSteps(prev => [...prev, currentStep]);
+        setStepProgress(prev => ({ ...prev, [currentStep]: 100 }));
+        setCurrentStep(prev => prev + 1);
+      }, stepTime);
+
+      return () => {
+        clearTimeout(stepTimer);
+        clearInterval(progressTimer);
+        clearInterval(timeTimer);
+      };
+    } else {
+      setProcessingComplete(true);
+      setEstimatedTimeRemaining(0);
+    }
+  }, [currentStep, stepProgress]);
 
   const handleItemCheck = (itemId: number, checked: boolean) => {
     if (checked) {
@@ -163,8 +213,6 @@ const CleaningValidation = () => {
 
   return (
     <div className="min-h-screen bg-background p-6">
-      <ProgressIndicator steps={steps} />
-      
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-semibold mb-4">Data Processing & Validation</h1>
@@ -173,58 +221,93 @@ const CleaningValidation = () => {
           </p>
         </div>
 
-        <div className="space-y-4 mb-8">
-          {cleaningSteps.map((step, index) => (
-            <Card 
-              key={index}
-              className={`transition-all duration-300 ${
-                index === currentStep 
-                  ? 'border-primary shadow-lg' 
-                  : completedSteps.includes(index)
-                    ? 'border-green-500'
-                    : 'border-muted'
-              }`}
-            >
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg flex items-center space-x-3">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                      completedSteps.includes(index)
-                        ? 'bg-green-500 text-white'
-                        : index === currentStep
-                          ? 'bg-primary text-primary-foreground animate-pulse'
-                          : 'bg-muted text-muted-foreground'
-                    }`}>
-                      {completedSteps.includes(index) ? (
-                        <Check className="w-4 h-4" />
-                      ) : (
-                        <span className="text-sm">{index + 1}</span>
-                      )}
-                    </div>
-                    <span>{step.title}</span>
-                  </CardTitle>
-                  
-                  {index === currentStep && (
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                    </div>
-                  )}
-                </div>
-              </CardHeader>
-              
-              <CardContent>
-                <p className="text-muted-foreground mb-2">{step.description}</p>
-                {(completedSteps.includes(index) || index === currentStep) && (
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Info className="w-4 h-4 text-blue-500" />
-                    <span className="text-blue-600">{step.issues}</span>
+        <div className="space-y-6">
+          <ProgressIndicator steps={steps} />
+          
+          {!processingComplete && (
+            <Card className="border-primary/50 bg-primary/5">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Clock className="h-5 w-5 text-primary" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Overall Progress</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Step {currentStep + 1} of {cleaningSteps.length} • Estimated time remaining: {estimatedTimeRemaining}s
+                    </p>
                   </div>
-                )}
+                </div>
+                <Progress 
+                  value={(currentStep / cleaningSteps.length) * 100} 
+                  className="h-2"
+                />
               </CardContent>
             </Card>
-          ))}
+          )}
+          
+          <div className="space-y-4">
+            {cleaningSteps.map((step, index) => {
+              const isCompleted = completedSteps.includes(index);
+              const isCurrent = index === currentStep;
+              const isPending = index > currentStep;
+              const progress = stepProgress[index] || 0;
+
+              return (
+                <Card 
+                  key={index}
+                  className={`transition-all duration-300 ${
+                    isCurrent ? 'border-primary shadow-lg animate-scale-in' : 
+                    isCompleted ? 'border-green-500/50 bg-green-500/5' : 
+                    'border-border opacity-60'
+                  }`}
+                >
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start gap-3">
+                      <div className={`mt-0.5 rounded-full p-1.5 ${
+                        isCompleted ? 'bg-green-500 text-white' :
+                        isCurrent ? 'bg-primary text-primary-foreground animate-pulse' :
+                        'bg-muted text-muted-foreground'
+                      }`}>
+                        {isCompleted ? (
+                          <Check className="h-4 w-4" />
+                        ) : isCurrent ? (
+                          <AlertCircle className="h-4 w-4" />
+                        ) : (
+                          <Info className="h-4 w-4" />
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-1">
+                          <CardTitle className="text-base font-semibold">
+                            {step.title}
+                          </CardTitle>
+                          {isCurrent && !isCompleted && (
+                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              ~{Math.ceil(step.estimatedTime * (100 - progress) / 100)}s
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-0 space-y-3">
+                    {isCurrent && !isCompleted && (
+                      <Progress 
+                        value={progress} 
+                        className="h-1.5"
+                      />
+                    )}
+                    <p className="text-sm">
+                      {step.issues}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
 
         {processingComplete && (
