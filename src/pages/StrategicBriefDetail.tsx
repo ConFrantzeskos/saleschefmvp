@@ -5,13 +5,14 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { ArrowLeft, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Sparkles, CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
 import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
 import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
 import { extractPropositionsFromAsset } from '@/utils/propositionExtractor';
 import { generateFeatureGuidance } from '@/utils/intelligenceGenerator';
+import { filterPropositions, getFilterDescription } from '@/utils/propositionFiltering';
 import LadderVisualization from '@/components/LadderVisualization';
 import { TopMessagingSummary } from '@/components/TopMessagingSummary';
 import { ladderFrameworks } from '@/constants/ladderFrameworks';
@@ -21,6 +22,7 @@ import CompetitiveContextPanel from '@/components/strategic-brief/CompetitiveCon
 import MissingFeaturesPanel from '@/components/strategic-brief/MissingFeaturesPanel';
 import AudienceInsightsPanel from '@/components/strategic-brief/AudienceInsightsPanel';
 import ContentGuidanceTab from '@/components/strategic-brief/ContentGuidanceTab';
+import PropositionFilters from '@/components/strategic-brief/PropositionFilters';
 
 const StrategicBriefDetail = () => {
   const navigate = useNavigate();
@@ -51,21 +53,29 @@ const StrategicBriefDetail = () => {
   const [selectedPropositions, setSelectedPropositions] = useState<string[]>(
     allPropositions.map(p => p.id)
   );
+  
+  // Filter state
+  const [audienceFilter, setAudienceFilter] = useState('all');
+  const [contentTypeFilter, setContentTypeFilter] = useState('all');
+  
+  // Apply filters
+  const filteredPropositions = filterPropositions(allPropositions, audienceFilter, contentTypeFilter);
+  const filterDescription = getFilterDescription(audienceFilter, contentTypeFilter);
 
   // Group by feature priority for better organization
   const features = asset.featureAnalysis || [];
   const propositionsByFeature = features.length > 0
     ? features.map(feature => ({
         ...feature,
-        propositions: allPropositions.filter(p => p.feature === feature.feature)
-      }))
+        propositions: filteredPropositions.filter(p => p.feature === feature.feature)
+      })).filter(fg => fg.propositions.length > 0) // Only show features with propositions
     : [{ 
         feature: 'All Features', 
         confidence: 90, 
         priority: 1, 
         description: '',
         source: '',
-        propositions: allPropositions 
+        propositions: filteredPropositions 
       }];
 
   const handleToggleProposition = (propId: string) => {
@@ -216,7 +226,23 @@ const StrategicBriefDetail = () => {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <PropositionFilters 
+            audienceFilter={audienceFilter}
+            contentTypeFilter={contentTypeFilter}
+            onAudienceChange={setAudienceFilter}
+            onContentTypeChange={setContentTypeFilter}
+            filteredCount={filteredPropositions.length}
+            totalCount={allPropositions.length}
+          />
+
+          {filterDescription && (
+            <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-900/40 flex items-start gap-2">
+              <Info className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-blue-900 dark:text-blue-100">{filterDescription}</p>
+            </div>
+          )}
+
+          <div className="space-y-8 mt-6">
             {propositionsByFeature.map((featureGroup) => (
               <div key={featureGroup.feature} className="pb-8 border-b last:border-b-0">
                 {/* Feature Header */}
