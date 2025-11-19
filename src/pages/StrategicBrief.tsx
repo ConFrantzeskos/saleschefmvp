@@ -1,301 +1,233 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Card } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Target, CheckCircle, Lightbulb, ArrowRight } from 'lucide-react';
-import StrategicLoadingSequence from '@/components/StrategicLoadingSequence';
-import FrameworkDetailsCollapsible from '@/components/FrameworkDetailsCollapsible';
-import { generateSampleEnrichmentAssets } from '@/utils/enrichmentAssetGenerator';
-import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
-import { LadderRecommendationEngine } from '@/utils/ladderRecommendationEngine';
-import { extractPropositionsFromAsset, groupPropositionsByCategory } from '@/utils/propositionExtractor';
-import { Proposition, PropositionsByCategory } from '@/types/proposition';
+import { Brain, Sparkles, CheckCircle2 } from 'lucide-react';
 import { ladderFrameworks } from '@/constants/ladderFrameworks';
+import { generateSampleEnhancedAssets } from '@/utils/enhancedAssetGenerator';
+
+type Phase = 'evaluating' | 'analyzing' | 'generating' | 'complete';
 
 const StrategicBrief = () => {
   const navigate = useNavigate();
-  const [generatedLadders, setGeneratedLadders] = useState<string[]>([]);
-  const [propositions, setPropositions] = useState<Proposition[]>([]);
-  const [selectedPropositions, setSelectedPropositions] = useState<string[]>([]);
-  const [isGenerating, setIsGenerating] = useState(true);
-  const [categorizedPropositions, setCategorizedPropositions] = useState<PropositionsByCategory[]>([]);
-
-  const steps = [
-    { id: 'upload', label: 'Upload', completed: true, current: false },
-    { id: 'mapping', label: 'Map Fields', completed: true, current: false },
-    { id: 'clean', label: 'Clean Data', completed: true, current: false },
-    { id: 'enrich', label: 'Enrich', completed: true, current: false },
-    { id: 'strategic-brief', label: 'Strategic Brief', completed: false, current: true },
-    { id: 'generate', label: 'Generate', completed: false, current: false },
-    { id: 'review', label: 'Review', completed: false, current: false },
-    { id: 'deploy', label: 'Deploy', completed: false, current: false },
-  ];
+  const [phase, setPhase] = useState<Phase>('evaluating');
+  const [progress, setProgress] = useState(0);
+  const [visibleFrameworks, setVisibleFrameworks] = useState<string[]>([]);
+  const [currentAsset, setCurrentAsset] = useState<{ name: string; feature: string; confidence: number } | null>(null);
+  const [appliedFrameworks, setAppliedFrameworks] = useState<string[]>([]);
+  const [totalPropositions, setTotalPropositions] = useState(0);
+  const [enhancedCount, setEnhancedCount] = useState(0);
 
   useEffect(() => {
-    // Simulate auto-generation process
-    const generateStrategicBrief = () => {
-      // Get enrichment assets to derive product context
-      const enrichmentAssets = generateSampleEnrichmentAssets();
-      const firstAsset = enrichmentAssets[0];
-
-      // Build product context
-      const productContext = {
-        category: firstAsset.category,
-        industry: 'Technology',
-        targetPersona: 'Mobile Professional',
-        hasComplexSpecs: true,
-        requiresTrust: false,
-        isHighValue: false,
-        isEmotionalPurchase: false,
-        isRepeatPurchase: false,
-        hasStrongBrand: true
-      };
-
-      // Generate recommendations
-      const recommendations = LadderRecommendationEngine.generateRecommendations(productContext);
-
-      // Select top 6-8 ladders
-      const selectedLadders = recommendations
-        .slice(0, 7)
-        .map(rec => rec.ladderId);
-
-      setGeneratedLadders(selectedLadders);
-
-      // Generate enhanced assets with selected ladders
-      const enhancedAssets = generateSampleEnhancedAssets();
-      const firstEnhancedAsset = {
-        ...enhancedAssets[0],
-        appliedLadders: selectedLadders
-      };
-
-      // Extract propositions
-      const extractedProps = extractPropositionsFromAsset(firstEnhancedAsset);
-      setPropositions(extractedProps);
-
-      // Group by category
-      const grouped = groupPropositionsByCategory(extractedProps);
-      setCategorizedPropositions(grouped);
-
-      // Default to ALL propositions selected
-      setSelectedPropositions(extractedProps.map(p => p.id));
-
-      setIsGenerating(false);
-    };
-
-    setTimeout(generateStrategicBrief, 2000);
-  }, []);
-
-  const handleToggleProposition = (id: string) => {
-    setSelectedPropositions(prev => {
-      if (prev.includes(id)) {
-        return prev.filter(propId => propId !== id);
-      } else {
-        return [...prev, id];
+    const runStrategicAnalysis = async () => {
+      // Phase 1: Show all frameworks being evaluated (3s)
+      setPhase('evaluating');
+      const frameworkIds = ladderFrameworks.map(f => f.id);
+      
+      for (let i = 0; i < frameworkIds.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, 130));
+        setVisibleFrameworks(prev => [...prev, frameworkIds[i]]);
+        setProgress((i + 1) / frameworkIds.length * 25);
       }
-    });
-  };
 
+      await new Promise(resolve => setTimeout(resolve, 500));
 
-  const handleContinue = () => {
-    // Store selected propositions in sessionStorage
-    const selectedProps = propositions.filter(p => selectedPropositions.includes(p.id));
-    sessionStorage.setItem('selectedPropositions', JSON.stringify(selectedProps));
-    sessionStorage.setItem('selectedLadders', JSON.stringify(generatedLadders));
-    navigate('/enhancement-review');
-  };
+      // Phase 2: Analyze each asset (4s)
+      setPhase('analyzing');
+      const enrichmentAssets = JSON.parse(sessionStorage.getItem('enrichmentAssets') || '[]');
+      
+      const assetsToAnalyze = enrichmentAssets.length > 0 ? enrichmentAssets.slice(0, 4) : [
+        { name: 'CD1234 - Wireless Headphones', heroFeature: '24-hour battery life', confidence: 95 },
+        { name: 'SM5678 - Smart Watch', heroFeature: 'Health tracking', confidence: 88 },
+        { name: 'TB9012 - Tablet', heroFeature: '12-hour battery', confidence: 92 },
+        { name: 'LP3456 - Laptop', heroFeature: 'Ultra-lightweight design', confidence: 90 }
+      ];
 
-  const isValidSelection = selectedPropositions.length >= 1;
+      for (let i = 0; i < assetsToAnalyze.length; i++) {
+        const asset = assetsToAnalyze[i];
+        setCurrentAsset({
+          name: asset.name,
+          feature: asset.heroFeature || 'premium features',
+          confidence: asset.confidence || 85
+        });
 
-  // Show loading sequence while generating
-  if (isGenerating) {
-    // Create product context from enrichment data
-    const enrichmentAssets = generateSampleEnrichmentAssets();
-    const sampleAsset = enrichmentAssets[0];
-    const productContext = {
-      industry: 'Technology', // Derive from category or default
-      category: sampleAsset.category || 'Consumer Electronics',
-      targetPersona: sampleAsset.targetAudience || 'Mobile Professional',
-      hasComplexSpecs: true,
-      requiresTrust: false,
-      isHighValue: true,
-      requiresEducation: true,
-      emotionallyDriven: false,
+        await new Promise(resolve => setTimeout(resolve, 600));
+        
+        const recommendedFrameworks = frameworkIds.slice(0, 7);
+        setAppliedFrameworks(recommendedFrameworks);
+        
+        await new Promise(resolve => setTimeout(resolve, 400));
+        
+        setProgress(25 + ((i + 1) / assetsToAnalyze.length) * 50);
+      }
+
+      // Phase 3: Generate propositions (3s)
+      setPhase('generating');
+      const sampleAssets = generateSampleEnhancedAssets();
+      sessionStorage.setItem('enhancedAssets', JSON.stringify(sampleAssets));
+      
+      let propCount = 0;
+      for (let i = 0; i < sampleAssets.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+        setEnhancedCount(i + 1);
+        propCount += 11;
+        setTotalPropositions(propCount);
+        setProgress(75 + ((i + 1) / sampleAssets.length) * 20);
+      }
+
+      // Phase 4: Complete
+      setPhase('complete');
+      setProgress(100);
+      
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      navigate('/enhancement-review');
     };
 
-    return (
-      <StrategicLoadingSequence
-        productContext={productContext}
-        onComplete={() => setIsGenerating(false)}
-      />
-    );
-  }
+    runStrategicAnalysis();
+  }, [navigate]);
 
-  const enhancedAssets = generateSampleEnhancedAssets();
-  const sampleAsset = {
-    ...enhancedAssets[0],
-    appliedLadders: generatedLadders
+  const getCategoryColor = (category: string) => {
+    const colors: Record<string, string> = {
+      'persuasion': 'bg-blue-500/10 text-blue-700 dark:text-blue-400',
+      'value': 'bg-green-500/10 text-green-700 dark:text-green-400',
+      'psychology': 'bg-purple-500/10 text-purple-700 dark:text-purple-400',
+      'experience': 'bg-orange-500/10 text-orange-700 dark:text-orange-400',
+      'trust': 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-400'
+    };
+    return colors[category] || 'bg-muted text-muted-foreground';
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto mt-8 space-y-6">
-        {/* Strategic Context Card */}
-        <Card className="border-primary/20">
-          <CardHeader>
-            <div>
-              <CardTitle className="flex items-center gap-2 text-section-title">
-                <Target className="w-6 h-6 text-primary" />
-                Strategic Proposition Selection
-              </CardTitle>
-              <p className="text-muted-foreground mt-2">
-                {propositions.length} strategic propositions generated from {generatedLadders.length} frameworks
-              </p>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {generatedLadders.map(ladderId => {
-                const framework = ladderFrameworks.find(f => f.id === ladderId);
-                return framework ? (
-                  <Badge key={ladderId} variant="secondary" className="gap-1">
-                    <framework.icon className="w-3 h-3" />
-                    {framework.name}
-                  </Badge>
-                ) : null;
-              })}
-            </div>
-          </CardContent>
-        </Card>
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
+      <div className="max-w-4xl w-full space-y-8">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-muted-foreground">
+              {phase === 'evaluating' && 'Evaluating strategic frameworks...'}
+              {phase === 'analyzing' && 'Analyzing product features...'}
+              {phase === 'generating' && 'Generating strategic propositions...'}
+              {phase === 'complete' && 'Analysis complete!'}
+            </span>
+            <span className="font-medium text-foreground">{Math.round(progress)}%</span>
+          </div>
+          <Progress value={progress} className="h-2" />
+        </div>
 
-        {/* Selection Instructions */}
-        <Card className="bg-primary/5 border-primary/20">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              <Lightbulb className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+        {phase === 'evaluating' && (
+          <Card className="p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-lg bg-primary/10">
+                <Brain className="w-6 h-6 text-primary" />
+              </div>
               <div>
+                <h2 className="text-xl font-display font-bold text-foreground">Strategic Framework Evaluation</h2>
+                <p className="text-sm text-muted-foreground">Analyzing {ladderFrameworks.length} persuasion ladders</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {ladderFrameworks.map((framework) => (
+                <div
+                  key={framework.id}
+                  className={`p-4 rounded-lg border transition-all duration-300 ${
+                    visibleFrameworks.includes(framework.id)
+                      ? 'border-primary bg-primary/5 animate-fade-in'
+                      : 'border-transparent opacity-20'
+                  }`}
+                >
+                  <Badge variant="outline" className={`text-xs mb-2 ${getCategoryColor(framework.category)}`}>
+                    {framework.category}
+                  </Badge>
+                  <p className="text-sm font-medium text-foreground">{framework.name}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
+
+        {phase === 'analyzing' && currentAsset && (
+          <Card className="p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-lg bg-primary/10 animate-pulse">
+                <Sparkles className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-xl font-display font-bold text-foreground">Asset-Specific Analysis</h2>
+                <p className="text-sm text-muted-foreground">Applying optimal frameworks to each product</p>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-lg bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-1">{currentAsset.name}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Analyzing: <span className="font-medium text-foreground">{currentAsset.feature}</span>
+                  </p>
+                </div>
+                <Badge className="bg-primary">{currentAsset.confidence}%</Badge>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-xs font-medium text-muted-foreground">Applied Frameworks:</p>
+                <div className="flex flex-wrap gap-2">
+                  {appliedFrameworks.map((fid) => {
+                    const framework = ladderFrameworks.find(f => f.id === fid);
+                    return framework ? (
+                      <Badge key={fid} variant="outline" className="animate-fade-in">
+                        {framework.name}
+                      </Badge>
+                    ) : null;
+                  })}
+                </div>
+              </div>
+            </div>
+          </Card>
+        )}
+
+        {(phase === 'generating' || phase === 'complete') && (
+          <Card className="p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className={`p-3 rounded-lg ${phase === 'complete' ? 'bg-green-500/10' : 'bg-primary/10 animate-pulse'}`}>
+                {phase === 'complete' ? (
+                  <CheckCircle2 className="w-6 h-6 text-green-600" />
+                ) : (
+                  <Sparkles className="w-6 h-6 text-primary" />
+                )}
+              </div>
+              <div>
+                <h2 className="text-xl font-display font-bold text-foreground">
+                  {phase === 'complete' ? 'Strategic Analysis Complete' : 'Generating Strategic Propositions'}
+                </h2>
                 <p className="text-sm text-muted-foreground">
-                  These propositions will guide your content generation based on market intelligence and product positioning. All propositions are selected by default—deselect any that don't align with your brand message or target audience.
+                  {phase === 'complete' ? 'Ready for review' : 'Extracting value propositions from frameworks'}
                 </p>
               </div>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Propositions by Category - Scannable List */}
-        <div className="space-y-8">
-          {/* Category Sections */}
-          {categorizedPropositions.map((category, categoryIndex) => (
-            <div key={category.category} className="space-y-4">
-              {/* Category Header */}
-              <div className="flex items-center gap-3 pb-2 border-b-2 border-primary/20">
-                <div className="flex items-center gap-2">
-                  <div className={`w-2 h-8 rounded-full ${
-                    category.category === 'functional' ? 'bg-blue-500' :
-                    category.category === 'emotional' ? 'bg-purple-500' :
-                    category.category === 'trust' ? 'bg-green-500' :
-                    category.category === 'value' ? 'bg-orange-500' :
-                    category.category === 'experience' ? 'bg-pink-500' :
-                    'bg-cyan-500'
-                  }`} />
-                  <h3 className="text-xl font-display font-bold text-foreground">{category.name}</h3>
-                </div>
+            <div className="grid grid-cols-3 gap-6">
+              <div className="text-center p-6 rounded-lg bg-muted/30">
+                <div className="text-3xl font-bold text-primary mb-2">{enhancedCount}</div>
+                <div className="text-sm text-muted-foreground">Assets Enhanced</div>
               </div>
-
-              {/* Propositions List */}
-              <div className="space-y-2">
-                {category.propositions.map((prop, propIndex) => (
-                  <Card 
-                    key={prop.id}
-                    className={`transition-all hover:shadow-md cursor-pointer ${
-                      selectedPropositions.includes(prop.id) ? 'border-primary border-2 bg-primary/5 shadow-sm' : 'hover:border-primary/50'
-                    }`}
-                    onClick={() => handleToggleProposition(prop.id)}
-                  >
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-4">
-                        {/* Checkbox */}
-                        <div className="pt-0.5">
-                          <Checkbox 
-                            checked={selectedPropositions.includes(prop.id)}
-                            onCheckedChange={() => handleToggleProposition(prop.id)}
-                            className="h-5 w-5"
-                          />
-                        </div>
-
-                        {/* Content */}
-                        <div className="flex-1 space-y-2">
-                          <p className="text-base text-foreground leading-relaxed font-medium">
-                            {prop.text}
-                          </p>
-                          <span className="text-xs text-muted-foreground">
-                            {prop.ladderStep}
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="text-center p-6 rounded-lg bg-muted/30">
+                <div className="text-3xl font-bold text-primary mb-2">{totalPropositions}</div>
+                <div className="text-sm text-muted-foreground">Propositions Generated</div>
+              </div>
+              <div className="text-center p-6 rounded-lg bg-muted/30">
+                <div className="text-3xl font-bold text-primary mb-2">7</div>
+                <div className="text-sm text-muted-foreground">Frameworks Applied</div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Selection Summary Panel */}
-        <Card className="sticky bottom-6 border-2 border-primary/20 shadow-xl">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <CheckCircle className="w-5 h-5 text-primary" />
-                    <span className="font-semibold text-foreground">
-                      {selectedPropositions.length} of {propositions.length} propositions selected
-                    </span>
-                  </div>
-                  {selectedPropositions.length === 0 && (
-                    <p className="text-sm text-destructive">
-                      Select at least 1 proposition to continue
-                    </p>
-                  )}
-                </div>
-                {selectedPropositions.length > 0 && (
-                  <div className="flex flex-wrap gap-2 max-w-2xl">
-                    {selectedPropositions.slice(0, 3).map(propId => {
-                      const prop = propositions.find(p => p.id === propId);
-                      return prop ? (
-                        <Badge key={propId} variant="secondary" className="text-xs">
-                          {prop.text.slice(0, 40)}...
-                        </Badge>
-                      ) : null;
-                    })}
-                    {selectedPropositions.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{selectedPropositions.length - 3} more
-                      </Badge>
-                    )}
-                  </div>
-                )}
-              </div>
-              <Button
-                size="lg"
-                onClick={handleContinue}
-                disabled={!isValidSelection}
-                className="gap-2"
-              >
-                Continue to Review
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Framework Details Collapsible */}
-        <FrameworkDetailsCollapsible 
-          ladderIds={generatedLadders}
-          asset={sampleAsset}
-        />
+            {phase === 'complete' && (
+              <p className="text-center text-sm text-muted-foreground mt-6 animate-fade-in">
+                Redirecting to enhancement review...
+              </p>
+            )}
+          </Card>
+        )}
       </div>
     </div>
   );
