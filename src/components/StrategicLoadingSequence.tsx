@@ -27,9 +27,9 @@ const StrategicLoadingSequence = ({ productContext, onComplete }: StrategicLoadi
   // Phase timing
   useEffect(() => {
     const phases = [
-      { name: 'all-ladders' as Phase, duration: 2000 },
-      { name: 'selection' as Phase, duration: 3000 },
-      { name: 'working' as Phase, duration: 3000 },
+      { name: 'all-ladders' as Phase, duration: 3000 },
+      { name: 'selection' as Phase, duration: 3500 },
+      { name: 'working' as Phase, duration: 3500 },
     ];
 
     let currentPhaseIndex = 0;
@@ -47,7 +47,7 @@ const StrategicLoadingSequence = ({ productContext, onComplete }: StrategicLoadi
     const progressTimer = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) return 100;
-        return prev + (100 / 80); // 8 seconds = 80 intervals of 100ms
+        return prev + (100 / 100); // 10 seconds = 100 intervals of 100ms
       });
     }, 100);
 
@@ -63,7 +63,7 @@ const StrategicLoadingSequence = ({ productContext, onComplete }: StrategicLoadi
       ladderFrameworks.forEach((_, index) => {
         setTimeout(() => {
           setVisibleLadders(prev => [...prev, index]);
-        }, index * 80);
+        }, index * 120);
       });
     }
   }, [phase]);
@@ -79,13 +79,13 @@ const StrategicLoadingSequence = ({ productContext, onComplete }: StrategicLoadi
       topRecs.forEach((rec, index) => {
         setTimeout(() => {
           setEvaluatingIndex(index);
-        }, index * 300);
+        }, index * 350);
       });
 
-              // Show selected ladders
-              setTimeout(() => {
-                setSelectedLadders(topRecs.map(r => r.ladderId));
-              }, topRecs.length * 300 + 500);
+      // Show selected ladders
+      setTimeout(() => {
+        setSelectedLadders(topRecs.map(r => r.ladderId));
+      }, topRecs.length * 350 + 700);
     }
   }, [phase, productContext]);
 
@@ -103,7 +103,7 @@ const StrategicLoadingSequence = ({ productContext, onComplete }: StrategicLoadi
           }
           return prev + 1;
         });
-      }, 350);
+      }, 400);
 
       // Count up propositions
       const countInterval = setInterval(() => {
@@ -112,9 +112,9 @@ const StrategicLoadingSequence = ({ productContext, onComplete }: StrategicLoadi
             clearInterval(countInterval);
             return 47;
           }
-          return prev + 3;
+          return prev + 2;
         });
-      }, 100);
+      }, 80);
 
       return () => {
         clearInterval(ladderInterval);
