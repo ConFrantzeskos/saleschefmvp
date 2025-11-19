@@ -50,7 +50,12 @@ const EnrichmentReview = lazy(() =>
   })
 );
 const EnrichmentAssetReview = lazy(() => import("../pages/EnrichmentAssetReview"));
-const EnhancementSelection = lazy(() => import("../pages/EnhancementSelection"));
+const StrategicBrief = lazy(() => 
+  import("../pages/StrategicBrief").then(module => {
+    import("../pages/EnhancementReview");
+    return module;
+  })
+);
 const Enhancement = lazy(() => 
   import("../pages/Enhancement").then(module => {
     import("../pages/EnhancementReview");
@@ -100,7 +105,7 @@ export const pageComponents = {
   Enrichment,
   EnrichmentReview,
   EnrichmentAssetReview,
-  EnhancementSelection,
+  StrategicBrief,
   Enhancement,
   EnhancementReview,
   StrategicBriefDetail,

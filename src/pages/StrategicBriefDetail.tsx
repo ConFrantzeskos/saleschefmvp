@@ -15,7 +15,8 @@ import {
   Zap,
   MessageSquare,
   Lock,
-  Clock
+  Clock,
+  CheckCircle
 } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
@@ -123,9 +124,54 @@ const StrategicBriefDetail = () => {
         </Card>
 
         <div className="space-y-4">
+          {/* Selected Strategic Propositions */}
+          {asset.selectedPropositions && asset.selectedPropositions.length > 0 && (
+            <Section title="Selected Strategic Propositions" icon={Target} defaultOpen={true}>
+              <div className="grid gap-4">
+                {(() => {
+                  const selectedProps = asset.allPropositions?.filter(p => 
+                    asset.selectedPropositions?.includes(p.id)
+                  ) || [];
+                  
+                  // Group by category
+                  const grouped = selectedProps.reduce((acc, prop) => {
+                    if (!acc[prop.category]) acc[prop.category] = [];
+                    acc[prop.category].push(prop);
+                    return acc;
+                  }, {} as Record<string, typeof selectedProps>);
+                  
+                  const categoryNames = {
+                    functional: 'Functional Value',
+                    emotional: 'Emotional Appeal',
+                    trust: 'Trust & Credibility',
+                    value: 'Value & ROI',
+                    experience: 'Experience & Journey',
+                    behavioral: 'Behavioral Insights'
+                  };
+                  
+                  return Object.entries(grouped).map(([category, props]) => (
+                    <div key={category}>
+                      <h4 className="font-semibold mb-3 text-foreground">
+                        {categoryNames[category as keyof typeof categoryNames]}
+                      </h4>
+                      <ul className="space-y-2">
+                        {props.map(prop => (
+                          <li key={prop.id} className="flex items-start gap-2">
+                            <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                            <span className="text-foreground">{prop.text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ));
+                })()}
+              </div>
+            </Section>
+          )}
+
           {/* Ladder Visualizations */}
           {asset.appliedLadders && asset.appliedLadders.length > 0 && (
-            <Section title="Applied Persuasion Ladders" icon={TrendingUp} defaultOpen={true}>
+            <Section title="Applied Persuasion Ladders" icon={TrendingUp} defaultOpen={false}>
               <div className="space-y-6">
                 {asset.appliedLadders.map(ladderId => {
                   const isPrimary = ladderId === asset.primaryLadder;
