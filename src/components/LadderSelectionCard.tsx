@@ -1,90 +1,91 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Check, Sparkles } from 'lucide-react';
 import { LadderFramework } from '@/types/ladderTypes';
+import { LadderRecommendation } from '@/utils/ladderRecommendationEngine';
 
 interface LadderSelectionCardProps {
   ladder: LadderFramework;
   isSelected: boolean;
   onToggle: () => void;
+  recommendation?: LadderRecommendation;
 }
 
-const LadderSelectionCard = ({ ladder, isSelected, onToggle }: LadderSelectionCardProps) => {
+const LadderSelectionCard = ({ ladder, isSelected, onToggle, recommendation }: LadderSelectionCardProps) => {
   const Icon = ladder.icon;
-  
-  const complexityColors = {
-    simple: 'bg-green-500/10 text-green-700 dark:text-green-300',
-    moderate: 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300',
-    advanced: 'bg-red-500/10 text-red-700 dark:text-red-300'
-  };
 
   return (
     <Card 
-      className={`p-4 cursor-pointer transition-all duration-200 ${
+      className={`p-5 cursor-pointer transition-all duration-200 hover:shadow-lg relative ${
         isSelected 
-          ? 'border-2 border-primary bg-primary/5 shadow-lg' 
-          : 'border-2 border-muted hover:border-primary/50 hover:shadow-md'
-      }`}
+          ? 'border-2 border-primary bg-primary/5 shadow-md' 
+          : 'border hover:border-primary/50'
+      } ${recommendation ? 'border-l-4' : ''}`}
+      style={recommendation ? {
+        borderLeftColor: recommendation.priority === 'primary' ? 'hsl(var(--primary))' :
+                         recommendation.priority === 'supporting' ? 'hsl(var(--chart-2))' :
+                         'hsl(var(--muted-foreground))'
+      } : {}}
       onClick={onToggle}
     >
-      <div className="flex items-start gap-3 mb-3">
-        <Checkbox 
-          checked={isSelected}
-          onCheckedChange={onToggle}
-          className="mt-1"
-          onClick={(e) => e.stopPropagation()}
-        />
-        <div className={`p-2 rounded-lg ${isSelected ? 'bg-primary text-white' : 'bg-muted'}`}>
-          <Icon className="w-5 h-5" />
+      {/* Recommendation Badge */}
+      {recommendation && (
+        <div className="absolute top-3 right-3">
+          <Badge 
+            className={`text-xs gap-1 ${
+              recommendation.priority === 'primary' ? 'bg-primary' :
+              recommendation.priority === 'supporting' ? 'bg-chart-2 text-white' :
+              'bg-muted text-muted-foreground'
+            }`}
+          >
+            <Sparkles className="w-3 h-3" />
+            {recommendation.confidence}%
+          </Badge>
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-semibold text-foreground mb-1 leading-tight">{ladder.name}</h3>
-          <div className="flex gap-2 flex-wrap mb-2">
-            <Badge variant="outline" className={`text-xs ${complexityColors[ladder.complexity]}`}>
+      )}
+
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <div className="p-2 rounded-lg bg-primary/10">
+            <Icon className="w-5 h-5 text-primary" />
+          </div>
+          <div>
+            <h3 className="font-display font-semibold text-foreground">{ladder.name}</h3>
+            <Badge variant="outline" className="text-xs mt-1">
               {ladder.complexity}
-            </Badge>
-            <Badge variant="outline" className="text-xs">
-              {ladder.category}
             </Badge>
           </div>
         </div>
+        {isSelected && (
+          <div className="p-1 rounded-full bg-primary">
+            <Check className="w-4 h-4 text-primary-foreground" />
+          </div>
+        )}
       </div>
 
-      <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+      <p className="text-sm text-muted-foreground mb-3">
         {ladder.description}
       </p>
 
-      <div className="space-y-2">
-        <div>
-          <div className="text-xs font-medium text-foreground mb-1">Best for:</div>
-          <p className="text-xs text-muted-foreground leading-relaxed">{ladder.bestUse}</p>
+      {/* Recommendation Reasoning */}
+      {recommendation && (
+        <div className="mb-3 p-2 rounded-lg bg-muted/50 border border-border">
+          <p className="text-xs text-foreground font-medium mb-1">Why recommended:</p>
+          <p className="text-xs text-muted-foreground">{recommendation.reasoning}</p>
         </div>
+      )}
 
-        <div>
-          <div className="text-xs font-medium text-foreground mb-1">Progression:</div>
-          <div className="flex items-center gap-1 flex-wrap">
-            {ladder.steps.map((step, idx) => (
-              <React.Fragment key={idx}>
-                <span className="text-xs text-muted-foreground">{step}</span>
-                {idx < ladder.steps.length - 1 && (
-                  <span className="text-xs text-primary">→</span>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
+      <div className="text-xs text-muted-foreground mb-2">
+        <strong>Best for:</strong> {ladder.bestUse}
+      </div>
 
-        <div>
-          <div className="text-xs font-medium text-foreground mb-1">Examples:</div>
-          <div className="flex gap-1 flex-wrap">
-            {ladder.exampleBrands.slice(0, 2).map((brand, idx) => (
-              <Badge key={idx} variant="secondary" className="text-xs">
-                {brand.split(' ')[0]}
-              </Badge>
-            ))}
-          </div>
-        </div>
+      <div className="flex flex-wrap gap-1">
+        {ladder.exampleBrands.slice(0, 3).map((brand, index) => (
+          <Badge key={index} variant="secondary" className="text-xs">
+            {brand}
+          </Badge>
+        ))}
       </div>
     </Card>
   );
