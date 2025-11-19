@@ -170,8 +170,14 @@ const Deploy = () => {
           <ProgressIndicator steps={steps} />
           
           <div className="mt-8 space-y-8">
+            <SectionHeader
+              title="Deploy Your Content"
+              subtitle="Choose where to publish your optimized product content across the customer journey"
+              size="lg"
+            />
+
             {/* View Toggle */}
-            <div>
+            <div className="flex justify-center">
               <ViewToggle value={viewMode} onChange={setViewMode} />
             </div>
 
