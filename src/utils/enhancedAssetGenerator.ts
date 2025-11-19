@@ -9,7 +9,7 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       category: 'Electronics',
       brand: 'TechSound',
       
-      appliedLadders: ['functional-emotional', 'ogilvy-rtb'],
+      appliedLadders: ['functional-emotional', 'ogilvy-rtb', 'jtbd-outcome', 'experience', 'risk-mitigation', 'faai', 'price-value-roi'],
       primaryLadder: 'functional-emotional',
       
       coreValueProposition: 'Uninterrupted wireless freedom with 24-hour battery life for professionals, travelers, and entertainment enthusiasts',
@@ -356,6 +356,68 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
           "Don't oversell audio quality—position as 'great for the price'",
           "Don't ignore portability—foldable design is key differentiator"
         ]
+      },
+      
+      functionalEmotionalLadder: {
+        feature: '24-hour continuous playback battery',
+        functionalBenefit: 'Use wireless headphones all day without worrying about charging',
+        emotionalBenefit: 'Feel confident and prepared for long days, never experience battery anxiety',
+        lifeOutcome: 'One less thing to manage in your already busy life—technology that just works',
+        proof: '91% of users report never running out of battery during daily use',
+        realWorldExample: 'Business travelers report "forgetting to charge for 3+ days" without issues'
+      },
+      
+      ogilvyRTBLadder: {
+        reasonToBelieve: 'Lab-tested 24-hour battery with quick charge (10 min = 3 hours)',
+        promise: 'All-day wireless freedom without charging breaks or battery anxiety',
+        payoff: 'Stay focused on what matters—work, entertainment, calls—without tech interruptions',
+        credibilitySource: '50,000+ verified users, 4.6/5 stars, featured in TechRadar "Best Battery Life" roundup',
+        realWorldExample: 'Commuters and business travelers consistently praise the "set it and forget it" reliability'
+      },
+      
+      jtbdOutcomeLadder: {
+        jobToBeDone: 'Keep me entertained and connected throughout long, busy days without tech interruptions',
+        desiredOutcome: 'Listen to music, take calls, and stay entertained throughout full workdays and travel without any charging interruptions',
+        constraintRemoved: 'No more planning your day around charging stations or carrying backup batteries',
+        progressMade: 'From constant battery monitoring to carefree all-day use',
+        strugglingMoment: 'When headphones die mid-call, during commute, or on long flight',
+        realWorldExample: 'Users describe feeling "liberated from power outlet hunting" after switching'
+      },
+      
+      experienceLadder: {
+        product: 'Wireless headphones with 24-hour battery and quick charge',
+        function: 'Provides uninterrupted audio throughout extended daily use',
+        experience: 'The relief of never thinking about battery life—just pure listening',
+        memory: 'The brand customers recommend when friends complain about dead headphones',
+        emotionalResonance: 'Peace of mind knowing your audio will outlast your longest day',
+        realWorldExample: 'The "aha moment" comes when users realize they stopped thinking about battery after week one'
+      },
+      
+      riskMitigationLadder: {
+        risk: 'Wasting money on overhyped battery life claims that disappoint in real use',
+        mitigation: 'Lab-tested 24-hour rating with third-party verification plus 60-day money-back trial',
+        confidence: 'If battery life doesn\'t exceed expectations, get full refund—no questions asked',
+        action: 'Buy with zero risk, test it yourself, return if not as advertised',
+        trustSignal: '2-year warranty covers battery degradation; only 3% failure rate across 50,000+ users',
+        realWorldExample: 'First-time buyers report "no regrets" due to trial period giving confidence to test claims'
+      },
+      
+      faaiLadder: {
+        feature: '24-hour lithium-ion battery with intelligent power management',
+        advantage: 'Lasts 3x longer than average wireless headphones in same price range',
+        application: 'Use continuously from morning commute through workday and evening entertainment without recharging',
+        businessImpact: 'Eliminates productivity interruptions from dead batteries and reduces the "tech overhead" of daily charging routines',
+        proof: 'Independent testing confirms 24+ hours; quick charge provides 3 hours in just 10 minutes',
+        realWorldExample: 'Remote workers love not having their flow interrupted by low-battery warnings during back-to-back video calls'
+      },
+      
+      priceValueROILadder: {
+        price: '$189',
+        trueCost: 'Less than $0.10 per day over 5-year lifespan',
+        value: 'Premium 24-hour battery technology typically reserved for $250+ models',
+        roi: 'Saves 50+ hours annually not managing charging; prevents productivity loss from dead batteries',
+        financialProof: '25% less than competitors; break-even after 3 avoided charging emergencies',
+        realWorldExample: 'Frequent travelers report payback after just 3 flights without airport charging hunts'
       },
       
       confidenceScore: 92,
