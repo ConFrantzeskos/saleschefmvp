@@ -169,3 +169,83 @@ export interface AssetTrustLadder {
   trustMetrics: string;
   realWorldExample: string;
 }
+
+// Category Entry Points (CEPs)
+export interface CategoryEntryPointsLadder {
+  buyingSituation: string;
+  categoryCue: string;
+  brandAssociation: string;
+  mentalAvailability: string;
+  triggerMoment: string;
+  realWorldExample: string;
+}
+
+// Purchase Barriers + Solutions
+export interface PurchaseBarriersLadder {
+  barrierIdentified: string;
+  solutionOffered: string;
+  objectionHandled: string;
+  pathCleared: string;
+  frictionPoint: string;
+  realWorldExample: string;
+}
+
+// Distinctive Memory Structures
+export interface MemoryStructuresLadder {
+  distinctiveAsset: string;
+  sensoryTrigger: string;
+  memoryAssociation: string;
+  instantRecognition: string;
+  brandCode: string;
+  realWorldExample: string;
+}
+
+// Behavioural Economics Arsenal
+export interface BehavioralEconomicsLadder {
+  biasIdentified: string;
+  principleApplied: string;
+  behaviorNudged: string;
+  decisionMade: string;
+  psychologicalMechanism: string;
+  realWorldExample: string;
+}
+
+// Competitive Moats
+export interface CompetitiveMoatsLadder {
+  competitiveThreat: string;
+  defensiveMoat: string;
+  sustainableAdvantage: string;
+  marketLeadership: string;
+  barrierToEntry: string;
+  realWorldExample: string;
+}
+
+// Conversion Mechanics
+export interface ConversionMechanicsLadder {
+  decisionPoint: string;
+  frictionRemoved: string;
+  incentiveApplied: string;
+  conversionAchieved: string;
+  optimizationTechnique: string;
+  realWorldExample: string;
+}
+
+// Context Triggers
+export interface ContextTriggersLadder {
+  contextMoment: string;
+  needActivated: string;
+  brandRecalled: string;
+  actionTriggered: string;
+  relevanceTrigger: string;
+  realWorldExample: string;
+}
+
+// The Persuasion Stack
+export interface PersuasionStackLadder {
+  foundationLogic: string;
+  emotionLayer: string;
+  socialProofLayer: string;
+  urgencyPeak: string;
+  compoundingEffect: string;
+  realWorldExample: string;
+}

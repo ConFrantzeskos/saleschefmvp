@@ -12,7 +12,14 @@ import {
   ArrowRight,
   Clock,
   Gem,
-  Lock
+  Lock,
+  MapPin,
+  Unlock,
+  Brain,
+  BarChart,
+  Zap,
+  CheckCircle,
+  Bell
 } from 'lucide-react';
 import { LadderFramework } from '@/types/ladderTypes';
 
@@ -198,5 +205,109 @@ export const ladderFrameworks: LadderFramework[] = [
     complexity: 'moderate',
     exampleBrands: ['Coinbase (crypto security)', 'Bloomberg Terminal (data accuracy)', 'AWS (uptime)'],
     realWorldExample: 'Coinbase: 98% cold storage (accuracy) → Zero hacks to date (reliability) → Consistent security (predictability) → Peace of mind (confidence) → Invest freely (action)'
+  },
+  {
+    id: 'category-entry-points',
+    name: 'Category Entry Points (CEPs)',
+    description: 'Identify buying situations and mental availability triggers that make your brand come to mind',
+    explainer: 'Buying Situation → Category Cue → Brand Association → Mental Availability',
+    bestUse: 'Brand building, marketing strategy, understanding when customers think of your category',
+    steps: ['Buying Situation', 'Category Cue', 'Brand Association', 'Mental Availability'],
+    icon: MapPin,
+    category: 'experience',
+    complexity: 'moderate',
+    exampleBrands: ['Red Bull (energy need)', 'Uber (need a ride)', 'Spotify (want music)'],
+    realWorldExample: 'Red Bull: Feeling tired at 3pm (situation) → Need energy boost (cue) → Wings/extreme sports (association) → Red Bull comes to mind (availability)'
+  },
+  {
+    id: 'purchase-barriers',
+    name: 'Purchase Barriers + Solutions',
+    description: 'Systematically identify and remove obstacles preventing purchase decisions',
+    explainer: 'Barrier Identified → Solution Offered → Objection Handled → Path Cleared',
+    bestUse: 'Conversion optimization, sales enablement, reducing purchase friction',
+    steps: ['Barrier Identified', 'Solution Offered', 'Objection Handled', 'Path Cleared'],
+    icon: Unlock,
+    category: 'trust',
+    complexity: 'simple',
+    exampleBrands: ['Warby Parker (home try-on)', 'Zappos (free returns)', 'Casper (100-night trial)'],
+    realWorldExample: 'Warby Parker: Can\'t try glasses online (barrier) → Home try-on program (solution) → Risk-free testing (objection handled) → Confident online purchase (cleared)'
+  },
+  {
+    id: 'memory-structures',
+    name: 'Distinctive Memory Structures',
+    description: 'Build unique brand assets that create instant recall and distinctive brand codes',
+    explainer: 'Distinctive Asset → Sensory Trigger → Memory Association → Instant Recognition',
+    bestUse: 'Brand building, distinctive assets, creating memorable brand codes',
+    steps: ['Distinctive Asset', 'Sensory Trigger', 'Memory Association', 'Instant Recognition'],
+    icon: Brain,
+    category: 'experience',
+    complexity: 'advanced',
+    exampleBrands: ['McDonald\'s (Golden Arches)', 'Intel (bong sound)', 'Tiffany (blue box)'],
+    realWorldExample: 'Tiffany: Blue box (asset) → Specific Pantone color (trigger) → Luxury & romance (association) → Instant brand recognition (recall)'
+  },
+  {
+    id: 'behavioral-economics',
+    name: 'Behavioural Economics Arsenal',
+    description: 'Apply proven psychological principles and cognitive biases to influence decisions',
+    explainer: 'Bias Identified → Principle Applied → Behavior Nudged → Decision Made',
+    bestUse: 'Conversion optimization, pricing strategy, marketing psychology',
+    steps: ['Bias Identified', 'Principle Applied', 'Behavior Nudged', 'Decision Made'],
+    icon: BarChart,
+    category: 'value',
+    complexity: 'advanced',
+    exampleBrands: ['Amazon (scarcity)', 'Booking.com (social proof)', 'Netflix (default choice)'],
+    realWorldExample: 'Booking.com: Loss aversion bias (identified) → "Only 1 room left!" (applied) → Urgency created (nudged) → Book now (decision)'
+  },
+  {
+    id: 'competitive-moats',
+    name: 'Competitive Moats',
+    description: 'Build sustainable competitive advantages that are difficult for competitors to replicate',
+    explainer: 'Competitive Threat → Defensive Moat → Sustainable Advantage → Market Leadership',
+    bestUse: 'Strategic positioning, long-term differentiation, defendable market position',
+    steps: ['Competitive Threat', 'Defensive Moat', 'Sustainable Advantage', 'Market Leadership'],
+    icon: Shield,
+    category: 'value',
+    complexity: 'advanced',
+    exampleBrands: ['Apple (ecosystem)', 'Amazon (logistics network)', 'Coca-Cola (brand equity)'],
+    realWorldExample: 'Apple: Easy to switch devices (threat) → Seamless ecosystem integration (moat) → Switching costs too high (advantage) → Dominant market position (leadership)'
+  },
+  {
+    id: 'conversion-mechanics',
+    name: 'Conversion Mechanics',
+    description: 'Optimize decision-making moments with specific techniques that drive immediate action',
+    explainer: 'Decision Point → Friction Removed → Incentive Applied → Conversion Achieved',
+    bestUse: 'E-commerce optimization, landing pages, checkout flows, sales enablement',
+    steps: ['Decision Point', 'Friction Removed', 'Incentive Applied', 'Conversion Achieved'],
+    icon: CheckCircle,
+    category: 'experience',
+    complexity: 'simple',
+    exampleBrands: ['Amazon (1-Click)', 'Shopify (instant checkout)', 'Stripe (embedded payments)'],
+    realWorldExample: 'Amazon: Ready to buy (point) → 1-Click ordering (friction removed) → Prime free shipping (incentive) → Purchase complete (conversion)'
+  },
+  {
+    id: 'context-triggers',
+    name: 'Context Triggers',
+    description: 'Identify specific moments and contexts when your brand becomes highly relevant',
+    explainer: 'Context/Moment → Need Activated → Brand Recalled → Action Triggered',
+    bestUse: 'Marketing timing, contextual advertising, moment-based marketing',
+    steps: ['Context/Moment', 'Need Activated', 'Brand Recalled', 'Action Triggered'],
+    icon: Bell,
+    category: 'experience',
+    complexity: 'moderate',
+    exampleBrands: ['Gatorade (sports)', 'Uber Eats (dinner time)', 'LinkedIn (career moments)'],
+    realWorldExample: 'LinkedIn: Job change moment (context) → Need to update profile (activated) → LinkedIn is career platform (recalled) → Log in and update (triggered)'
+  },
+  {
+    id: 'persuasion-stack',
+    name: 'The Persuasion Stack',
+    description: 'Layer multiple persuasion techniques for compounding effect and maximum influence',
+    explainer: 'Foundation (Logic) → Emotion Layer → Social Proof Layer → Urgency Peak',
+    bestUse: 'Complex sales, high-consideration purchases, comprehensive marketing campaigns',
+    steps: ['Foundation (Logic)', 'Emotion Layer', 'Social Proof Layer', 'Urgency Peak'],
+    icon: Layers,
+    category: 'emotional',
+    complexity: 'advanced',
+    exampleBrands: ['Tesla (logic + emotion + social + scarcity)', 'Apple launches', 'Supreme drops'],
+    realWorldExample: 'Tesla: Superior tech specs (logic) → Environmental mission (emotion) → Celebrity owners (social proof) → Limited production (urgency) → Waitlist signup'
   }
 ];
