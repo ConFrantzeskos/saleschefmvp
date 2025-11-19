@@ -433,8 +433,8 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       category: 'Electronics',
       brand: 'SmartHome',
       
-      appliedLadders: ['functional-emotional', 'experience-ladder'],
-      primaryLadder: 'experience-ladder',
+      appliedLadders: ['functional-emotional', 'rtb', 'jtbd-outcome', 'experience', 'risk-mitigation', 'faai', 'price-value-roi'],
+      primaryLadder: 'experience',
       
       coreValueProposition: 'Seamless smart home control with premium audio quality in one elegant device',
       primaryPersona: 'The Smart Home Enthusiast',
@@ -792,6 +792,68 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
         ]
       },
       
+      functionalEmotionalLadder: {
+        feature: 'Voice-activated smart home control with premium 360° audio',
+        functionalBenefit: 'Control entire smart home hands-free while enjoying rich, room-filling sound',
+        emotionalBenefit: 'Feel like you\'re living in the future—effortless tech that just works',
+        lifeOutcome: 'Transform your home into a responsive, entertaining space that adapts to your voice',
+        proof: '94% report easier home management; 4.6/5 audio quality rating from 6,400+ reviews',
+        realWorldExample: 'Like Amazon Echo meets Sonos—smart features that don\'t sacrifice sound quality'
+      },
+      
+      rtbLadder: {
+        reasonToBelieve: '360° premium audio verified by TechCrunch; Works with Alexa, Google, HomeKit; 300,000+ homes worldwide',
+        promise: 'The only smart speaker that delivers both premium sound AND comprehensive home control',
+        payoff: 'Stop compromising between audio quality and smart features—finally have both',
+        credibilitySource: 'Best Smart Speaker Award 2024, CNET Editor\'s Choice, 4.6/5 from 6,400+ verified buyers',
+        realWorldExample: 'Similar to how Sonos brought premium audio to wireless, we brought premium audio to smart speakers'
+      },
+      
+      jtbdOutcomeLadder: {
+        jobToBeDone: 'Enjoy great music and control my smart home without juggling multiple devices',
+        desiredOutcome: 'Premium audio experience with voice-controlled home automation in one elegant device',
+        constraintRemoved: 'No more choosing between smart speakers that sound terrible or quality speakers without smart features',
+        progressMade: 'From multiple remotes and apps to simple voice commands with great sound',
+        strugglingMoment: 'When you want to play music, dim lights, and adjust temperature but need 3 different devices',
+        realWorldExample: 'Users describe "finally retiring 4 different remotes and a mediocre speaker"'
+      },
+      
+      experienceLadder: {
+        product: 'Smart speaker with 360° audio and universal smart home control',
+        function: 'Voice-controlled music playback and home automation from one device',
+        experience: 'Your home responds to your voice—lights, music, temperature—like magic',
+        memory: 'The device friends ask about when they visit your "smart home"',
+        emotionalResonance: 'Pride in having a home that feels effortlessly modern and responsive',
+        realWorldExample: 'The moment guests say "wait, you just told it to do all that?"'
+      },
+      
+      riskMitigationLadder: {
+        risk: 'Smart speakers typically have poor audio quality—waste of money for music lovers',
+        mitigation: 'TechCrunch verified "best audio quality in a smart speaker"; 4.6/5 audio rating specifically',
+        confidence: 'Try it risk-free for 60 days—if it doesn\'t sound better than your current setup, full refund',
+        action: 'Order now and hear the difference, or return it at no cost',
+        trustSignal: 'Audio Excellence Award; works with all major platforms; 300,000+ satisfied homes',
+        realWorldExample: 'Music lovers report being "shocked by the bass and clarity" compared to Echo/Google Home'
+      },
+      
+      faaiLadder: {
+        feature: 'Premium 360° audio drivers with smart home hub (Alexa, Google, HomeKit)',
+        advantage: 'Rivals standalone speakers while controlling 3,000+ smart devices',
+        application: 'Play music throughout home, control all devices, make calls—all by voice',
+        businessImpact: 'Eliminate multiple devices and subscriptions; increase daily efficiency and enjoyment',
+        proof: '89% use multi-room feature weekly; 94% report easier home management; works with 3,000+ devices',
+        realWorldExample: 'Replaces separate speaker, smart hub, and intercom—saves space and money'
+      },
+      
+      priceValueROILadder: {
+        price: '$249',
+        trueCost: 'Less than buying quality speaker ($150) + smart hub ($100) separately',
+        value: 'Premium audio quality typically found in $300+ speakers plus smart home control',
+        roi: 'Saves $100+ vs buying separately; increases home efficiency saving 30 min/week; enhances daily music enjoyment',
+        financialProof: '$100 less than Sonos + separate smart hub; includes free smart bulbs ($40 value)',
+        realWorldExample: 'Users calculate payback in 6 months from time saved and devices consolidated'
+      },
+      
       confidenceScore: 88,
       personaMatchScore: 94,
       messageStrengthScore: 90,
@@ -805,8 +867,8 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
       category: 'Electronics',
       brand: 'ViewTech',
       
-      appliedLadders: ['functional-emotional', 'component-performance'],
-      primaryLadder: 'component-performance',
+      appliedLadders: ['functional-emotional', 'rtb', 'jtbd-outcome', 'experience', 'risk-mitigation', 'faai', 'price-value-roi'],
+      primaryLadder: 'functional-emotional',
       
       coreValueProposition: 'Professional-grade 4K clarity for content creators and designers who demand precision',
       primaryPersona: 'The Creative Professional',
@@ -1171,6 +1233,68 @@ export const generateSampleEnhancedAssets = (): EnhancedAsset[] => {
           'Don\'t ignore the aspiring creator segment—they\'re future professionals',
           'Don\'t position as "cheap alternative"—it\'s accessible professional quality'
         ]
+      },
+      
+      functionalEmotionalLadder: {
+        feature: '4K Ultra HD with 99% sRGB color accuracy and factory calibration',
+        functionalBenefit: 'Crystal-clear detail and accurate colors for precise editing and design work',
+        emotionalBenefit: 'Complete confidence that what you see on screen matches your final output',
+        lifeOutcome: 'Become a more confident, efficient professional who trusts their tools completely',
+        proof: '97% report improved work quality; factory calibrated with certificate; 99% sRGB verified',
+        realWorldExample: 'Like switching from a consumer camera to professional gear—suddenly you can trust your eyes'
+      },
+      
+      rtbLadder: {
+        reasonToBelieve: 'Factory calibrated with certificate; 99% sRGB verified; Used by 100,000+ creative professionals',
+        promise: 'See every detail and color exactly as it will appear in final output',
+        payoff: 'Stop second-guessing your work—deliver with confidence knowing colors are accurate',
+        credibilitySource: 'Professional monitors reviewed by CreativeBloq, PetaPixel; 4.7/5 from verified creatives',
+        realWorldExample: 'Similar to how BenQ became the designer\'s choice, we deliver pro-grade accuracy at accessible pricing'
+      },
+      
+      jtbdOutcomeLadder: {
+        jobToBeDone: 'Create color-accurate work without worrying about display limitations',
+        desiredOutcome: 'Trust that colors and details on screen match printed/published output',
+        constraintRemoved: 'No more printing test pages or exporting to check colors on different screens',
+        progressMade: 'From constant color-checking anxiety to confident, efficient workflow',
+        strugglingMoment: 'When client says "the colors look different than what you showed me"',
+        realWorldExample: 'Designers report "finally stopped printing color proofs for every project"'
+      },
+      
+      experienceLadder: {
+        product: '4K monitor with 99% sRGB color gamut and factory calibration',
+        function: 'Displays accurate colors and sharp details for professional creative work',
+        experience: 'The relief of trusting your screen—no more color anxiety',
+        memory: 'The monitor that "paid for itself" by eliminating client revisions',
+        emotionalResonance: 'Professional pride in delivering perfect color every time',
+        realWorldExample: 'The "aha moment" when designers realize they stopped double-checking colors obsessively'
+      },
+      
+      riskMitigationLadder: {
+        risk: 'Color-inaccurate monitor ruins professional work and client relationships',
+        mitigation: 'Factory calibrated with certificate; 99% sRGB verified; 3-year warranty covering calibration drift',
+        confidence: '60-day trial—if colors don\'t match your output, full refund',
+        action: 'Test it on your actual projects risk-free—see the accuracy yourself',
+        trustSignal: 'Used by 100,000+ creative professionals; recommended by CreativeBloq; only 2% return rate',
+        realWorldExample: 'Photographers report "zero color surprises" after switching from consumer monitors'
+      },
+      
+      faaiLadder: {
+        feature: '4K resolution (3840×2160) with 99% sRGB and factory calibration certificate',
+        advantage: 'See every detail with professional color accuracy at accessible price',
+        application: 'Edit photos, design graphics, grade video with confidence in color and detail',
+        businessImpact: 'Reduce client revisions; eliminate color-proof printing; work faster with confidence',
+        proof: '97% report improved work quality; 93% report less physical strain; 3-year warranty included',
+        realWorldExample: 'Freelancers report saving 5+ hours/week on revisions and color-checking'
+      },
+      
+      priceValueROILadder: {
+        price: '$449',
+        trueCost: 'Less than $0.25/day over 5-year lifespan with 3-year warranty',
+        value: 'Professional color accuracy typically found in $800+ monitors',
+        roi: 'Saves 5 hours/week on revisions ($250/week for $50/hr creative); prevents client dissatisfaction',
+        financialProof: '45% less than comparable pro monitors; pays for itself in 2 weeks from time saved',
+        realWorldExample: 'Designers calculate break-even after just 2 prevented client revision cycles'
       },
       
       confidenceScore: 89,
