@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -221,14 +221,16 @@ const CleaningValidation = () => {
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
   const [currentGroup, setCurrentGroup] = useState(0);
 
-  // Group steps by their group property for concurrent execution
-  const groupedSteps = cleaningSteps.reduce((acc, step, index) => {
-    if (!acc[step.group]) acc[step.group] = [];
-    acc[step.group].push({ ...step, index });
-    return acc;
-  }, {} as Record<number, Array<typeof cleaningSteps[0] & { index: number }>>);
+  // Group steps by their group property for concurrent execution - memoized to prevent infinite loops
+  const groupedSteps = useMemo(() => {
+    return cleaningSteps.reduce((acc, step, index) => {
+      if (!acc[step.group]) acc[step.group] = [];
+      acc[step.group].push({ ...step, index });
+      return acc;
+    }, {} as Record<number, Array<typeof cleaningSteps[0] & { index: number }>>);
+  }, []);
 
-  const totalGroups = Object.keys(groupedSteps).length;
+  const totalGroups = useMemo(() => Object.keys(groupedSteps).length, [groupedSteps]);
 
   useEffect(() => {
     if (currentGroup < totalGroups) {
@@ -237,7 +239,8 @@ const CleaningValidation = () => {
       const progressInterval = 50;
       
       // Start all steps in the current group concurrently with varied speeds
-      const timers: NodeJS.Timeout[] = [];
+      const intervals: NodeJS.Timeout[] = [];
+      const timeouts: NodeJS.Timeout[] = [];
       
       currentGroupSteps.forEach(step => {
         // Apply speed variation to create independent computing feel
@@ -255,14 +258,14 @@ const CleaningValidation = () => {
             return { ...prev, [step.index]: Math.min(currentProgress + progressIncrement, 100) };
           });
         }, progressInterval);
-        timers.push(progressTimer);
+        intervals.push(progressTimer);
         
         // Complete this individual step at its own varied pace
         const stepTimer = setTimeout(() => {
           setCompletedSteps(prev => [...prev, step.index]);
           setStepProgress(prev => ({ ...prev, [step.index]: 100 }));
         }, stepTime);
-        timers.push(stepTimer);
+        timeouts.push(stepTimer);
       });
 
       // Calculate remaining time
@@ -285,22 +288,23 @@ const CleaningValidation = () => {
         }, 0);
         setEstimatedTimeRemaining(Math.ceil(totalRemaining));
       }, 500);
-      timers.push(timeTimer);
+      intervals.push(timeTimer);
 
       // Move to next group when the longest step in current group completes
       const groupTimer = setTimeout(() => {
         setCurrentGroup(prev => prev + 1);
       }, groupTime);
-      timers.push(groupTimer);
+      timeouts.push(groupTimer);
 
       return () => {
-        timers.forEach(timer => clearTimeout(timer));
+        intervals.forEach(interval => clearInterval(interval));
+        timeouts.forEach(timeout => clearTimeout(timeout));
       };
     } else {
       setProcessingComplete(true);
       setEstimatedTimeRemaining(0);
     }
-  }, [currentGroup, stepProgress, groupedSteps, totalGroups]);
+  }, [currentGroup, groupedSteps, totalGroups]);
 
   const handleItemCheck = (itemId: number, checked: boolean) => {
     if (checked) {
