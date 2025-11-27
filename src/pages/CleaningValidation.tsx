@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -232,73 +232,115 @@ const CleaningValidation = () => {
 
   const totalGroups = useMemo(() => Object.keys(groupedSteps).length, [groupedSteps]);
 
+  // Use refs for timer management to prevent closure issues
+  const intervalsRef = useRef<NodeJS.Timeout[]>([]);
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+
   useEffect(() => {
+    // Clear any existing timers on re-run
+    intervalsRef.current.forEach(interval => clearInterval(interval));
+    timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    intervalsRef.current = [];
+    timeoutsRef.current = [];
+
     if (currentGroup < totalGroups) {
       const currentGroupSteps = groupedSteps[currentGroup];
       const groupTime = Math.max(...currentGroupSteps.map(s => s.estimatedTime * (s.speedVariation || 1))) * 1000;
       const progressInterval = 50;
-      
-      // Start all steps in the current group concurrently with varied speeds
-      const intervals: NodeJS.Timeout[] = [];
-      const timeouts: NodeJS.Timeout[] = [];
       
       currentGroupSteps.forEach(step => {
         // Apply speed variation to create independent computing feel
         const stepTime = step.estimatedTime * (step.speedVariation || 1) * 1000;
         const progressIncrement = 100 / (stepTime / progressInterval);
         
-        // Update progress for this step
+        // Update progress for this step with completion fallback
         const progressTimer = setInterval(() => {
           setStepProgress(prev => {
             const currentProgress = prev[step.index] || 0;
-            if (currentProgress >= 100) {
+            const newProgress = Math.min(currentProgress + progressIncrement, 100);
+            
+            // Fallback: mark as complete when progress reaches 100%
+            if (newProgress >= 100) {
               clearInterval(progressTimer);
-              return prev;
+              setCompletedSteps(prevCompleted => {
+                if (!prevCompleted.includes(step.index)) {
+                  return [...prevCompleted, step.index];
+                }
+                return prevCompleted;
+              });
             }
-            return { ...prev, [step.index]: Math.min(currentProgress + progressIncrement, 100) };
+            
+            return { ...prev, [step.index]: newProgress };
           });
         }, progressInterval);
-        intervals.push(progressTimer);
+        intervalsRef.current.push(progressTimer);
         
         // Complete this individual step at its own varied pace
         const stepTimer = setTimeout(() => {
-          setCompletedSteps(prev => [...prev, step.index]);
+          setCompletedSteps(prev => {
+            if (!prev.includes(step.index)) {
+              return [...prev, step.index];
+            }
+            return prev;
+          });
           setStepProgress(prev => ({ ...prev, [step.index]: 100 }));
         }, stepTime);
-        timeouts.push(stepTimer);
+        timeoutsRef.current.push(stepTimer);
       });
 
-      // Calculate remaining time
+      // Calculate remaining time using ref to avoid stale closure
       const timeTimer = setInterval(() => {
-        const remainingGroups = Object.keys(groupedSteps)
-          .map(Number)
-          .filter(g => g >= currentGroup);
-        
-        const totalRemaining = remainingGroups.reduce((sum, groupNum) => {
-          const groupSteps = groupedSteps[groupNum];
-          const maxTime = Math.max(...groupSteps.map(s => s.estimatedTime * (s.speedVariation || 1)));
+        setStepProgress(currentStepProgress => {
+          const remainingGroups = Object.keys(groupedSteps)
+            .map(Number)
+            .filter(g => g >= currentGroup);
           
-          if (groupNum === currentGroup) {
-            const currentProgress = Math.max(
-              ...groupSteps.map(s => stepProgress[s.index] || 0)
-            );
-            return sum + (maxTime * (100 - currentProgress) / 100);
-          }
-          return sum + maxTime;
-        }, 0);
-        setEstimatedTimeRemaining(Math.ceil(totalRemaining));
+          const totalRemaining = remainingGroups.reduce((sum, groupNum) => {
+            const groupSteps = groupedSteps[groupNum];
+            const maxTime = Math.max(...groupSteps.map(s => s.estimatedTime * (s.speedVariation || 1)));
+            
+            if (groupNum === currentGroup) {
+              const currentProgress = Math.max(
+                ...groupSteps.map(s => currentStepProgress[s.index] || 0)
+              );
+              return sum + (maxTime * (100 - currentProgress) / 100);
+            }
+            return sum + maxTime;
+          }, 0);
+          setEstimatedTimeRemaining(Math.ceil(totalRemaining));
+          return currentStepProgress; // Return unchanged
+        });
       }, 500);
-      intervals.push(timeTimer);
+      intervalsRef.current.push(timeTimer);
 
-      // Move to next group when the longest step in current group completes
+      // Move to next group with buffer and safety check
       const groupTimer = setTimeout(() => {
+        // Force-complete any steps in current group that are still pending
+        setCompletedSteps(prev => {
+          const allGroupIndices = currentGroupSteps.map(s => s.index);
+          const missing = allGroupIndices.filter(i => !prev.includes(i));
+          if (missing.length > 0) {
+            return [...prev, ...missing];
+          }
+          return prev;
+        });
+        // Set all group progress to 100%
+        setStepProgress(prev => {
+          const updates: Record<number, number> = {};
+          currentGroupSteps.forEach(s => {
+            updates[s.index] = 100;
+          });
+          return { ...prev, ...updates };
+        });
         setCurrentGroup(prev => prev + 1);
-      }, groupTime);
-      timeouts.push(groupTimer);
+      }, groupTime + 150); // Add 150ms buffer
+      timeoutsRef.current.push(groupTimer);
 
       return () => {
-        intervals.forEach(interval => clearInterval(interval));
-        timeouts.forEach(timeout => clearTimeout(timeout));
+        intervalsRef.current.forEach(interval => clearInterval(interval));
+        timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+        intervalsRef.current = [];
+        timeoutsRef.current = [];
       };
     } else {
       setProcessingComplete(true);
