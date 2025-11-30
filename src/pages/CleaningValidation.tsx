@@ -29,6 +29,15 @@ const CleaningValidation = () => {
   // Group tasks into concurrent batches for parallel processing
   const cleaningSteps = [
     {
+      title: "Extract Product Features",
+      description: "Identify key features, capabilities, and selling points",
+      issues: "47 features extracted across 3 products, 12 technical specs parsed, 8 key capabilities identified",
+      estimatedTime: 1.8,
+      icon: "⭐",
+      group: 0,
+      speedVariation: 1.1
+    },
+    {
       title: "Remove Duplicates",
       description: "Deduplication and merging",
       issues: "12 duplicate SKUs merged, 3 near-duplicates flagged",
@@ -148,6 +157,12 @@ const CleaningValidation = () => {
   ];
 
   const correctedItems = [
+    // Feature Extraction
+    { id: 49, type: 'Feature Detection', step: 'Extract Product Features', item: 'Sony WH-1000XM5', change: 'Extracted features: Industry-leading noise canceling, 30-hour battery, Multipoint connection, Speak-to-Chat', status: 'extracted' },
+    { id: 50, type: 'Capability Parse', step: 'Extract Product Features', item: 'iPhone 15 Pro Max', change: 'Identified: A17 Pro chip, 5x optical zoom, Titanium design, USB-C with USB 3, Action button', status: 'parsed' },
+    { id: 51, type: 'Spec Extraction', step: 'Extract Product Features', item: 'MacBook Pro 16"', change: 'Technical specs: M3 Max chip, 128GB unified memory, 22-hour battery, Liquid Retina XDR display', status: 'extracted' },
+    { id: 52, type: 'Feature Tagging', step: 'Extract Product Features', item: 'All Products', change: 'Features categorized: Performance (18), Convenience (12), Design (9), Connectivity (8)', status: 'tagged' },
+    
     // Duplicate Removal
     { id: 6, type: 'Duplicate Merge', step: 'Remove Duplicates', item: 'iPhone 15 Pro Max 256GB', change: 'SKU-APL-15PM-256-BLK + SKU-APL15PROMAX256 + iPhone15ProMax_256 → SKU-APL-15PM-256', status: 'merged' },
     { id: 7, type: 'Duplicate Merge', step: 'Remove Duplicates', item: 'Sony WH1000XM5', change: 'Found 2 identical entries with different SKUs, merged inventory counts', status: 'merged' },
