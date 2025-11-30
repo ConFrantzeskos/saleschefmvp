@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
-import { ArrowLeft, RefreshCw, Send, Download, Search, MessageSquare, Users, TrendingUp, Hash, Brain, Target, BarChart3, Globe2, MessageCircle, Video, FileText, Leaf, Link2, DollarSign, AlertCircle, HelpCircle, Store, Image, Sparkles } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Send, Download, Search, MessageSquare, Users, TrendingUp, Hash, Brain, Target, BarChart3, Globe2, MessageCircle, Video, FileText, Leaf, Link2, DollarSign, AlertCircle, HelpCircle, Store, Image, Sparkles, Star, Lightbulb, CheckCircle2 } from 'lucide-react';
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
 import ExecutiveBriefing from '@/components/ExecutiveBriefing';
 import CollapsibleIntelligenceSection from '@/components/CollapsibleIntelligenceSection';
+import AgentTag from '@/components/AgentTag';
 
 const EnrichmentAssetReview = () => {
   const navigate = useNavigate();
@@ -28,6 +31,36 @@ const EnrichmentAssetReview = () => {
     pricing: false,
     cultural: false
   });
+
+  // Provided features from cleaning/extraction phase
+  const providedFeatures = [
+    { id: 'pf-1', name: '24-hour battery life', source: 'Product Sheet' },
+    { id: 'pf-2', name: 'Bluetooth 5.0 connectivity', source: 'Product Sheet' },
+    { id: 'pf-3', name: 'Foldable design', source: 'Product Sheet' },
+    { id: 'pf-4', name: 'Quick charge capability (15min = 3hrs)', source: 'Product Sheet' },
+    { id: 'pf-5', name: 'Built-in microphone', source: 'Product Sheet' },
+    { id: 'pf-6', name: 'Over-ear design', source: 'Product Sheet' },
+  ];
+
+  // Inferred features from enrichment intelligence
+  const [inferredFeatures, setInferredFeatures] = useState([
+    { id: 'if-1', name: 'Excellent for long-haul flights', selected: true, confidence: 92, source: 'Customer Reviews' },
+    { id: 'if-2', name: 'Sweat-resistant for gym use', selected: true, confidence: 67, source: 'Forum Discussions' },
+    { id: 'if-3', name: 'Gaming headset quality microphone', selected: true, confidence: 73, source: 'YouTube Reviews' },
+    { id: 'if-4', name: 'Professional video call quality', selected: true, confidence: 85, source: 'Customer Reviews' },
+    { id: 'if-5', name: 'Audiophile-grade sound quality', selected: false, confidence: 45, source: 'Expert Reviews' },
+    { id: 'if-6', name: 'Studio monitoring capabilities', selected: false, confidence: 38, source: 'Forum Discussions' },
+    { id: 'if-7', name: 'Durable for outdoor activities', selected: true, confidence: 78, source: 'Customer Verbatims' },
+    { id: 'if-8', name: 'Ideal for meditation and relaxation', selected: true, confidence: 81, source: 'Social Media' },
+  ]);
+
+  const handleToggleInferredFeature = (featureId: string) => {
+    setInferredFeatures(prev =>
+      prev.map(feature =>
+        feature.id === featureId ? { ...feature, selected: !feature.selected } : feature
+      )
+    );
+  };
 
   // Mock data for the enrichment asset
   const asset: EnrichmentAsset = {
@@ -165,6 +198,122 @@ const EnrichmentAssetReview = () => {
         <div className="space-y-6">
           {/* Executive Briefing - Always visible */}
           <ExecutiveBriefing productName={asset.name} />
+
+          {/* Key Features Section */}
+          <Card className="border-l-4 border-l-primary">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl flex items-center space-x-2">
+                    <Star className="w-5 h-5 text-primary" />
+                    <span>Key Features</span>
+                  </CardTitle>
+                  <CardDescription className="mt-1">
+                    Features extracted from product data and inferred from market intelligence
+                  </CardDescription>
+                </div>
+                <AgentTag agents={['Extract', 'Discover', 'Distil']} />
+              </div>
+            </CardHeader>
+            
+            <CardContent className="space-y-6">
+              {/* Provided Features Section */}
+              <div>
+                <div className="flex items-center space-x-2 mb-4">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  <h3 className="font-semibold text-green-600">Provided Features</h3>
+                  <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                    {providedFeatures.length} features
+                  </Badge>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {providedFeatures.map((feature) => (
+                    <div
+                      key={feature.id}
+                      className="flex items-center space-x-3 p-3 rounded-lg border bg-green-50/50 border-green-200"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-foreground">{feature.name}</p>
+                        <p className="text-xs text-muted-foreground">{feature.source}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Inferred Features Section */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-2">
+                    <Lightbulb className="w-4 h-4 text-amber-600" />
+                    <h3 className="font-semibold text-amber-600">Inferred Features</h3>
+                    <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-200">
+                      {inferredFeatures.filter(f => f.selected).length} of {inferredFeatures.length} selected
+                    </Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Deselect any inaccurate inferences
+                  </p>
+                </div>
+                
+                <div className="space-y-2">
+                  {inferredFeatures.map((feature) => (
+                    <div
+                      key={feature.id}
+                      className={`flex items-start space-x-3 p-3 rounded-lg border transition-colors ${
+                        feature.selected
+                          ? 'bg-amber-50/50 border-amber-200'
+                          : 'bg-muted/30 border-border opacity-60'
+                      }`}
+                    >
+                      <Checkbox
+                        id={feature.id}
+                        checked={feature.selected}
+                        onCheckedChange={() => handleToggleInferredFeature(feature.id)}
+                        className="mt-0.5"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <label
+                          htmlFor={feature.id}
+                          className="text-sm font-medium text-foreground cursor-pointer block"
+                        >
+                          {feature.name}
+                        </label>
+                        <div className="flex items-center gap-2 mt-1">
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${
+                              feature.confidence >= 80
+                                ? 'bg-green-50 text-green-700 border-green-200'
+                                : feature.confidence >= 60
+                                ? 'bg-blue-50 text-blue-700 border-blue-200'
+                                : 'bg-amber-50 text-amber-700 border-amber-200'
+                            }`}
+                          >
+                            {feature.confidence}% confidence
+                          </Badge>
+                          <span className="text-xs text-muted-foreground">
+                            from {feature.source}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-900/40 flex items-start gap-2">
+                  <AlertCircle className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-blue-900 dark:text-blue-100">
+                    <strong>Note:</strong> Inferred features are discovered from customer reviews, forum discussions, 
+                    expert reviews, and social media mentions. They may not be officially documented but represent 
+                    real user experiences and perceptions. Review and deselect any that don't accurately represent 
+                    the product before proceeding to content generation.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Market & Search Intelligence */}
           <CollapsibleIntelligenceSection
