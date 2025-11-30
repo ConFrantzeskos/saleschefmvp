@@ -344,17 +344,21 @@ const StrategicBriefDetail = () => {
         </TabsContent>
 
         <TabsContent value="guidance">
-          {enrichmentData && asset.featureAnalysis && (
-            <ContentGuidanceTab 
-              featureGuidance={generateFeatureGuidance(
-                asset.featureAnalysis.map(f => ({ 
-                  feature: f.feature, 
-                  confidence: f.confidence 
-                })),
-                enrichmentData
-              )}
-            />
-          )}
+          {enrichmentData && asset.featureAnalysis && (() => {
+            const guidance = generateFeatureGuidance(
+              asset.featureAnalysis.map(f => ({ 
+                feature: f.feature, 
+                confidence: f.confidence 
+              })),
+              enrichmentData
+            );
+            return (
+              <ContentGuidanceTab 
+                featureGuidance={guidance.featureGuidance}
+                contentOpportunities={guidance.contentOpportunities}
+              />
+            );
+          })()}
         </TabsContent>
 
         </Tabs>
