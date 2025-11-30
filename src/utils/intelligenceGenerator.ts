@@ -1,5 +1,202 @@
 import { Proposition } from '@/types/proposition';
 import { EnrichmentAsset } from '@/types/enrichmentAsset';
+import { ContentOpportunity } from '@/types/contentOpportunity';
+
+/**
+ * Extracts high-volume content opportunities from enrichment data
+ */
+export function extractContentOpportunities(enrichmentData: EnrichmentAsset): ContentOpportunity[] {
+  const opportunities: ContentOpportunity[] = [];
+  let idCounter = 1;
+
+  // Parse searchOpportunities field (primary source with content angles)
+  if (enrichmentData.searchOpportunities) {
+    const lines = enrichmentData.searchOpportunities.split('\n').filter(l => l.trim());
+    
+    for (const line of lines) {
+      // Pattern: 'query' (X,XXX searches/month) → Content angle: description
+      const match = line.match(/'([^']+)'\s*\(([0-9,]+)\s*searches?\/month\)[^→]*→\s*Content angle:\s*(.+)/i);
+      if (match) {
+        const [, query, volumeStr, contentAngle] = match;
+        const volume = parseInt(volumeStr.replace(/,/g, ''), 10);
+        
+        opportunities.push({
+          id: `opp-${idCounter++}`,
+          title: query,
+          useCase: contentAngle.trim(),
+          searchVolume: volume,
+          competition: inferCompetition(volume),
+          intent: inferIntent(query),
+          dataSource: 'searchOpportunities',
+          rawData: line,
+          relevantFeatures: [],
+          matchScore: 0,
+          recommendedFormat: inferContentFormat(query),
+          estimatedTraffic: Math.floor(volume * 0.15),
+          estimatedConversions: inferConversionPotential(volume),
+          priority: volume > 5000 ? 'high' : volume > 2000 ? 'medium' : 'low'
+        });
+      }
+    }
+  }
+
+  // Parse relatedSearchTerms field
+  if (enrichmentData.relatedSearchTerms) {
+    const lines = enrichmentData.relatedSearchTerms.split('\n').filter(l => l.trim());
+    
+    for (const line of lines) {
+      // Pattern: "query" (X,XXX/month) or (XK searches/month)
+      const match = line.match(/"([^"]+)"\s*\(([0-9,.]+[KkMm]?)\s*(?:searches)?\/month\)/i);
+      if (match) {
+        const [, query, volumeStr] = match;
+        const volume = parseVolumeString(volumeStr);
+        
+        if (volume > 1000) { // Only include if meaningful volume
+          opportunities.push({
+            id: `opp-${idCounter++}`,
+            title: query,
+            useCase: `Related search opportunity: ${query}`,
+            searchVolume: volume,
+            competition: inferCompetition(volume),
+            intent: inferIntent(query),
+            dataSource: 'relatedSearchTerms',
+            rawData: line,
+            relevantFeatures: [],
+            matchScore: 0,
+            recommendedFormat: inferContentFormat(query),
+            estimatedTraffic: Math.floor(volume * 0.12),
+            estimatedConversions: inferConversionPotential(volume),
+            priority: volume > 5000 ? 'high' : volume > 2000 ? 'medium' : 'low'
+          });
+        }
+      }
+    }
+  }
+
+  // Parse categoryEntryPoints field (buying triggers as FAQ opportunities)
+  if (enrichmentData.categoryEntryPoints) {
+    const lines = enrichmentData.categoryEntryPoints.split('\n').filter(l => l.trim());
+    
+    for (const line of lines) {
+      const match = line.match(/"([^"]+)"\s*\(([0-9,.]+[KkMm]?)\s*(?:searches)?\/month\)/i);
+      if (match) {
+        const [, query, volumeStr] = match;
+        const volume = parseVolumeString(volumeStr);
+        
+        if (volume > 800) {
+          opportunities.push({
+            id: `opp-${idCounter++}`,
+            title: query,
+            useCase: `Category entry point: ${query}`,
+            searchVolume: volume,
+            competition: inferCompetition(volume),
+            intent: 'commercial',
+            dataSource: 'categoryEntryPoints',
+            rawData: line,
+            relevantFeatures: [],
+            matchScore: 0,
+            recommendedFormat: 'landing-page',
+            estimatedTraffic: Math.floor(volume * 0.18),
+            estimatedConversions: 'Medium-High',
+            priority: volume > 5000 ? 'high' : volume > 2000 ? 'medium' : 'low'
+          });
+        }
+      }
+    }
+  }
+
+  // Parse seoKeywordVolume field
+  if (enrichmentData.seoKeywordVolume) {
+    const lines = enrichmentData.seoKeywordVolume.split('\n').filter(l => l.trim());
+    
+    for (const line of lines) {
+      const match = line.match(/"([^"]+)"\s*[:-]\s*([0-9,.]+[KkMm]?)\s*(?:searches)?\/month/i);
+      if (match) {
+        const [, keyword, volumeStr] = match;
+        const volume = parseVolumeString(volumeStr);
+        
+        if (volume > 1500) {
+          opportunities.push({
+            id: `opp-${idCounter++}`,
+            title: keyword,
+            useCase: `SEO keyword opportunity: ${keyword}`,
+            searchVolume: volume,
+            competition: inferCompetition(volume),
+            intent: inferIntent(keyword),
+            dataSource: 'seoKeywordVolume',
+            rawData: line,
+            relevantFeatures: [],
+            matchScore: 0,
+            recommendedFormat: inferContentFormat(keyword),
+            estimatedTraffic: Math.floor(volume * 0.1),
+            estimatedConversions: inferConversionPotential(volume),
+            priority: volume > 5000 ? 'high' : volume > 2000 ? 'medium' : 'low'
+          });
+        }
+      }
+    }
+  }
+
+  // Deduplicate by title (case-insensitive) and keep highest volume
+  const deduped = opportunities.reduce((acc, opp) => {
+    const key = opp.title.toLowerCase();
+    if (!acc[key] || acc[key].searchVolume < opp.searchVolume) {
+      acc[key] = opp;
+    }
+    return acc;
+  }, {} as Record<string, ContentOpportunity>);
+
+  // Sort by search volume descending
+  return Object.values(deduped).sort((a, b) => b.searchVolume - a.searchVolume);
+}
+
+// Helper: Parse volume strings like "12,000", "8.2K", "1.5M"
+function parseVolumeString(str: string): number {
+  const cleaned = str.replace(/,/g, '').trim().toUpperCase();
+  if (cleaned.endsWith('K')) {
+    return parseFloat(cleaned.slice(0, -1)) * 1000;
+  }
+  if (cleaned.endsWith('M')) {
+    return parseFloat(cleaned.slice(0, -1)) * 1000000;
+  }
+  return parseInt(cleaned, 10) || 0;
+}
+
+// Helper: Infer competition level
+function inferCompetition(volume: number): 'low' | 'medium' | 'high' {
+  if (volume > 10000) return 'high';
+  if (volume > 3000) return 'medium';
+  return 'low';
+}
+
+// Helper: Infer search intent
+function inferIntent(query: string): 'informational' | 'commercial' | 'transactional' {
+  const lower = query.toLowerCase();
+  if (lower.includes('how to') || lower.includes('what is') || lower.includes('why')) {
+    return 'informational';
+  }
+  if (lower.includes('buy') || lower.includes('price') || lower.includes('order')) {
+    return 'transactional';
+  }
+  return 'commercial';
+}
+
+// Helper: Infer content format
+function inferContentFormat(query: string): 'landing-page' | 'blog-post' | 'comparison' | 'guide' {
+  const lower = query.toLowerCase();
+  if (lower.includes('how to') || lower.includes('guide')) return 'guide';
+  if (lower.includes('vs') || lower.includes('best')) return 'comparison';
+  if (lower.includes('what is') || lower.includes('why')) return 'blog-post';
+  return 'landing-page';
+}
+
+// Helper: Infer conversion potential
+function inferConversionPotential(volume: number): 'Low' | 'Medium' | 'Medium-High' | 'High' {
+  if (volume > 10000) return 'High';
+  if (volume > 5000) return 'Medium-High';
+  if (volume > 2000) return 'Medium';
+  return 'Low';
+}
 
 /**
  * Generates intelligence metadata for propositions based on enrichment data
@@ -298,28 +495,34 @@ export function generateFeatureGuidance(
   enrichmentData?: EnrichmentAsset
 ) {
   if (!enrichmentData) {
-    return features.map(({ feature, confidence }) => ({
-      feature,
-      confidence,
-      seoKeywords: [],
-      customerLanguage: [],
-      proofPoints: [],
-      competitiveClaims: [],
-      objections: [],
-      headlines: []
-    }));
+    return {
+      contentOpportunities: [],
+      featureGuidance: features.map(({ feature, confidence }) => ({
+        feature,
+        confidence,
+        seoKeywords: [],
+        customerLanguage: [],
+        proofPoints: [],
+        competitiveClaims: [],
+        objections: [],
+        headlines: []
+      }))
+    };
   }
 
-  return features.map(({ feature, confidence }) => ({
-    feature,
-    confidence,
-    seoKeywords: getSEOKeywordsWithMetrics(feature, enrichmentData),
-    customerLanguage: getCustomerLanguage(feature, enrichmentData),
-    proofPoints: generateProofPoints(feature.toLowerCase(), enrichmentData),
-    competitiveClaims: getCompetitiveClaims(feature, enrichmentData),
-    objections: getObjectionsWithAnswers(feature, enrichmentData),
-    headlines: generateHeadlines(feature, enrichmentData)
-  }));
+  return {
+    contentOpportunities: extractContentOpportunities(enrichmentData),
+    featureGuidance: features.map(({ feature, confidence }) => ({
+      feature,
+      confidence,
+      seoKeywords: getSEOKeywordsWithMetrics(feature, enrichmentData),
+      customerLanguage: getCustomerLanguage(feature, enrichmentData),
+      proofPoints: generateProofPoints(feature.toLowerCase(), enrichmentData),
+      competitiveClaims: getCompetitiveClaims(feature, enrichmentData),
+      objections: getObjectionsWithAnswers(feature, enrichmentData),
+      headlines: generateHeadlines(feature, enrichmentData)
+    }))
+  };
 }
 
 function getSEOKeywordsWithMetrics(feature: string, enrichmentData: EnrichmentAsset) {
