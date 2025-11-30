@@ -4,7 +4,7 @@ import ProgressIndicator from '@/components/ProgressIndicator';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, ArrowRight, Globe2, Shield, Video, FileText, Network, Leaf, Link2, Image, Store, Award, HelpCircle, DollarSign, MessageCircle, Target, ShoppingBag, AlertCircle, Sparkles } from 'lucide-react';
+import { Search, MessageSquare, Users, TrendingUp, Globe, Hash, Brain, ArrowRight, Globe2, Shield, Video, FileText, Network, Leaf, Link2, Image, Store, Award, HelpCircle, DollarSign, MessageCircle, Target, ShoppingBag, AlertCircle, Sparkles, Lightbulb } from 'lucide-react';
 
 const Enrichment = () => {
   const navigate = useNavigate();
@@ -121,6 +121,13 @@ const Enrichment = () => {
       description: "Tracking feature importance and product innovations",
       details: ["Feature popularity ranking", "Innovation trends", "Competitive feature gaps", "Future feature demand"],
       status: "Researching 230+ features..."
+    },
+    {
+      icon: Lightbulb,
+      title: "Inferred Features Discovery",
+      description: "Discovering undocumented features from user experiences",
+      details: ["Hidden capabilities from reviews", "Undocumented use cases from forums", "Comparative features missed in specs", "User-discovered features from Q&A", "Features mentioned by reviewers but not documented"],
+      status: "Discovering 23 inferred features..."
     },
     {
       icon: Network,

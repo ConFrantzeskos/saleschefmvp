@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressIndicator from '@/components/ProgressIndicator';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
-import { Check, AlertCircle, Info, Eye, ArrowRight, Clock } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Check, AlertCircle, Info, Eye, ArrowRight, Clock, Zap, Sparkles, Palette, Link2, Target, MessageSquare, FileText } from 'lucide-react';
 
 const CleaningValidation = () => {
   const navigate = useNavigate();
@@ -235,6 +236,18 @@ const CleaningValidation = () => {
 
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
   const [currentGroup, setCurrentGroup] = useState(0);
+
+  // Extracted Features Summary - feeds into Strategic Enhancement
+  const extractedFeaturesSummary = {
+    totalFeatures: 47,
+    categories: [
+      { name: 'Performance', count: 18, icon: Zap, examples: ['30-hour battery', 'M3 Max chip', 'A17 Pro chip'], color: 'text-orange-600 bg-orange-50' },
+      { name: 'Convenience', count: 12, icon: Sparkles, examples: ['Noise canceling', 'Speak-to-Chat', 'USB-C'], color: 'text-blue-600 bg-blue-50' },
+      { name: 'Design', count: 9, icon: Palette, examples: ['Titanium design', 'Liquid Retina XDR', 'Sapphire crystal'], color: 'text-purple-600 bg-purple-50' },
+      { name: 'Connectivity', count: 8, icon: Link2, examples: ['Multipoint connection', '5x optical zoom', 'Wi-Fi 6E'], color: 'text-green-600 bg-green-50' }
+    ],
+    feedsInto: ['Ladder of Benefits', 'Benefit Hierarchy', 'RTB Elements', 'Content Generation']
+  };
 
   // Group steps by their group property for concurrent execution - memoized to prevent infinite loops
   const groupedSteps = useMemo(() => {
@@ -495,6 +508,100 @@ const CleaningValidation = () => {
 
         {processingComplete && (
           <div className="mt-8 space-y-6">
+            {/* Extracted Features Summary Panel */}
+            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-3 bg-primary/10 rounded-lg">
+                      <Target className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl">Extracted Features Summary</CardTitle>
+                      <CardDescription className="text-base mt-1">
+                        {extractedFeaturesSummary.totalFeatures} features identified and categorized for strategic enhancement
+                      </CardDescription>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2 px-4 py-2 bg-primary/10 rounded-lg">
+                    <span className="text-2xl">⭐</span>
+                    <div className="text-right">
+                      <div className="text-xl font-bold text-primary">{extractedFeaturesSummary.totalFeatures}</div>
+                      <div className="text-xs text-muted-foreground">Features</div>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {/* Visual Pipeline Flow Indicator */}
+                <div className="mb-6 p-4 bg-muted/50 rounded-lg border border-border/50">
+                  <div className="flex items-center justify-center space-x-3 flex-wrap gap-2">
+                    <Badge variant="secondary" className="text-sm px-3 py-1">
+                      ⭐ {extractedFeaturesSummary.totalFeatures} Features Extracted
+                    </Badge>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                    <Badge variant="default" className="text-sm px-3 py-1">
+                      🎯 Strategic Enhancement
+                    </Badge>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                    <Badge variant="secondary" className="text-sm px-3 py-1">
+                      📝 Content Generation
+                    </Badge>
+                  </div>
+                  <div className="mt-3 text-center text-sm text-muted-foreground">
+                    Features feed into: {extractedFeaturesSummary.feedsInto.join(' • ')}
+                  </div>
+                </div>
+
+                {/* Category Breakdown */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {extractedFeaturesSummary.categories.map((category, index) => {
+                    const IconComponent = category.icon;
+                    return (
+                      <Card key={index} className="border-border/50">
+                        <CardContent className="p-4">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="flex items-center space-x-3">
+                              <div className={`p-2 rounded-lg ${category.color}`}>
+                                <IconComponent className="w-5 h-5" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{category.name}</h4>
+                                <p className="text-sm text-muted-foreground">{category.count} features</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-xs text-muted-foreground mb-1">Examples:</p>
+                            {category.examples.map((example, exIdx) => (
+                              <div key={exIdx} className="flex items-center space-x-2 text-sm">
+                                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                <span>{example}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+
+                {/* Strategic Enhancement Callout */}
+                <div className="mt-6 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                  <div className="flex items-start space-x-3">
+                    <MessageSquare className="w-5 h-5 text-primary mt-0.5" />
+                    <div>
+                      <h4 className="font-semibold text-sm mb-1">Ready for Strategic Enhancement</h4>
+                      <p className="text-sm text-muted-foreground">
+                        These features will be transformed into customer benefits using the Ladder of Benefits framework, 
+                        creating compelling messaging hierarchies and RTB (Reasons to Believe) elements for content generation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
