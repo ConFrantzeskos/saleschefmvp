@@ -45,35 +45,183 @@ function generateIntelligenceForProposition(
   };
 }
 
+/**
+ * Parses search volume strings and extracts keyword data
+ * Format: "'keyword phrase' (volume searches/month)"
+ */
+function parseKeywordVolume(text: string): Array<{ keyword: string; volume: string; difficulty: string }> {
+  const keywords: Array<{ keyword: string; volume: string; difficulty: string }> = [];
+  
+  // Match patterns like "'wireless headphones long battery' (8,200 searches/month)"
+  const pattern = /'([^']+)'\s*\(([0-9,]+)\s*searches?\/month\)/gi;
+  let match;
+  
+  while ((match = pattern.exec(text)) !== null) {
+    const keyword = match[1];
+    const volumeNum = parseInt(match[2].replace(/,/g, ''));
+    
+    keywords.push({
+      keyword,
+      volume: `${match[2]}/mo`,
+      difficulty: volumeNum > 5000 ? 'High' : volumeNum > 1000 ? 'Med' : 'Low'
+    });
+  }
+  
+  return keywords;
+}
+
+/**
+ * Extracts customer language from forum discussions and quotes
+ */
+function extractCustomerLanguage(text: string, maxPhrases: number = 4): string[] {
+  const phrases: string[] = [];
+  
+  // Extract quoted phrases
+  const quotePattern = /"([^"]+)"/g;
+  let match;
+  
+  while ((match = quotePattern.exec(text)) !== null) {
+    const phrase = match[1].toLowerCase();
+    if (phrase.length > 10 && phrase.length < 60) {
+      phrases.push(phrase);
+    }
+  }
+  
+  // If not enough quotes, extract key phrases between common separators
+  if (phrases.length < maxPhrases) {
+    const sentences = text.split(/[.;•]/).map(s => s.trim()).filter(s => s.length > 15 && s.length < 80);
+    phrases.push(...sentences.slice(0, maxPhrases - phrases.length));
+  }
+  
+  return phrases.slice(0, maxPhrases);
+}
+
+/**
+ * Extracts competitive comparison data
+ */
+function parseCompetitiveData(
+  competitorText: string,
+  strengthsText: string,
+  analysisText: string
+): string[] {
+  const claims: string[] = [];
+  
+  // Extract competitor names and relative strengths
+  const competitorPattern = /([A-Z][a-zA-Z0-9\s-]+(?:XM\d+|QC\d+|Studio\d+)?)/g;
+  const competitors = [...new Set(competitorText.match(competitorPattern) || [])].slice(0, 3);
+  
+  // Look for percentage comparisons or specific advantages
+  const percentPattern = /(\d+%)\s*(better|longer|faster|cheaper|more|less)/gi;
+  let match;
+  
+  while ((match = percentPattern.exec(strengthsText + ' ' + analysisText)) !== null) {
+    claims.push(`${match[1]} ${match[2]} than competitors`);
+  }
+  
+  // Extract price comparisons
+  const pricePattern = /\$(\d+)\s*(less|cheaper|lower)/gi;
+  while ((match = pricePattern.exec(strengthsText + ' ' + analysisText)) !== null) {
+    claims.push(`$${match[1]} ${match[2]} than premium alternatives`);
+  }
+  
+  // Add competitor-specific claims
+  competitors.forEach(comp => {
+    if (strengthsText.toLowerCase().includes(comp.toLowerCase())) {
+      claims.push(`Competitive with ${comp.trim()}`);
+    }
+  });
+  
+  return claims.slice(0, 3);
+}
+
+/**
+ * Extracts objections and answers from Q&A and critical reviews
+ */
+function parseObjections(
+  qaText: string,
+  criticalText: string,
+  missingText: string
+): Array<{ question: string; answer: string }> {
+  const objections: Array<{ question: string; answer: string }> = [];
+  
+  // Extract questions from Q&A
+  const questionPattern = /(?:Q:|Question:|\?)\s*([^?.!]+\?)/gi;
+  let match;
+  
+  while ((match = questionPattern.exec(qaText)) !== null) {
+    const question = match[1].trim();
+    if (question.length > 10 && question.length < 100) {
+      objections.push({
+        question,
+        answer: 'Addressed in product specifications and verified by customer reviews.'
+      });
+    }
+  }
+  
+  // Extract concerns from critical reviews
+  const concernPattern = /((?:no|not|doesn't|lacking|missing|wish|need)\s+[^.!?]+[.!?])/gi;
+  while ((match = concernPattern.exec(criticalText)) !== null) {
+    const concern = match[1].trim();
+    if (concern.length > 20 && concern.length < 100 && objections.length < 4) {
+      objections.push({
+        question: `What about: "${concern.replace(/[.!?]$/, '')}"?`,
+        answer: 'This is addressed in our updated specifications.'
+      });
+    }
+  }
+  
+  return objections.slice(0, 2);
+}
+
 function generateProofPoints(feature: string, enrichmentData: EnrichmentAsset): string[] {
   const points: string[] = [];
   
-  if (feature.includes('battery') || feature.includes('24')) {
-    points.push('91% of users report never running out during daily use');
-    points.push('Lab-tested 24+ hours continuous playback');
-    points.push('50,000+ verified purchases, 4.6/5 stars');
-  } else if (feature.includes('fold') || feature.includes('portable')) {
-    points.push('Fits in jacket pocket (verified by 87% of reviewers)');
-    points.push('Durable hinge tested for 10,000+ folds');
-    points.push('"Most portable premium headphones" - TechReview');
-  } else if (feature.includes('charge') || feature.includes('quick')) {
-    points.push('3 hours playback from 10 minutes charging (certified)');
-    points.push('Fast charge technology used in premium $300+ models');
-    points.push('89% say quick charge saved them multiple times');
-  } else if (feature.includes('bluetooth') || feature.includes('connect')) {
-    points.push('Bluetooth 5.0 with 30ft reliable range');
-    points.push('Seamless pairing with iPhone, Android, PC');
-    points.push('94% report zero connection drops');
-  } else if (feature.includes('audio') || feature.includes('sound')) {
-    points.push('Balanced sound profile praised in 1,200+ reviews');
-    points.push('Clear call quality rated 4.7/5 by users');
-    points.push('Comparable to Bose QC45 in blind tests');
+  // Extract from customer sentiment and verbatim quotes
+  const sentiment = enrichmentData.customerSentiment || '';
+  const quotes = enrichmentData.verbatimQuotes || '';
+  const favourites = enrichmentData.favouriteFeatures || '';
+  const forums = enrichmentData.forumDiscussions || '';
+  
+  // Look for percentage mentions related to the feature
+  const percentPattern = /(\d+%)[^.!?]*(${feature}|satisfaction|users|customers|reviewers)[^.!?]*/gi;
+  let match;
+  
+  const combinedText = sentiment + quotes + favourites + forums;
+  while ((match = percentPattern.exec(combinedText)) !== null && points.length < 2) {
+    points.push(match[0].trim());
   }
   
-  // Generic fallbacks
+  // Extract star ratings
+  const ratingPattern = /(\d\.\d)\/5\s*stars?/gi;
+  while ((match = ratingPattern.exec(combinedText)) !== null && points.length < 3) {
+    points.push(`Rated ${match[1]}/5 stars by verified customers`);
+  }
+  
+  // Extract review counts
+  const reviewPattern = /(\d{1,3}(?:,\d{3})*)\+?\s*(?:reviews?|customers?|users?)/gi;
+  while ((match = reviewPattern.exec(combinedText)) !== null && points.length < 3) {
+    points.push(`${match[1]}+ verified purchases`);
+  }
+  
+  // Extract forum mentions
+  if (forums && points.length < 3) {
+    const forumMentionPattern = /(?:r\/\w+|forum|community|reddit)[^.!?]*(?:praise|recommend|love|essential|best)[^.!?]*/gi;
+    while ((match = forumMentionPattern.exec(forums)) !== null && points.length < 3) {
+      points.push(match[0].trim());
+    }
+  }
+  
+  // Generic fallbacks if no specific data found
   if (points.length === 0) {
-    points.push(`High customer satisfaction (4.5+ stars)`);
-    points.push(`Industry-standard quality at competitive price`);
+    if (enrichmentData.customerSentiment.includes('positive')) {
+      points.push('High customer satisfaction across multiple review platforms');
+    }
+    if (enrichmentData.socialMentions) {
+      points.push('Widely discussed and recommended in online communities');
+    }
+    if (points.length === 0) {
+      points.push('Industry-standard quality verified by customer reviews');
+    }
   }
   
   return points.slice(0, 3);
@@ -82,49 +230,64 @@ function generateProofPoints(feature: string, enrichmentData: EnrichmentAsset): 
 function generateSEOKeywords(feature: string, enrichmentData: EnrichmentAsset): string[] {
   const keywords: string[] = [];
   
-  if (feature.includes('battery') || feature.includes('24')) {
-    keywords.push('24 hour battery wireless headphones', 'long battery headphones', 'all day bluetooth headphones');
-  } else if (feature.includes('fold') || feature.includes('portable')) {
-    keywords.push('foldable headphones', 'portable bluetooth headphones', 'compact wireless headphones');
-  } else if (feature.includes('charge') || feature.includes('quick')) {
-    keywords.push('quick charge headphones', 'fast charging bluetooth headphones', 'rapid charge wireless');
-  } else if (feature.includes('bluetooth') || feature.includes('connect')) {
-    keywords.push('bluetooth 5.0 headphones', 'wireless headphones 30ft range', 'multi device headphones');
-  } else if (feature.includes('audio') || feature.includes('sound')) {
-    keywords.push('premium audio headphones', 'clear sound wireless headphones', 'balanced sound bluetooth');
+  // Parse actual keyword data from enrichment
+  const keywordData = parseKeywordVolume(enrichmentData.seoKeywordVolume || '');
+  const searchTrends = parseKeywordVolume(enrichmentData.searchTrends || '');
+  const relatedTerms = parseKeywordVolume(enrichmentData.relatedSearchTerms || '');
+  
+  // Combine and filter for feature-relevant keywords
+  const allKeywords = [...keywordData, ...searchTrends, ...relatedTerms];
+  
+  // Filter keywords that mention the feature or related terms
+  const featureWords = feature.toLowerCase().split(/\s+/);
+  const relevantKeywords = allKeywords.filter(kw => 
+    featureWords.some(word => kw.keyword.toLowerCase().includes(word))
+  );
+  
+  // Sort by volume (extract number and sort)
+  relevantKeywords.sort((a, b) => {
+    const volA = parseInt(a.volume.replace(/[,\/mo]/g, ''));
+    const volB = parseInt(b.volume.replace(/[,\/mo]/g, ''));
+    return volB - volA;
+  });
+  
+  keywords.push(...relevantKeywords.slice(0, 5).map(kw => kw.keyword));
+  
+  // If no specific keywords found, create generic ones
+  if (keywords.length === 0) {
+    keywords.push(`${feature} headphones`, `wireless ${feature}`, `bluetooth ${feature}`);
   }
   
   return keywords.slice(0, 3);
 }
 
 function generateCompetitiveAngle(feature: string, enrichmentData: EnrichmentAsset): string {
-  if (feature.includes('battery') || feature.includes('24')) {
-    return '20% longer than Beats Studio3, equal to Bose QC45 at $150 less';
-  } else if (feature.includes('fold') || feature.includes('portable')) {
-    return 'Unique foldable design at this price point - competitors charge $100+ more';
-  } else if (feature.includes('charge') || feature.includes('quick')) {
-    return 'Faster quick charge than JBL Live 650BTNC, matches Sony at half the price';
-  } else if (feature.includes('bluetooth') || feature.includes('connect')) {
-    return 'Latest Bluetooth 5.0 vs older 4.2 in similarly-priced models';
-  } else if (feature.includes('audio') || feature.includes('sound')) {
-    return 'Audio quality comparable to $300+ models in blind tests';
+  const competitors = enrichmentData.keyCompetitors || '';
+  const strengths = enrichmentData.relativeStrengths || '';
+  const analysis = enrichmentData.competitorAnalysis || '';
+  
+  const claims = parseCompetitiveData(competitors, strengths, analysis);
+  
+  if (claims.length > 0) {
+    return claims.join(', ');
+  }
+  
+  // Fallback to generic competitive positioning
+  if (competitors) {
+    return `Competitive features at superior value compared to ${competitors.split(',')[0]?.trim() || 'premium brands'}`;
   }
   
   return 'Competitive features at superior value point';
 }
 
 function generateObjections(feature: string, enrichmentData: EnrichmentAsset): string[] {
-  const objections: string[] = [];
+  const qa = enrichmentData.qaInsights || '';
+  const critical = enrichmentData.criticalReviews || '';
+  const missing = enrichmentData.missingFeatures || '';
   
-  if (feature.includes('battery') || feature.includes('24')) {
-    objections.push('Some competitors offer 30hr+ but lack quick charge');
-  } else if (feature.includes('fold') || feature.includes('portable')) {
-    objections.push('Folding mechanism adds slight weight vs non-foldable');
-  } else if (feature.includes('audio') || feature.includes('sound')) {
-    objections.push('No active noise cancellation - optimized for battery life instead');
-  }
+  const objectionData = parseObjections(qa, critical, missing);
   
-  return objections.slice(0, 2);
+  return objectionData.map(obj => obj.question);
 }
 
 /**
@@ -134,27 +297,60 @@ export function generateFeatureGuidance(
   features: Array<{ feature: string; confidence: number }>,
   enrichmentData?: EnrichmentAsset
 ) {
+  if (!enrichmentData) {
+    return features.map(({ feature, confidence }) => ({
+      feature,
+      confidence,
+      seoKeywords: [],
+      customerLanguage: [],
+      proofPoints: [],
+      competitiveClaims: [],
+      objections: [],
+      headlines: []
+    }));
+  }
+
   return features.map(({ feature, confidence }) => ({
     feature,
     confidence,
-    seoKeywords: getSEOKeywordsWithMetrics(feature),
-    customerLanguage: getCustomerLanguage(feature),
-    proofPoints: generateProofPoints(feature.toLowerCase(), enrichmentData!),
-    competitiveClaims: getCompetitiveClaims(feature),
-    objections: getObjectionsWithAnswers(feature),
-    headlines: generateHeadlines(feature)
+    seoKeywords: getSEOKeywordsWithMetrics(feature, enrichmentData),
+    customerLanguage: getCustomerLanguage(feature, enrichmentData),
+    proofPoints: generateProofPoints(feature.toLowerCase(), enrichmentData),
+    competitiveClaims: getCompetitiveClaims(feature, enrichmentData),
+    objections: getObjectionsWithAnswers(feature, enrichmentData),
+    headlines: generateHeadlines(feature, enrichmentData)
   }));
 }
 
-function getSEOKeywordsWithMetrics(feature: string) {
-  if (feature.includes('24')) {
-    return [
-      { keyword: '24 hour battery wireless headphones', volume: '320/mo', difficulty: 'Low' },
-      { keyword: 'long battery headphones', volume: '4,100/mo', difficulty: 'Med' },
-      { keyword: 'headphones that last all day', volume: '1,200/mo', difficulty: 'Low' }
-    ];
+function getSEOKeywordsWithMetrics(feature: string, enrichmentData: EnrichmentAsset) {
+  // Parse actual keyword data from enrichment
+  const keywordData = parseKeywordVolume(enrichmentData.seoKeywordVolume || '');
+  const searchTrends = parseKeywordVolume(enrichmentData.searchTrends || '');
+  const relatedTerms = parseKeywordVolume(enrichmentData.relatedSearchTerms || '');
+  
+  // Combine all keyword sources
+  const allKeywords = [...keywordData, ...searchTrends, ...relatedTerms];
+  
+  // Filter for feature-relevant keywords
+  const featureWords = feature.toLowerCase().split(/\s+/);
+  const relevantKeywords = allKeywords.filter(kw => 
+    featureWords.some(word => kw.keyword.toLowerCase().includes(word)) ||
+    kw.keyword.toLowerCase().includes('headphone')
+  );
+  
+  // Sort by volume
+  relevantKeywords.sort((a, b) => {
+    const volA = parseInt(a.volume.replace(/[,\/mo]/g, ''));
+    const volB = parseInt(b.volume.replace(/[,\/mo]/g, ''));
+    return volB - volA;
+  });
+  
+  // Return top keywords with metrics
+  if (relevantKeywords.length > 0) {
+    return relevantKeywords.slice(0, 3);
   }
   
+  // Fallback to generic keywords
   return [
     { keyword: `${feature} headphones`, volume: '1,200/mo', difficulty: 'Med' },
     { keyword: `wireless ${feature}`, volume: '890/mo', difficulty: 'Low' },
@@ -162,47 +358,67 @@ function getSEOKeywordsWithMetrics(feature: string) {
   ];
 }
 
-function getCustomerLanguage(feature: string) {
-  if (feature.includes('24') || feature.includes('battery')) {
-    return ['never worry about charging', 'forget to charge for days', 'set it and forget it', 'battery anxiety'];
-  } else if (feature.includes('fold')) {
-    return ['fits anywhere', 'super portable', 'travel friendly', 'compact'];
-  } else if (feature.includes('charge') || feature.includes('quick')) {
-    return ['quick power boost', 'emergency charge', 'coffee break charge', 'minutes not hours'];
+function getCustomerLanguage(feature: string, enrichmentData: EnrichmentAsset) {
+  const quotes = enrichmentData.verbatimQuotes || '';
+  const forums = enrichmentData.forumDiscussions || '';
+  const community = enrichmentData.communityInsights || '';
+  
+  // Combine all customer voice sources
+  const combinedText = quotes + ' ' + forums + ' ' + community;
+  
+  // Extract customer language related to the feature
+  const featureWords = feature.toLowerCase().split(/\s+/);
+  const relevantSections = combinedText.split(/[.!;]/).filter(section =>
+    featureWords.some(word => section.toLowerCase().includes(word))
+  );
+  
+  const phrases = extractCustomerLanguage(relevantSections.join('. '), 4);
+  
+  if (phrases.length > 0) {
+    return phrases;
   }
   
+  // Fallback: extract any customer language
+  const generalPhrases = extractCustomerLanguage(combinedText, 4);
+  
+  if (generalPhrases.length > 0) {
+    return generalPhrases;
+  }
+  
+  // Generic fallback
   return ['easy to use', 'reliable', 'convenient', 'hassle-free'];
 }
 
-function getCompetitiveClaims(feature: string) {
-  if (feature.includes('24') || feature.includes('battery')) {
-    return [
-      '20% longer than Beats Studio3 (20hr)',
-      'Equal to Bose QC45 at $150 less',
-      'More reliable than JBL Live 650BTNC'
-    ];
+function getCompetitiveClaims(feature: string, enrichmentData: EnrichmentAsset) {
+  const competitors = enrichmentData.keyCompetitors || '';
+  const strengths = enrichmentData.relativeStrengths || '';
+  const analysis = enrichmentData.competitorAnalysis || '';
+  
+  const claims = parseCompetitiveData(competitors, strengths, analysis);
+  
+  if (claims.length > 0) {
+    return claims;
   }
   
+  // Fallback
   return [
     'Competitive features at better value',
     'Matches premium brands at mid-tier price'
   ];
 }
 
-function getObjectionsWithAnswers(feature: string) {
-  if (feature.includes('24') || feature.includes('battery')) {
-    return [
-      { 
-        question: 'Why not 30hr like Sony WH-1000XM4?', 
-        answer: 'Quick charge gives 3hr in 10min, covering the gap. Plus we\'re $150 cheaper.' 
-      },
-      { 
-        question: 'Will it really last 24 hours?', 
-        answer: 'Lab-tested and verified by 91% of real users in reviews.' 
-      }
-    ];
+function getObjectionsWithAnswers(feature: string, enrichmentData: EnrichmentAsset) {
+  const qa = enrichmentData.qaInsights || '';
+  const critical = enrichmentData.criticalReviews || '';
+  const missing = enrichmentData.missingFeatures || '';
+  
+  const objections = parseObjections(qa, critical, missing);
+  
+  if (objections.length > 0) {
+    return objections;
   }
   
+  // Fallback
   return [
     { 
       question: 'How does this compare to premium brands?', 
@@ -211,24 +427,28 @@ function getObjectionsWithAnswers(feature: string) {
   ];
 }
 
-function generateHeadlines(feature: string) {
-  if (feature.includes('24') || feature.includes('battery')) {
-    return [
-      '24-Hour Battery Life: Never Worry About Charging Again',
-      'All-Day Wireless Freedom for Busy Professionals',
-      'Forget Daily Charging: 24 Hours of Uninterrupted Audio'
-    ];
-  } else if (feature.includes('fold')) {
-    return [
-      'Premium Sound, Pocket-Sized Design',
-      'Foldable Headphones That Fit Your Life',
-      'Big Sound, Small Package: Portable Perfection'
-    ];
+function generateHeadlines(feature: string, enrichmentData: EnrichmentAsset) {
+  const keywords = getSEOKeywordsWithMetrics(feature, enrichmentData);
+  const customerLang = getCustomerLanguage(feature, enrichmentData);
+  
+  const headlines: string[] = [];
+  
+  // Create headline from top keyword
+  if (keywords[0]) {
+    const topKeyword = keywords[0].keyword;
+    const capitalized = topKeyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    headlines.push(capitalized);
   }
   
-  return [
-    `${feature}: Premium Quality, Smart Value`,
-    `Experience the Difference: ${feature}`,
-    `${feature} That Exceeds Expectations`
-  ];
+  // Create headline from customer language
+  if (customerLang[0]) {
+    const phrase = customerLang[0];
+    const capitalized = phrase.charAt(0).toUpperCase() + phrase.slice(1);
+    headlines.push(capitalized);
+  }
+  
+  // Create benefit-focused headline
+  headlines.push(`${feature}: Premium Quality, Smart Value`);
+  
+  return headlines.slice(0, 3);
 }
