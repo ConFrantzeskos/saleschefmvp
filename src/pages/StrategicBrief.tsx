@@ -23,17 +23,17 @@ const StrategicBrief = () => {
 
   useEffect(() => {
     const runStrategicAnalysis = async () => {
-      // Phase 1: Show all frameworks being evaluated (3s)
+      // Phase 1: Show all frameworks being evaluated (6s)
       setPhase('evaluating');
       const frameworkIds = ladderFrameworks.map(f => f.id);
       
       for (let i = 0; i < frameworkIds.length; i++) {
-        await new Promise(resolve => setTimeout(resolve, 130));
+        await new Promise(resolve => setTimeout(resolve, 220));
         setVisibleFrameworks(prev => [...prev, frameworkIds[i]]);
         setProgress((i + 1) / frameworkIds.length * 25);
       }
 
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
       // Phase 2: Analyze each asset (4s)
       setPhase('analyzing');
